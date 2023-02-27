@@ -1,0 +1,21 @@
+Package: prettysurvey
+Title: Streamlined output from the `survey` package, with an application to NCHS data
+Version: 0.5
+Authors@R: 
+    person("Alex", "Strashny", , "AStrashny@cdc.gov", role = c("aut", "cre"))
+Description: Streamlined output from the `survey` package, with an application to NCHS data.
+License: CC BY 4.0
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Depends: 
+    R (>= 2.10)
+LazyData: true
+LazyDataCompression: bzip2
+Imports: 
+    assertthat,
+    forcats,
+    haven,
+    huxtable,
+    magrittr,
+    survey
