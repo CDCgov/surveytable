@@ -4,6 +4,7 @@ Version: 0.5
 Authors@R: 
     person("Alex", "Strashny", , "AStrashny@cdc.gov", role = c("aut", "cre"))
 Description: Streamlined output from the `survey` package, with an application to NCHS data.
+Date: 2023
 License: CC BY 4.0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
