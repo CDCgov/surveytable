@@ -29,6 +29,6 @@ fname_data = "../data/namcs2019_sas.sas7bdat"
 }
 \seealso{
 Other import: 
-\code{\link{.import_sas}()}
+\code{\link{import_sas}()}
 }
 \concept{import}

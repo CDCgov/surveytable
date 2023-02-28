@@ -1,19 +1,19 @@
 #' Tabulate variables
-#' 
-#' Operates on categorical and logical variables, and presents the estimated 
-#' counts, their standard errors (SEs) and confidence intervals (CIs), 
-#' percentages, and their SEs and CIs. Checks the presentation guidelines for 
-#' counts and percentages and flags estimates if, according to the guidelines, 
-#' they should be suppressed, footnoted, or reviewed by an analyst. CIs are 
-#' calculated at the 95% confidence level. CIs for the percentage estimates are 
-#' calculated using the Korn and Graubard method. 
+#'
+#' Operates on categorical and logical variables, and presents the estimated
+#' counts, their standard errors (SEs) and confidence intervals (CIs),
+#' percentages, and their SEs and CIs. Checks the presentation guidelines for
+#' counts and percentages and flags estimates if, according to the guidelines,
+#' they should be suppressed, footnoted, or reviewed by an analyst. CIs are
+#' calculated at the 95% confidence level. CIs for the percentage estimates are
+#' calculated using the Korn and Graubard method.
 #'
 #' @param design  survey design
 #' @param ...     names of variables (in quotes)
-#' @param max.levels a categorical variable can have at most this many levels. Used to avoid printing huge tables. 
-#' @param out     (optional) file name for output 
+#' @param max.levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
+#' @param out     (optional) file name for output
 #'
-#' @return `huxtable`
+#' @return a list of `huxtable` tables.
 #' @export
 #'
 #' @examples
@@ -25,10 +25,12 @@ tab = function(design, ..., max.levels = 20, out = opts$out$fname) {
 			vr = ...elt(ii)
 			ret[[vr]] = .tab_factor(design = design
 				, vr = vr
-				, max.levels = max.levels, out = out)
+				, max.levels = max.levels
+				, out = out)
+			cat("\n\n")
 		}
 	}
-	ret
+	invisible(ret)
 }
 
 .tab_factor = function(design, vr, max.levels, out) {
@@ -37,11 +39,11 @@ tab = function(design, ..., max.levels = 20, out = opts$out$fname) {
 		design$variables[,vr] = as.factor(design$variables[,vr])
 	}
 	assert_that(is.factor(design$variables[,vr])
-		, msg = paste0(vr, ": must be either factor or logical. Is ", 
+		, msg = paste0(vr, ": must be either factor or logical. Is ",
 			class(design$variables[,vr]) ))
 	design$variables[,vr] %<>% droplevels
 	attr(design$variables[,vr], "label") = lbl
-	
+
 	nlv = nlevels(design$variables[,vr])
 	if (nlv < 2) {
 		hh = data.frame(
@@ -57,9 +59,9 @@ tab = function(design, ..., max.levels = 20, out = opts$out$fname) {
 		caption(hh) = .getvarname(design, vr)
 		.write_out(hh, txt = vr, fname = out) %>% return()
 	}
-	
+
 	frm = as.formula(paste0("~ `", vr, "`"))
-	
+
 	##
 	counts = svyby(frm, frm, design, unwtd.count)$counts
 	if (!is.null(opts$tab$present$restricted)) {
@@ -67,7 +69,7 @@ tab = function(design, ..., max.levels = 20, out = opts$out$fname) {
 	} else {
 		pro = list(flags = rep("", length(counts)), has.flag = c())
 	}
-	
+
 	##
 	sto = svytotal(frm, design)
 	mmcr = data.frame(a = as.numeric(sto)
@@ -85,9 +87,10 @@ tab = function(design, ..., max.levels = 20, out = opts$out$fname) {
 	mmcr$d = mmcr$a + kk * mmcr$b
 	mmc = opts$tab$counts_tx( mmcr )
 	names(mmc) = opts$tab$counts_names
-	
+
 	##
-	lvs = design$variables[,vr] %>% levels
+	lvs = design$variables[,vr] %>% levels %>% .fix_levels
+	levels(design$variables[,vr]) = lvs
 	assert_that( all(!is.na(lvs)) )
 	ret = NULL
 	df1 = degf(design)
@@ -97,14 +100,14 @@ tab = function(design, ..., max.levels = 20, out = opts$out$fname) {
 		design$variables$.tmp = (design$variables[,vr] == lv)
 		xp = svyciprop(~ .tmp, design, method="beta")	# Korn and Graubard, 1998
 		ret1 = data.frame(Proportion = unclass(xp)[1], SE = SE(xp))
-		
+
 		# 95% CI
 		# not giving the user the ability to change this
 		# because the presentation standard uses 95% CI
 		ci = confint(xp, df = df1)
 		dimnames(ci)[[2]] = c("LL", "UL")
 		ret1 %<>% cbind(ci)
-		
+
 		ret1$`n numerator` = sum(design$variables$.tmp)
 		ret1$`n denominator` = length(design$variables$.tmp)
 		ret = rbind(ret, ret1)
@@ -120,14 +123,14 @@ tab = function(design, ..., max.levels = 20, out = opts$out$fname) {
 
 	mp2 = opts$tab$prct_tx(ret[,c("Proportion", "SE", "LL", "UL")])
 	names(mp2) = opts$tab$prct_names
-	
+
 	##
 	assert_that(nrow(mmc) == nrow(mp2)
 #		, all(rownames(mmc) == rownames(mp2))
 		, nrow(mmc) == length(pro$flags)
 		, nrow(mmc) == length(pco$flags)
 		, nrow(mmc) == length(ppo$flags) )
-		
+
 	mp = cbind(mmc, mp2)
 	flags = paste(pro$flags, pco$flags, ppo$flags) %>% trimws
 	if (any(nzchar(flags))) {
@@ -138,12 +141,11 @@ tab = function(design, ..., max.levels = 20, out = opts$out$fname) {
 	hh = mp %>% hux
 	number_format(hh)[-1,1:4] = fmt_pretty()
 
-	level_names = levels(design$variables[,vr])
-	level_names[is.na(level_names)] = "NA"
-	hhl = data.frame(Level = level_names) %>% hux 
+	level_names = design$variables[,vr] %>% levels %>% .fix_levels
+	hhl = data.frame(Level = level_names) %>% hux
 	hh %<>% add_columns(hhl, after = 0)
 	caption(hh) = .getvarname(design, vr)
-	
+
 	##
 	hh %<>% .add_flags( c(pro$has.flag, pco$has.flag, ppo$has.flag) )
 	.write_out(hh, txt = vr, fname = out)
@@ -170,4 +172,9 @@ tab = function(design, ..., max.levels = 20, out = opts$out$fname) {
 		hh %<>% add_footnote(v1)
 	}
 	hh
+}
+
+.fix_levels = function(lvs) {
+  lvs[is.na(lvs)] = "<NA>"
+  lvs
 }

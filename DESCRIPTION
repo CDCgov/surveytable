@@ -20,3 +20,7 @@ Imports:
     huxtable,
     magrittr,
     survey
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

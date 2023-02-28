@@ -4,8 +4,8 @@
 .onAttach = function(libname, pkgname) {
   d0 = "2023-02-28"
   int = 14
-  packageStartupMessage(pkgname 
-                        , "\n* We are still testing this package." 
+  packageStartupMessage(pkgname
+                        , "\n* We are still testing this package."
                         , "\n* If you notice any issues or if you have ideas for improving it, "
                         , "please let me know.")
   if (difftime(as.Date(Sys.time()), as.Date(d0), units = "days") > int) {
@@ -14,7 +14,7 @@
   }
 }
 
-#' `opts`: options
+#' Options
 #' @export
 #'
 #' @examples

@@ -3,7 +3,7 @@
 \docType{data}
 \name{opts}
 \alias{opts}
-\title{\code{opts}: options}
+\title{Options}
 \format{
 An object of class \code{list} of length 3.
 }
@@ -11,7 +11,7 @@ An object of class \code{list} of length 3.
 opts
 }
 \description{
-\code{opts}: options
+Options
 }
 \examples{
 opts$out$fname = "output.html"

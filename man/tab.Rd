@@ -16,7 +16,7 @@ tab(design, ..., max.levels = 20, out = opts$out$fname)
 \item{out}{(optional) file name for output}
 }
 \value{
-\code{huxtable}
+a list of \code{huxtable} tables.
 }
 \description{
 Operates on categorical and logical variables, and presents the estimated

@@ -16,11 +16,9 @@
 #' , fname_out = "../data/namcs_2019_puf.rds")
 #' }
 import_sas_namcs2019puf = function(fname_data, fname_fd, fname_out) {
-	if (file.exists(fname_out)) {
-		stop("Output file ", fname_out, " already exists.")
-	}
-
-	d1 = .import_sas(fname_data, fname_fd)
+  assert_that(!file.exists(fname_out)
+              , msg = paste0("Output file ", fname_out, " already exists."))
+	d1 = import_sas(fname_data, fname_fd)
 
 	sdo = svydesign(
 		ids = ~ CPSUM
@@ -39,15 +37,15 @@ import_sas_namcs2019puf = function(fname_data, fname_fd, fname_out) {
 #' @param fname_data  SAS survey data file
 #' @param fname_fd    SAS formats data file (produced with CNTLOUT option of PROC FORMAT)
 #'
-#' @return `data.frame`. Need to use `svydesign` to create a survey design object.
+#' @return `data.frame`. If it's a complex survey, use `svydesign` to create a survey design object.
 #' @family import
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' d1 = .import_sas(fname_data, fname_fd)
+#' d1 = import_sas(fname_data, fname_fd)
 #' }
-.import_sas = function(fname_data, fname_fd) {
+import_sas = function(fname_data, fname_fd) {
 	df1 = read_sas(fname_fd) %>% as.data.frame
 	assert_that(all(df1$START == df1$END))
 	df1 = df1[,c("FMTNAME", "START", "LABEL")]

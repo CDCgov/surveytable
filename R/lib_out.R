@@ -1,5 +1,7 @@
 .write_out = function(hh, txt = "", fname = "") {
 	hh = opts$out$hux_format(hh)
+  hh %>% print(colnames = FALSE)
+
 	if (nzchar(fname)) {
 		t1 = if(nzchar(txt)) {
 			paste0(Sys.time(), " - ", txt)
@@ -13,7 +15,7 @@
 			, append = TRUE
 			)
 	}
-	hh
+	invisible(hh)
 }
 
 .hux_format = function(hh) {
