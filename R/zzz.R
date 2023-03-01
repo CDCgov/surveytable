@@ -10,7 +10,9 @@
                         , "please let me know.")
   if (difftime(as.Date(Sys.time()), as.Date(d0), units = "days") > int) {
     packageStartupMessage("\n* This version of the package is over ", int, " days old. "
-                          , "\n* Please check if there is a newer version.")
+                          , "\n* Please check if there is a newer version."
+                          , "\n* Instructions for re-installing https://git.biotech.cdc.gov/kpr9/prettysurvey/-/blob/master/README.md"
+                          )
   }
 }
 
@@ -18,7 +20,7 @@
 #' @export
 #'
 #' @examples
-#' opts$out$fname = "output.html"
+#' opts$out$max.levels = 50
 opts = list()
 opts$import$bool.levels = c("yes", "no")
 opts$import$bool.true = "yes"
@@ -30,8 +32,12 @@ opts$tab$present$prop = .present_prop
 opts$tab$counts_tx = function(x) {round(x / 1e3)}
 opts$tab$counts_names = c("Number (000)", "SE (000)"
                           , "LL (000)", "UL (000)")
+opts$tab$raw = FALSE
+
 opts$tab$prct_tx = function(x) {round(x * 100, 1)}
 opts$tab$prct_names = c("Percent", "SE", "LL", "UL")
 
-opts$out$fname = ""
+opts$out$screen = TRUE
+opts$out$prefix = ""
+opts$out$max.levels = 20
 opts$out$hux_format = .hux_format

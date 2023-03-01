@@ -19,8 +19,5 @@ Imports:
     haven,
     huxtable,
     magrittr,
+    openxlsx,
     survey
-Suggests: 
-    knitr,
-    rmarkdown
-VignetteBuilder: knitr

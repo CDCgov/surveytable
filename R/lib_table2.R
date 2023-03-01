@@ -1,16 +1,23 @@
 #' Total count
 #'
 #' @param design  survey design
-#' @param out     (optional) file name for output 
+#' @param raw     also output raw counts? (Useful for performing further calculations
+#' , such as calculating rates.)
+#' @param screen  print to the screen?
+#' @param prefix  prefix of a file name to send output to
 #'
 #' @return `huxtable`
 #' @export
 #'
 #' @examples
 #' total(namcs2019)
-total = function(design, out = opts$out$fname) {
+total = function(design
+             , raw = opts$tab$raw
+             , screen = opts$out$screen
+             , prefix = opts$out$prefix
+                 ) {
 	design$variables$Total = 1
-	
+
 	##
 	counts = nrow(design$variables)
 	if (!is.null(opts$tab$present_restricted)) {
@@ -39,9 +46,10 @@ total = function(design, out = opts$out$fname) {
 
 	##
 	assert_that(nrow(mmc) == 1
+	  , nrow(mmcr) == 1
 		, nrow(mmc) == length(pro$flags)
 		, nrow(mmc) == length(pco$flags))
-	
+
 	mp = mmc
 	flags = paste(pro$flags, pco$flags) %>% trimws
 	if (any(nzchar(flags))) {
@@ -51,9 +59,15 @@ total = function(design, out = opts$out$fname) {
 	##
 	hh = mp %>% hux
 	number_format(hh)[-1,1:4] = fmt_pretty()
+	if (raw) {
+	  names(mmcr) = c("Count", "SE")
+	  hhe = mmcr[,1:2] %>% hux
+	  number_format(hhe)[-1,] = fmt_pretty()
+	  hh %<>% add_columns(hhe)
+	}
 	caption(hh) = "Total"
-	
+
 	##
-	hh %<>% .add_flags( c(pro$has.flag, pco$has.flag) )	
-	.write_out(hh, fname = out)
+	hh %<>% .add_flags( c(pro$has.flag, pco$has.flag) )
+	.write_out(hh, screen = screen, prefix = prefix, name = "Total")
 }

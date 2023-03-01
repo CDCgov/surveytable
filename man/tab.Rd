@@ -4,16 +4,28 @@
 \alias{tab}
 \title{Tabulate variables}
 \usage{
-tab(design, ..., max.levels = 20, out = opts$out$fname)
+tab(
+  design,
+  ...,
+  raw = opts$tab$raw,
+  max.levels = opts$out$max.levels,
+  screen = opts$out$screen,
+  prefix = opts$out$prefix
+)
 }
 \arguments{
 \item{design}{survey design}
 
 \item{...}{names of variables (in quotes)}
 
+\item{raw}{also output raw counts? (Useful for performing further calculations
+, such as calculating rates.)}
+
 \item{max.levels}{a categorical variable can have at most this many levels. Used to avoid printing huge tables.}
 
-\item{out}{(optional) file name for output}
+\item{screen}{print to the screen?}
+
+\item{prefix}{prefix of a file name to send output to}
 }
 \value{
 a list of \code{huxtable} tables.

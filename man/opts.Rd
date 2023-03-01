@@ -14,6 +14,6 @@ opts
 Options
 }
 \examples{
-opts$out$fname = "output.html"
+opts$out$max.levels = 50
 }
 \keyword{datasets}

@@ -1,19 +1,19 @@
-.write_out = function(hh, txt = "", fname = "") {
+.write_out = function(hh
+                      , screen = TRUE
+                      , prefix = ""
+                      , name = "") {
 	hh = opts$out$hux_format(hh)
-  hh %>% print(colnames = FALSE)
 
-	if (nzchar(fname)) {
-		t1 = if(nzchar(txt)) {
-			paste0(Sys.time(), " - ", txt)
-		} else {
-			Sys.time()
-		}
-		cat( paste0("<p>", t1, "</p>")
-			, to_html(hh)
-			, sep="\n\n"
-			, file = fname
-			, append = TRUE
-			)
+	if (screen) {
+	  gow = getOption("width")
+	  options(width = 10)
+	  hh %>% print(colnames = FALSE, min_width = 0, max_width = Inf)
+	  options(width = gow)
+	}
+
+	if (nzchar(prefix)) {
+	  fname = paste0(prefix, "-", name, ".xlsx")
+    hh %>% as_Workbook %>% saveWorkbook(fname)
 	}
 	invisible(hh)
 }

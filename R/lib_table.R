@@ -10,30 +10,41 @@
 #'
 #' @param design  survey design
 #' @param ...     names of variables (in quotes)
+#' @param raw     also output raw counts? (Useful for performing further calculations
+#' , such as calculating rates.)
 #' @param max.levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
-#' @param out     (optional) file name for output
+#' @param screen  print to the screen?
+#' @param prefix  prefix of a file name to send output to
 #'
 #' @return a list of `huxtable` tables.
 #' @export
 #'
 #' @examples
 #' tab(namcs2019, "MDDO", "SPECCAT", "MSA")
-tab = function(design, ..., max.levels = 20, out = opts$out$fname) {
+tab = function(design, ...
+               , raw = opts$tab$raw
+               , max.levels = opts$out$max.levels
+               , screen = opts$out$screen
+               , prefix = opts$out$prefix
+               ) {
 	ret = list()
 	if (...length() > 0) {
 		for (ii in 1:...length()) {
 			vr = ...elt(ii)
 			ret[[vr]] = .tab_factor(design = design
 				, vr = vr
+				, raw = raw
 				, max.levels = max.levels
-				, out = out)
+				, screen = screen
+				, prefix = prefix
+				)
 			cat("\n\n")
 		}
 	}
 	invisible(ret)
 }
 
-.tab_factor = function(design, vr, max.levels, out) {
+.tab_factor = function(design, vr, raw, max.levels, screen, prefix) {
 	lbl = attr(design$variables[,vr], "label")
 	if (is.logical(design$variables[,vr])) {
 		design$variables[,vr] = as.factor(design$variables[,vr])
@@ -50,14 +61,16 @@ tab = function(design, ..., max.levels = 20, out = opts$out$fname) {
 			Note = paste("All values the same:"
 			, design$variables[1,vr])) %>% hux
 		caption(hh) = .getvarname(design, vr)
-		.write_out(hh, txt = vr, fname = out) %>% return()
+		.write_out(hh, screen = screen, prefix = prefix
+		           , name = vr) %>% return()
 	} else if (nlv > max.levels) {
 		hh = data.frame(
 			Note = paste0("Categorical variable with too many levels: "
 			, nlv, ", but ", max.levels
-			, " allowed. Try increasing the max.levels argument.")) %>% hux
+			, " allowed. Try increasing the max.levels argument or opts$out$max.levels .")) %>% hux
 		caption(hh) = .getvarname(design, vr)
-		.write_out(hh, txt = vr, fname = out) %>% return()
+		.write_out(hh, screen = screen, prefix = prefix
+		           , name = vr) %>% return()
 	}
 
 	frm = as.formula(paste0("~ `", vr, "`"))
@@ -126,7 +139,7 @@ tab = function(design, ..., max.levels = 20, out = opts$out$fname) {
 
 	##
 	assert_that(nrow(mmc) == nrow(mp2)
-#		, all(rownames(mmc) == rownames(mp2))
+    , nrow(mmc) == nrow(mmcr)
 		, nrow(mmc) == length(pro$flags)
 		, nrow(mmc) == length(pco$flags)
 		, nrow(mmc) == length(ppo$flags) )
@@ -140,6 +153,12 @@ tab = function(design, ..., max.levels = 20, out = opts$out$fname) {
 	##
 	hh = mp %>% hux
 	number_format(hh)[-1,1:4] = fmt_pretty()
+	if (raw) {
+	  names(mmcr) = c("Count", "SE")
+	  hhe = mmcr[,1:2] %>% hux
+	  number_format(hhe)[-1,] = fmt_pretty()
+	  hh %<>% add_columns(hhe)
+	}
 
 	level_names = design$variables[,vr] %>% levels %>% .fix_levels
 	hhl = data.frame(Level = level_names) %>% hux
@@ -148,7 +167,7 @@ tab = function(design, ..., max.levels = 20, out = opts$out$fname) {
 
 	##
 	hh %<>% .add_flags( c(pro$has.flag, pco$has.flag, ppo$has.flag) )
-	.write_out(hh, txt = vr, fname = out)
+	.write_out(hh, screen = screen, prefix = prefix, name = vr)
 }
 
 .add_flags = function(hh, has.flag) {

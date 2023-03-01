@@ -28,7 +28,7 @@ You can install the development version of prettysurvey like so:
 ``` r
 install.packages(c("git2r", "remotes"))
 
-# If you are re-installing it, first remove it:
+# If you are re-installing this package, first remove it:
 remove.packages("prettysurvey")
 
 # On local computer

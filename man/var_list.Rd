@@ -4,7 +4,13 @@
 \alias{var_list}
 \title{List variables in a survey design}
 \usage{
-var_list(design, sw = "", all = FALSE, out = opts$out$fname)
+var_list(
+  design,
+  sw = "",
+  all = FALSE,
+  screen = opts$out$screen,
+  prefix = opts$out$prefix
+)
 }
 \arguments{
 \item{design}{survey design}
@@ -13,7 +19,9 @@ var_list(design, sw = "", all = FALSE, out = opts$out$fname)
 
 \item{all}{print all variables?}
 
-\item{out}{(optional) file name for output}
+\item{screen}{print to the screen?}
+
+\item{prefix}{prefix of a file name to send output to}
 }
 \value{
 \code{huxtable}

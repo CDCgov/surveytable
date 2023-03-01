@@ -4,12 +4,14 @@
 \alias{var_num}
 \title{Number of variables in a survey design.}
 \usage{
-var_num(design, out = opts$out$fname)
+var_num(design, screen = opts$out$screen, prefix = opts$out$prefix)
 }
 \arguments{
 \item{design}{survey design}
 
-\item{out}{(optional) file name for output}
+\item{screen}{print to the screen?}
+
+\item{prefix}{prefix of a file name to send output to}
 }
 \value{
 \code{huxtable}

@@ -4,12 +4,22 @@
 \alias{total}
 \title{Total count}
 \usage{
-total(design, out = opts$out$fname)
+total(
+  design,
+  raw = opts$tab$raw,
+  screen = opts$out$screen,
+  prefix = opts$out$prefix
+)
 }
 \arguments{
 \item{design}{survey design}
 
-\item{out}{(optional) file name for output}
+\item{raw}{also output raw counts? (Useful for performing further calculations
+, such as calculating rates.)}
+
+\item{screen}{print to the screen?}
+
+\item{prefix}{prefix of a file name to send output to}
 }
 \value{
 \code{huxtable}

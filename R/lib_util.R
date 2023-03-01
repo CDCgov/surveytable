@@ -5,7 +5,7 @@
 #' @param var1    first variable
 #' @param var2    second variable
 #'
-#' @return `survey.design`
+#' @return Updated `survey.design`
 #' @export
 #'
 #' @examples

@@ -5,6 +5,7 @@
 #' @import huxtable
 #' @importFrom forcats fct_cross
 #' @importFrom stats as.formula confint
+#' @importFrom openxlsx saveWorkbook
 
 #' @keywords internal
 "_PACKAGE"

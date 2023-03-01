@@ -16,7 +16,7 @@ var_cross(design, newvar, var1, var2)
 \item{var2}{second variable}
 }
 \value{
-\code{survey.design}
+Updated \code{survey.design}
 }
 \description{
 Cross two variables in a survey design
