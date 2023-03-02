@@ -10,22 +10,19 @@
 #'
 #' @param design  survey design
 #' @param ...     names of variables (in quotes)
-#' @param raw     also output raw counts? (Useful for performing further calculations
-#' , such as calculating rates.)
 #' @param max.levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
 #' @param screen  print to the screen?
-#' @param prefix  prefix of a file name to send output to
+#' @param out     file name of CSV file
 #'
-#' @return a list of `huxtable` tables.
+#' @return a list of `data.frame` tables.
 #' @export
 #'
 #' @examples
 #' tab(namcs2019, "MDDO", "SPECCAT", "MSA")
 tab = function(design, ...
-               , raw = opts$tab$raw
-               , max.levels = opts$out$max.levels
-               , screen = opts$out$screen
-               , prefix = opts$out$prefix
+               , max.levels = getOption("prettysurvey.out.max_levels")
+               , screen = getOption("prettysurvey.out.screen")
+               , out = getOption("prettysurvey.out.fname")
                ) {
 	ret = list()
 	if (...length() > 0) {
@@ -33,18 +30,16 @@ tab = function(design, ...
 			vr = ...elt(ii)
 			ret[[vr]] = .tab_factor(design = design
 				, vr = vr
-				, raw = raw
 				, max.levels = max.levels
 				, screen = screen
-				, prefix = prefix
+				, out = out
 				)
-			cat("\n\n")
 		}
 	}
 	invisible(ret)
 }
 
-.tab_factor = function(design, vr, raw, max.levels, screen, prefix) {
+.tab_factor = function(design, vr, max.levels, screen, out) {
 	lbl = attr(design$variables[,vr], "label")
 	if (is.logical(design$variables[,vr])) {
 		design$variables[,vr] = as.factor(design$variables[,vr])
@@ -57,28 +52,27 @@ tab = function(design, ...
 
 	nlv = nlevels(design$variables[,vr])
 	if (nlv < 2) {
-		hh = data.frame(
+		df1 = data.frame(
 			Note = paste("All values the same:"
-			, design$variables[1,vr])) %>% hux
-		caption(hh) = .getvarname(design, vr)
-		.write_out(hh, screen = screen, prefix = prefix
-		           , name = vr) %>% return()
+			, design$variables[1,vr]))
+		attr(df1, "title") = .getvarname(design, vr)
+		.write_out(df1, screen = screen, out = out) %>% return()
 	} else if (nlv > max.levels) {
-		hh = data.frame(
+		df1 = data.frame(
 			Note = paste0("Categorical variable with too many levels: "
 			, nlv, ", but ", max.levels
-			, " allowed. Try increasing the max.levels argument or opts$out$max.levels .")) %>% hux
-		caption(hh) = .getvarname(design, vr)
-		.write_out(hh, screen = screen, prefix = prefix
-		           , name = vr) %>% return()
+			, " allowed. Try increasing the max.levels argument or the "
+			, "prettysurvey.out.max_levels option ."))
+		attr(df1, "title") = .getvarname(design, vr)
+		.write_out(df1, screen = screen, out = out) %>% return()
 	}
 
 	frm = as.formula(paste0("~ `", vr, "`"))
 
 	##
 	counts = svyby(frm, frm, design, unwtd.count)$counts
-	if (!is.null(opts$tab$present$restricted)) {
-		pro = opts$tab$present$restricted(counts)
+	if (getOption("prettysurvey.tab.do_present")) {
+	  pro = getOption("prettysurvey.tab.present_restricted") %>% do.call(list(counts))
 	} else {
 		pro = list(flags = rep("", length(counts)), has.flag = c())
 	}
@@ -87,8 +81,8 @@ tab = function(design, ...
 	sto = svytotal(frm, design)
 	mmcr = data.frame(a = as.numeric(sto)
 		, b = sqrt(diag(attr(sto, "var"))) )
-	if (!is.null(opts$tab$present$count)) {
-		pco = opts$tab$present$count(mmcr, counts)
+	if (getOption("prettysurvey.tab.do_present")) {
+	  pco = getOption("prettysurvey.tab.present_count") %>% do.call(list(mmcr, counts))
 	} else {
 		pco = list(flags = rep("", nrow(mmcr)), has.flag = c())
 	}
@@ -98,8 +92,8 @@ tab = function(design, ...
 	kk = 1.95996398454
 	mmcr$c = mmcr$a - kk * mmcr$b
 	mmcr$d = mmcr$a + kk * mmcr$b
-	mmc = opts$tab$counts_tx( mmcr )
-	names(mmc) = opts$tab$counts_names
+	mmc = getOption("prettysurvey.tab.tx_count") %>% do.call(list(mmcr))
+	names(mmc) = getOption("prettysurvey.tab.names_count")
 
 	##
 	lvs = design$variables[,vr] %>% levels %>% .fix_levels
@@ -127,15 +121,15 @@ tab = function(design, ...
 	}
 	ret$degf = df1
 
-	if (!is.null(opts$tab$present$prop)) {
-		ppo = opts$tab$present$prop(ret)
+	if (getOption("prettysurvey.tab.do_present")) {
+	  ppo = getOption("prettysurvey.tab.present_prop") %>% do.call(list(ret))
 	} else {
 		nlvs = design$variables[, vr] %>% nlevels
 		ppo = list(flags = rep("", nlvs), has.flag = c())
 	}
 
-	mp2 = opts$tab$prct_tx(ret[,c("Proportion", "SE", "LL", "UL")])
-	names(mp2) = opts$tab$prct_names
+	mp2 = getOption("prettysurvey.tab.tx_prct") %>% do.call(list(ret[,c("Proportion", "SE", "LL", "UL")]))
+	names(mp2) = getOption("prettysurvey.tab.names_prct")
 
 	##
 	assert_that(nrow(mmc) == nrow(mp2)
@@ -151,28 +145,19 @@ tab = function(design, ...
 	}
 
 	##
-	hh = mp %>% hux
-	number_format(hh)[-1,1:4] = fmt_pretty()
-	if (raw) {
-	  names(mmcr) = c("Count", "SE")
-	  hhe = mmcr[,1:2] %>% hux
-	  number_format(hhe)[-1,] = fmt_pretty()
-	  hh %<>% add_columns(hhe)
-	}
-
+	rownames(mp) = NULL
 	level_names = design$variables[,vr] %>% levels %>% .fix_levels
-	hhl = data.frame(Level = level_names) %>% hux
-	hh %<>% add_columns(hhl, after = 0)
-	caption(hh) = .getvarname(design, vr)
+	mp = cbind(data.frame(Level = level_names), mp)
 
-	##
-	hh %<>% .add_flags( c(pro$has.flag, pco$has.flag, ppo$has.flag) )
-	.write_out(hh, screen = screen, prefix = prefix, name = vr)
+  attr(mp, "num") = 2:5
+  attr(mp, "title") = .getvarname(design, vr)
+	mp %<>% .add_flags( c(pro$has.flag, pco$has.flag, ppo$has.flag) )
+	.write_out(mp, screen = screen, out = out)
 }
 
-.add_flags = function(hh, has.flag) {
+.add_flags = function(df1, has.flag) {
 	if (is.null(has.flag)) {
-		hh %<>% add_footnote("(No flags.)")
+	  attr(df1, "footer") = "(No flags.)"
 	} else {
 		v1 = c()
 		for (ff in has.flag) {
@@ -188,12 +173,19 @@ tab = function(design, ...
 			))
 		}
 		v1 %<>% paste(collapse="; ")
-		hh %<>% add_footnote(v1)
+		attr(df1, "footer") = v1 %>% paste(collapse="; ")
 	}
-	hh
+  df1
 }
 
 .fix_levels = function(lvs) {
   lvs[is.na(lvs)] = "<NA>"
   lvs
+}
+
+.tx_count = function(x) {
+  round(x / 1e3)
+}
+.tx_prct = function(x) {
+  round(x * 100, 1)
 }

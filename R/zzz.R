@@ -1,8 +1,5 @@
-# .onLoad = function(libname, pkgname) {
-# }
-#
 .onAttach = function(libname, pkgname) {
-  d0 = "2023-02-28"
+  d0 = "2023-03-03"
   int = 14
   packageStartupMessage(pkgname
                         , "\n* We are still testing this package."
@@ -16,28 +13,23 @@
   }
 }
 
-#' Options
-#' @export
-#'
-#' @examples
-#' opts$out$max.levels = 50
-opts = list()
-opts$import$bool.levels = c("yes", "no")
-opts$import$bool.true = "yes"
+.onLoad = function(libname, pkgname) {
+  options(
+    prettysurvey.import.bool_levels = c("yes", "no")
+    , prettysurvey.import.bool_true = "yes"
 
-opts$tab$present$restricted = .present_restricted
-opts$tab$present$count = .present_count
-opts$tab$present$prop = .present_prop
+    , prettysurvey.tab.do_present = TRUE
+    , prettysurvey.tab.present_restricted = ".present_restricted"
+    , prettysurvey.tab.present_count = ".present_count"
+    , prettysurvey.tab.present_prop = ".present_prop"
+    , prettysurvey.tab.tx_count = ".tx_count"
+    , prettysurvey.tab.tx_prct = ".tx_prct"
 
-opts$tab$counts_tx = function(x) {round(x / 1e3)}
-opts$tab$counts_names = c("Number (000)", "SE (000)"
-                          , "LL (000)", "UL (000)")
-opts$tab$raw = FALSE
+    , prettysurvey.tab.names_count = c("Number (000)", "SE (000)", "LL (000)", "UL (000)")
+    , prettysurvey.tab.names_prct = c("Percent", "SE", "LL", "UL")
 
-opts$tab$prct_tx = function(x) {round(x * 100, 1)}
-opts$tab$prct_names = c("Percent", "SE", "LL", "UL")
-
-opts$out$screen = TRUE
-opts$out$prefix = ""
-opts$out$max.levels = 20
-opts$out$hux_format = .hux_format
+    , prettysurvey.out.screen = TRUE
+    , prettysurvey.out.fname = ""
+    , prettysurvey.out.max_levels = 20
+  )
+}

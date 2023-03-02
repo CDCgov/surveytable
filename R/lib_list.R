@@ -2,26 +2,25 @@
 #'
 #' @param design  survey design
 #' @param screen  print to the screen?
-#' @param prefix  prefix of a file name to send output to
+#' @param out     file name of CSV file
 #'
-#' @return `huxtable`
+#' @return `data.frame`
 #' @export
 #'
 #' @examples
 #' var_num(namcs2019)
 var_num = function(design
-            , screen = opts$out$screen
-            , prefix = opts$out$prefix
+            , screen = getOption("prettysurvey.out.screen")
+            , out = getOption("prettysurvey.out.fname")
             ) {
-	hh = data.frame(Value = c(ncol(design$variables)
-		, nrow(design$variables)) ) %>% hux
-	hhl = data.frame(What = c("Number of variables"
-		, "Number of observations") ) %>% hux
-	hh %<>% add_columns(hhl, after = 0)
-	number_format(hh)[-1,2] = fmt_pretty()
-	hh = hh[-1,]
-	caption(hh) = "Data summary"
-	.write_out(hh, screen = screen, prefix = prefix, name = "Summary")
+  df1 = data.frame(
+    What = c("Number of variables"
+            , "Number of observations")
+    , Value = c(ncol(design$variables)
+            , nrow(design$variables)) )
+  attr(df1, "num") = 2
+  attr(df1, "title") = "Data summary"
+	.write_out(df1, screen = screen, out = out)
 }
 
 #' List variables in a survey design
@@ -30,16 +29,16 @@ var_num = function(design
 #' @param sw      starting characters in variable name (case insensitive)
 #' @param all     print all variables?
 #' @param screen  print to the screen?
-#' @param prefix  prefix of a file name to send output to
+#' @param out     file name of CSV file
 #'
-#' @return `huxtable`
+#' @return `data.frame`
 #' @export
 #'
 #' @examples
 #' var_list(namcs2019, "age")
 var_list = function(design, sw = "", all=FALSE
-                    , screen = opts$out$screen
-                    , prefix = opts$out$prefix
+                    , screen = getOption("prettysurvey.out.screen")
+                    , out = getOption("prettysurvey.out.fname")
                     ) {
 	assert_that(nzchar(sw) | all
     , msg = "Either set the 'sw' argument to a non-empty string, or set all=TRUE")
@@ -61,13 +60,12 @@ var_list = function(design, sw = "", all=FALSE
 		ret = rbind(ret, r1)
 	}
 
-	hh = ret %>% hux
-	caption(hh) = if (all) {
+	attr(ret, "title") = if (all) {
 			"ALL variables"
 		} else {
 			paste0("Variables beginning with '", sw, "'")
 		}
-	.write_out(hh, screen = screen, prefix = prefix, name = "Variables")
+	.write_out(ret, screen = screen, out = out)
 }
 
 .getvarname = function(design, vr) {

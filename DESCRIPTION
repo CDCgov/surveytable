@@ -19,5 +19,4 @@ Imports:
     haven,
     huxtable,
     magrittr,
-    openxlsx,
     survey

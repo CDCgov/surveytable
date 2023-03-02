@@ -8,8 +8,8 @@ var_list(
   design,
   sw = "",
   all = FALSE,
-  screen = opts$out$screen,
-  prefix = opts$out$prefix
+  screen = getOption("prettysurvey.out.screen"),
+  out = getOption("prettysurvey.out.fname")
 )
 }
 \arguments{
@@ -21,10 +21,10 @@ var_list(
 
 \item{screen}{print to the screen?}
 
-\item{prefix}{prefix of a file name to send output to}
+\item{out}{file name of CSV file}
 }
 \value{
-\code{huxtable}
+\code{data.frame}
 }
 \description{
 List variables in a survey design

@@ -4,17 +4,21 @@
 \alias{var_num}
 \title{Number of variables in a survey design.}
 \usage{
-var_num(design, screen = opts$out$screen, prefix = opts$out$prefix)
+var_num(
+  design,
+  screen = getOption("prettysurvey.out.screen"),
+  out = getOption("prettysurvey.out.fname")
+)
 }
 \arguments{
 \item{design}{survey design}
 
 \item{screen}{print to the screen?}
 
-\item{prefix}{prefix of a file name to send output to}
+\item{out}{file name of CSV file}
 }
 \value{
-\code{huxtable}
+\code{data.frame}
 }
 \description{
 Number of variables in a survey design.

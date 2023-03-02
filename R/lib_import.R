@@ -113,15 +113,17 @@ import_sas = function(fname_data, fname_fd) {
 		}
 	}
 
-	opts$import$bool.levels %<>% tolower %>% trimws
-	opts$import$bool.true %<>% tolower %>% trimws
+	op.bl = getOption("prettysurvey.import.bool_levels") %>% tolower %>% trimws
+	op.bt = getOption("prettysurvey.import.bool_true") %>% tolower %>% trimws
+	options(prettysurvey.import.bool_levels = op.bl
+	        , prettysurvey.import.bool_true = op.bt)
 	for (ii in names(d1)) {
 		if (is.factor(d1[,ii]) && nlevels(d1[,ii]) == 2L) {
 			lvl = levels(d1[,ii]) %>% tolower %>% trimws
-			if(lvl %>% setequal( opts$import$bool.levels )) {
+			if(lvl %>% setequal( getOption("prettysurvey.import.bool_levels") )) {
 				c.log %<>% c(ii)
 				lbl = attr(d1[,ii], "label")
-				d1[,ii] = (tolower(d1[,ii]) == opts$import$bool.true )
+				d1[,ii] = (tolower(d1[,ii]) == getOption("prettysurvey.import.bool_true") )
 				attr(d1[,ii], "label") = lbl
 			}
 		}

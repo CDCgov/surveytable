@@ -1,27 +1,24 @@
 #' Total count
 #'
 #' @param design  survey design
-#' @param raw     also output raw counts? (Useful for performing further calculations
-#' , such as calculating rates.)
 #' @param screen  print to the screen?
-#' @param prefix  prefix of a file name to send output to
+#' @param out     file name of CSV file
 #'
-#' @return `huxtable`
+#' @return `data.frame`
 #' @export
 #'
 #' @examples
 #' total(namcs2019)
 total = function(design
-             , raw = opts$tab$raw
-             , screen = opts$out$screen
-             , prefix = opts$out$prefix
-                 ) {
+               , screen = getOption("prettysurvey.out.screen")
+               , out = getOption("prettysurvey.out.fname")
+               ) {
 	design$variables$Total = 1
 
 	##
 	counts = nrow(design$variables)
-	if (!is.null(opts$tab$present_restricted)) {
-		pro = opts$tab$present_restricted(counts)
+	if (getOption("prettysurvey.tab.do_present")) {
+	  pro = getOption("prettysurvey.tab.present_restricted") %>% do.call(list(counts))
 	} else {
 		pro = list(flags = rep("", length(counts)), has.flag = c())
 	}
@@ -30,8 +27,8 @@ total = function(design
 	sto = svytotal(~Total, design)
 	mmcr = data.frame(a = as.numeric(sto)
 		, b = sqrt(diag(attr(sto, "var"))) )
-	if (!is.null(opts$tab$present_count)) {
-		pco = opts$tab$present_count(mmcr, counts)
+	if (getOption("prettysurvey.tab.do_present")) {
+	  pco = getOption("prettysurvey.tab.present_count") %>% do.call(list(mmcr, counts))
 	} else {
 		pco = list(flags = rep("", nrow(mmcr)), has.flag = c())
 	}
@@ -41,8 +38,8 @@ total = function(design
 	kk = 1.95996398454
 	mmcr$c = mmcr$a - kk * mmcr$b
 	mmcr$d = mmcr$a + kk * mmcr$b
-	mmc = opts$tab$counts_tx( mmcr )
-	names(mmc) = opts$tab$counts_names
+	mmc = getOption("prettysurvey.tab.tx_count") %>% do.call(list(mmcr))
+	names(mmc) = getOption("prettysurvey.tab.names_count")
 
 	##
 	assert_that(nrow(mmc) == 1
@@ -57,17 +54,9 @@ total = function(design
 	}
 
 	##
-	hh = mp %>% hux
-	number_format(hh)[-1,1:4] = fmt_pretty()
-	if (raw) {
-	  names(mmcr) = c("Count", "SE")
-	  hhe = mmcr[,1:2] %>% hux
-	  number_format(hhe)[-1,] = fmt_pretty()
-	  hh %<>% add_columns(hhe)
-	}
-	caption(hh) = "Total"
-
-	##
-	hh %<>% .add_flags( c(pro$has.flag, pco$has.flag) )
-	.write_out(hh, screen = screen, prefix = prefix, name = "Total")
+	rownames(mp) = NULL
+	attr(mp, "num") = 1:4
+	attr(mp, "title") = "Total"
+	mp %<>% .add_flags( c(pro$has.flag, pco$has.flag) )
+	.write_out(mp, screen = screen, out = out)
 }

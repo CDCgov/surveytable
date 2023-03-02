@@ -6,23 +6,19 @@
 \usage{
 total(
   design,
-  raw = opts$tab$raw,
-  screen = opts$out$screen,
-  prefix = opts$out$prefix
+  screen = getOption("prettysurvey.out.screen"),
+  out = getOption("prettysurvey.out.fname")
 )
 }
 \arguments{
 \item{design}{survey design}
 
-\item{raw}{also output raw counts? (Useful for performing further calculations
-, such as calculating rates.)}
-
 \item{screen}{print to the screen?}
 
-\item{prefix}{prefix of a file name to send output to}
+\item{out}{file name of CSV file}
 }
 \value{
-\code{huxtable}
+\code{data.frame}
 }
 \description{
 Total count
