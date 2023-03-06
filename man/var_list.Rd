@@ -2,7 +2,7 @@
 % Please edit documentation in R/lib_list.R
 \name{var_list}
 \alias{var_list}
-\title{List variables in a survey design}
+\title{List variables in a survey.}
 \usage{
 var_list(
   design,
@@ -27,7 +27,7 @@ var_list(
 \code{data.frame}
 }
 \description{
-List variables in a survey design
+List variables in a survey.
 }
 \examples{
 var_list(namcs2019, "age")

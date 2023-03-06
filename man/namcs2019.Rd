@@ -20,8 +20,9 @@ An object of class \code{survey.design2} (inherits from \code{survey.design}) wi
 namcs2019
 }
 \description{
-Visits to physicians. Visits are not the same as individuals, as one
-individual can make multiple visits.
+A data system of visits to office-based physicians. Note that the unit of
+observation is visits, not patients – this is important since a single
+patient can make multiple visits.
 }
 \details{
 A survey design object with 1,095 variables and 8,250 observations.

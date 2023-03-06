@@ -37,7 +37,8 @@ import_sas_namcs2019puf = function(fname_data, fname_fd, fname_out) {
 #' @param fname_data  SAS survey data file
 #' @param fname_fd    SAS formats data file (produced with CNTLOUT option of PROC FORMAT)
 #'
-#' @return `data.frame`. If it's a complex survey, use `svydesign` to create a survey design object.
+#' @return `data.frame`. If this is a complex survey, use `svydesign` to
+#' create a survey design object.
 #' @family import
 #' @export
 #'

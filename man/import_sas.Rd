@@ -12,7 +12,8 @@ import_sas(fname_data, fname_fd)
 \item{fname_fd}{SAS formats data file (produced with CNTLOUT option of PROC FORMAT)}
 }
 \value{
-\code{data.frame}. If it's a complex survey, use \code{svydesign} to create a survey design object.
+\code{data.frame}. If this is a complex survey, use \code{svydesign} to
+create a survey design object.
 }
 \description{
 Import SAS data into R

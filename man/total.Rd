@@ -26,3 +26,9 @@ Total count
 \examples{
 total(namcs2019)
 }
+\seealso{
+Other tables: 
+\code{\link{tab_subset}()},
+\code{\link{tab}()}
+}
+\concept{tables}

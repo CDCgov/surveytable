@@ -15,6 +15,7 @@
 #' @param out     file name of CSV file
 #'
 #' @return a list of `data.frame` tables.
+#' @family tables
 #' @export
 #'
 #' @examples
@@ -56,7 +57,7 @@ tab = function(design, ...
 			Note = paste("All values the same:"
 			, design$variables[1,vr]))
 		attr(df1, "title") = .getvarname(design, vr)
-		.write_out(df1, screen = screen, out = out) %>% return()
+		return( .write_out(df1, screen = screen, out = out) )
 	} else if (nlv > max.levels) {
 		df1 = data.frame(
 			Note = paste0("Categorical variable with too many levels: "
@@ -64,7 +65,7 @@ tab = function(design, ...
 			, " allowed. Try increasing the max.levels argument or the "
 			, "prettysurvey.out.max_levels option ."))
 		attr(df1, "title") = .getvarname(design, vr)
-		.write_out(df1, screen = screen, out = out) %>% return()
+		return( .write_out(df1, screen = screen, out = out) )
 	}
 
 	frm = as.formula(paste0("~ `", vr, "`"))

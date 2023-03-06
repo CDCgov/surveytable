@@ -38,3 +38,9 @@ calculated using the Korn and Graubard method.
 \examples{
 tab(namcs2019, "MDDO", "SPECCAT", "MSA")
 }
+\seealso{
+Other tables: 
+\code{\link{tab_subset}()},
+\code{\link{total}()}
+}
+\concept{tables}

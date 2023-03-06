@@ -1,4 +1,4 @@
-#' Number of variables in a survey design.
+#' Number of variables in a survey.
 #'
 #' @param design  survey design
 #' @param screen  print to the screen?
@@ -23,7 +23,7 @@ var_num = function(design
 	.write_out(df1, screen = screen, out = out)
 }
 
-#' List variables in a survey design
+#' List variables in a survey.
 #'
 #' @param design  survey design
 #' @param sw      starting characters in variable name (case insensitive)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/lib_list.R
 \name{var_num}
 \alias{var_num}
-\title{Number of variables in a survey design.}
+\title{Number of variables in a survey.}
 \usage{
 var_num(
   design,
@@ -21,7 +21,7 @@ var_num(
 \code{data.frame}
 }
 \description{
-Number of variables in a survey design.
+Number of variables in a survey.
 }
 \examples{
 var_num(namcs2019)

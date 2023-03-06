@@ -5,6 +5,7 @@
 #' @param out     file name of CSV file
 #'
 #' @return `data.frame`
+#' @family tables
 #' @export
 #'
 #' @examples

@@ -1,5 +1,5 @@
 .onAttach = function(libname, pkgname) {
-  d0 = "2023-03-03"
+  d0 = "2023-03-06"
   int = 14
   packageStartupMessage(pkgname
                         , "\n* We are still testing this package."

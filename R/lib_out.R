@@ -1,4 +1,4 @@
-.write_out = function(df1, screen = TRUE, out = "") {
+.write_out = function(df1, screen, out) {
   if (screen) {
     hh = df1 %>% hux %>% set_all_borders
 	  if (!is.null(txt <- attr(df1, "title"))) {
@@ -11,10 +11,10 @@
       hh %<>% add_footnote(txt)
     }
 
-#    gow = getOption("width")
-#    options(width = 10)
-    hh %>% print(colnames = FALSE) # , min_width = 0, max_width = Inf)
-#    options(width = gow)
+    gow = getOption("width")
+    options(width = 10)
+    hh %>% print(colnames = FALSE, min_width = 0, max_width = Inf)
+    options(width = gow)
     cat("\n")
   }
 # 	if (screen) {
