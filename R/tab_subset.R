@@ -86,37 +86,3 @@ tab_subset = function(design, vr, vrby
   }
   invisible(ret)
 }
-
-
-#' @rdname tab_subset
-#' @export
-tab_cross = function(design, vr, vrby
-                      , max.levels = getOption("prettysurvey.out.max_levels")
-                      , screen = getOption("prettysurvey.out.screen")
-                      , out = getOption("prettysurvey.out.fname")
-) {
-  newvr = paste0(vr, "x", vrby)
-  design %>% var_cross(newvr = newvr, vr = vr, vrby = vrby) %>% .tab_factor(vr = newvr
-                                                          , max.levels = max.levels
-                                                          , screen = screen
-                                                          , out = out)
-
-}
-
-#' @rdname tab_subset
-#' @export
-var_cross = function(design, newvr, vr, vrby) {
-  nm = names(design$variables)
-  assert_that(!(newvr %in% nm), msg = paste("Variable", newvr, "already exists."))
-  assert_that(vr %in% nm, msg = paste("Variable", vr, "not in the data."))
-  assert_that(vrby %in% nm, msg = paste("Variable", vrby, "not in the data."))
-
-  design$variables[,newvr] = forcats::fct_cross(
-    design$variables[,vr]
-    , design$variables[,vrby])
-  attr(design$variables[,newvr], "label") = paste0(
-    "(", .getvarname(design, vr), ") x ("
-    , .getvarname(design, vrby), ")")
-
-  design
-}

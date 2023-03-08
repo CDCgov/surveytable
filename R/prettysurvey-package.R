@@ -17,5 +17,6 @@ NULL
 #' Run [`show_options()`] to see available options.
 #'
 #' @name prettysurvey-options
+#' @family options
 #' @docType package
 NULL

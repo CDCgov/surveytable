@@ -17,22 +17,6 @@
     options(width = gow)
     cat("\n")
   }
-# 	if (screen) {
-# 	  if (!is.null(txt <- attr(df1, "title"))) {
-# 	    txt %>% cat(fill = TRUE)
-# 	  }
-# 	  df1 = df1
-# 	  if (!is.null(nc <- attr(df1, "num"))) {
-#       for (ii in nc) {
-#         df1[,ii] %<>% prettyNum(big.mark = ",")
-#       }
-# 	  }
-#     df1 %>% print(row.names = FALSE)
-#     if (!is.null(txt <- attr(df1, "footer"))) {
-#       txt %>% cat(fill = TRUE)
-#     }
-#     "\n" %>% cat()
-# 	}
 
 	if (nzchar(out)) {
 	  if (!is.null(txt <- attr(df1, "title"))) {
@@ -43,7 +27,6 @@
 	  }
 	  write.table(df1, file = out
 	              , append = TRUE, row.names = FALSE
-	              , quote = FALSE
 	              , sep = ",", qmethod = "double") %>% suppressWarnings
 	  if (!is.null(txt <- attr(df1, "footer"))) {
 	    write.table(txt, file = out

@@ -91,7 +91,7 @@ tab = function(design, ...
 	# qnorm(.975)
 	# Forcing 95% CI because CI for percentages has to be 95%
 	kk = 1.95996398454
-	mmcr$c = mmcr$a - kk * mmcr$b
+	mmcr$c = pmax(mmcr$a - kk * mmcr$b, 0)
 	mmcr$d = mmcr$a + kk * mmcr$b
 	mmc = getOption("prettysurvey.tab.tx_count") %>% do.call(list(mmcr))
 	names(mmc) = getOption("prettysurvey.tab.names_count")
@@ -182,11 +182,4 @@ tab = function(design, ...
 .fix_levels = function(lvs) {
   lvs[is.na(lvs)] = "<NA>"
   lvs
-}
-
-.tx_count = function(x) {
-  round(x / 1e3)
-}
-.tx_prct = function(x) {
-  round(x * 100, 1)
 }

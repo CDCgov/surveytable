@@ -1,5 +1,5 @@
 .onAttach = function(libname, pkgname) {
-  d0 = "2023-03-06"
+  d0 = "2023-03-08"
   int = 14
   packageStartupMessage(pkgname
                         , "\n* We are still testing this package."
@@ -22,14 +22,20 @@
     , prettysurvey.tab.present_restricted = ".present_restricted"
     , prettysurvey.tab.present_count = ".present_count"
     , prettysurvey.tab.present_prop = ".present_prop"
-    , prettysurvey.tab.tx_count = ".tx_count"
-    , prettysurvey.tab.tx_prct = ".tx_prct"
 
-    , prettysurvey.tab.names_count = c("Number (000)", "SE (000)", "LL (000)", "UL (000)")
+    # , prettysurvey.tab.tx_count = ".tx_count"
+    # , prettysurvey.tab.names_count = c("Number (000)", "SE (000)", "LL (000)", "UL (000)")
+
+    , prettysurvey.tab.tx_prct = ".tx_prct"
     , prettysurvey.tab.names_prct = c("Percent", "SE", "LL", "UL")
 
     , prettysurvey.out.screen = TRUE
     , prettysurvey.out.fname = ""
     , prettysurvey.out.max_levels = 20
   )
+  set_count_1k()
+}
+
+.tx_prct = function(x) {
+  round(x * 100, 1)
 }

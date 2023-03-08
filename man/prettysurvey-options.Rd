@@ -7,3 +7,9 @@
 \description{
 Run \code{\link[=show_options]{show_options()}} to see available options.
 }
+\seealso{
+Other options: 
+\code{\link{set_count_1k}()},
+\code{\link{show_options}()}
+}
+\concept{options}

@@ -2,6 +2,8 @@
 
 export(import_sas)
 export(import_sas_namcs2019puf)
+export(set_count_1k)
+export(set_count_int)
 export(show_options)
 export(tab)
 export(tab_cross)
