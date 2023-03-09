@@ -2,9 +2,12 @@
 % Please edit documentation in R/set_survey.R
 \name{set_survey}
 \alias{set_survey}
+\alias{show_survey}
 \title{Specify the survey from which you would like to tabulate the estimates from}
 \usage{
 set_survey(survey_name = "")
+
+show_survey()
 }
 \arguments{
 \item{survey_name}{the name of a \code{survey.design} object (in quotation marks)}
@@ -15,6 +18,17 @@ set_survey(survey_name = "")
 \description{
 You need to do this before the other functions, such as \code{\link[=tab]{tab()}}, will work.
 }
+\details{
+\code{show_survey()} shows the survey that you've set.
+}
 \examples{
 set_survey("vars2019")
+show_survey()
 }
+\seealso{
+Other options: 
+\code{\link{prettysurvey-options}},
+\code{\link{set_count_1k}()},
+\code{\link{show_options}()}
+}
+\concept{options}

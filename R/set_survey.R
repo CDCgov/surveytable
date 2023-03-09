@@ -2,13 +2,17 @@
 #'
 #' You need to do this before the other functions, such as [tab()], will work.
 #'
+#' `show_survey()` shows the survey that you've set.
+#'
 #' @param survey_name the name of a `survey.design` object (in quotation marks)
 #'
 #' @return (Nothing.)
+#' @family options
 #' @export
 #'
 #' @examples
 #' set_survey("vars2019")
+#' show_survey()
 set_survey = function(survey_name = "") {
   assert_that(is.character(survey_name), nzchar(survey_name)
               , msg = "survey_name must be a character string.")
@@ -20,6 +24,17 @@ set_survey = function(survey_name = "") {
 
   options(prettysurvey.design = survey_name)
   message("* Analyzing ", survey_name)
+}
+
+#' @rdname set_survey
+#' @export
+show_survey = function() {
+  survey_name = getOption("prettysurvey.design")
+  message("* Analyzing ", survey_name)
+
+  design = .load_survey()
+  print(design)
+  invisible(NULL)
 }
 
 .load_survey = function() {

@@ -21,6 +21,7 @@ show_options()
 \seealso{
 Other options: 
 \code{\link{prettysurvey-options}},
-\code{\link{set_count_1k}()}
+\code{\link{set_count_1k}()},
+\code{\link{set_survey}()}
 }
 \concept{options}
