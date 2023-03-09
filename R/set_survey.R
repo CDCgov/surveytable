@@ -24,6 +24,10 @@ set_survey = function(survey_name = "") {
 
   options(prettysurvey.design = survey_name)
   message("* Analyzing ", survey_name)
+
+  design = .load_survey()
+  print(design)
+  invisible(NULL)
 }
 
 #' @rdname set_survey

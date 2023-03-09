@@ -1,4 +1,9 @@
 .write_out = function(df1, screen, out) {
+  if (!is.null(txt <- attr(df1, "title"))) {
+    txt %<>% paste0(" [", getOption("prettysurvey.design"), "]")
+    attr(df1, "title") = txt
+  }
+
   if (screen) {
     hh = df1 %>% hux %>% set_all_borders
 	  if (!is.null(txt <- attr(df1, "title"))) {
