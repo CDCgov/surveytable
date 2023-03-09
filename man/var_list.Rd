@@ -5,7 +5,6 @@
 \title{List variables in a survey.}
 \usage{
 var_list(
-  design,
   sw = "",
   all = FALSE,
   screen = getOption("prettysurvey.out.screen"),
@@ -13,8 +12,6 @@ var_list(
 )
 }
 \arguments{
-\item{design}{survey design}
-
 \item{sw}{starting characters in variable name (case insensitive)}
 
 \item{all}{print all variables?}
@@ -30,5 +27,6 @@ var_list(
 List variables in a survey.
 }
 \examples{
-var_list(namcs2019, "age")
+set_survey("vars2019")
+var_list("age")
 }

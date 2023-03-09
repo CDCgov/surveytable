@@ -1,6 +1,5 @@
 #' Total count
 #'
-#' @param design  survey design
 #' @param screen  print to the screen?
 #' @param out     file name of CSV file
 #'
@@ -9,11 +8,12 @@
 #' @export
 #'
 #' @examples
-#' total(namcs2019)
-total = function(design
-               , screen = getOption("prettysurvey.out.screen")
+#' set_survey("vars2019")
+#' total()
+total = function(screen = getOption("prettysurvey.out.screen")
                , out = getOption("prettysurvey.out.fname")
                ) {
+  design = .load_survey()
 	design$variables$Total = 1
 
 	##

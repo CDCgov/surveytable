@@ -1,6 +1,5 @@
 #' Number of variables in a survey.
 #'
-#' @param design  survey design
 #' @param screen  print to the screen?
 #' @param out     file name of CSV file
 #'
@@ -8,11 +7,12 @@
 #' @export
 #'
 #' @examples
-#' var_num(namcs2019)
-var_num = function(design
-            , screen = getOption("prettysurvey.out.screen")
+#' set_survey("vars2019")
+#' var_num()
+var_num = function(screen = getOption("prettysurvey.out.screen")
             , out = getOption("prettysurvey.out.fname")
             ) {
+  design = .load_survey()
   df1 = data.frame(
     What = c("Number of variables"
             , "Number of observations")

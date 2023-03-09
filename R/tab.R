@@ -8,7 +8,6 @@
 #' calculated at the 95% confidence level. CIs for the percentage estimates are
 #' calculated using the Korn and Graubard method.
 #'
-#' @param design  survey design
 #' @param ...     names of variables (in quotes)
 #' @param max.levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
 #' @param screen  print to the screen?
@@ -19,12 +18,15 @@
 #' @export
 #'
 #' @examples
-#' tab(namcs2019, "MDDO", "SPECCAT", "MSA")
-tab = function(design, ...
+#' set_survey("vars2019")
+#' tab("AGER")
+#' tab("MDDO", "SPECCAT", "MSA")
+tab = function(...
                , max.levels = getOption("prettysurvey.out.max_levels")
                , screen = getOption("prettysurvey.out.screen")
                , out = getOption("prettysurvey.out.fname")
                ) {
+  design = .load_survey()
 	ret = list()
 	if (...length() > 0) {
 		for (ii in 1:...length()) {

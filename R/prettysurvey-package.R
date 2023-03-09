@@ -4,7 +4,7 @@
 #' @import survey
 #' @import huxtable
 #' @importFrom stats as.formula confint
-#' @importFrom utils write.table
+#' @importFrom utils write.table tail
 #' @keywords internal
 "_PACKAGE"
 

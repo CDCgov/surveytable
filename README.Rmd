@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of prettysurvey is to generate streamlined output from the `survey` package, with an application to NCHS data.
+The goal of prettysurvey is to generate streamlined output from the `survey` package, with an application to NCHS.
 
 
 ## Installation
@@ -27,9 +27,6 @@ You can install the development version of prettysurvey like so:
 
 ``` r
 install.packages(c("git2r", "remotes"))
-
-# If you are re-installing this package, first remove it:
-remove.packages("prettysurvey")
 
 # On local computer
 remotes::install_git(
@@ -50,5 +47,6 @@ This is a basic example:
 
 ```{r example}
 library(prettysurvey)
-tab(namcs2019, "AGER")
+set_survey("vars2019")
+tab("AGER")
 ```

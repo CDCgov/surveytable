@@ -7,7 +7,6 @@
 \title{Tabulate subsets or interactions}
 \usage{
 tab_cross(
-  design,
   vr,
   vrby,
   max.levels = getOption("prettysurvey.out.max_levels"),
@@ -15,10 +14,9 @@ tab_cross(
   out = getOption("prettysurvey.out.fname")
 )
 
-var_cross(design, newvr, vr, vrby)
+var_cross(newvr, vr, vrby)
 
 tab_subset(
-  design,
   vr,
   vrby,
   lvls = c(),
@@ -28,8 +26,6 @@ tab_subset(
 )
 }
 \arguments{
-\item{design}{survey design}
-
 \item{vr}{variable to tabulate}
 
 \item{vrby}{use this variable to subset the survey}
@@ -48,7 +44,7 @@ tab_subset(
 \itemize{
 \item \code{tab_subset}: a list of \code{data.frame} tables.
 \item \code{tab_cross}: a \code{data.frame} table.
-\item \code{var_cross}: an updated \code{survey.design}.
+\item \code{var_cross}: (Nothing.)
 }
 }
 \description{
@@ -65,24 +61,26 @@ counts but different percentages. With \code{tab_subset}, percentages within eac
 subset add up to 100\%. With \code{tab_cross}, percentages across the entire survey
 add up to 100\%.
 
-\code{var_cross} creates the new variable, returns the updates survey,
+\code{var_cross} creates the new variable and updates the survey,
 but does not tabulate the new variable. Use \code{\link[=tab]{tab()}} to tabulate it.
 }
 \examples{
+set_survey("vars2019")
+
 # For each SEX, tabulate AGER
-tab_subset(namcs2019, "AGER", "SEX")
+tab_subset("AGER", "SEX")
 
 # Same counts as tab_subset(), but different percentages.
-tab_cross(namcs2019, "AGER", "SEX")
+tab_cross("AGER", "SEX")
 
 # Same thing, but creates and retains the new variable:
-namcs2019 = var_cross(namcs2019, "Age x Sex", "AGER", "SEX")
-tab(namcs2019, "Age x Sex")
+var_cross("Age x Sex", "AGER", "SEX")
+tab("Age x Sex")
 
 # What are the levels or MAJOR?
-tab(namcs2019, "MAJOR")
+tab("MAJOR")
 # Tabulate AGER by only 2 of the levels of MAJOR
-tab_subset(namcs2019, "AGER", "MAJOR"
+tab_subset("AGER", "MAJOR"
 , lvls = c("Chronic problem, routine", "Chronic problem, flare-up"))
 }
 \seealso{

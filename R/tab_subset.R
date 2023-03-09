@@ -12,10 +12,9 @@
 #' subset add up to 100%. With `tab_cross`, percentages across the entire survey
 #' add up to 100%.
 #'
-#' `var_cross` creates the new variable, returns the updates survey,
+#' `var_cross` creates the new variable and updates the survey,
 #' but does not tabulate the new variable. Use [`tab()`] to tabulate it.
 #'
-#' @param design  survey design
 #' @param vr      variable to tabulate
 #' @param vrby    use this variable to subset the survey
 #' @param lvls    (optional) only show these levels of `vrby`
@@ -27,34 +26,36 @@
 #' @return
 #' * `tab_subset`: a list of `data.frame` tables.
 #' * `tab_cross`: a `data.frame` table.
-#' * `var_cross`: an updated `survey.design`.
+#' * `var_cross`: (Nothing.)
 #'
 #' @family tables
 #'
 #' @export
 #'
 #' @examples
+#' set_survey("vars2019")
+#'
 #' # For each SEX, tabulate AGER
-#' tab_subset(namcs2019, "AGER", "SEX")
+#' tab_subset("AGER", "SEX")
 #'
 #' # Same counts as tab_subset(), but different percentages.
-#' tab_cross(namcs2019, "AGER", "SEX")
+#' tab_cross("AGER", "SEX")
 #'
 #' # Same thing, but creates and retains the new variable:
-#' namcs2019 = var_cross(namcs2019, "Age x Sex", "AGER", "SEX")
-#' tab(namcs2019, "Age x Sex")
+#' var_cross("Age x Sex", "AGER", "SEX")
+#' tab("Age x Sex")
 #'
 #' # What are the levels or MAJOR?
-#' tab(namcs2019, "MAJOR")
+#' tab("MAJOR")
 #' # Tabulate AGER by only 2 of the levels of MAJOR
-#' tab_subset(namcs2019, "AGER", "MAJOR"
+#' tab_subset("AGER", "MAJOR"
 #' , lvls = c("Chronic problem, routine", "Chronic problem, flare-up"))
-tab_subset = function(design, vr, vrby
-                      , lvls = c()
+tab_subset = function(vr, vrby, lvls = c()
                , max.levels = getOption("prettysurvey.out.max_levels")
                , screen = getOption("prettysurvey.out.screen")
                , out = getOption("prettysurvey.out.fname")
               ) {
+  design = .load_survey()
   lbl = attr(design$variables[,vrby], "label")
   if (is.logical(design$variables[,vrby])) {
     design$variables[,vrby] = as.factor(design$variables[,vrby])

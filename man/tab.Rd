@@ -5,7 +5,6 @@
 \title{Tabulate variables}
 \usage{
 tab(
-  design,
   ...,
   max.levels = getOption("prettysurvey.out.max_levels"),
   screen = getOption("prettysurvey.out.screen"),
@@ -13,8 +12,6 @@ tab(
 )
 }
 \arguments{
-\item{design}{survey design}
-
 \item{...}{names of variables (in quotes)}
 
 \item{max.levels}{a categorical variable can have at most this many levels. Used to avoid printing huge tables.}
@@ -36,7 +33,9 @@ calculated at the 95\% confidence level. CIs for the percentage estimates are
 calculated using the Korn and Graubard method.
 }
 \examples{
-tab(namcs2019, "MDDO", "SPECCAT", "MSA")
+set_survey("vars2019")
+tab("AGER")
+tab("MDDO", "SPECCAT", "MSA")
 }
 \seealso{
 Other tables: 

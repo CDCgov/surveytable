@@ -1,21 +1,34 @@
 .onAttach = function(libname, pkgname) {
-  d0 = "2023-03-08"
-  int = 14
   packageStartupMessage(pkgname
-                        , "\n* We are still testing this package."
-                        , "\n* If you notice any issues or if you have ideas for improving it, "
-                        , "please let me know.")
-  if (difftime(as.Date(Sys.time()), as.Date(d0), units = "days") > int) {
-    packageStartupMessage("\n* This version of the package is over ", int, " days old. "
-                          , "\n* Please check if there is a newer version."
-                          , "\n* Instructions for re-installing https://git.biotech.cdc.gov/kpr9/prettysurvey/-/blob/master/README.md"
-                          )
-  }
+      , "\n* We are still testing this package."
+      , "\n* If you notice any issues or if you have ideas for improving it, "
+      , "please let me know.")
+
+  packageStartupMessage("\n", pkgname
+    , "\n* Before you can tabulate estimates, you have to specify which survey"
+    , " you would like to use. You can do this in one of several ways:"
+    , "\n\na) This package comes with a survey for use in examples called"
+    , " 'vars2019'. This survey has selected variables from NAMCS 2019 PUF."
+    , " To use this survey:"
+    , "\nset_survey('vars2019')"
+    , "\n\nb) If you have installed the nchsdata package (which only has public"
+    , " use files):"
+    , "\nset_survey('nchsdata::survey_name')"
+    , "\n\nFor example:"
+    , "\nset_survey('nchsdata::namcs2019')"
+    , "\n\nTo see the surveys available in nchsdata:"
+    , "\nhelp(package = 'nchsdata')"
+    , "\n\nc)"
+    , "\nsurvey_name = readRDS('file_name.rds')"
+    , "\nset_survey('survey_name')"
+  )
+
 }
 
 .onLoad = function(libname, pkgname) {
   options(
-    prettysurvey.import.bool_levels = c("yes", "no")
+    prettysurvey.design = ""
+    , prettysurvey.import.bool_levels = c("yes", "no")
     , prettysurvey.import.bool_true = "yes"
 
     , prettysurvey.tab.do_present = TRUE

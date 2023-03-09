@@ -5,14 +5,11 @@
 \title{Number of variables in a survey.}
 \usage{
 var_num(
-  design,
   screen = getOption("prettysurvey.out.screen"),
   out = getOption("prettysurvey.out.fname")
 )
 }
 \arguments{
-\item{design}{survey design}
-
 \item{screen}{print to the screen?}
 
 \item{out}{file name of CSV file}
@@ -24,5 +21,6 @@ var_num(
 Number of variables in a survey.
 }
 \examples{
-var_num(namcs2019)
+set_survey("vars2019")
+var_num()
 }

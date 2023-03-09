@@ -7,7 +7,7 @@
 <!-- badges: end -->
 
 The goal of prettysurvey is to generate streamlined output from the
-`survey` package, with an application to NCHS data.
+`survey` package, with an application to NCHS.
 
 ## Installation
 
@@ -15,9 +15,6 @@ You can install the development version of prettysurvey like so:
 
 ``` r
 install.packages(c("git2r", "remotes"))
-
-# If you are re-installing this package, first remove it:
-remove.packages("prettysurvey")
 
 # On local computer
 remotes::install_git(
@@ -37,10 +34,33 @@ This is a basic example:
 
 ``` r
 library(prettysurvey)
+#> * Rounding counts to the nearest 1,000.
+#> * ?set_count_1k for other options.
 #> prettysurvey
 #> * We are still testing this package.
 #> * If you notice any issues or if you have ideas for improving it, please let me know.
-tab(namcs2019, "AGER")
+#> 
+#> prettysurvey
+#> * Before you can tabulate estimates, you have to specify which survey you would like to use. You can do this in one of several ways:
+#> 
+#> a) This package comes with a survey for use in examples called 'vars2019'. This survey has selected variables from NAMCS 2019 PUF. To use this survey:
+#> set_survey('vars2019')
+#> 
+#> b) If you have installed the nchsdata package (which only has public use files):
+#> set_survey('nchsdata::survey_name')
+#> 
+#> For example:
+#> set_survey('nchsdata::namcs2019')
+#> 
+#> To see the surveys available in nchsdata:
+#> help(package = 'nchsdata')
+#> 
+#> c)
+#> survey_name = readRDS('file_name.rds')
+#> set_survey('survey_name')
+set_survey("vars2019")
+#> * Analyzing vars2019
+tab("AGER")
 #>                                         Patient age recode                                         
 #> ┌───────────────────┬──────────────┬──────────┬──────────┬──────────┬─────────┬─────┬──────┬──────┐
 #> │ Level             │ Number (000) │ SE (000) │ LL (000) │ UL (000) │ Percent │  SE │   LL │   UL │

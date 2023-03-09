@@ -1,10 +1,10 @@
 Package: prettysurvey
-Title: Streamlined output from the `survey` package, with an application to NCHS data
+Title: Streamlined output from the `survey` package, with an application to NCHS
 Version: 0.5
 Authors@R: 
     person("Alex", "Strashny", , "AStrashny@cdc.gov", role = c("aut", "cre"))
-Description: Streamlined output from the `survey` package, with an application to NCHS data.
-Date: 2023
+Description: Streamlined output from the `survey` package, with an application to NCHS.
+Date/Publication: 2023
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

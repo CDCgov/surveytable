@@ -1,6 +1,5 @@
 #' List variables in a survey.
 #'
-#' @param design  survey design
 #' @param sw      starting characters in variable name (case insensitive)
 #' @param all     print all variables?
 #' @param screen  print to the screen?
@@ -10,11 +9,13 @@
 #' @export
 #'
 #' @examples
-#' var_list(namcs2019, "age")
-var_list = function(design, sw = "", all=FALSE
+#' set_survey("vars2019")
+#' var_list("age")
+var_list = function(sw = "", all=FALSE
                     , screen = getOption("prettysurvey.out.screen")
                     , out = getOption("prettysurvey.out.fname")
 ) {
+  design = .load_survey()
   assert_that(nzchar(sw) | all
               , msg = "Either set the 'sw' argument to a non-empty string, or set all=TRUE")
   nn = names(design$variables)

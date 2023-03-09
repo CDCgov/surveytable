@@ -5,14 +5,11 @@
 \title{Total count}
 \usage{
 total(
-  design,
   screen = getOption("prettysurvey.out.screen"),
   out = getOption("prettysurvey.out.fname")
 )
 }
 \arguments{
-\item{design}{survey design}
-
 \item{screen}{print to the screen?}
 
 \item{out}{file name of CSV file}
@@ -24,7 +21,8 @@ total(
 Total count
 }
 \examples{
-total(namcs2019)
+set_survey("vars2019")
+total()
 }
 \seealso{
 Other tables: 
