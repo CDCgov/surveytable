@@ -5,7 +5,7 @@
 \alias{vars2019}
 \title{Selected variables from the National Ambulatory Medical Care Survey (NAMCS) 2019 Public Use File (PUF)}
 \format{
-An object of class \code{survey.design2} (inherits from \code{survey.design}) with 8250 rows and 24 columns.
+An object of class \code{survey.design2} (inherits from \code{survey.design}) with 8250 rows and 27 columns.
 }
 \source{
 \itemize{
@@ -26,8 +26,5 @@ patient can make multiple visits.
 }
 \details{
 A survey design object with 8,250 observations.
-}
-\seealso{
-\code{\link[=import_sas_namcs2019puf]{import_sas_namcs2019puf()}}
 }
 \keyword{datasets}

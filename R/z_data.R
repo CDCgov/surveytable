@@ -6,8 +6,6 @@
 #'
 #' A survey design object with 8,250 observations.
 #'
-#' @seealso [import_sas_namcs2019puf()]
-#'
 #' @source
 #' * SAS data: <https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Dataset_Documentation/NAMCS/sas/namcs2019_sas.zip>
 #' * Survey design variables: <https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Dataset_Documentation/NAMCS/sas/readme2019-sas.txt>

@@ -3,7 +3,7 @@
 \name{set_survey}
 \alias{set_survey}
 \alias{show_survey}
-\title{Specify the survey from which you would like to tabulate the estimates from}
+\title{Specify the survey to analyze}
 \usage{
 set_survey(survey_name = "")
 
@@ -16,10 +16,10 @@ show_survey()
 (Nothing.)
 }
 \description{
-You need to do this before the other functions, such as \code{\link[=tab]{tab()}}, will work.
+You need specify a survey before the other functions, such as \code{\link[=tab]{tab()}}, will work.
 }
 \details{
-\code{show_survey()} shows the survey that you've set.
+\code{show_survey()} shows the survey that you've specified.
 }
 \examples{
 set_survey("vars2019")

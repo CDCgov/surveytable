@@ -16,7 +16,6 @@ LazyDataCompression: bzip2
 Imports: 
     assertthat,
     forcats,
-    haven,
     huxtable,
     magrittr,
     survey

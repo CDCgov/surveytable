@@ -1,6 +1,5 @@
 #' @import assertthat
 #' @import magrittr
-#' @import haven
 #' @import survey
 #' @import huxtable
 #' @importFrom stats as.formula confint

@@ -1,11 +1,12 @@
 .onAttach = function(libname, pkgname) {
-  packageStartupMessage(pkgname
-      , "\n* We are still testing this package."
-      , "\n* If you notice any issues or if you have ideas for improving it, "
-      , "please let me know.")
+  packageStartupMessage("\nThere are 3 related packages:"
+    , "\n* prettysurvey: functions for tabulating survey estimates"
+    , "\n* nchsdata: public use files (PUFs) from the the National Center for Health Statistics (NCHS)"
+    , "\n* importsurvey: functions for importing data into R"
+    , "\n\nYou've just loaded ", pkgname, "."
+  )
 
-  packageStartupMessage("\n", pkgname
-    , "\n* Before you can tabulate estimates, you have to specify which survey"
+  packageStartupMessage("* Before you can tabulate estimates, you have to specify which survey"
     , " you would like to use. You can do this in one of several ways:"
     , "\n\na) This package comes with a survey for use in examples called"
     , " 'vars2019'. This survey has selected variables from NAMCS 2019 PUF."
@@ -29,9 +30,6 @@
 .onLoad = function(libname, pkgname) {
   options(
     prettysurvey.design = ""
-    , prettysurvey.import.bool_levels = NA # c("yes", "no")
-    , prettysurvey.import.bool_true = NA # "yes"
-    , prettysurvey.import.bool_false = NA # "no"
 
     , prettysurvey.tab.do_present = TRUE
     , prettysurvey.tab.present_restricted = ".present_restricted"
