@@ -28,7 +28,7 @@ import_sas = function(sas_data, sas_formats_data
   assert_that(all(!is.na(df1)))
 
   d1 = read_sas(sas_data) %>% as.data.frame
-  assert_that(all(!is.na(d1)))
+##  assert_that(all(!is.na(d1)))
   c.nofmt = c.2v = c.log = c()
   for (ii in names(d1)) {
     fmt = switch(formats
@@ -40,7 +40,7 @@ import_sas = function(sas_data, sas_formats_data
          || (formats == "name" && !(fmt %in% df1$FMTNAME) ) ) {
       c.nofmt %<>% c(ii)
       d1[,ii] %<>% .c2f
-      assert_that(all(!is.na( d1[,ii] )))
+##      assert_that(all(!is.na( d1[,ii] )))
       next
     }
     if (fmt %>% startsWith("$")) {
@@ -62,25 +62,33 @@ import_sas = function(sas_data, sas_formats_data
           d1[,ii] %<>% factor(
             levels = f1$START
             , labels = f1$LABEL
-            , exclude = NULL) %>% addNA(ifany = TRUE)
+            , exclude = NULL)
           attr(d1[,ii], "label") = lbl
           assert_that(all(!is.na( d1[,ii] )))
         } else {
-          # raw
-          vn = paste0(ii, ".raw")
-          assert_that(!(vn %in% names(d1)))
-          d1[,vn] = d1[,ii] %>% .c2f
-          attr(d1[,vn], "label") = paste(lbl, "(raw - use caution)")
-          assert_that(all(!is.na( d1[,vn] )))
-
           # special values
           vn = paste0(ii, ".special")
           assert_that(!(vn %in% names(d1)))
-          d1[,vn] = factor(x = d1[,ii]
-                           , levels = f1$START
-                           , labels = f1$LABEL
-                           , exclude = NULL) %>% addNA(ifany = TRUE)
-          attr(d1[,vn], "label") = paste(lbl, "(defined levels only, NA = non-special - use caution)")
+
+          if (is.numeric(d1[,ii])) {
+            val0 = max(d1[,ii]) + 1
+            assert_that(is.finite(val0))
+          } else {
+            val0 = make.unique( c(unique(d1[,ii]), "XXX") ) %>% tail(1)
+          }
+          assert_that(!(val0 %in% d1[,ii]))
+          tmp = d1[,ii]
+          idx = which(!(tmp %in% f1$START))
+          assert_that(length(idx) > 0)
+          tmp[idx] = val0
+          lbls = c(f1$LABEL, "[Other]") %>% make.unique
+
+          d1[,vn] = factor(x = tmp
+                       , levels = c(f1$START, val0)
+                       , labels = lbls
+                       , exclude = NULL)
+          attr(d1[,vn], "label") = paste(lbl, "(defined levels)")
+          assert_that(all(!is.na( d1[,vn] )))
 
           # no special values
           vn = paste0(ii, ".nospecial")
@@ -89,6 +97,11 @@ import_sas = function(sas_data, sas_formats_data
           d1[which(d1[,vn] %in% f1$START),vn] = NA
           d1[,vn] %<>% .c2f
           attr(d1[,vn], "label") = paste(lbl, "(NA = special values - use caution)")
+
+          # raw
+          d1[,ii] %<>% .c2f
+          attr(d1[,ii], "label") = paste(lbl, "(raw - use caution)")
+          assert_that(all(!is.na( d1[,ii] )))
 
           c.2v %<>% c(ii)
         }
@@ -123,7 +136,6 @@ import_sas = function(sas_data, sas_formats_data
       }
     }
   }
-  d1[,c.2v] = NULL
 
   if (length(c.nofmt) > 0) {
     tmp = c.nofmt %>% paste(collapse=", ")
@@ -151,7 +163,7 @@ is_subset = function(A,B) {
 
 .c2f = function(x) {
   if (is.character(x)) {
-    x %<>% factor(exclude = NULL) %>% addNA(ifany = TRUE)
+    x %<>% factor(exclude = NULL)
   }
   x
 }

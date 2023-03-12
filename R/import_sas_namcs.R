@@ -10,9 +10,8 @@
 #'
 #' @examples
 #' \dontrun{
-#' import_sas_namcs2019puf(
-#' sas_data = "namcs2019_sas.sas7bdat"
-#' , sas_formats_data = "formats_dataset.sas7bdat"
+#' import_sas_namcs2019puf(sas_data = "namcs2019_sas.sas7bdat"
+#' , sas_formats_data = "namcs_formats_dataset.sas7bdat"
 #' , r_out = "namcs_2019_puf.rds")
 #' }
 import_sas_namcs2019puf = function(sas_data, sas_formats_data, r_out) {
@@ -31,7 +30,7 @@ import_sas_namcs2019puf = function(sas_data, sas_formats_data, r_out) {
 		, data = d1)
 
 	message("\n*** Please verify that the correct survey design variables are used (ids, strata, weights): ")
-	message(sdo)
+	print(sdo)
 
 	saveRDS(sdo, r_out)
 }

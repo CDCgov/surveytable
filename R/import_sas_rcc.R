@@ -32,7 +32,7 @@ import_sas_rcc2018puf = function(sas_data, sas_formats_data, r_out) {
     , data = d1)
 
   message("\n*** Please verify that the correct survey design variables are used (ids, strata, weights): ")
-  message(sdo)
+  print(sdo)
 
   saveRDS(sdo, r_out)
 }
