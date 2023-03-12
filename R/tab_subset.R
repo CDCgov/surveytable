@@ -58,12 +58,12 @@ tab_subset = function(vr, vrby, lvls = c()
   design = .load_survey()
   lbl = attr(design$variables[,vrby], "label")
   if (is.logical(design$variables[,vrby])) {
-    design$variables[,vrby] = as.factor(design$variables[,vrby])
+    design$variables[,vrby] %<>% factor
   }
   assert_that(is.factor(design$variables[,vrby])
               , msg = paste0(vrby, ": must be either factor or logical. Is ",
                              class(design$variables[,vrby]) ))
-  design$variables[,vrby] %<>% droplevels
+  design$variables[,vrby] %<>% droplevels %>% .fix_factor
   attr(design$variables[,vrby], "label") = lbl
 
   lvl0 = levels(design$variables[,vrby])

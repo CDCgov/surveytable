@@ -45,12 +45,12 @@ tab = function(...
 .tab_factor = function(design, vr, max.levels, screen, out) {
 	lbl = attr(design$variables[,vr], "label")
 	if (is.logical(design$variables[,vr])) {
-		design$variables[,vr] = as.factor(design$variables[,vr])
+		design$variables[,vr] %<>% factor
 	}
 	assert_that(is.factor(design$variables[,vr])
 		, msg = paste0(vr, ": must be either factor or logical. Is ",
 			class(design$variables[,vr]) ))
-	design$variables[,vr] %<>% droplevels
+	design$variables[,vr] %<>% droplevels %>% .fix_factor
 	attr(design$variables[,vr], "label") = lbl
 
 	nlv = nlevels(design$variables[,vr])
@@ -99,7 +99,7 @@ tab = function(...
 	names(mmc) = getOption("prettysurvey.tab.names_count")
 
 	##
-	lvs = design$variables[,vr] %>% levels %>% .fix_levels
+	lvs = design$variables[,vr] %>% levels
 	levels(design$variables[,vr]) = lvs
 	assert_that( all(!is.na(lvs)) )
 	ret = NULL
@@ -149,7 +149,7 @@ tab = function(...
 
 	##
 	rownames(mp) = NULL
-	level_names = design$variables[,vr] %>% levels %>% .fix_levels
+	level_names = design$variables[,vr] %>% levels
 	mp = cbind(data.frame(Level = level_names), mp)
 
   attr(mp, "num") = 2:5
@@ -179,9 +179,4 @@ tab = function(...
 		attr(df1, "footer") = v1 %>% paste(collapse="; ")
 	}
   df1
-}
-
-.fix_levels = function(lvs) {
-  lvs[is.na(lvs)] = "<NA>"
-  lvs
 }

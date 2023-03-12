@@ -1,8 +1,8 @@
-#' Specify the survey from which you would like to tabulate the estimates from
+#' Specify the survey to analyze
 #'
-#' You need to do this before the other functions, such as [tab()], will work.
+#' You need specify a survey before the other functions, such as [tab()], will work.
 #'
-#' `show_survey()` shows the survey that you've set.
+#' `show_survey()` shows the survey that you've specified.
 #'
 #' @param survey_name the name of a `survey.design` object (in quotation marks)
 #'
@@ -27,6 +27,8 @@ set_survey = function(survey_name = "") {
 
   design = .load_survey()
   print(design)
+
+  message("* To adjust how counts are rounded, see ?set_count_int")
   invisible(NULL)
 }
 
@@ -38,6 +40,8 @@ show_survey = function() {
 
   design = .load_survey()
   print(design)
+
+  message("* To adjust how counts are rounded, see ?set_count_int")
   invisible(NULL)
 }
 

@@ -7,9 +7,10 @@ tab_cross = function(vr, vrby
 ) {
   design = .load_survey()
 
+  # Ensure unique name
   newvr = paste0(vr, "x", vrby)
   mno = make.names(c(names(design$variables), newvr), unique = TRUE)
-  newvr = tail(newvr,1) # Ensure unique name
+  newvr %<>% tail(1)
 
   var_cross(newvr = newvr, vr = vr, vrby = vrby)
 
@@ -35,9 +36,9 @@ var_cross = function(newvr, vr, vrby) {
     warning(newvr, ": overwriting a variable that already exists.")
   }
 
-  design$variables[,newvr] = forcats::fct_cross(
-    design$variables[,vr]
-    , design$variables[,vrby])
+  x1 = design$variables[,vr] %>% droplevels %>% .fix_factor
+  x2 = design$variables[,vrby] %>% droplevels %>% .fix_factor
+  design$variables[,newvr] = forcats::fct_cross(x1, x2)
   attr(design$variables[,newvr], "label") = paste0(
     "(", .getvarname(design, vr), ") x ("
     , .getvarname(design, vrby), ")")

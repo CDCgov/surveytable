@@ -29,8 +29,9 @@
 .onLoad = function(libname, pkgname) {
   options(
     prettysurvey.design = ""
-    , prettysurvey.import.bool_levels = c("yes", "no")
-    , prettysurvey.import.bool_true = "yes"
+    , prettysurvey.import.bool_levels = NA # c("yes", "no")
+    , prettysurvey.import.bool_true = NA # "yes"
+    , prettysurvey.import.bool_false = NA # "no"
 
     , prettysurvey.tab.do_present = TRUE
     , prettysurvey.tab.present_restricted = ".present_restricted"

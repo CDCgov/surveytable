@@ -47,10 +47,11 @@ library(prettysurvey)
 #> set_survey('vars2019')
 #> 
 #> b) If you have installed the nchsdata package (which only has public use files):
-#> set_survey('nchsdata::survey_name')
+#> library(nchsdata)
+#> set_survey('survey_name')
 #> 
 #> For example:
-#> set_survey('nchsdata::namcs2019')
+#> set_survey('namcs2019')
 #> 
 #> To see the surveys available in nchsdata:
 #> help(package = 'nchsdata')
@@ -60,8 +61,12 @@ library(prettysurvey)
 #> set_survey('survey_name')
 set_survey("vars2019")
 #> * Analyzing vars2019
+#> Stratified 1 - level Cluster Sampling design (with replacement)
+#> With (398) clusters.
+#> svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, 
+#>     data = df1)
 tab("AGER")
-#>                                         Patient age recode                                         
+#>                                    Patient age recode [vars2019]                                   
 #> ┌───────────────────┬──────────────┬──────────┬──────────┬──────────┬─────────┬─────┬──────┬──────┐
 #> │ Level             │ Number (000) │ SE (000) │ LL (000) │ UL (000) │ Percent │  SE │   LL │   UL │
 #> ├───────────────────┼──────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤
