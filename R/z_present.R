@@ -21,7 +21,7 @@
 
 	has.flag = c()
 	flags = rep("", nrow(mmcr))
-		
+
 	mmcr$rse = mmcr$b / mmcr$a
 	mmcr$rse[mmcr$a <= 0] = Inf
 
@@ -44,28 +44,28 @@
 
 .present_prop = function(ret) {
 	ret$`n effective` = with(ret, Proportion * (1 - Proportion) / (SE ^ 2))
-	ret$`CI width` = with(ret, UL - LL)	
+	ret$`CI width` = with(ret, UL - LL)
 
 	idx.bad = (ret$`n numerator` == 0L | ret$`n numerator` == ret$`n denominator`)
 	ret$`n effective`[idx.bad] = ret$`n denominator`[idx.bad]
 	ret$`CI width`[idx.bad] = 0
-	
+
 	idx.nbig = (ret$`n effective` > ret$`n denominator`)
 	ret$`n effective`[idx.nbig] = ret$`n denominator`[idx.nbig]
 
 	ret$`relative CI width` = with(ret, `CI width` / Proportion)
-	
+
 	#
 	ret$Display = as.logical(NA)
 	ret$Display[idx.30 <- (ret$`n effective` < 30)] = FALSE # "no: Effective sample size < 30"
 	ret$Display[!idx.30
 		& (idx.s <- (ret$`CI width` <= 0.05))] = TRUE # "YES: Absolute confidence interval width < 5%"
-	ret$Display[!(idx.30 | idx.s) 
+	ret$Display[!(idx.30 | idx.s)
 		& (idx.l <- (ret$`CI width` >= 0.30))] = FALSE # "no: Absolute confidence interval width > 30%"
 	ret$Display[!(idx.30 | idx.s | idx.l)
 		& (idx.r <- (ret$`relative CI width` > 1.30))] = FALSE # "no: Relative confidence interval width > 130%"
 	ret$Display[!(idx.30 | idx.s | idx.l) & !idx.r] = TRUE # "YES: Relative confidence interval width < 130%"
-	assert_that(all(!is.na(ret$Display)))
+	assert_that( noNA(ret$Display) )
 
 	#
 	has.flag = c()
@@ -76,8 +76,8 @@
 		flags[bool] %<>% paste(f1)
 		has.flag %<>% c(f1)
 	}
-	
-	bool = ( ret$Display & !(idx.30 | idx.s | idx.l) & !idx.r 
+
+	bool = ( ret$Display & !(idx.30 | idx.s | idx.l) & !idx.r
 		& (idx.c <- (ret$`CI width` / (1 - ret$Proportion) > 1.30)) )
 	if (any(bool)) {
 		f1 = "Pc"
@@ -91,7 +91,7 @@
 		flags[bool] %<>% paste(f1)
 		has.flag %<>% c(f1)
 	}
-	
+
 	bool = (ret$Display & (
 		ret$`n numerator` == 0L | ret$`n numerator` == ret$`n denominator`))
 	if (any(bool)) {
@@ -99,6 +99,6 @@
 		flags[bool] %<>% paste(f1)
 		has.flag %<>% c(f1)
 	}
-	
-	list(flags = flags, has.flag = has.flag)	
+
+	list(flags = flags, has.flag = has.flag)
 }

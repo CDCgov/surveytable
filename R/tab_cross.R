@@ -36,9 +36,23 @@ var_cross = function(newvr, vr, vrby) {
     warning(newvr, ": overwriting a variable that already exists.")
   }
 
-  x1 = design$variables[,vr] %>% droplevels %>% .fix_factor
-  x2 = design$variables[,vrby] %>% droplevels %>% .fix_factor
-  design$variables[,newvr] = forcats::fct_cross(x1, x2)
+  x1 = design$variables[,vr]
+  x2 = design$variables[,vrby]
+  if (is.logical(x1)) {
+    x1 %<>% factor
+  }
+  if (is.logical(x2)) {
+    x2 %<>% factor
+  }
+  assert_that(is.factor(x1)
+              , msg = paste0(vr, ": must be either factor or logical. Is ",
+                             class(design$variables[,vr]) ))
+  assert_that(is.factor(x2)
+              , msg = paste0(vrby, ": must be either factor or logical. Is ",
+                             class(design$variables[,vrby]) ))
+  x1 %<>% .fix_factor
+  x2 %<>% .fix_factor
+  design$variables[,newvr] = forcats::fct_cross(x1, x2, sep = " : ", keep_empty = TRUE)
   attr(design$variables[,newvr], "label") = paste0(
     "(", .getvarname(design, vr), ") x ("
     , .getvarname(design, vrby), ")")

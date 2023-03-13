@@ -43,6 +43,9 @@ tab = function(...
 }
 
 .tab_factor = function(design, vr, max.levels, screen, out) {
+  nm = names(design$variables)
+  assert_that(vr %in% nm, msg = paste("Variable", vr, "not in the data."))
+
 	lbl = attr(design$variables[,vr], "label")
 	if (is.logical(design$variables[,vr])) {
 		design$variables[,vr] %<>% factor
@@ -65,7 +68,7 @@ tab = function(...
 			Note = paste0("Categorical variable with too many levels: "
 			, nlv, ", but ", max.levels
 			, " allowed. Try increasing the max.levels argument or the "
-			, "prettysurvey.out.max_levels option ."))
+			, "prettysurvey.out.max_levels option."))
 		attr(df1, "title") = .getvarname(design, vr)
 		return( .write_out(df1, screen = screen, out = out) )
 	}
@@ -101,7 +104,7 @@ tab = function(...
 	##
 	lvs = design$variables[,vr] %>% levels
 	levels(design$variables[,vr]) = lvs
-	assert_that( all(!is.na(lvs)) )
+	assert_that( noNA(lvs) )
 	ret = NULL
 	df1 = degf(design)
 	# ret needs to have these names

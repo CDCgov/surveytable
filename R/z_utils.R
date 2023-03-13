@@ -16,6 +16,6 @@
     levels(xx) = lvl
   }
 
-  assert_that(!anyNA(xx), !anyNA(levels(xx)))
+  assert_that(noNA(xx), noNA(levels(xx)))
   xx
 }

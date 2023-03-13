@@ -1,7 +1,7 @@
 #' Selected variables from the National Ambulatory Medical Care Survey (NAMCS) 2019 Public Use File (PUF)
 #'
 #' Selected variables from a data system of visits to office-based physicians. Note that the unit of
-#' observation is visits, not patients – this distinction is important since a single
+#' observation is visits, not patients - this distinction is important since a single
 #' patient can make multiple visits.
 #'
 #' A survey design object with 8,250 observations.

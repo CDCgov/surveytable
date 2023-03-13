@@ -15,10 +15,11 @@
     if (!is.null(txt <- attr(df1, "footer"))) {
       hh %<>% add_footnote(txt)
     }
+    # position(hh) = "left"
 
     gow = getOption("width")
     options(width = 10)
-    hh %>% print(colnames = FALSE, min_width = 0, max_width = Inf)
+    hh %>% print(colnames = FALSE, min_width = 0, max_width = max(gow * 1.5, 150, na.rm=TRUE))
     options(width = gow)
     cat("\n")
   }

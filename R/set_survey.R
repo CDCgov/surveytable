@@ -14,7 +14,7 @@
 #' set_survey("vars2019")
 #' show_survey()
 set_survey = function(survey_name = "") {
-  assert_that(is.character(survey_name), nzchar(survey_name)
+  assert_that(is.string(survey_name), nzchar(survey_name)
               , msg = "survey_name must be a character string.")
   tmp = get0(survey_name)
   assert_that(!is.null(tmp)
@@ -25,7 +25,7 @@ set_survey = function(survey_name = "") {
   options(prettysurvey.design = survey_name)
   message("* Analyzing ", survey_name)
 
-  design = .load_survey()
+  design = tmp
   print(design)
 
   message("* To adjust how counts are rounded, see ?set_count_int")
@@ -47,7 +47,7 @@ show_survey = function() {
 
 .load_survey = function() {
   survey_name = getOption("prettysurvey.design")
-  assert_that(is.character(survey_name), nzchar(survey_name)
+  assert_that(is.string(survey_name), nzchar(survey_name)
               , msg = "Option prettysurvey.design must be a character string. See ?set_survey")
   tmp = get0(survey_name)
   assert_that(!is.null(tmp)

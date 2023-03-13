@@ -56,6 +56,10 @@ tab_subset = function(vr, vrby, lvls = c()
                , out = getOption("prettysurvey.out.fname")
               ) {
   design = .load_survey()
+  nm = names(design$variables)
+  assert_that(vr %in% nm, msg = paste("Variable", vr, "not in the data."))
+  assert_that(vrby %in% nm, msg = paste("Variable", vrby, "not in the data."))
+
   lbl = attr(design$variables[,vrby], "label")
   if (is.logical(design$variables[,vrby])) {
     design$variables[,vrby] %<>% factor

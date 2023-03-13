@@ -33,9 +33,14 @@ var_list = function(sw = "", all=FALSE
                       , collapse = ", ")
       , Label = .getvarname(design, ii)
     )
-    ret = rbind(ret, r1)
+    ret %<>% rbind(r1)
   }
 
+  ret = if (is.null(ret)) {
+    data.frame(Note = "No variables found.")
+  } else {
+    ret[order(ret$Variable), ]
+  }
   attr(ret, "title") = if (all) {
     "ALL variables"
   } else {
@@ -49,4 +54,3 @@ var_list = function(sw = "", all=FALSE
   if (is.null(nm)) nm = vr
   nm
 }
-
