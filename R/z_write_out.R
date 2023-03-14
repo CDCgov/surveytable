@@ -1,6 +1,6 @@
 .write_out = function(df1, screen, out) {
   if (!is.null(txt <- attr(df1, "title"))) {
-    txt %<>% paste0(" [", getOption("prettysurvey.design"), "]")
+    txt %<>% paste0(" [", getOption("prettysurvey.design.label"), "]")
     attr(df1, "title") = txt
   }
 

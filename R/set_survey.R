@@ -23,10 +23,14 @@ set_survey = function(survey_name = "") {
       , msg = paste0(survey_name, " must be a survey.design. Is: ", class(tmp) ))
 
   options(prettysurvey.design = survey_name)
-  message("* Analyzing ", survey_name)
 
-  design = tmp
-  print(design)
+  dl = attr(tmp, "label")
+  if(is.null(dl)) dl = survey_name
+  assert_that(is.string(dl), nzchar(dl))
+  options(prettysurvey.design.label = dl)
+
+  message("* Analyzing ", dl)
+  print(tmp)
 
   message("* To adjust how counts are rounded, see ?set_count_int")
   invisible(NULL)
@@ -35,8 +39,8 @@ set_survey = function(survey_name = "") {
 #' @rdname set_survey
 #' @export
 show_survey = function() {
-  survey_name = getOption("prettysurvey.design")
-  message("* Analyzing ", survey_name)
+  dl = getOption("prettysurvey.design.label")
+  message("* Analyzing ", dl)
 
   design = .load_survey()
   print(design)

@@ -1,7 +1,7 @@
 #' @import assertthat
 #' @import magrittr
-#' @import survey
 #' @import huxtable
+#' @import survey
 #' @importFrom stats as.formula confint
 #' @importFrom utils write.table tail
 #' @keywords internal

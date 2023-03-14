@@ -30,6 +30,7 @@
 .onLoad = function(libname, pkgname) {
   options(
     prettysurvey.design = ""
+    , prettysurvey.design.label = ""
 
     , prettysurvey.tab.do_present = TRUE
     , prettysurvey.tab.present_restricted = ".present_restricted"
