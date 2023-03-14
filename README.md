@@ -62,7 +62,7 @@ library(prettysurvey)
 #> survey_name = readRDS('file_name.rds')
 #> set_survey('survey_name')
 set_survey("vars2019")
-#> * Analyzing vars2019
+#> * Analyzing NAMCS 2019 PUF
 #> Stratified 1 - level Cluster Sampling design (with replacement)
 #> With (398) clusters.
 #> sdo = svydesign(ids = ~ CPSUM
@@ -71,7 +71,7 @@ set_survey("vars2019")
 #>                   , data = d1)
 #> * To adjust how counts are rounded, see ?set_count_int
 tab("AGER")
-#>                                  Patient age recode [vars2019]                                 
+#>                               Patient age recode [NAMCS 2019 PUF]                              
 #> +---------------------------------------------------------------------------------------------+
 #> ¦ Level         ¦ Number (000) ¦ SE (000) ¦ LL (000) ¦ UL (000) ¦ Percent ¦  SE ¦   LL ¦   UL ¦
 #> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦
