@@ -18,8 +18,8 @@
     # position(hh) = "left"
 
     # See inside guess_knitr_output_format
-    not_screen = (requireNamespace("knitr", quetly = TRUE)
-                && requireNamespace("rmarkdown", quetly = TRUE)
+    not_screen = (requireNamespace("knitr", quietly = TRUE)
+                && requireNamespace("rmarkdown", quietly = TRUE)
                 && guess_knitr_output_format() != "")
 
     if (not_screen) {
