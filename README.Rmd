@@ -45,8 +45,11 @@ remotes::install_git(
 
 This is a basic example:
 
-```{r example}
+```{r}
 library(prettysurvey)
 set_survey("vars2019")
+```
+
+```{r, results='asis'}
 tab("AGER")
 ```

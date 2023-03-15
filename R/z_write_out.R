@@ -1,6 +1,6 @@
 .write_out = function(df1, screen, out) {
   if (!is.null(txt <- attr(df1, "title"))) {
-    txt %<>% paste0(" [", getOption("prettysurvey.design.label"), "]")
+    txt %<>% paste0(" {", getOption("prettysurvey.design.label"), "}")
     attr(df1, "title") = txt
   }
 
@@ -17,11 +17,20 @@
     }
     # position(hh) = "left"
 
-    gow = getOption("width")
-    options(width = 10)
-    hh %>% print(colnames = FALSE, min_width = 0, max_width = max(gow * 1.5, 150, na.rm=TRUE))
-    options(width = gow)
-    cat("\n")
+    # See inside guess_knitr_output_format
+    not_screen = (requireNamespace("knitr", quetly = TRUE)
+                && requireNamespace("rmarkdown", quetly = TRUE)
+                && guess_knitr_output_format() != "")
+
+    if (not_screen) {
+      hh %>% print_html
+    } else {
+      gow = getOption("width")
+      options(width = 10)
+      hh %>% print(colnames = FALSE, min_width = 0, max_width = max(gow * 1.5, 150, na.rm=TRUE))
+      options(width = gow)
+      cat("\n")
+    }
   }
 
 	if (nzchar(out)) {
