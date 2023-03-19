@@ -58,11 +58,19 @@ tab = function(...
 
 	nlv = nlevels(design$variables[,vr])
 	if (nlv < 2) {
-		df1 = data.frame(
-			Note = paste("All values the same:"
-			, design$variables[1,vr]))
-		attr(df1, "title") = .getvarname(design, vr)
-		return( .write_out(df1, screen = screen, out = out) )
+    assert_that(all(design$variables[,vr] == design$variables[1,vr]))
+	  mp = .total(design)
+	  assert_that(ncol(mp) %in% c(4L, 5L))
+	  fa = attr(mp, "footer")
+	  mp = cbind(
+	    data.frame(Level = design$variables[1,vr])
+      , mp)
+	  if (!is.null(fa)) {
+	    attr(mp, "footer") = fa
+	  }
+	  attr(mp, "num") = 2:5
+	  attr(mp, "title") = .getvarname(design, vr)
+    return(.write_out(mp, screen = screen, out = out))
 	} else if (nlv > max.levels) {
 		df1 = data.frame(
 			Note = paste0("Categorical variable with too many levels: "
