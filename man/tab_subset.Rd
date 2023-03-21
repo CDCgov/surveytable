@@ -9,9 +9,9 @@
 tab_cross(
   vr,
   vrby,
-  max.levels = getOption("prettysurvey.out.max_levels"),
+  max_levels = getOption("prettysurvey.out.max_levels"),
   screen = getOption("prettysurvey.out.screen"),
-  out = getOption("prettysurvey.out.fname")
+  csv = getOption("prettysurvey.out.csv")
 )
 
 var_cross(newvr, vr, vrby)
@@ -20,9 +20,9 @@ tab_subset(
   vr,
   vrby,
   lvls = c(),
-  max.levels = getOption("prettysurvey.out.max_levels"),
+  max_levels = getOption("prettysurvey.out.max_levels"),
   screen = getOption("prettysurvey.out.screen"),
-  out = getOption("prettysurvey.out.fname")
+  csv = getOption("prettysurvey.out.csv")
 )
 }
 \arguments{
@@ -30,11 +30,11 @@ tab_subset(
 
 \item{vrby}{use this variable to subset the survey}
 
-\item{max.levels}{a categorical variable can have at most this many levels. Used to avoid printing huge tables.}
+\item{max_levels}{a categorical variable can have at most this many levels. Used to avoid printing huge tables.}
 
 \item{screen}{print to the screen?}
 
-\item{out}{file name of CSV file}
+\item{csv}{name of a CSV file}
 
 \item{newvr}{name of the new variable to be created}
 
@@ -58,8 +58,8 @@ variable within each of the subsets. Interact two variables and tabulate.
 \code{tab_cross} crosses or interacts \code{vr} and \code{vrby} and tabulates the new
 variable. Tables created using \code{tab_subset} and \code{tab_cross} have the same
 counts but different percentages. With \code{tab_subset}, percentages within each
-subset add up to 100\%. With \code{tab_cross}, percentages across the entire survey
-add up to 100\%.
+subset add up to 100\%. With \code{tab_cross}, percentages across the entire
+population add up to 100\%.
 
 \code{var_cross} creates the new variable and updates the survey,
 but does not tabulate the new variable. Use \code{\link[=tab]{tab()}} to tabulate it.

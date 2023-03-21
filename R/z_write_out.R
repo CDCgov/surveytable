@@ -1,4 +1,4 @@
-.write_out = function(df1, screen, out) {
+.write_out = function(df1, screen, csv) {
   if (!is.null(txt <- attr(df1, "title"))) {
     txt %<>% paste0(" {", getOption("prettysurvey.design.label"), "}")
     attr(df1, "title") = txt
@@ -33,23 +33,23 @@
     }
   }
 
-	if (nzchar(out)) {
+	if (nzchar(csv)) {
 	  if (!is.null(txt <- attr(df1, "title"))) {
-	    write.table(txt, file = out
+	    write.table(txt, file = csv
 	                , append = TRUE, row.names = FALSE
 	                , col.names = FALSE
 	                , sep = ",", qmethod = "double") %>% suppressWarnings
 	  }
-	  write.table(df1, file = out
+	  write.table(df1, file = csv
 	              , append = TRUE, row.names = FALSE
 	              , sep = ",", qmethod = "double") %>% suppressWarnings
 	  if (!is.null(txt <- attr(df1, "footer"))) {
-	    write.table(txt, file = out
+	    write.table(txt, file = csv
 	                , append = TRUE, row.names = FALSE
 	                , col.names = FALSE
 	                , sep = ",", qmethod = "double") %>% suppressWarnings
 	  }
-	  cat("\n", file = out, append = TRUE)
+	  cat("\n", file = csv, append = TRUE)
 	}
 	invisible(df1)
 }

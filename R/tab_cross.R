@@ -1,24 +1,23 @@
 #' @rdname tab_subset
 #' @export
 tab_cross = function(vr, vrby
-                     , max.levels = getOption("prettysurvey.out.max_levels")
+                     , max_levels = getOption("prettysurvey.out.max_levels")
                      , screen = getOption("prettysurvey.out.screen")
-                     , out = getOption("prettysurvey.out.fname")
+                     , csv = getOption("prettysurvey.out.csv")
 ) {
   design = .load_survey()
 
   # Ensure unique name
   newvr = paste0(vr, "x", vrby)
-  mno = make.names(c(names(design$variables), newvr), unique = TRUE)
-  newvr %<>% tail(1)
+  newvr = make.names(c(names(design$variables), newvr), unique = TRUE) %>% tail(1)
 
   var_cross(newvr = newvr, vr = vr, vrby = vrby)
 
   design = .load_survey()
   ret = .tab_factor(design = design, vr = newvr
-                , max.levels = max.levels
+                , max_levels = max_levels
                 , screen = screen
-                , out = out)
+                , csv = csv)
 
   design$variables[,newvr] = NULL
   assign(getOption("prettysurvey.design"), design, envir = .GlobalEnv)

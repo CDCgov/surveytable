@@ -27,6 +27,7 @@ set_count_1k()
 \seealso{
 Other options: 
 \code{\link{prettysurvey-options}},
+\code{\link{set_output}()},
 \code{\link{set_survey}()},
 \code{\link{show_options}()}
 }

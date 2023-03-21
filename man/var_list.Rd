@@ -8,7 +8,7 @@ var_list(
   sw = "",
   all = FALSE,
   screen = getOption("prettysurvey.out.screen"),
-  out = getOption("prettysurvey.out.fname")
+  csv = getOption("prettysurvey.out.csv")
 )
 }
 \arguments{
@@ -18,7 +18,7 @@ var_list(
 
 \item{screen}{print to the screen?}
 
-\item{out}{file name of CSV file}
+\item{csv}{name of a CSV file}
 }
 \value{
 \code{data.frame}

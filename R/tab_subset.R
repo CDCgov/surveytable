@@ -9,8 +9,8 @@
 #' `tab_cross` crosses or interacts `vr` and `vrby` and tabulates the new
 #' variable. Tables created using `tab_subset` and `tab_cross` have the same
 #' counts but different percentages. With `tab_subset`, percentages within each
-#' subset add up to 100%. With `tab_cross`, percentages across the entire survey
-#' add up to 100%.
+#' subset add up to 100%. With `tab_cross`, percentages across the entire
+#' population add up to 100%.
 #'
 #' `var_cross` creates the new variable and updates the survey,
 #' but does not tabulate the new variable. Use [`tab()`] to tabulate it.
@@ -18,9 +18,9 @@
 #' @param vr      variable to tabulate
 #' @param vrby    use this variable to subset the survey
 #' @param lvls    (optional) only show these levels of `vrby`
-#' @param max.levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
+#' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
 #' @param screen  print to the screen?
-#' @param out     file name of CSV file
+#' @param csv     name of a CSV file
 #' @param newvr   name of the new variable to be created
 #'
 #' @return
@@ -51,9 +51,9 @@
 #' tab_subset("AGER", "MAJOR"
 #' , lvls = c("Chronic problem, routine", "Chronic problem, flare-up"))
 tab_subset = function(vr, vrby, lvls = c()
-               , max.levels = getOption("prettysurvey.out.max_levels")
+               , max_levels = getOption("prettysurvey.out.max_levels")
                , screen = getOption("prettysurvey.out.screen")
-               , out = getOption("prettysurvey.out.fname")
+               , csv = getOption("prettysurvey.out.csv")
               ) {
   design = .load_survey()
   nm = names(design$variables)
@@ -84,9 +84,9 @@ tab_subset = function(vr, vrby, lvls = c()
       .getvarname(design, vr), " (", txtby, ")")
     ret[[ii]] = .tab_factor(design = d1
                                , vr = vr
-                               , max.levels = max.levels
+                               , max_levels = max_levels
                                , screen = screen
-                               , out = out
+                               , csv = csv
                             )
   }
   invisible(ret)

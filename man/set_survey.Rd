@@ -16,7 +16,7 @@ show_survey()
 (Nothing.)
 }
 \description{
-You need specify a survey before the other functions, such as \code{\link[=tab]{tab()}}, will work.
+You need to specify a survey before the other functions, such as \code{\link[=tab]{tab()}}, will work.
 }
 \details{
 \code{show_survey()} shows the survey that you've specified.
@@ -29,6 +29,7 @@ show_survey()
 Other options: 
 \code{\link{prettysurvey-options}},
 \code{\link{set_count_1k}()},
+\code{\link{set_output}()},
 \code{\link{show_options}()}
 }
 \concept{options}

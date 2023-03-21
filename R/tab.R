@@ -9,9 +9,9 @@
 #' calculated using the Korn and Graubard method.
 #'
 #' @param ...     names of variables (in quotes)
-#' @param max.levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
+#' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
 #' @param screen  print to the screen?
-#' @param out     file name of CSV file
+#' @param csv     name of a CSV file
 #'
 #' @return a list of `data.frame` tables.
 #' @family tables
@@ -22,27 +22,27 @@
 #' tab("AGER")
 #' tab("MDDO", "SPECCAT", "MSA")
 tab = function(...
-               , max.levels = getOption("prettysurvey.out.max_levels")
+               , max_levels = getOption("prettysurvey.out.max_levels")
                , screen = getOption("prettysurvey.out.screen")
-               , out = getOption("prettysurvey.out.fname")
+               , csv = getOption("prettysurvey.out.csv")
                ) {
-  design = .load_survey()
 	ret = list()
 	if (...length() > 0) {
+	  design = .load_survey()
 		for (ii in 1:...length()) {
 			vr = ...elt(ii)
 			ret[[vr]] = .tab_factor(design = design
 				, vr = vr
-				, max.levels = max.levels
+				, max_levels = max_levels
 				, screen = screen
-				, out = out
+				, csv = csv
 				)
 		}
 	}
 	invisible(ret)
 }
 
-.tab_factor = function(design, vr, max.levels, screen, out) {
+.tab_factor = function(design, vr, max_levels, screen, csv) {
   nm = names(design$variables)
   assert_that(vr %in% nm, msg = paste("Variable", vr, "not in the data."))
 
@@ -70,15 +70,15 @@ tab = function(...
 	  }
 	  attr(mp, "num") = 2:5
 	  attr(mp, "title") = .getvarname(design, vr)
-    return(.write_out(mp, screen = screen, out = out))
-	} else if (nlv > max.levels) {
+    return(.write_out(mp, screen = screen, csv = csv))
+	} else if (nlv > max_levels) {
 		df1 = data.frame(
 			Note = paste0("Categorical variable with too many levels: "
-			, nlv, ", but ", max.levels
-			, " allowed. Try increasing the max.levels argument or the "
-			, "prettysurvey.out.max_levels option."))
+			, nlv, ", but ", max_levels
+			, " allowed. Try increasing the max_levels argument or "
+			, "see ?set_output"))
 		attr(df1, "title") = .getvarname(design, vr)
-		return( .write_out(df1, screen = screen, out = out) )
+		return( .write_out(df1, screen = screen, csv = csv) )
 	}
 
 	frm = as.formula(paste0("~ `", vr, "`"))
@@ -166,7 +166,7 @@ tab = function(...
   attr(mp, "num") = 2:5
   attr(mp, "title") = .getvarname(design, vr)
 	mp %<>% .add_flags( c(pro$has.flag, pco$has.flag, ppo$has.flag) )
-	.write_out(mp, screen = screen, out = out)
+	.write_out(mp, screen = screen, csv = csv)
 }
 
 .add_flags = function(df1, has.flag) {

@@ -1,7 +1,7 @@
 #' Number of variables in a survey.
 #'
 #' @param screen  print to the screen?
-#' @param out     file name of CSV file
+#' @param csv     name of a CSV file
 #'
 #' @return `data.frame`
 #' @export
@@ -10,7 +10,7 @@
 #' set_survey("vars2019")
 #' var_num()
 var_num = function(screen = getOption("prettysurvey.out.screen")
-            , out = getOption("prettysurvey.out.fname")
+            , csv = getOption("prettysurvey.out.csv")
             ) {
   design = .load_survey()
   df1 = data.frame(
@@ -20,5 +20,5 @@ var_num = function(screen = getOption("prettysurvey.out.screen")
             , nrow(design$variables)) )
   attr(df1, "num") = 2
   attr(df1, "title") = "Data summary"
-	.write_out(df1, screen = screen, out = out)
+	.write_out(df1, screen = screen, csv = csv)
 }

@@ -6,19 +6,19 @@
 \usage{
 tab(
   ...,
-  max.levels = getOption("prettysurvey.out.max_levels"),
+  max_levels = getOption("prettysurvey.out.max_levels"),
   screen = getOption("prettysurvey.out.screen"),
-  out = getOption("prettysurvey.out.fname")
+  csv = getOption("prettysurvey.out.csv")
 )
 }
 \arguments{
 \item{...}{names of variables (in quotes)}
 
-\item{max.levels}{a categorical variable can have at most this many levels. Used to avoid printing huge tables.}
+\item{max_levels}{a categorical variable can have at most this many levels. Used to avoid printing huge tables.}
 
 \item{screen}{print to the screen?}
 
-\item{out}{file name of CSV file}
+\item{csv}{name of a CSV file}
 }
 \value{
 a list of \code{data.frame} tables.

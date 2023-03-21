@@ -1,7 +1,7 @@
 #' Total count
 #'
 #' @param screen  print to the screen?
-#' @param out     file name of CSV file
+#' @param csv     name of a CSV file
 #'
 #' @return `data.frame`
 #' @family tables
@@ -11,13 +11,13 @@
 #' set_survey("vars2019")
 #' total()
 total = function(screen = getOption("prettysurvey.out.screen")
-               , out = getOption("prettysurvey.out.fname") ) {
+               , csv = getOption("prettysurvey.out.csv") ) {
   design = .load_survey()
   mp = .total(design)
   assert_that(ncol(mp) %in% c(4L, 5L))
   attr(mp, "num") = 1:4
   attr(mp, "title") = "Total"
-  .write_out(mp, screen = screen, out = out)
+  .write_out(mp, screen = screen, csv = csv)
 }
 
 

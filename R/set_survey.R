@@ -1,6 +1,6 @@
 #' Specify the survey to analyze
 #'
-#' You need specify a survey before the other functions, such as [tab()], will work.
+#' You need to specify a survey before the other functions, such as [tab()], will work.
 #'
 #' `show_survey()` shows the survey that you've specified.
 #'
@@ -52,7 +52,7 @@ show_survey = function() {
 .load_survey = function() {
   survey_name = getOption("prettysurvey.design")
   assert_that(is.string(survey_name), nzchar(survey_name)
-              , msg = "Option prettysurvey.design must be a character string. See ?set_survey")
+              , msg = "You need to specify a survey before the other functions will work. See ?set_survey")
   tmp = get0(survey_name)
   assert_that(!is.null(tmp)
               , msg = paste0(survey_name, " does not exist. Did you forget to load it? See ?set_survey"))

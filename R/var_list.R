@@ -3,7 +3,7 @@
 #' @param sw      starting characters in variable name (case insensitive)
 #' @param all     print all variables?
 #' @param screen  print to the screen?
-#' @param out     file name of CSV file
+#' @param csv     name of a CSV file
 #'
 #' @return `data.frame`
 #' @export
@@ -13,7 +13,7 @@
 #' var_list("age")
 var_list = function(sw = "", all=FALSE
                     , screen = getOption("prettysurvey.out.screen")
-                    , out = getOption("prettysurvey.out.fname")
+                    , csv = getOption("prettysurvey.out.csv")
 ) {
   design = .load_survey()
   assert_that(nzchar(sw) | all
@@ -46,7 +46,7 @@ var_list = function(sw = "", all=FALSE
   } else {
     paste0("Variables beginning with '", sw, "'")
   }
-  .write_out(ret, screen = screen, out = out)
+  .write_out(ret, screen = screen, csv = csv)
 }
 
 .getvarname = function(design, vr) {

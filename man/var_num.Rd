@@ -6,13 +6,13 @@
 \usage{
 var_num(
   screen = getOption("prettysurvey.out.screen"),
-  out = getOption("prettysurvey.out.fname")
+  csv = getOption("prettysurvey.out.csv")
 )
 }
 \arguments{
 \item{screen}{print to the screen?}
 
-\item{out}{file name of CSV file}
+\item{csv}{name of a CSV file}
 }
 \value{
 \code{data.frame}

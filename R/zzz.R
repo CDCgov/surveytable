@@ -43,11 +43,12 @@
     , prettysurvey.tab.tx_prct = ".tx_prct"
     , prettysurvey.tab.names_prct = c("Percent", "SE", "LL", "UL")
 
+    , prettysurvey.out.csv = ""
     , prettysurvey.out.screen = TRUE
-    , prettysurvey.out.fname = ""
     , prettysurvey.out.max_levels = 20
   )
   set_count_1k()
+#  set_output(csv = "", screen = TRUE, max_levels = 20)
 }
 
 .tx_prct = function(x) {
