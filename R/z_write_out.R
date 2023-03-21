@@ -15,7 +15,6 @@
     if (!is.null(txt <- attr(df1, "footer"))) {
       hh %<>% add_footnote(txt)
     }
-    # position(hh) = "left"
 
     # See inside guess_knitr_output_format
     not_screen = (requireNamespace("knitr", quietly = TRUE)
@@ -27,7 +26,7 @@
     } else {
       gow = getOption("width")
       options(width = 10)
-      hh %>% print(colnames = FALSE, min_width = 0, max_width = max(gow * 1.5, 150, na.rm=TRUE))
+      hh %>% print_screen(colnames = FALSE, min_width = 0, max_width = max(gow * 1.5, 150, na.rm=TRUE))
       options(width = gow)
       cat("\n")
     }

@@ -1,8 +1,8 @@
 #' @import assertthat
 #' @import magrittr
-#' @import huxtable
 #' @import survey
-#' @importFrom stats as.formula confint
+#' @importFrom huxtable hux set_all_borders caption<- number_format<- number_format fmt_pretty add_footnote guess_knitr_output_format print_html print_screen
+#' @importFrom stats as.formula confint qt
 #' @importFrom utils write.table tail
 #' @keywords internal
 "_PACKAGE"

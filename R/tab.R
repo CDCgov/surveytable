@@ -92,20 +92,27 @@ tab = function(...
 	}
 
 	##
-	sto = svytotal(frm, design)
-	mmcr = data.frame(a = as.numeric(sto)
-		, b = sqrt(diag(attr(sto, "var"))) )
+	sto = svytotal(frm, design) # , deff = TRUE)
+	mmcr = data.frame(x = as.numeric(sto)
+		, s = sqrt(diag(attr(sto, "var"))) )
+  mmcr$samp.size = .calc_samp_size(design = design, vr = vr, counts = counts)
+
+  # Equation 24 https://www.cdc.gov/nchs/data/series/sr_02/sr02-200.pdf
+  mmcr$k = qt(0.975, mmcr$samp.size) * mmcr$s / mmcr$x
+  mmcr$lnx = log(mmcr$x)
+  mmcr$ll = exp(mmcr$lnx - mmcr$k)
+  mmcr$ul = exp(mmcr$lnx + mmcr$k)
+
+  df1 = degf(design)
+  mmcr$degf = df1
+
 	if (getOption("prettysurvey.tab.do_present")) {
-	  pco = getOption("prettysurvey.tab.present_count") %>% do.call(list(mmcr, counts))
+	  pco = getOption("prettysurvey.tab.present_count") %>% do.call(list(mmcr))
 	} else {
 		pco = list(flags = rep("", nrow(mmcr)), has.flag = c())
 	}
 
-	# qnorm(.975)
-	# Forcing 95% CI because CI for percentages has to be 95%
-	kk = 1.95996398454
-	mmcr$c = pmax(mmcr$a - kk * mmcr$b, 0)
-	mmcr$d = mmcr$a + kk * mmcr$b
+  mmcr = mmcr[,c("x", "s", "ll", "ul")]
 	mmc = getOption("prettysurvey.tab.tx_count") %>% do.call(list(mmcr))
 	names(mmc) = getOption("prettysurvey.tab.names_count")
 
@@ -114,7 +121,6 @@ tab = function(...
 	levels(design$variables[,vr]) = lvs
 	assert_that( noNA(lvs) )
 	ret = NULL
-	df1 = degf(design)
 	# ret needs to have these names
 	for (lv in lvs) {
 		design$variables$.tmp = NULL
@@ -178,7 +184,8 @@ tab = function(...
 			v1 %<>% c(switch(ff
 				, R = "R: If the data is confidential, suppress *all* estimates, SE's, CI's, etc."
 				, Cx = "Cx: suppress count"
-				, Cr = "Cr: footnote count - RSE"
+##				, Cr = "Cr: footnote count - RSE"
+  			, Cdf = "Cdf: review count - degrees of freedom"
 				, Px = "Px: suppress percent"
 				, Pc = "Pc: footnote percent - complement"
 				, Pdf = "Pdf: review percent - degrees of freedom"
@@ -190,4 +197,22 @@ tab = function(...
 		attr(df1, "footer") = v1 %>% paste(collapse="; ")
 	}
   df1
+}
+
+
+.calc_samp_size = function(design, vr, counts) {
+
+  # In svytotal(frm, design, deff = TRUE), DEff sometimes
+  # appears incorrect. If no variability, DEff = Inf.
+  # Calculating "Kish's Effective Sample Size" directly, bypassing DEff
+  #	deff = attr(sto, "deff") %>% diag
+
+  design$wi = 1 / design$prob
+  design$wi[design$prob <= 0] = 0
+  design$wi2 = design$wi^2
+  sum_wi = by(design$wi, design$variables[,vr], sum) %>% as.numeric
+  sum_wi2 = by(design$wi2, design$variables[,vr], sum) %>% as.numeric
+  neff = sum_wi^2 / sum_wi2
+  assert_that(length(neff) == length(counts))
+  pmin(counts, neff)
 }

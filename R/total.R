@@ -33,20 +33,27 @@ total = function(screen = getOption("prettysurvey.out.screen")
   }
 
   ##
-  sto = svytotal(~Total, design)
-  mmcr = data.frame(a = as.numeric(sto)
-                    , b = sqrt(diag(attr(sto, "var"))) )
+  sto = svytotal(~Total, design) # , deff = TRUE)
+  mmcr = data.frame(x = as.numeric(sto)
+              , s = sqrt(diag(attr(sto, "var"))) )
+  mmcr$samp.size = .calc_samp_size(design = design, vr = "Total", counts = counts)
+
+  # Equation 24 https://www.cdc.gov/nchs/data/series/sr_02/sr02-200.pdf
+  mmcr$k = qt(0.975, mmcr$samp.size) * mmcr$s / mmcr$x
+  mmcr$lnx = log(mmcr$x)
+  mmcr$ll = exp(mmcr$lnx - mmcr$k)
+  mmcr$ul = exp(mmcr$lnx + mmcr$k)
+
+  df1 = degf(design)
+  mmcr$degf = df1
+
   if (getOption("prettysurvey.tab.do_present")) {
-    pco = getOption("prettysurvey.tab.present_count") %>% do.call(list(mmcr, counts))
+    pco = getOption("prettysurvey.tab.present_count") %>% do.call(list(mmcr))
   } else {
     pco = list(flags = rep("", nrow(mmcr)), has.flag = c())
   }
 
-  # qnorm(.975)
-  # See .tab_factor
-  kk = 1.95996398454
-  mmcr$c = pmax(mmcr$a - kk * mmcr$b, 0)
-  mmcr$d = mmcr$a + kk * mmcr$b
+  mmcr = mmcr[,c("x", "s", "ll", "ul")]
   mmc = getOption("prettysurvey.tab.tx_count") %>% do.call(list(mmcr))
   names(mmc) = getOption("prettysurvey.tab.names_count")
 
