@@ -65,10 +65,8 @@ set_survey("vars2019")
 #> * Analyzing NAMCS 2019 PUF
 #> Stratified 1 - level Cluster Sampling design (with replacement)
 #> With (398) clusters.
-#> sdo = svydesign(ids = ~ CPSUM
-#>                   , strata = ~ CSTRATM
-#>                   , weights = ~ PATWT
-#>                   , data = d1)
+#> svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, 
+#>     data = d1)
 #> * To adjust how counts are rounded, see ?set_count_int
 ```
 
