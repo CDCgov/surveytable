@@ -50,5 +50,8 @@
 	  }
 	  cat("\n", file = csv, append = TRUE)
 	}
+
+  # Important for integrating the output into other programming tasks
+  names(df1) = names(df1) %>% make.names(unique = TRUE)
 	invisible(df1)
 }

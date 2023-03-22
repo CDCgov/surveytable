@@ -17,7 +17,7 @@
 #' @param screen  print to the screen?
 #' @param csv     name of a CSV file
 #'
-#' @return a list of `data.frame` tables.
+#' @return A list of `data.frame` tables or a single `data.frame` table.
 #' @family tables
 #' @export
 #'
@@ -25,6 +25,11 @@
 #' set_survey("vars2019")
 #' tab("AGER")
 #' tab("MDDO", "SPECCAT", "MSA")
+#'
+#' # Integrate the output into other programming tasks
+#' set_count_int()
+#' df1 = tab("AGER", screen = FALSE)
+#' df1 = within(df1, {RSE = SE / Number})
 tab = function(...
                , max_levels = getOption("prettysurvey.out.max_levels")
                , screen = getOption("prettysurvey.out.screen")
@@ -43,6 +48,8 @@ tab = function(...
 				)
 		}
 	}
+
+	if (length(ret) == 1L) return(invisible(ret[[1]]))
 	invisible(ret)
 }
 

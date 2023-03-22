@@ -21,7 +21,7 @@ tab(
 \item{csv}{name of a CSV file}
 }
 \value{
-a list of \code{data.frame} tables.
+A list of \code{data.frame} tables or a single \code{data.frame} table.
 }
 \description{
 Operates on categorical and logical variables, and presents the
@@ -41,6 +41,11 @@ the Korn and Graubard CIs.
 set_survey("vars2019")
 tab("AGER")
 tab("MDDO", "SPECCAT", "MSA")
+
+# Integrate the output into other programming tasks
+set_count_int()
+df1 = tab("AGER", screen = FALSE)
+df1 = within(df1, {RSE = SE / Number})
 }
 \seealso{
 Other tables: 
