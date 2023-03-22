@@ -43,13 +43,13 @@
 # 	, th.n = 30, th.rse = 0.30) {
 # 	stop("30 / 30 rule no longer used")
 # 	assert_that(nrow(mmcr) == length(counts)
-# 		, all(names(mmcr) == c("a", "b")) )
+# 		, all(names(mmcr) == c("x", "s")) )
 #
 # 	has.flag = c()
 # 	flags = rep("", nrow(mmcr))
 #
-# 	mmcr$rse = mmcr$b / mmcr$a
-# 	mmcr$rse[mmcr$a <= 0] = Inf
+# 	mmcr$rse = mmcr$s / mmcr$x
+# 	mmcr$rse[mmcr$x <= 0] = Inf
 #
 # 	bool.n = (counts < th.n)
 # 	if (any(bool.n)) {

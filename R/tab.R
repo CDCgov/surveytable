@@ -97,14 +97,15 @@ tab = function(...
 		, s = sqrt(diag(attr(sto, "var"))) )
   mmcr$samp.size = .calc_samp_size(design = design, vr = vr, counts = counts)
 
+  df1 = degf(design)
+  mmcr$degf = df1
+
   # Equation 24 https://www.cdc.gov/nchs/data/series/sr_02/sr02-200.pdf
-  mmcr$k = qt(0.975, mmcr$samp.size) * mmcr$s / mmcr$x
+  # DF should be as here, not just sample size.
+  mmcr$k = qt(0.975, pmax(mmcr$samp.size - 1, 1)) * mmcr$s / mmcr$x
   mmcr$lnx = log(mmcr$x)
   mmcr$ll = exp(mmcr$lnx - mmcr$k)
   mmcr$ul = exp(mmcr$lnx + mmcr$k)
-
-  df1 = degf(design)
-  mmcr$degf = df1
 
 	if (getOption("prettysurvey.tab.do_present")) {
 	  pco = getOption("prettysurvey.tab.present_count") %>% do.call(list(mmcr))
@@ -125,14 +126,15 @@ tab = function(...
 	for (lv in lvs) {
 		design$variables$.tmp = NULL
 		design$variables$.tmp = (design$variables[,vr] == lv)
-		xp = svyciprop(~ .tmp, design, method="beta")	# Korn and Graubard, 1998
-		ret1 = data.frame(Proportion = unclass(xp)[1], SE = SE(xp))
+		# Korn and Graubard, 1998
+		xp = svyciprop(~ .tmp, design, method="beta", level = 0.95)
+		ret1 = data.frame(Proportion = xp %>% as.numeric
+		                  , SE = attr(xp, "var") %>% as.numeric %>% sqrt)
 
-		# 95% CI
-		# not giving the user the ability to change this
-		# because the presentation standard uses 95% CI
-		ci = confint(xp, df = df1)
-		dimnames(ci)[[2]] = c("LL", "UL")
+		ci = attr(xp, "ci") %>% t %>% data.frame
+		names(ci) = c("LL", "UL")
+		if (is.na(ci$LL)) ci$LL = 0
+		if (is.na(ci$UL)) ci$UL = 1
 		ret1 %<>% cbind(ci)
 
 		ret1$`n numerator` = sum(design$variables$.tmp)
@@ -193,7 +195,6 @@ tab = function(...
 				, paste0(ff, ": unknown flag!")
 			))
 		}
-		v1 %<>% paste(collapse="; ")
 		attr(df1, "footer") = v1 %>% paste(collapse="; ")
 	}
   df1
