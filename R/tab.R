@@ -1,12 +1,16 @@
 #' Tabulate variables
 #'
-#' Operates on categorical and logical variables, and presents the estimated
-#' counts, their standard errors (SEs) and confidence intervals (CIs),
-#' percentages, and their SEs and CIs. Checks the presentation guidelines for
-#' counts and percentages and flags estimates if, according to the guidelines,
-#' they should be suppressed, footnoted, or reviewed by an analyst. CIs are
-#' calculated at the 95% confidence level. CIs for the percentage estimates are
-#' calculated using the Korn and Graubard method.
+#' Operates on categorical and logical variables, and presents the
+#' estimated counts, their standard errors (SEs) and confidence
+#' intervals (CIs), percentages, and their SEs and CIs. Checks
+#' the presentation guidelines for counts and percentages and flags
+#' estimates if, according to the guidelines,
+#' they should be suppressed, footnoted, or reviewed by an analyst.
+#'
+#' CIs are calculated at the 95% confidence level. CIs for
+#' count estimates are the log Student’s t CIs, with adaptations
+#' for complex surveys. CIs for percentage estimates are
+#' the Korn and Graubard CIs.
 #'
 #' @param ...     names of variables (in quotes)
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
@@ -119,10 +123,8 @@ tab = function(...
 
 	##
 	lvs = design$variables[,vr] %>% levels
-	levels(design$variables[,vr]) = lvs
 	assert_that( noNA(lvs) )
 	ret = NULL
-	# ret needs to have these names
 	for (lv in lvs) {
 		design$variables$.tmp = NULL
 		design$variables$.tmp = (design$variables[,vr] == lv)
@@ -168,8 +170,7 @@ tab = function(...
 
 	##
 	rownames(mp) = NULL
-	level_names = design$variables[,vr] %>% levels
-	mp = cbind(data.frame(Level = level_names), mp)
+	mp = cbind(data.frame(Level = lvs), mp)
 
   attr(mp, "num") = 2:5
   attr(mp, "title") = .getvarname(design, vr)

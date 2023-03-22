@@ -24,13 +24,18 @@ tab(
 a list of \code{data.frame} tables.
 }
 \description{
-Operates on categorical and logical variables, and presents the estimated
-counts, their standard errors (SEs) and confidence intervals (CIs),
-percentages, and their SEs and CIs. Checks the presentation guidelines for
-counts and percentages and flags estimates if, according to the guidelines,
-they should be suppressed, footnoted, or reviewed by an analyst. CIs are
-calculated at the 95\% confidence level. CIs for the percentage estimates are
-calculated using the Korn and Graubard method.
+Operates on categorical and logical variables, and presents the
+estimated counts, their standard errors (SEs) and confidence
+intervals (CIs), percentages, and their SEs and CIs. Checks
+the presentation guidelines for counts and percentages and flags
+estimates if, according to the guidelines,
+they should be suppressed, footnoted, or reviewed by an analyst.
+}
+\details{
+CIs are calculated at the 95\% confidence level. CIs for
+count estimates are the log Student’s t CIs, with adaptations
+for complex surveys. CIs for percentage estimates are
+the Korn and Graubard CIs.
 }
 \examples{
 set_survey("vars2019")
