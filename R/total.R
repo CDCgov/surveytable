@@ -43,7 +43,7 @@ total = function(screen = getOption("prettysurvey.out.screen")
 
   # Equation 24 https://www.cdc.gov/nchs/data/series/sr_02/sr02-200.pdf
   # DF should be as here, not just sample size.
-  mmcr$k = qt(0.975, pmax(mmcr$samp.size - 1, 1)) * mmcr$s / mmcr$x
+  mmcr$k = qt(0.975, pmax(mmcr$samp.size - 1, 0.1)) * mmcr$s / mmcr$x
   mmcr$lnx = log(mmcr$x)
   mmcr$ll = exp(mmcr$lnx - mmcr$k)
   mmcr$ul = exp(mmcr$lnx + mmcr$k)
