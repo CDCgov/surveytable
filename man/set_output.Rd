@@ -10,7 +10,7 @@ set_output(csv = NULL, screen = NULL, max_levels = NULL)
 show_output()
 }
 \arguments{
-\item{csv}{name of a CSV file}
+\item{csv}{name of a CSV file or "" to turn off CSV output}
 
 \item{screen}{print to the screen?}
 

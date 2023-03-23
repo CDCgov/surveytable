@@ -33,7 +33,7 @@ they should be suppressed, footnoted, or reviewed by an analyst.
 }
 \details{
 CIs are calculated at the 95\% confidence level. CIs for
-count estimates are the log Student’s t CIs, with adaptations
+count estimates are the log Student's t CIs, with adaptations
 for complex surveys. CIs for percentage estimates are
 the Korn and Graubard CIs.
 }

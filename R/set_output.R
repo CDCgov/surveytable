@@ -2,7 +2,7 @@
 #'
 #' `show_output()` shows the current defaults.
 #'
-#' @param csv     name of a CSV file
+#' @param csv     name of a CSV file or "" to turn off CSV output
 #' @param screen  print to the screen?
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
 #'

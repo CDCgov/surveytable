@@ -42,8 +42,8 @@ tab_subset(
 }
 \value{
 \itemize{
-\item \code{tab_subset}: a list of \code{data.frame} tables.
-\item \code{tab_cross}: a \code{data.frame} table.
+\item \code{tab_subset}: A list of \code{data.frame} tables or a single \code{data.frame} table.
+\item \code{tab_cross}: A \code{data.frame} table.
 \item \code{var_cross}: (Nothing.)
 }
 }

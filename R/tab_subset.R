@@ -24,8 +24,8 @@
 #' @param newvr   name of the new variable to be created
 #'
 #' @return
-#' * `tab_subset`: a list of `data.frame` tables.
-#' * `tab_cross`: a `data.frame` table.
+#' * `tab_subset`: A list of `data.frame` tables or a single `data.frame` table.
+#' * `tab_cross`: A `data.frame` table.
 #' * `var_cross`: (Nothing.)
 #'
 #' @family tables
@@ -89,5 +89,7 @@ tab_subset = function(vr, vrby, lvls = c()
                                , csv = csv
                             )
   }
+
+  if (length(ret) == 1L) return(invisible(ret[[1]]))
   invisible(ret)
 }
