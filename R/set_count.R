@@ -13,8 +13,8 @@
 #' set_count_1k()
 set_count_1k = function() {
   options(
-    prettysurvey.tab.tx_count = ".tx_count_1k"
-    , prettysurvey.tab.names_count = c("Number (000)", "SE (000)", "LL (000)", "UL (000)")
+    prettysurvey.tx_count = ".tx_count_1k"
+    , prettysurvey.names_count = c("Number (000)", "SE (000)", "LL (000)", "UL (000)")
   )
   message(paste0("* Rounding counts to the nearest 1,000."
              , "\n* ?set_count_1k for other options."))
@@ -24,8 +24,8 @@ set_count_1k = function() {
 #' @export
 set_count_int = function() {
   options(
-    prettysurvey.tab.tx_count = ".tx_count_int"
-    , prettysurvey.tab.names_count = c("Number", "SE", "LL", "UL")
+    prettysurvey.tx_count = ".tx_count_int"
+    , prettysurvey.names_count = c("Number", "SE", "LL", "UL")
   )
   message(paste0("* Rounding counts to the nearest integer."
                  , "\n* ?set_count_int for other options."))

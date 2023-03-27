@@ -31,9 +31,9 @@
 #' df1 = tab("AGER", screen = FALSE)
 #' df1 = within(df1, {RSE = SE / Number})
 tab = function(...
-               , max_levels = getOption("prettysurvey.out.max_levels")
-               , screen = getOption("prettysurvey.out.screen")
-               , csv = getOption("prettysurvey.out.csv")
+               , max_levels = getOption("prettysurvey.max_levels")
+               , screen = getOption("prettysurvey.screen")
+               , csv = getOption("prettysurvey.csv")
                ) {
 	ret = list()
 	if (...length() > 0) {
@@ -96,8 +96,8 @@ tab = function(...
 
 	##
 	counts = svyby(frm, frm, design, unwtd.count)$counts
-	if (getOption("prettysurvey.tab.do_present")) {
-	  pro = getOption("prettysurvey.tab.present_restricted") %>% do.call(list(counts))
+	if (getOption("prettysurvey.do_present")) {
+	  pro = getOption("prettysurvey.present_restricted") %>% do.call(list(counts))
 	} else {
 		pro = list(flags = rep("", length(counts)), has.flag = c())
 	}
@@ -107,6 +107,7 @@ tab = function(...
 	mmcr = data.frame(x = as.numeric(sto)
 		, s = sqrt(diag(attr(sto, "var"))) )
   mmcr$samp.size = .calc_samp_size(design = design, vr = vr, counts = counts)
+  mmcr$counts = counts
 
   df1 = degf(design)
   mmcr$degf = df1
@@ -118,15 +119,15 @@ tab = function(...
   mmcr$ll = exp(mmcr$lnx - mmcr$k)
   mmcr$ul = exp(mmcr$lnx + mmcr$k)
 
-	if (getOption("prettysurvey.tab.do_present")) {
-	  pco = getOption("prettysurvey.tab.present_count") %>% do.call(list(mmcr))
+	if (getOption("prettysurvey.do_present")) {
+	  pco = getOption("prettysurvey.present_count") %>% do.call(list(mmcr))
 	} else {
 		pco = list(flags = rep("", nrow(mmcr)), has.flag = c())
 	}
 
   mmcr = mmcr[,c("x", "s", "ll", "ul")]
-	mmc = getOption("prettysurvey.tab.tx_count") %>% do.call(list(mmcr))
-	names(mmc) = getOption("prettysurvey.tab.names_count")
+	mmc = getOption("prettysurvey.tx_count") %>% do.call(list(mmcr))
+	names(mmc) = getOption("prettysurvey.names_count")
 
 	##
 	lvs = design$variables[,vr] %>% levels
@@ -152,15 +153,15 @@ tab = function(...
 	}
 	ret$degf = df1
 
-	if (getOption("prettysurvey.tab.do_present")) {
-	  ppo = getOption("prettysurvey.tab.present_prop") %>% do.call(list(ret))
+	if (getOption("prettysurvey.do_present")) {
+	  ppo = getOption("prettysurvey.present_prop") %>% do.call(list(ret))
 	} else {
 		nlvs = design$variables[, vr] %>% nlevels
 		ppo = list(flags = rep("", nlvs), has.flag = c())
 	}
 
-	mp2 = getOption("prettysurvey.tab.tx_prct") %>% do.call(list(ret[,c("Proportion", "SE", "LL", "UL")]))
-	names(mp2) = getOption("prettysurvey.tab.names_prct")
+	mp2 = getOption("prettysurvey.tx_prct") %>% do.call(list(ret[,c("Proportion", "SE", "LL", "UL")]))
+	names(mp2) = getOption("prettysurvey.names_prct")
 
 	##
 	assert_that(nrow(mmc) == nrow(mp2)
@@ -194,7 +195,7 @@ tab = function(...
 			v1 %<>% c(switch(ff
 				, R = "R: If the data is confidential, suppress *all* estimates, SE's, CI's, etc."
 				, Cx = "Cx: suppress count"
-##				, Cr = "Cr: footnote count - RSE"
+				, Cr = "Cr: footnote count - RSE" # .present_count_3030
   			, Cdf = "Cdf: review count - degrees of freedom"
 				, Px = "Px: suppress percent"
 				, Pc = "Pc: footnote percent - complement"

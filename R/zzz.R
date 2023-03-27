@@ -29,23 +29,23 @@
 
 .onLoad = function(libname, pkgname) {
   options(
-    prettysurvey.design = ""
-    , prettysurvey.design.label = ""
+    prettysurvey.survey = ""
+    , prettysurvey.survey_label = ""
 
-    , prettysurvey.tab.do_present = TRUE
-    , prettysurvey.tab.present_restricted = ".present_restricted"
-    , prettysurvey.tab.present_count = ".present_count"
-    , prettysurvey.tab.present_prop = ".present_prop"
+    , prettysurvey.do_present = TRUE
+    , prettysurvey.present_restricted = ".present_restricted"
+    , prettysurvey.present_count = ".present_count"
+    , prettysurvey.present_prop = ".present_prop"
 
-    # , prettysurvey.tab.tx_count = ".tx_count"
-    # , prettysurvey.tab.names_count = c("Number (000)", "SE (000)", "LL (000)", "UL (000)")
+    # , prettysurvey.tx_count = ".tx_count"
+    # , prettysurvey.names_count = c("Number (000)", "SE (000)", "LL (000)", "UL (000)")
 
-    , prettysurvey.tab.tx_prct = ".tx_prct"
-    , prettysurvey.tab.names_prct = c("Percent", "SE", "LL", "UL")
+    , prettysurvey.tx_prct = ".tx_prct"
+    , prettysurvey.names_prct = c("Percent", "SE", "LL", "UL")
 
-    , prettysurvey.out.csv = ""
-    , prettysurvey.out.screen = TRUE
-    , prettysurvey.out.max_levels = 20
+    , prettysurvey.csv = ""
+    , prettysurvey.screen = TRUE
+    , prettysurvey.max_levels = 20
   )
   set_count_1k()
 #  set_output(csv = "", screen = TRUE, max_levels = 20)

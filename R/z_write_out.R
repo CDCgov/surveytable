@@ -1,6 +1,6 @@
 .write_out = function(df1, screen, csv) {
   if (!is.null(txt <- attr(df1, "title"))) {
-    txt %<>% paste0(" {", getOption("prettysurvey.design.label"), "}")
+    txt %<>% paste0(" {", getOption("prettysurvey.survey_label"), "}")
     attr(df1, "title") = txt
   }
 
@@ -52,6 +52,6 @@
 	}
 
   # Important for integrating the output into other programming tasks
-  names(df1) = names(df1) %>% make.names(unique = TRUE)
+  names(df1) %<>% make.unique
 	invisible(df1)
 }

@@ -9,9 +9,9 @@
 tab_cross(
   vr,
   vrby,
-  max_levels = getOption("prettysurvey.out.max_levels"),
-  screen = getOption("prettysurvey.out.screen"),
-  csv = getOption("prettysurvey.out.csv")
+  max_levels = getOption("prettysurvey.max_levels"),
+  screen = getOption("prettysurvey.screen"),
+  csv = getOption("prettysurvey.csv")
 )
 
 var_cross(newvr, vr, vrby)
@@ -20,9 +20,9 @@ tab_subset(
   vr,
   vrby,
   lvls = c(),
-  max_levels = getOption("prettysurvey.out.max_levels"),
-  screen = getOption("prettysurvey.out.screen"),
-  csv = getOption("prettysurvey.out.csv")
+  max_levels = getOption("prettysurvey.max_levels"),
+  screen = getOption("prettysurvey.screen"),
+  csv = getOption("prettysurvey.csv")
 )
 }
 \arguments{

@@ -39,34 +39,31 @@
   list(flags = flags, has.flag = has.flag)
 }
 
-# .present_count = function(mmcr, counts
-# 	, th.n = 30, th.rse = 0.30) {
-# 	stop("30 / 30 rule no longer used")
-# 	assert_that(nrow(mmcr) == length(counts)
-# 		, all(names(mmcr) == c("x", "s")) )
-#
-# 	has.flag = c()
-# 	flags = rep("", nrow(mmcr))
-#
-# 	mmcr$rse = mmcr$s / mmcr$x
-# 	mmcr$rse[mmcr$x <= 0] = Inf
-#
-# 	bool.n = (counts < th.n)
-# 	if (any(bool.n)) {
-# 		f1 = "Cx"
-# 		flags[bool.n] %<>% paste(f1)
-# 		has.flag %<>% c(f1)
-# 	}
-#
-# 	bool.rse = (!bool.n & mmcr$rse >= th.rse)
-# 	if (any(bool.rse)) {
-# 		f1 = "Cr"
-# 		flags[bool.rse] %<>% paste(f1)
-# 		has.flag %<>% c(f1)
-# 	}
-#
-# 	list(flags = flags, has.flag = has.flag)
-# }
+.present_count_3030 = function(mmcr
+	, th.n = 30, th.rse = 0.30) {
+#	stop("30 / 30 rule no longer used")
+	has.flag = c()
+	flags = rep("", nrow(mmcr))
+
+	mmcr$rse = mmcr$s / mmcr$x
+	mmcr$rse[mmcr$x <= 0] = Inf
+
+	bool.n = (mmcr$counts < th.n)
+	if (any(bool.n)) {
+		f1 = "Cx"
+		flags[bool.n] %<>% paste(f1)
+		has.flag %<>% c(f1)
+	}
+
+	bool.rse = (!bool.n & mmcr$rse >= th.rse)
+	if (any(bool.rse)) {
+		f1 = "Cr"
+		flags[bool.rse] %<>% paste(f1)
+		has.flag %<>% c(f1)
+	}
+
+	list(flags = flags, has.flag = has.flag)
+}
 
 .present_prop = function(ret) {
 	ret$`n effective` = with(ret, Proportion * (1 - Proportion) / (SE ^ 2))

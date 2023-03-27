@@ -5,8 +5,8 @@
 \title{Total count}
 \usage{
 total(
-  screen = getOption("prettysurvey.out.screen"),
-  csv = getOption("prettysurvey.out.csv")
+  screen = getOption("prettysurvey.screen"),
+  csv = getOption("prettysurvey.csv")
 )
 }
 \arguments{

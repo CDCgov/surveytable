@@ -28,7 +28,7 @@ set_output = function(csv = NULL, screen = NULL, max_levels = NULL) {
     } else {
       message("* Turning off CSV output.")
     }
-    options(prettysurvey.out.csv = csv)
+    options(prettysurvey.csv = csv)
   }
 
   if (!is.null(screen)) {
@@ -38,13 +38,13 @@ set_output = function(csv = NULL, screen = NULL, max_levels = NULL) {
     } else {
       message("* Output is not being sent to the screen.")
     }
-    options(prettysurvey.out.screen = screen)
+    options(prettysurvey.screen = screen)
   }
 
   if (!is.null(max_levels)) {
     assert_that(is.count(max_levels))
     message(paste0("* Setting maximum number of levels to: ", max_levels))
-    options(prettysurvey.out.max_levels = max_levels)
+    options(prettysurvey.max_levels = max_levels)
   }
   message("* ?set_output for other options.")
   invisible(NULL)
@@ -53,7 +53,7 @@ set_output = function(csv = NULL, screen = NULL, max_levels = NULL) {
 #' @rdname set_output
 #' @export
 show_output = function() {
-  csv = getOption("prettysurvey.out.csv")
+  csv = getOption("prettysurvey.csv")
   assert_that(is.string(csv)
               , msg = "CSV file name must be a character string.")
   if (nzchar(csv)) {
@@ -67,7 +67,7 @@ show_output = function() {
     message("* CSV output has been turned off.")
   }
 
-  screen = getOption("prettysurvey.out.screen")
+  screen = getOption("prettysurvey.screen")
   assert_that(is.flag(screen), noNA(screen))
   if (screen) {
     message("* Sending output to the screen.")
@@ -75,7 +75,7 @@ show_output = function() {
     message("* Output is not being sent to the screen.")
   }
 
-  max_levels = getOption("prettysurvey.out.max_levels")
+  max_levels = getOption("prettysurvey.max_levels")
   assert_that(is.count(max_levels))
   message(paste0("* Maximum number of levels is: ", max_levels))
 

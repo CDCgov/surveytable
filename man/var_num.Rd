@@ -5,8 +5,8 @@
 \title{Number of variables in a survey.}
 \usage{
 var_num(
-  screen = getOption("prettysurvey.out.screen"),
-  csv = getOption("prettysurvey.out.csv")
+  screen = getOption("prettysurvey.screen"),
+  csv = getOption("prettysurvey.csv")
 )
 }
 \arguments{

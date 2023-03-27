@@ -12,8 +12,8 @@
 #' set_survey("vars2019")
 #' var_list("age")
 var_list = function(sw = "", all=FALSE
-                    , screen = getOption("prettysurvey.out.screen")
-                    , csv = getOption("prettysurvey.out.csv")
+                    , screen = getOption("prettysurvey.screen")
+                    , csv = getOption("prettysurvey.csv")
 ) {
   design = .load_survey()
   assert_that(nzchar(sw) | all

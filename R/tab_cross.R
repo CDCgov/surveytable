@@ -1,9 +1,9 @@
 #' @rdname tab_subset
 #' @export
 tab_cross = function(vr, vrby
-                     , max_levels = getOption("prettysurvey.out.max_levels")
-                     , screen = getOption("prettysurvey.out.screen")
-                     , csv = getOption("prettysurvey.out.csv")
+                     , max_levels = getOption("prettysurvey.max_levels")
+                     , screen = getOption("prettysurvey.screen")
+                     , csv = getOption("prettysurvey.csv")
 ) {
   design = .load_survey()
 
@@ -20,7 +20,7 @@ tab_cross = function(vr, vrby
                 , csv = csv)
 
   design$variables[,newvr] = NULL
-  assign(getOption("prettysurvey.design"), design, envir = .GlobalEnv)
+  assign(getOption("prettysurvey.survey"), design, envir = .GlobalEnv)
   invisible(ret)
 }
 
@@ -56,5 +56,5 @@ var_cross = function(newvr, vr, vrby) {
     "(", .getvarname(design, vr), ") x ("
     , .getvarname(design, vrby), ")")
 
-  assign(getOption("prettysurvey.design"), design, envir = .GlobalEnv)
+  assign(getOption("prettysurvey.survey"), design, envir = .GlobalEnv)
 }

@@ -51,9 +51,9 @@
 #' tab_subset("AGER", "MAJOR"
 #' , lvls = c("Chronic problem, routine", "Chronic problem, flare-up"))
 tab_subset = function(vr, vrby, lvls = c()
-               , max_levels = getOption("prettysurvey.out.max_levels")
-               , screen = getOption("prettysurvey.out.screen")
-               , csv = getOption("prettysurvey.out.csv")
+               , max_levels = getOption("prettysurvey.max_levels")
+               , screen = getOption("prettysurvey.screen")
+               , csv = getOption("prettysurvey.csv")
               ) {
   design = .load_survey()
   nm = names(design$variables)
