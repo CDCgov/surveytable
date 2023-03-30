@@ -5,6 +5,7 @@
 #'
 #' `tab_subset` creates subsets using the levels of `vrby`, and tabulates
 #' `vr` in each subset. Optionally, only use the `lvls` levels of `vrby`.
+#' Works with numeric variables as well.
 #'
 #' `tab_cross` crosses or interacts `vr` and `vrby` and tabulates the new
 #' variable. Tables created using `tab_subset` and `tab_cross` have the same
@@ -50,6 +51,9 @@
 #' # Tabulate AGER by only 2 of the levels of MAJOR
 #' tab_subset("AGER", "MAJOR"
 #' , lvls = c("Chronic problem, routine", "Chronic problem, flare-up"))
+#'
+#' # Numeric variables
+#' tab_subset("BMI.nospecial", "AGER")
 tab_subset = function(vr, vrby, lvls = c()
                , max_levels = getOption("prettysurvey.max_levels")
                , screen = getOption("prettysurvey.screen")
@@ -59,6 +63,11 @@ tab_subset = function(vr, vrby, lvls = c()
   nm = names(design$variables)
   assert_that(vr %in% nm, msg = paste("Variable", vr, "not in the data."))
   assert_that(vrby %in% nm, msg = paste("Variable", vrby, "not in the data."))
+  assert_that(is.factor(design$variables[,vr])
+              || is.logical(design$variables[,vr])
+              || is.numeric(design$variables[,vr])
+              , msg = paste0(vr, ": must be factor, logical, or numeric. Is ",
+                             class(design$variables[,vr]) ))
 
   lbl = attr(design$variables[,vrby], "label")
   if (is.logical(design$variables[,vrby])) {
@@ -82,12 +91,19 @@ tab_subset = function(vr, vrby, lvls = c()
     txtby = paste(.getvarname(design, vrby), "=", ii)
     attr(d1$variables[,vr], "label") = paste0(
       .getvarname(design, vr), " (", txtby, ")")
-    ret[[ii]] = .tab_factor(design = d1
-                               , vr = vr
-                               , max_levels = max_levels
-                               , screen = screen
-                               , csv = csv
-                            )
+    if (is.logical(design$variables[,vr])
+        || is.factor(design$variables[,vr])) {
+      ret[[ii]] = .tab_factor(design = d1
+                   , vr = vr
+                   , max_levels = max_levels
+                   , screen = screen
+                   , csv = csv)
+    } else if (is.numeric(design$variables[,vr])) {
+      ret[[ii]] = .tab_numeric(design = d1
+                     , vr = vr
+                     , screen = screen
+                     , csv = csv)
+    }
   }
 
   if (length(ret) == 1L) return(invisible(ret[[1]]))

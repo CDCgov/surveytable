@@ -24,7 +24,7 @@ tab(
 A list of \code{data.frame} tables or a single \code{data.frame} table.
 }
 \description{
-Operates on categorical and logical variables, and presents the
+For categorical and logical variables, presents the
 estimated counts, their standard errors (SEs) and confidence
 intervals (CIs), percentages, and their SEs and CIs. Checks
 the presentation guidelines for counts and percentages and flags
@@ -32,6 +32,10 @@ estimates if, according to the guidelines,
 they should be suppressed, footnoted, or reviewed by an analyst.
 }
 \details{
+For numeric variables, presents the percentage of observations with
+known values, the mean, the standard error of the mean (SEM), and
+the standard deviation (SD).
+
 CIs are calculated at the 95\% confidence level. CIs for
 count estimates are the log Student's t CIs, with adaptations
 for complex surveys. CIs for percentage estimates are
@@ -42,10 +46,12 @@ set_survey("vars2019")
 tab("AGER")
 tab("MDDO", "SPECCAT", "MSA")
 
+# Numeric variables
+tab("BMI.nospecial")
+
 # Integrate the output into other programming tasks
-set_count_int()
-df1 = tab("AGER", screen = FALSE)
-df1 = within(df1, {RSE = SE / Number})
+my_table = tab("AGER", screen = FALSE)
+my_table = within(my_table, {RSE = `SE (000)` / `Number (000)`})
 }
 \seealso{
 Other tables: 

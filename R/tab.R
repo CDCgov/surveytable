@@ -1,11 +1,15 @@
 #' Tabulate variables
 #'
-#' Operates on categorical and logical variables, and presents the
+#' For categorical and logical variables, presents the
 #' estimated counts, their standard errors (SEs) and confidence
 #' intervals (CIs), percentages, and their SEs and CIs. Checks
 #' the presentation guidelines for counts and percentages and flags
 #' estimates if, according to the guidelines,
 #' they should be suppressed, footnoted, or reviewed by an analyst.
+#'
+#' For numeric variables, presents the percentage of observations with
+#' known values, the mean, the standard error of the mean (SEM), and
+#' the standard deviation (SD).
 #'
 #' CIs are calculated at the 95% confidence level. CIs for
 #' count estimates are the log Student's t CIs, with adaptations
@@ -26,10 +30,12 @@
 #' tab("AGER")
 #' tab("MDDO", "SPECCAT", "MSA")
 #'
+#' # Numeric variables
+#' tab("BMI.nospecial")
+#'
 #' # Integrate the output into other programming tasks
-#' set_count_int()
-#' df1 = tab("AGER", screen = FALSE)
-#' df1 = within(df1, {RSE = SE / Number})
+#' my_table = tab("AGER", screen = FALSE)
+#' my_table = within(my_table, {RSE = `SE (000)` / `Number (000)`})
 tab = function(...
                , max_levels = getOption("prettysurvey.max_levels")
                , screen = getOption("prettysurvey.screen")
@@ -40,12 +46,23 @@ tab = function(...
 	  design = .load_survey()
 		for (ii in 1:...length()) {
 			vr = ...elt(ii)
-			ret[[vr]] = .tab_factor(design = design
-				, vr = vr
-				, max_levels = max_levels
-				, screen = screen
-				, csv = csv
-				)
+			if (is.logical(design$variables[,vr])
+			    || is.factor(design$variables[,vr])) {
+			  ret[[vr]] = .tab_factor(design = design
+                      , vr = vr
+                      , max_levels = max_levels
+                      , screen = screen
+                      , csv = csv)
+			} else if (is.numeric(design$variables[,vr])) {
+			  ret[[vr]] = .tab_numeric(design = design
+                      , vr = vr
+                      , screen = screen
+                      , csv = csv)
+			} else {
+        warning(vr, ": must be logical, factor, or numeric. Is "
+                , class(design$variables[,vr]))
+			}
+
 		}
 	}
 

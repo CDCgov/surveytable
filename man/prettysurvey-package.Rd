@@ -4,9 +4,9 @@
 \name{prettysurvey-package}
 \alias{prettysurvey}
 \alias{prettysurvey-package}
-\title{prettysurvey: Streamlined output from the `survey` package, with an application to NCHS}
+\title{prettysurvey: Streamlined output from the `survey` package}
 \description{
-Streamlined output from the `survey` package, with an application to NCHS.
+Streamlined output from the `survey` package.
 }
 \author{
 \strong{Maintainer}: Alex Strashny \email{AStrashny@cdc.gov}

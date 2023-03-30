@@ -1,9 +1,9 @@
 Package: prettysurvey
-Title: Streamlined output from the `survey` package, with an application to NCHS
+Title: Streamlined output from the `survey` package
 Version: 0.5
 Authors@R: 
     person("Alex", "Strashny", , "AStrashny@cdc.gov", role = c("aut", "cre"))
-Description: Streamlined output from the `survey` package, with an application to NCHS.
+Description: Streamlined output from the `survey` package.
 Date/Publication: 2023
 License: GPL (>= 3)
 Encoding: UTF-8

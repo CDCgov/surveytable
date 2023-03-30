@@ -16,10 +16,19 @@ show_survey()
 (Nothing.)
 }
 \description{
-You need to specify a survey before the other functions, such as \code{\link[=tab]{tab()}}, will work.
+You need to specify a survey before the other functions, such as \code{\link[=tab]{tab()}},
+will work.
 }
 \details{
 \code{show_survey()} shows the survey that you've specified.
+
+Optionally, the survey can have an attribute called "label", which is the
+long name of the survey. This attribute is set by the "importsurvey" package,
+and can also be set manually.
+
+Optionally, each variable in the survey can have an attribute called "label",
+which is the variable's long name. This attribute is set by the "haven" and
+"importsurvey" packages, and can also be set manually.
 }
 \examples{
 set_survey("vars2019")

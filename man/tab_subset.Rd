@@ -54,6 +54,7 @@ variable within each of the subsets. Interact two variables and tabulate.
 \details{
 \code{tab_subset} creates subsets using the levels of \code{vrby}, and tabulates
 \code{vr} in each subset. Optionally, only use the \code{lvls} levels of \code{vrby}.
+Works with numeric variables as well.
 
 \code{tab_cross} crosses or interacts \code{vr} and \code{vrby} and tabulates the new
 variable. Tables created using \code{tab_subset} and \code{tab_cross} have the same
@@ -82,6 +83,9 @@ tab("MAJOR")
 # Tabulate AGER by only 2 of the levels of MAJOR
 tab_subset("AGER", "MAJOR"
 , lvls = c("Chronic problem, routine", "Chronic problem, flare-up"))
+
+# Numeric variables
+tab_subset("BMI.nospecial", "AGER")
 }
 \seealso{
 Other tables: 
