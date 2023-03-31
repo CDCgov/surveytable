@@ -86,24 +86,35 @@ tab_subset = function(vr, vrby, lvls = c()
   }
 
   ret = list()
-  for (ii in lvl0) {
-    d1 = design[which(design$variables[,vrby] == ii),]
-    txtby = paste(.getvarname(design, vrby), "=", ii)
-    attr(d1$variables[,vr], "label") = paste0(
-      .getvarname(design, vr), " (", txtby, ")")
-    if (is.logical(design$variables[,vr])
-        || is.factor(design$variables[,vr])) {
+  if (is.logical(design$variables[,vr]) || is.factor(design$variables[,vr])) {
+    for (ii in lvl0) {
+      d1 = design[which(design$variables[,vrby] == ii),]
+      attr(d1$variables[,vr], "label") = paste0(
+        .getvarname(design, vr), " ("
+        , .getvarname(design, vrby), " = ", ii
+        , ")")
       ret[[ii]] = .tab_factor(design = d1
-                   , vr = vr
-                   , max_levels = max_levels
-                   , screen = screen
-                   , csv = csv)
-    } else if (is.numeric(design$variables[,vr])) {
-      ret[[ii]] = .tab_numeric(design = d1
-                     , vr = vr
-                     , screen = screen
-                     , csv = csv)
+                        , vr = vr
+                        , max_levels = max_levels
+                        , screen = screen
+                        , csv = csv)
     }
+  } else if (is.numeric(design$variables[,vr])) {
+    rA = NULL
+    for (ii in lvl0) {
+      d1 = design[which(design$variables[,vrby] == ii),]
+      r1 = .tab_numeric_1(design = d1, vr = vr)
+      rA %<>% rbind(r1)
+    }
+    df1 = data.frame(Level = lvl0)
+    assert_that(nrow(df1) == nrow(rA))
+    rA = cbind(df1, rA)
+    attr(rA, "title") = paste0(.getvarname(design, vr)
+         , " (for different levels of "
+         , .getvarname(design, vrby), ")")
+    ret[[1]] = .write_out(rA, screen = screen, csv = csv)
+  } else {
+    stop("How did we get here?")
   }
 
   if (length(ret) == 1L) return(invisible(ret[[1]]))
