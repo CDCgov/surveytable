@@ -13,30 +13,30 @@ knitr::opts_chunk$set(
 )
 ```
 
-# prettysurvey
+# surveytable
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of prettysurvey is to generate streamlined output from the `survey` package, with an application to NCHS.
+The goal of `surveytable` is to generate streamlined output from the `survey` package, with an application to NCHS.
 
 
 ## Installation
 
-You can install the development version of prettysurvey like so:
+You can install the development version of `surveytable` like so:
 
 ``` r
 install.packages(c("git2r", "remotes"))
 
 # On local computer
 remotes::install_git(
-	url = "https://git.biotech.cdc.gov/kpr9/prettysurvey"
+	url = "https://git.biotech.cdc.gov/kpr9/surveytable"
 	, git = "git2r"
 	, upgrade = "never")
 
 # On EDAV RStudio
 remotes::install_git(
-	url = "https://git.biotech.cdc.gov/kpr9/prettysurvey"
+	url = "https://git.biotech.cdc.gov/kpr9/surveytable"
 	, upgrade = "never")
 
 ```
@@ -46,7 +46,7 @@ remotes::install_git(
 This is a basic example:
 
 ```{r}
-library(prettysurvey)
+library(surveytable)
 set_survey("vars2019")
 ```
 

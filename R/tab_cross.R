@@ -1,9 +1,9 @@
 #' @rdname tab_subset
 #' @export
 tab_cross = function(vr, vrby
-                     , max_levels = getOption("prettysurvey.max_levels")
-                     , screen = getOption("prettysurvey.screen")
-                     , csv = getOption("prettysurvey.csv")
+                     , max_levels = getOption("surveytable.max_levels")
+                     , screen = getOption("surveytable.screen")
+                     , csv = getOption("surveytable.csv")
 ) {
   design = .load_survey()
 
@@ -20,7 +20,7 @@ tab_cross = function(vr, vrby
                 , csv = csv)
 
   design$variables[,newvr] = NULL
-  assign(getOption("prettysurvey.survey"), design, envir = .GlobalEnv)
+  assign(getOption("surveytable.survey"), design, envir = .GlobalEnv)
   invisible(ret)
 }
 
@@ -44,11 +44,11 @@ var_cross = function(newvr, vr, vrby) {
     x2 %<>% factor
   }
   assert_that(is.factor(x1)
-              , msg = paste0(vr, ": must be either factor or logical. Is ",
-                             class(design$variables[,vr]) ))
+      , msg = paste0(vr, ": must be either factor or logical. Is ",
+                     class(design$variables[,vr])[1] ))
   assert_that(is.factor(x2)
-              , msg = paste0(vrby, ": must be either factor or logical. Is ",
-                             class(design$variables[,vrby]) ))
+      , msg = paste0(vrby, ": must be either factor or logical. Is ",
+                     class(design$variables[,vrby])[1] ))
   x1 %<>% .fix_factor
   x2 %<>% .fix_factor
   design$variables[,newvr] = forcats::fct_cross(x1, x2, sep = " : ", keep_empty = TRUE)
@@ -56,5 +56,5 @@ var_cross = function(newvr, vr, vrby) {
     "(", .getvarname(design, vr), ") x ("
     , .getvarname(design, vrby), ")")
 
-  assign(getOption("prettysurvey.survey"), design, envir = .GlobalEnv)
+  assign(getOption("surveytable.survey"), design, envir = .GlobalEnv)
 }

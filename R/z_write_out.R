@@ -1,6 +1,6 @@
 .write_out = function(df1, screen, csv) {
   if (!is.null(txt <- attr(df1, "title"))) {
-    txt %<>% paste0(" {", getOption("prettysurvey.survey_label"), "}")
+    txt %<>% paste0(" {", getOption("surveytable.survey_label"), "}")
     attr(df1, "title") = txt
   }
 

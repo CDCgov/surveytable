@@ -9,8 +9,8 @@
 #' @examples
 #' set_survey("vars2019")
 #' var_num()
-var_num = function(screen = getOption("prettysurvey.screen")
-            , csv = getOption("prettysurvey.csv")
+var_num = function(screen = getOption("surveytable.screen")
+            , csv = getOption("surveytable.csv")
             ) {
   design = .load_survey()
   df1 = data.frame(

@@ -8,8 +8,8 @@
   nm = names(design$variables)
   assert_that(vr %in% nm, msg = paste("Variable", vr, "not in the data."))
   assert_that(is.numeric(design$variables[,vr])
-            , msg = paste0(vr, ": must be either numeric. Is ",
-                           class(design$variables[,vr]) ))
+            , msg = paste0(vr, ": must be numeric. Is "
+             , class(design$variables[,vr])[1] ))
 
   ret = data.frame(k
            = 100 * sum(!is.na(design$variables[,vr])) / nrow(design$variables))

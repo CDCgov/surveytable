@@ -29,14 +29,14 @@ set_survey = function(survey_name = "") {
   assert_that(!is.null(tmp)
       , msg = paste0(survey_name, " does not exist. Did you forget to load it?"))
   assert_that(inherits(tmp, "survey.design")
-      , msg = paste0(survey_name, " must be a survey.design. Is: ", class(tmp) ))
+      , msg = paste0(survey_name, " must be a survey.design. Is ", class(tmp)[1] ))
 
-  options(prettysurvey.survey = survey_name)
+  options(surveytable.survey = survey_name)
 
   dl = attr(tmp, "label")
   if(is.null(dl)) dl = survey_name
   assert_that(is.string(dl), nzchar(dl))
-  options(prettysurvey.survey_label = dl)
+  options(surveytable.survey_label = dl)
 
   message("* Analyzing ", dl)
   print(tmp)
@@ -48,7 +48,7 @@ set_survey = function(survey_name = "") {
 #' @rdname set_survey
 #' @export
 show_survey = function() {
-  dl = getOption("prettysurvey.survey_label")
+  dl = getOption("surveytable.survey_label")
   message("* Analyzing ", dl)
 
   design = .load_survey()
@@ -59,13 +59,13 @@ show_survey = function() {
 }
 
 .load_survey = function() {
-  survey_name = getOption("prettysurvey.survey")
+  survey_name = getOption("surveytable.survey")
   assert_that(is.string(survey_name), nzchar(survey_name)
               , msg = "You need to specify a survey before the other functions will work. See ?set_survey")
   tmp = get0(survey_name)
   assert_that(!is.null(tmp)
               , msg = paste0(survey_name, " does not exist. Did you forget to load it? See ?set_survey"))
   assert_that(inherits(tmp, "survey.design")
-              , msg = paste0(survey_name, " must be a survey.design. Is: ", class(tmp) ))
+          , msg = paste0(survey_name, " must be a survey.design. Is ", class(tmp)[1] ))
   tmp
 }

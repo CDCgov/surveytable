@@ -9,9 +9,9 @@
 tab_cross(
   vr,
   vrby,
-  max_levels = getOption("prettysurvey.max_levels"),
-  screen = getOption("prettysurvey.screen"),
-  csv = getOption("prettysurvey.csv")
+  max_levels = getOption("surveytable.max_levels"),
+  screen = getOption("surveytable.screen"),
+  csv = getOption("surveytable.csv")
 )
 
 var_cross(newvr, vr, vrby)
@@ -20,9 +20,9 @@ tab_subset(
   vr,
   vrby,
   lvls = c(),
-  max_levels = getOption("prettysurvey.max_levels"),
-  screen = getOption("prettysurvey.screen"),
-  csv = getOption("prettysurvey.csv")
+  max_levels = getOption("surveytable.max_levels"),
+  screen = getOption("surveytable.screen"),
+  csv = getOption("surveytable.csv")
 )
 }
 \arguments{
@@ -54,7 +54,7 @@ variable within each of the subsets. Interact two variables and tabulate.
 \details{
 \code{tab_subset} creates subsets using the levels of \code{vrby}, and tabulates
 \code{vr} in each subset. Optionally, only use the \code{lvls} levels of \code{vrby}.
-Works with numeric variables as well.
+\code{vr} can be categorical (factor), logical, or numeric.
 
 \code{tab_cross} crosses or interacts \code{vr} and \code{vrby} and tabulates the new
 variable. Tables created using \code{tab_subset} and \code{tab_cross} have the same

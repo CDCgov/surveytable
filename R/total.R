@@ -10,8 +10,8 @@
 #' @examples
 #' set_survey("vars2019")
 #' total()
-total = function(screen = getOption("prettysurvey.screen")
-               , csv = getOption("prettysurvey.csv") ) {
+total = function(screen = getOption("surveytable.screen")
+               , csv = getOption("surveytable.csv") ) {
   design = .load_survey()
   mp = .total(design)
   assert_that(ncol(mp) %in% c(4L, 5L))
@@ -26,8 +26,8 @@ total = function(screen = getOption("prettysurvey.screen")
 
   ##
   counts = nrow(design$variables)
-  if (getOption("prettysurvey.do_present")) {
-    pro = getOption("prettysurvey.present_restricted") %>% do.call(list(counts))
+  if (getOption("surveytable.do_present")) {
+    pro = getOption("surveytable.present_restricted") %>% do.call(list(counts))
   } else {
     pro = list(flags = rep("", length(counts)), has.flag = c())
   }
@@ -49,15 +49,15 @@ total = function(screen = getOption("prettysurvey.screen")
   mmcr$ll = exp(mmcr$lnx - mmcr$k)
   mmcr$ul = exp(mmcr$lnx + mmcr$k)
 
-  if (getOption("prettysurvey.do_present")) {
-    pco = getOption("prettysurvey.present_count") %>% do.call(list(mmcr))
+  if (getOption("surveytable.do_present")) {
+    pco = getOption("surveytable.present_count") %>% do.call(list(mmcr))
   } else {
     pco = list(flags = rep("", nrow(mmcr)), has.flag = c())
   }
 
   mmcr = mmcr[,c("x", "s", "ll", "ul")]
-  mmc = getOption("prettysurvey.tx_count") %>% do.call(list(mmcr))
-  names(mmc) = getOption("prettysurvey.names_count")
+  mmc = getOption("surveytable.tx_count") %>% do.call(list(mmcr))
+  names(mmc) = getOption("surveytable.names_count")
 
   ##
   assert_that(nrow(mmc) == 1

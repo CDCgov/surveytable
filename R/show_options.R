@@ -8,7 +8,7 @@
 #'
 #' @examples
 #' show_options()
-show_options = function(sw = "prettysurvey") {
+show_options = function(sw = "surveytable") {
   op = options()
   idx = op %>% names %>% startsWith(sw)
   op[idx]

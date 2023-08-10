@@ -4,7 +4,7 @@
 \alias{show_options}
 \title{Show package options}
 \usage{
-show_options(sw = "prettysurvey")
+show_options(sw = "surveytable")
 }
 \arguments{
 \item{sw}{starting characters}
@@ -20,7 +20,7 @@ show_options()
 }
 \seealso{
 Other options: 
-\code{\link{prettysurvey-options}},
+\code{\link{surveytable-options}},
 \code{\link{set_count_1k}()},
 \code{\link{set_output}()},
 \code{\link{set_survey}()}

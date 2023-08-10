@@ -7,8 +7,8 @@
 var_list(
   sw = "",
   all = FALSE,
-  screen = getOption("prettysurvey.screen"),
-  csv = getOption("prettysurvey.csv")
+  screen = getOption("surveytable.screen"),
+  csv = getOption("surveytable.csv")
 )
 }
 \arguments{

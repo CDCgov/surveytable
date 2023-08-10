@@ -6,9 +6,9 @@
 \usage{
 tab(
   ...,
-  max_levels = getOption("prettysurvey.max_levels"),
-  screen = getOption("prettysurvey.screen"),
-  csv = getOption("prettysurvey.csv")
+  max_levels = getOption("surveytable.max_levels"),
+  screen = getOption("surveytable.screen"),
+  csv = getOption("surveytable.csv")
 )
 }
 \arguments{
@@ -24,16 +24,18 @@ tab(
 A list of \code{data.frame} tables or a single \code{data.frame} table.
 }
 \description{
+Tabulate categorical (factor), logical, or numeric variables.
+}
+\details{
 For categorical and logical variables, presents the
 estimated counts, their standard errors (SEs) and confidence
 intervals (CIs), percentages, and their SEs and CIs. Checks
 the presentation guidelines for counts and percentages and flags
 estimates if, according to the guidelines,
 they should be suppressed, footnoted, or reviewed by an analyst.
-}
-\details{
+
 For numeric variables, presents the percentage of observations with
-known values, the mean, the standard error of the mean (SEM), and
+known values, the mean of known values, the standard error of the mean (SEM), and
 the standard deviation (SD).
 
 CIs are calculated at the 95\% confidence level. CIs for

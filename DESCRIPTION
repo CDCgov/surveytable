@@ -1,4 +1,4 @@
-Package: prettysurvey
+Package: surveytable
 Title: Streamlined output from the `survey` package
 Version: 0.5
 Authors@R: 

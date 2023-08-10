@@ -2,10 +2,11 @@
 #'
 #' Create subsets of the survey using one variable, and tabulate another
 #' variable within each of the subsets. Interact two variables and tabulate.
+#' Test equality of proportions or means.
 #'
 #' `tab_subset` creates subsets using the levels of `vrby`, and tabulates
 #' `vr` in each subset. Optionally, only use the `lvls` levels of `vrby`.
-#' Works with numeric variables as well.
+#' `vr` can be categorical (factor), logical, or numeric.
 #'
 #' `tab_cross` crosses or interacts `vr` and `vrby` and tabulates the new
 #' variable. Tables created using `tab_subset` and `tab_cross` have the same
@@ -19,6 +20,8 @@
 #' @param vr      variable to tabulate
 #' @param vrby    use this variable to subset the survey
 #' @param lvls    (optional) only show these levels of `vrby`
+#' @param test    perform hypothesis test?
+#' @param alpha   significance level for the above test.
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
 #' @param screen  print to the screen?
 #' @param csv     name of a CSV file
@@ -54,11 +57,20 @@
 #'
 #' # Numeric variables
 #' tab_subset("BMI.nospecial", "AGER")
+#'
+#' # Hypothesis testing with categorical variables
+#' tab_subset( "AGER", "SEX", test = TRUE)
+#'
+#' # Hypothesis testing with numeric variables
+#' tab_subset("BMI.nospecial", "AGER", test = TRUE)
 tab_subset = function(vr, vrby, lvls = c()
-               , max_levels = getOption("prettysurvey.max_levels")
-               , screen = getOption("prettysurvey.screen")
-               , csv = getOption("prettysurvey.csv")
+                , test = FALSE, alpha = 0.05
+                , max_levels = getOption("surveytable.max_levels")
+                , screen = getOption("surveytable.screen")
+                , csv = getOption("surveytable.csv")
               ) {
+  assert_that(test %in% c(TRUE, FALSE)
+              , alpha > 0, alpha < 0.5)
   design = .load_survey()
   nm = names(design$variables)
   assert_that(vr %in% nm, msg = paste("Variable", vr, "not in the data."))
@@ -66,16 +78,16 @@ tab_subset = function(vr, vrby, lvls = c()
   assert_that(is.factor(design$variables[,vr])
               || is.logical(design$variables[,vr])
               || is.numeric(design$variables[,vr])
-              , msg = paste0(vr, ": must be factor, logical, or numeric. Is ",
-                             class(design$variables[,vr]) ))
+        , msg = paste0(vr, ": must be factor, logical, or numeric. Is "
+                   , class(design$variables[,vr])[1] ))
 
   lbl = attr(design$variables[,vrby], "label")
   if (is.logical(design$variables[,vrby])) {
     design$variables[,vrby] %<>% factor
   }
   assert_that(is.factor(design$variables[,vrby])
-              , msg = paste0(vrby, ": must be either factor or logical. Is ",
-                             class(design$variables[,vrby]) ))
+        , msg = paste0(vrby, ": must be either factor or logical. Is "
+             , class(design$variables[,vrby])[1] ))
   design$variables[,vrby] %<>% droplevels %>% .fix_factor
   attr(design$variables[,vrby], "label") = lbl
 
@@ -98,6 +110,12 @@ tab_subset = function(vr, vrby, lvls = c()
                         , max_levels = max_levels
                         , screen = screen
                         , csv = csv)
+      if (test) {
+        ret[[paste0(ii, " - test")]] = .test_factor(design = d1
+                                         , vr = vr
+                                         , alpha = alpha
+                                         , screen = screen, csv = csv)
+      }
     }
   } else if (is.numeric(design$variables[,vr])) {
     rA = NULL
@@ -112,7 +130,42 @@ tab_subset = function(vr, vrby, lvls = c()
     attr(rA, "title") = paste0(.getvarname(design, vr)
          , " (for different levels of "
          , .getvarname(design, vrby), ")")
-    ret[[1]] = .write_out(rA, screen = screen, csv = csv)
+    ret[["Means"]] = .write_out(rA, screen = screen, csv = csv)
+
+    if (test) {
+      nlvl = length(lvl0)
+      assert_that(nlvl >= 2L
+        , msg = paste0("For ", vrby, ", at least 2 levels must be selected. "
+        , "Has: ", nlvl))
+      if ( !(alpha %in% c(0.05, 0.01, 0.001)) ) {
+        warning("Value of alpha is not typical: ", alpha)
+      }
+      frm = as.formula(paste0("`", vr, "` ~ `", vrby, "`"))
+
+      rT = NULL
+      for (ii in 1:(nlvl-1)) {
+        for (jj in (ii+1):nlvl) {
+          lvlA = lvl0[ii]
+          lvlB = lvl0[jj]
+          d1 = design[which(design$variables[,vrby] %in% c(lvlA, lvlB)),]
+          r1 = data.frame(`Level 1` = lvlA, `Level 2` = lvlB, check.names = FALSE)
+          r1$`p-value` = svyttest(frm, d1)$p.value
+          rT %<>% rbind(r1)
+        }
+      }
+
+      rT$Flag = ""
+      idx = which(rT$`p-value` <= alpha)
+      rT$Flag[idx] = "*"
+
+      rT$`p-value` %<>% round(3)
+
+      attr(rT, "title") = paste0("Comparison of "
+          , .getvarname(design, vr)
+          , " across all possible pairs of ", .getvarname(design, vrby))
+      attr(rT, "footer") = paste0("*: p-value <= ", alpha)
+      ret[["p-values"]] = .write_out(rT, screen = screen, csv = csv)
+    }
   } else {
     stop("How did we get here?")
   }

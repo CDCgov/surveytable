@@ -1,6 +1,6 @@
 .onAttach = function(libname, pkgname) {
   packageStartupMessage("\nThere are 3 related packages:"
-    , "\n* prettysurvey: functions for tabulating survey estimates"
+    , "\n* surveytable: functions for tabulating survey estimates"
     , "\n* nchsdata: public use files (PUFs) from the the National Center for Health Statistics (NCHS)"
     , "\n* importsurvey: functions for importing data into R"
     , "\n\nYou've just loaded ", pkgname, "."
@@ -29,23 +29,23 @@
 
 .onLoad = function(libname, pkgname) {
   options(
-    prettysurvey.survey = ""
-    , prettysurvey.survey_label = ""
+    surveytable.survey = ""
+    , surveytable.survey_label = ""
 
-    , prettysurvey.do_present = TRUE
-    , prettysurvey.present_restricted = ".present_restricted"
-    , prettysurvey.present_count = ".present_count"
-    , prettysurvey.present_prop = ".present_prop"
+    , surveytable.do_present = TRUE
+    , surveytable.present_restricted = ".present_restricted"
+    , surveytable.present_count = ".present_count"
+    , surveytable.present_prop = ".present_prop"
 
-    # , prettysurvey.tx_count = ".tx_count"
-    # , prettysurvey.names_count = c("Number (000)", "SE (000)", "LL (000)", "UL (000)")
+    # , surveytable.tx_count = ".tx_count"
+    # , surveytable.names_count = c("Number (000)", "SE (000)", "LL (000)", "UL (000)")
 
-    , prettysurvey.tx_prct = ".tx_prct"
-    , prettysurvey.names_prct = c("Percent", "SE", "LL", "UL")
+    , surveytable.tx_prct = ".tx_prct"
+    , surveytable.names_prct = c("Percent", "SE", "LL", "UL")
 
-    , prettysurvey.csv = ""
-    , prettysurvey.screen = TRUE
-    , prettysurvey.max_levels = 20
+    , surveytable.csv = ""
+    , surveytable.screen = TRUE
+    , surveytable.max_levels = 20
   )
   set_count_1k()
 #  set_output(csv = "", screen = TRUE, max_levels = 20)

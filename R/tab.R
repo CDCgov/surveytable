@@ -1,5 +1,7 @@
 #' Tabulate variables
 #'
+#' Tabulate categorical (factor), logical, or numeric variables.
+#'
 #' For categorical and logical variables, presents the
 #' estimated counts, their standard errors (SEs) and confidence
 #' intervals (CIs), percentages, and their SEs and CIs. Checks
@@ -8,7 +10,7 @@
 #' they should be suppressed, footnoted, or reviewed by an analyst.
 #'
 #' For numeric variables, presents the percentage of observations with
-#' known values, the mean, the standard error of the mean (SEM), and
+#' known values, the mean of known values, the standard error of the mean (SEM), and
 #' the standard deviation (SD).
 #'
 #' CIs are calculated at the 95% confidence level. CIs for
@@ -37,15 +39,20 @@
 #' my_table = tab("AGER", screen = FALSE)
 #' my_table = within(my_table, {RSE = `SE (000)` / `Number (000)`})
 tab = function(...
-               , max_levels = getOption("prettysurvey.max_levels")
-               , screen = getOption("prettysurvey.screen")
-               , csv = getOption("prettysurvey.csv")
+               , max_levels = getOption("surveytable.max_levels")
+               , screen = getOption("surveytable.screen")
+               , csv = getOption("surveytable.csv")
                ) {
 	ret = list()
 	if (...length() > 0) {
 	  design = .load_survey()
+	  nm = names(design$variables)
 		for (ii in 1:...length()) {
 			vr = ...elt(ii)
+			if (!(vr %in% nm)) {
+			  warning(vr, ": variable not in the data.")
+			  next
+			}
 			if (is.logical(design$variables[,vr])
 			    || is.factor(design$variables[,vr])) {
 			  ret[[vr]] = .tab_factor(design = design
@@ -62,7 +69,6 @@ tab = function(...
         warning(vr, ": must be logical, factor, or numeric. Is "
                 , class(design$variables[,vr]))
 			}
-
 		}
 	}
 
@@ -80,7 +86,7 @@ tab = function(...
 	}
 	assert_that(is.factor(design$variables[,vr])
 		, msg = paste0(vr, ": must be either factor or logical. Is ",
-			class(design$variables[,vr]) ))
+			class(design$variables[,vr])[1] ))
 	design$variables[,vr] %<>% droplevels %>% .fix_factor
 	attr(design$variables[,vr], "label") = lbl
 
@@ -100,21 +106,21 @@ tab = function(...
 	  attr(mp, "title") = .getvarname(design, vr)
     return(.write_out(mp, screen = screen, csv = csv))
 	} else if (nlv > max_levels) {
-		df1 = data.frame(
-			Note = paste0("Categorical variable with too many levels: "
-			, nlv, ", but ", max_levels
-			, " allowed. Try increasing the max_levels argument or "
-			, "see ?set_output"))
-		attr(df1, "title") = .getvarname(design, vr)
-		return( .write_out(df1, screen = screen, csv = csv) )
+	  warning(.getvarname(design, vr)
+          , ": Categorical variable with too many levels: "
+          , nlv, ", but ", max_levels
+          , " allowed. Try increasing the max_levels argument or "
+          , "see ?set_output"
+          )
+	  return(invisible(NULL))
 	}
 
 	frm = as.formula(paste0("~ `", vr, "`"))
 
 	##
 	counts = svyby(frm, frm, design, unwtd.count)$counts
-	if (getOption("prettysurvey.do_present")) {
-	  pro = getOption("prettysurvey.present_restricted") %>% do.call(list(counts))
+	if (getOption("surveytable.do_present")) {
+	  pro = getOption("surveytable.present_restricted") %>% do.call(list(counts))
 	} else {
 		pro = list(flags = rep("", length(counts)), has.flag = c())
 	}
@@ -136,15 +142,15 @@ tab = function(...
   mmcr$ll = exp(mmcr$lnx - mmcr$k)
   mmcr$ul = exp(mmcr$lnx + mmcr$k)
 
-	if (getOption("prettysurvey.do_present")) {
-	  pco = getOption("prettysurvey.present_count") %>% do.call(list(mmcr))
+	if (getOption("surveytable.do_present")) {
+	  pco = getOption("surveytable.present_count") %>% do.call(list(mmcr))
 	} else {
 		pco = list(flags = rep("", nrow(mmcr)), has.flag = c())
 	}
 
   mmcr = mmcr[,c("x", "s", "ll", "ul")]
-	mmc = getOption("prettysurvey.tx_count") %>% do.call(list(mmcr))
-	names(mmc) = getOption("prettysurvey.names_count")
+	mmc = getOption("surveytable.tx_count") %>% do.call(list(mmcr))
+	names(mmc) = getOption("surveytable.names_count")
 
 	##
 	lvs = design$variables[,vr] %>% levels
@@ -170,15 +176,15 @@ tab = function(...
 	}
 	ret$degf = df1
 
-	if (getOption("prettysurvey.do_present")) {
-	  ppo = getOption("prettysurvey.present_prop") %>% do.call(list(ret))
+	if (getOption("surveytable.do_present")) {
+	  ppo = getOption("surveytable.present_prop") %>% do.call(list(ret))
 	} else {
 		nlvs = design$variables[, vr] %>% nlevels
 		ppo = list(flags = rep("", nlvs), has.flag = c())
 	}
 
-	mp2 = getOption("prettysurvey.tx_prct") %>% do.call(list(ret[,c("Proportion", "SE", "LL", "UL")]))
-	names(mp2) = getOption("prettysurvey.names_prct")
+	mp2 = getOption("surveytable.tx_prct") %>% do.call(list(ret[,c("Proportion", "SE", "LL", "UL")]))
+	names(mp2) = getOption("surveytable.names_prct")
 
 	##
 	assert_that(nrow(mmc) == nrow(mp2)

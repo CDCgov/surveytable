@@ -36,7 +36,7 @@ show_survey()
 }
 \seealso{
 Other options: 
-\code{\link{prettysurvey-options}},
+\code{\link{surveytable-options}},
 \code{\link{set_count_1k}()},
 \code{\link{set_output}()},
 \code{\link{show_options}()}
