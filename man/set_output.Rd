@@ -29,9 +29,9 @@ set_output(csv = "") # Turn off CSV output
 }
 \seealso{
 Other options: 
-\code{\link{surveytable-options}},
 \code{\link{set_count_1k}()},
 \code{\link{set_survey}()},
-\code{\link{show_options}()}
+\code{\link{show_options}()},
+\code{\link{surveytable-options}}
 }
 \concept{options}

@@ -20,6 +20,8 @@ tab_subset(
   vr,
   vrby,
   lvls = c(),
+  test = FALSE,
+  alpha = 0.05,
   max_levels = getOption("surveytable.max_levels"),
   screen = getOption("surveytable.screen"),
   csv = getOption("surveytable.csv")
@@ -39,6 +41,10 @@ tab_subset(
 \item{newvr}{name of the new variable to be created}
 
 \item{lvls}{(optional) only show these levels of \code{vrby}}
+
+\item{test}{perform hypothesis test?}
+
+\item{alpha}{significance level for the above test.}
 }
 \value{
 \itemize{
@@ -50,6 +56,7 @@ tab_subset(
 \description{
 Create subsets of the survey using one variable, and tabulate another
 variable within each of the subsets. Interact two variables and tabulate.
+Test equality of proportions or means.
 }
 \details{
 \code{tab_subset} creates subsets using the levels of \code{vrby}, and tabulates
@@ -86,6 +93,12 @@ tab_subset("AGER", "MAJOR"
 
 # Numeric variables
 tab_subset("BMI.nospecial", "AGER")
+
+# Hypothesis testing with categorical variables
+tab_subset( "AGER", "SEX", test = TRUE)
+
+# Hypothesis testing with numeric variables
+tab_subset("BMI.nospecial", "AGER", test = TRUE)
 }
 \seealso{
 Other tables: 

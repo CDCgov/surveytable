@@ -26,9 +26,9 @@ set_count_1k()
 }
 \seealso{
 Other options: 
-\code{\link{surveytable-options}},
 \code{\link{set_output}()},
 \code{\link{set_survey}()},
-\code{\link{show_options}()}
+\code{\link{show_options}()},
+\code{\link{surveytable-options}}
 }
 \concept{options}

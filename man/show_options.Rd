@@ -20,9 +20,9 @@ show_options()
 }
 \seealso{
 Other options: 
-\code{\link{surveytable-options}},
 \code{\link{set_count_1k}()},
 \code{\link{set_output}()},
-\code{\link{set_survey}()}
+\code{\link{set_survey}()},
+\code{\link{surveytable-options}}
 }
 \concept{options}
