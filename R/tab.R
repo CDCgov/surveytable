@@ -19,6 +19,8 @@
 #' the Korn and Graubard CIs.
 #'
 #' @param ...     names of variables (in quotes)
+#' @param test    perform hypothesis test?
+#' @param alpha   significance level for the above test.
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
 #' @param screen  print to the screen?
 #' @param csv     name of a CSV file
@@ -35,16 +37,22 @@
 #' # Numeric variables
 #' tab("BMI.nospecial")
 #'
+#' # Hypothesis testing with categorical variables
+#' tab("AGER", test = TRUE)
+#'
 #' # Integrate the output into other programming tasks
 #' my_table = tab("AGER", screen = FALSE)
 #' my_table = within(my_table, {RSE = `SE (000)` / `Number (000)`})
 tab = function(...
+               , test = FALSE, alpha = 0.05
                , max_levels = getOption("surveytable.max_levels")
                , screen = getOption("surveytable.screen")
                , csv = getOption("surveytable.csv")
                ) {
 	ret = list()
 	if (...length() > 0) {
+	  assert_that(test %in% c(TRUE, FALSE)
+	              , alpha > 0, alpha < 0.5)
 	  design = .load_survey()
 	  nm = names(design$variables)
 		for (ii in 1:...length()) {
@@ -60,6 +68,12 @@ tab = function(...
                       , max_levels = max_levels
                       , screen = screen
                       , csv = csv)
+			  if (test) {
+			    ret[[paste0(vr, " - test")]] = .test_factor(design = design
+                                            , vr = vr
+                                            , alpha = alpha
+                                            , screen = screen, csv = csv)
+			  }
 			} else if (is.numeric(design$variables[,vr])) {
 			  ret[[vr]] = .tab_numeric(design = design
                       , vr = vr

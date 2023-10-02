@@ -6,6 +6,8 @@
 \usage{
 tab(
   ...,
+  test = FALSE,
+  alpha = 0.05,
   max_levels = getOption("surveytable.max_levels"),
   screen = getOption("surveytable.screen"),
   csv = getOption("surveytable.csv")
@@ -13,6 +15,10 @@ tab(
 }
 \arguments{
 \item{...}{names of variables (in quotes)}
+
+\item{test}{perform hypothesis test?}
+
+\item{alpha}{significance level for the above test.}
 
 \item{max_levels}{a categorical variable can have at most this many levels. Used to avoid printing huge tables.}
 
@@ -50,6 +56,9 @@ tab("MDDO", "SPECCAT", "MSA")
 
 # Numeric variables
 tab("BMI.nospecial")
+
+# Hypothesis testing with categorical variables
+tab("AGER", test = TRUE)
 
 # Integrate the output into other programming tasks
 my_table = tab("AGER", screen = FALSE)

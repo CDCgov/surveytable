@@ -59,7 +59,7 @@
 #' tab_subset("BMI.nospecial", "AGER")
 #'
 #' # Hypothesis testing with categorical variables
-#' tab_subset( "AGER", "SEX", test = TRUE)
+#' tab_subset("AGER", "SEX", test = TRUE)
 #'
 #' # Hypothesis testing with numeric variables
 #' tab_subset("BMI.nospecial", "AGER", test = TRUE)

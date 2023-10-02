@@ -32,7 +32,7 @@
       d1$variables$tmp[d1$variables[,vr] == lvlB] = 1
       sgo = svyglm(tmp ~ 1, d1)
       # See survey:::svyttest.default
-      r1$`p-value` = 2 * pt(-abs(coef(sgo) / SE(sgo)), df = sgo$df.residual)
+      r1$`p-value` = 2 * pt(-abs( (coef(sgo) - 0.5) / SE(sgo)), df = sgo$df.residual)
       rT %<>% rbind(r1)
     }
   }
