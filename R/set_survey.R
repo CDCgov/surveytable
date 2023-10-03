@@ -40,6 +40,7 @@ set_survey = function(survey_name = "") {
 
   message("* Analyzing ", dl)
   print(tmp)
+  var_num()
 
   message("* To adjust how counts are rounded, see ?set_count_int")
   invisible(NULL)
@@ -53,6 +54,7 @@ show_survey = function() {
 
   design = .load_survey()
   print(design)
+  var_num()
 
   message("* To adjust how counts are rounded, see ?set_count_int")
   invisible(NULL)
