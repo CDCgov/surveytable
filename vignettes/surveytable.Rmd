@@ -1,0 +1,165 @@
+---
+title: "Introduction to surveytable"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{surveytable}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The goal of `surveytable` is to generate streamlined output from the `survey` package, with an application to NCHS.
+
+The examples below use the National Ambulatory Medical Care Survey (NAMCS) 2019 Public Use File (PUF). NAMCS is "an annual nationally representative sample survey of visits to nonfederal office-based patient care physicians, excluding anesthesiologists, radiologists, and pathologists." Note that the unit of observation is visits, not patients – this distinction is important since a single patient can make multiple visits.
+
+Selected variables from NAMCS 2019 come with the `surveytable` package, in an object called `vars2019`. Alternatively, to access the full NAMCS 2019, use `nchsdata::namcs2019`.
+
+To make the below code more reusable, we'll call the survey by a generic name -- `mysurvey`.
+
+# Begin
+```{r, results='asis'}
+library(surveytable)
+mysurvey = vars2019
+# Or, if nchsdata has been installed, 
+# mysurvey = nchsdata::namcs2019
+set_survey("mysurvey")
+```
+
+Check the survey name, survey design variables, and the number of observations to verify that it all looks correct.
+
+# List variables
+
+List the variables that start with the letters `age`:
+
+```{r, results='asis'}
+var_list("age")
+```
+
+The table lists variable name, class (or the type of variable), and variable label, which is the long name of the variable. Common classes are `factor` (categorical variable), `logical` (yes / no variable), and numeric.
+
+# Tabulate categorical and logical variables
+```{r, results='asis'}
+tab("AGER")
+```
+
+The table title shows the variable label (the long variable name) and the survey label.
+
+For each level of the variable, the table shows:
+
+* estimated count, its standard error, and the 95% confidence interval
+* estimated percentage, its standard error, and the 95% confidence interval
+
+If there are flags for presentation standards for counts and percentages, they are shown in an additional column and in the footnote. 
+
+Several more tables: 
+
+```{r, results='asis'}
+tab("MDDO", "SPECCAT", "MSA")
+```
+
+## Entire population
+To estimate the total count for the entire population:
+
+```{r, results='asis'}
+total()
+```
+
+# Tabulate subsets or interactions
+```{r, results='asis'}
+tab_subset("AGER", "SEX")
+```
+
+For each value of `SEX`, the above command creates a table of `AGER`. 
+
+With the `tab_subset` command, the percentages add up to 100% for each value of `SEX`.
+
+The title of each table reflects the value of `SEX`.
+
+Alternatively, you could use this command:
+
+```{r, results='asis'}
+tab_cross("AGER", "SEX")
+```
+
+This command is similar. The major difference is that with `tab_cross`, percentages add up to 100% for the whole population.
+
+You can also create a new variable by crossing two variables, and use it later:
+
+```{r, results='asis'}
+var_cross("Age x Sex", "AGER", "SEX")
+var_list("age")
+tab("Age x Sex")
+```
+
+# Tabulate numeric variables
+The above functions also work with numeric variables, though the output is a bit different. 
+
+```{r, results='asis'}
+tab("NUMMED")
+```
+
+The table shows percent of values that are not missing (not `NA`), mean, standard error of the mean (SEM), and standard deviation (SD). 
+
+Subsetting works too:
+
+```{r, results='asis'}
+tab_subset("NUMMED", "AGER")
+```
+
+# Perform statistical hypothesis testing
+To perform statistical hypothesis testing, use the `test` argument. 
+
+## Categorical variable
+```{r, results='asis'}
+tab("AGER", test = TRUE)
+```
+
+## Categorical variable (subset)
+```{r, results='asis'}
+tab_subset("AGER", "SEX", test = TRUE)
+```
+
+## Numeric variable
+```{r, results='asis'}
+tab_subset("NUMMED", "AGER", test = TRUE)
+```
+
+# Calculate rates
+To calculate rates, we need another source of information with population estimates. You would typically use a function like `read.csv()` to load the population estimates and get them into the correct format. The `surveytable` package comes with an object called `uspop2019` that contains several population estimates for use in these examples.
+
+Overall rate:
+```{r, results='asis'}
+total_rate(uspop2019$total)
+```
+
+Rate for a particular variable:
+```{r, results='asis'}
+tab_rate("AGER", uspop2019$AGER)
+```
+
+Rate for an interaction of variables:
+```{r, results='asis'}
+tab_subset_rate("AGER", "SEX", uspop2019$`AGER x SEX`)
+```
+
+# Save the output
+Send all future output to a CSV file, create whatever tables you need, then turn off sending output to the file:
+
+```{r, results=FALSE, message=FALSE, warning=FALSE}
+set_output(csv = "out.csv")
+```
+
+```{r, results='asis'}
+tab("MDDO", "SPECCAT", "MSA")
+set_output(csv = "")
+```
+
+```{r, echo=FALSE}
+unlink("out.csv")
+```
