@@ -21,6 +21,7 @@
 #' @param ...     names of variables (in quotes)
 #' @param test    perform hypothesis test?
 #' @param alpha   significance level for the above test.
+#' @param drop_na drop missing values (`NA`)? Categorical variables only.
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
 #' @param screen  print to the screen?
 #' @param csv     name of a CSV file
@@ -45,6 +46,7 @@
 #' my_table = within(my_table, {RSE = `SE (000)` / `Number (000)`})
 tab = function(...
                , test = FALSE, alpha = 0.05
+               , drop_na = getOption("surveytable.drop_na")
                , max_levels = getOption("surveytable.max_levels")
                , screen = getOption("surveytable.screen")
                , csv = getOption("surveytable.csv")
@@ -62,15 +64,17 @@ tab = function(...
 			  next
 			}
 			if (is.logical(design$variables[,vr])
-			    || is.factor(design$variables[,vr])) {
+			    || is.factor(design$variables[,vr]) ) {
 			  ret[[vr]] = .tab_factor(design = design
                       , vr = vr
+                      , drop_na = drop_na
                       , max_levels = max_levels
                       , screen = screen
                       , csv = csv)
 			  if (test) {
 			    ret[[paste0(vr, " - test")]] = .test_factor(design = design
                                             , vr = vr
+                                            , drop_na = drop_na
                                             , alpha = alpha
                                             , screen = screen, csv = csv)
 			  }
@@ -90,18 +94,25 @@ tab = function(...
 	invisible(ret)
 }
 
-.tab_factor = function(design, vr, max_levels, screen, csv) {
+.tab_factor = function(design, vr, drop_na, max_levels, screen, csv) {
   nm = names(design$variables)
   assert_that(vr %in% nm, msg = paste("Variable", vr, "not in the data."))
 
-	lbl = attr(design$variables[,vr], "label")
+	lbl = .getvarname(design, vr)
 	if (is.logical(design$variables[,vr])) {
 		design$variables[,vr] %<>% factor
 	}
 	assert_that(is.factor(design$variables[,vr])
 		, msg = paste0(vr, ": must be either factor or logical. Is ",
 			class(design$variables[,vr])[1] ))
-	design$variables[,vr] %<>% droplevels %>% .fix_factor
+	design$variables[,vr] %<>% droplevels
+	if (drop_na) {
+	  design = design[which(!is.na(design$variables[,vr])),]
+	  lbl %<>% paste("(knowns only)")
+	} else {
+	  design$variables[,vr] %<>% .fix_factor
+	}
+	assert_that(noNA(design$variables[,vr]), noNA(levels(design$variables[,vr])))
 	attr(design$variables[,vr], "label") = lbl
 
 	nlv = nlevels(design$variables[,vr])
@@ -231,9 +242,9 @@ tab = function(...
 		for (ff in has.flag) {
 			v1 %<>% c(switch(ff
 				, R = "R: If the data is confidential, suppress *all* estimates, SE's, CI's, etc."
-				, Cx = "Cx: suppress count"
+				, Cx = "Cx: suppress count (and rate)"
 				, Cr = "Cr: footnote count - RSE" # .present_count_3030
-  			, Cdf = "Cdf: review count - degrees of freedom"
+  			, Cdf = "Cdf: review count (and rate) - degrees of freedom"
 				, Px = "Px: suppress percent"
 				, Pc = "Pc: footnote percent - complement"
 				, Pdf = "Pdf: review percent - degrees of freedom"

@@ -22,6 +22,7 @@
 #' @param lvls    (optional) only show these levels of `vrby`
 #' @param test    perform hypothesis test?
 #' @param alpha   significance level for the above test.
+#' @param drop_na drop missing values (`NA`)? Categorical variables only.
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
 #' @param screen  print to the screen?
 #' @param csv     name of a CSV file
@@ -65,6 +66,7 @@
 #' tab_subset("BMI.nospecial", "AGER", test = TRUE)
 tab_subset = function(vr, vrby, lvls = c()
                 , test = FALSE, alpha = 0.05
+                , drop_na = getOption("surveytable.drop_na")
                 , max_levels = getOption("surveytable.max_levels")
                 , screen = getOption("surveytable.screen")
                 , csv = getOption("surveytable.csv")
@@ -107,12 +109,14 @@ tab_subset = function(vr, vrby, lvls = c()
         , ")")
       ret[[ii]] = .tab_factor(design = d1
                         , vr = vr
+                        , drop_na = drop_na
                         , max_levels = max_levels
                         , screen = screen
                         , csv = csv)
       if (test) {
         ret[[paste0(ii, " - test")]] = .test_factor(design = d1
                                          , vr = vr
+                                         , drop_na = drop_na
                                          , alpha = alpha
                                          , screen = screen, csv = csv)
       }

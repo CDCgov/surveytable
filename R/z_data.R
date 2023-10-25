@@ -13,3 +13,11 @@
 #' * Documentation: <https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Dataset_Documentation/NAMCS/doc2019-508.pdf>
 #' * National Summary Tables: <https://www.cdc.gov/nchs/data/ahcd/namcs_summary/2019-namcs-web-tables-508.pdf>
 "vars2019"
+
+
+#' US Population in 2019
+#'
+#' Population estimates of the civilian noninstitutional population of the
+#' United States as of July 1, 2019. Used for calculating rates. For usage
+#' examples, see the `*_rate` functions.
+"uspop2019"

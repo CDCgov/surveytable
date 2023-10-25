@@ -15,6 +15,7 @@ tab_cross = function(vr, vrby
 
   design = .load_survey()
   ret = .tab_factor(design = design, vr = newvr
+                    , drop_na = FALSE
                 , max_levels = max_levels
                 , screen = screen
                 , csv = csv)

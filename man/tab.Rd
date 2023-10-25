@@ -8,6 +8,7 @@ tab(
   ...,
   test = FALSE,
   alpha = 0.05,
+  drop_na = getOption("surveytable.drop_na"),
   max_levels = getOption("surveytable.max_levels"),
   screen = getOption("surveytable.screen"),
   csv = getOption("surveytable.csv")
@@ -19,6 +20,8 @@ tab(
 \item{test}{perform hypothesis test?}
 
 \item{alpha}{significance level for the above test.}
+
+\item{drop_na}{drop missing values (\code{NA})? Categorical variables only.}
 
 \item{max_levels}{a categorical variable can have at most this many levels. Used to avoid printing huge tables.}
 
@@ -67,6 +70,9 @@ my_table = within(my_table, {RSE = `SE (000)` / `Number (000)`})
 \seealso{
 Other tables: 
 \code{\link{tab_cross}()},
+\code{\link{tab_rate}()},
+\code{\link{tab_subset_rate}()},
+\code{\link{total_rate}()},
 \code{\link{total}()}
 }
 \concept{tables}

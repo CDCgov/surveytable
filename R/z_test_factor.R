@@ -1,17 +1,24 @@
-.test_factor = function(design, vr, alpha, screen, csv) {
+.test_factor = function(design, vr, drop_na, alpha, screen, csv) {
   assert_that(alpha > 0, alpha < 0.5)
   if ( !(alpha %in% c(0.05, 0.01, 0.001)) ) {
     warning("Value of alpha is not typical: ", alpha)
   }
 
-  lbl = attr(design$variables[,vr], "label")
+  lbl = .getvarname(design, vr)
   if (is.logical(design$variables[,vr])) {
     design$variables[,vr] %<>% factor
   }
   assert_that(is.factor(design$variables[,vr])
               , msg = paste0(vr, ": must be either factor or logical. Is ",
                              class(design$variables[,vr])[1] ))
-  design$variables[,vr] %<>% droplevels %>% .fix_factor
+  design$variables[,vr] %<>% droplevels
+  if (drop_na) {
+    design = design[which(!is.na(design$variables[,vr])),]
+    lbl %<>% paste("(knowns only)")
+  } else {
+    design$variables[,vr] %<>% .fix_factor
+  }
+  assert_that(noNA(design$variables[,vr]), noNA(levels(design$variables[,vr])))
   attr(design$variables[,vr], "label") = lbl
 
   nlv = nlevels(design$variables[,vr])

@@ -46,6 +46,10 @@
     , surveytable.csv = ""
     , surveytable.screen = TRUE
     , surveytable.max_levels = 20
+    , surveytable.drop_na = FALSE
+
+    , surveytable.rate_per = 100
+    , surveytable.tx_rate = ".tx_rate"
   )
   set_count_1k()
 #  set_output(csv = "", screen = TRUE, max_levels = 20)
@@ -53,4 +57,8 @@
 
 .tx_prct = function(x) {
   round(x * 100, 1)
+}
+
+.tx_rate = function(x) {
+  round(x, 1)
 }

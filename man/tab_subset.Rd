@@ -22,6 +22,7 @@ tab_subset(
   lvls = c(),
   test = FALSE,
   alpha = 0.05,
+  drop_na = getOption("surveytable.drop_na"),
   max_levels = getOption("surveytable.max_levels"),
   screen = getOption("surveytable.screen"),
   csv = getOption("surveytable.csv")
@@ -45,6 +46,8 @@ tab_subset(
 \item{test}{perform hypothesis test?}
 
 \item{alpha}{significance level for the above test.}
+
+\item{drop_na}{drop missing values (\code{NA})? Categorical variables only.}
 }
 \value{
 \itemize{
@@ -102,7 +105,10 @@ tab_subset("BMI.nospecial", "AGER", test = TRUE)
 }
 \seealso{
 Other tables: 
+\code{\link{tab_rate}()},
+\code{\link{tab_subset_rate}()},
 \code{\link{tab}()},
+\code{\link{total_rate}()},
 \code{\link{total}()}
 }
 \concept{tables}

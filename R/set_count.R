@@ -37,3 +37,6 @@ set_count_int = function() {
 .tx_count_int = function(x) {
   round(x)
 }
+.tx_count_none = function(x) {
+  x
+}
