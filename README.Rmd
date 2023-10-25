@@ -48,7 +48,7 @@ remotes::install_git(
 
 Here is a basic example, to get you started. 
 
-```{r}
+```{r, results='asis'}
 library(surveytable)
 set_survey("vars2019")
 ```

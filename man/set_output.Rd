@@ -23,8 +23,10 @@ show_output()
 \code{show_output()} shows the current defaults.
 }
 \examples{
+\dontrun{
 set_output(csv = "out.csv")
 show_output()
+}
 set_output(csv = "") # Turn off CSV output
 }
 \seealso{
