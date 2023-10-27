@@ -85,43 +85,22 @@ pathologists.” Note that the unit of observation is visits, not patients
 visits.</p>
 <p>Selected variables from NAMCS 2019 come with the
 <code>surveytable</code> package, in an object called
-<code>vars2019</code>. Alternatively, to access the full NAMCS 2019, use
+<code>vars2019</code>. Alternatively, if you have installed the
+<code>nchsdata</code> package, to access the full NAMCS 2019, use
 <code><a href="https://rdrr.io/pkg/nchsdata/man/namcs2019.html" class="external-link">nchsdata::namcs2019</a></code>.</p>
 <p>To make the below code more reusable, we’ll call the survey by a
-generic name – <code>mysurvey</code>.</p>
+generic name, namely, <code>mysurvey</code>.</p>
 <div class="section level2">
 <h2 id="begin">Begin<a class="anchor" aria-label="anchor" href="#begin"></a>
 </h2>
+<p>Begin by loading the <code>surveytable</code> package. When you do,
+it will print a message explaining how to specify the survey that you’d
+like to analyze. We are not showing that message here.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">surveytable</span><span class="op">)</span></span>
-<span><span class="co">#&gt; * Rounding counts to the nearest 1,000.</span></span>
-<span><span class="co">#&gt; * ?set_count_1k for other options.</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; There are 3 related packages:</span></span>
-<span><span class="co">#&gt; * surveytable: functions for tabulating survey estimates</span></span>
-<span><span class="co">#&gt; * nchsdata: public use files (PUFs) from the the National Center for Health Statistics (NCHS)</span></span>
-<span><span class="co">#&gt; * importsurvey: functions for importing data into R</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; You've just loaded surveytable.</span></span>
-<span><span class="co">#&gt; * Before you can tabulate estimates, you have to specify which survey you would like to use. You can do this in one of several ways:</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; a) This package comes with a survey for use in examples called 'vars2019'. This survey has selected variables from NAMCS 2019 PUF. To use this survey:</span></span>
-<span><span class="co">#&gt; set_survey('vars2019')</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; b) If you have installed the nchsdata package (which only has public use files):</span></span>
-<span><span class="co">#&gt; library(nchsdata)</span></span>
-<span><span class="co">#&gt; set_survey('survey_name')</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; For example:</span></span>
-<span><span class="co">#&gt; set_survey('namcs2019')</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; To see the surveys available in nchsdata:</span></span>
-<span><span class="co">#&gt; help(package = 'nchsdata')</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; c)</span></span>
-<span><span class="co">#&gt; survey_name = readRDS('file_name.rds')</span></span>
-<span><span class="co">#&gt; set_survey('survey_name')</span></span>
-<span><span class="va">mysurvey</span> <span class="op">=</span> <span class="va">vars2019</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://kpr9.pages.biotech.cdc.gov/surveytable/index.html" class="external-link">surveytable</a></span><span class="op">)</span></span></code></pre></div>
+<p>Now, specify the survey which you’d like to analyze.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mysurvey</span> <span class="op">=</span> <span class="va">vars2019</span></span>
 <span><span class="co"># Or, if nchsdata has been installed, </span></span>
 <span><span class="co"># mysurvey = nchsdata::namcs2019</span></span>
 <span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="st">"mysurvey"</span><span class="op">)</span></span>
@@ -129,7 +108,7 @@ generic name – <code>mysurvey</code>.</p>
 Stratified 1 - level Cluster Sampling design (with replacement) With
 (398) clusters. svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights =
 ~PATWT, data = d1)
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-2">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-3">
 <caption style="caption-side: top; text-align: center;">
 Data summary {NAMCS 2019 PUF}
 </caption>
@@ -168,9 +147,9 @@ observations to verify that it all looks correct.</p>
 <h2 id="list-variables">List variables<a class="anchor" aria-label="anchor" href="#list-variables"></a>
 </h2>
 <p>List the variables that start with the letters <code>age</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/var_list.html">var_list</a></span><span class="op">(</span><span class="st">"age"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-3">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-4">
 <caption style="caption-side: top; text-align: center;">
 Variables beginning with ‘age’ {NAMCS 2019 PUF}
 </caption>
@@ -241,9 +220,9 @@ are <code>factor</code> (categorical variable), <code>logical</code>
 <div class="section level2">
 <h2 id="tabulate-categorical-and-logical-variables">Tabulate categorical and logical variables<a class="anchor" aria-label="anchor" href="#tabulate-categorical-and-logical-variables"></a>
 </h2>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-4">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-5">
 <caption style="caption-side: top; text-align: center;">
 Patient age recode {NAMCS 2019 PUF}
 </caption>
@@ -478,9 +457,9 @@ interval</li>
 percentages, they are shown in an additional column and in the
 footnote.</p>
 <p>Several more tables:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"MDDO"</span>, <span class="st">"SPECCAT"</span>, <span class="st">"MSA"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-5">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-6">
 <caption style="caption-side: top; text-align: center;">
 Type of doctor (MD or DO) {NAMCS 2019 PUF}
 </caption>
@@ -586,7 +565,7 @@ D.O. - Doctor of Osteopathy
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-5">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-6">
 <caption style="caption-side: top; text-align: center;">
 Type of specialty (Primary, Medical, Surgical) {NAMCS 2019 PUF}
 </caption>
@@ -721,7 +700,7 @@ Medical care specialty
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-5">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-6">
 <caption style="caption-side: top; text-align: center;">
 Metropolitan Statistical Area Status of physician location {NAMCS 2019
 PUF}
@@ -828,13 +807,14 @@ Non-MSA
 </td>
 </tr>
 </table>
-<div class="section level3">
-<h3 id="entire-population">Entire population<a class="anchor" aria-label="anchor" href="#entire-population"></a>
-</h3>
+</div>
+<div class="section level2">
+<h2 id="entire-population">Entire population<a class="anchor" aria-label="anchor" href="#entire-population"></a>
+</h2>
 <p>To estimate the total count for the entire population:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/total.html">total</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-6">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-7">
 <caption style="caption-side: top; text-align: center;">
 Total {NAMCS 2019 PUF}
 </caption>
@@ -877,13 +857,12 @@ UL (000)
 </tr>
 </table>
 </div>
-</div>
 <div class="section level2">
 <h2 id="tabulate-subsets-or-interactions">Tabulate subsets or interactions<a class="anchor" aria-label="anchor" href="#tabulate-subsets-or-interactions"></a>
 </h2>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"SEX"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-7">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-8">
 <caption style="caption-side: top; text-align: center;">
 Patient age recode (Patient sex = Female) {NAMCS 2019 PUF}
 </caption>
@@ -1105,7 +1084,7 @@ Under 15 years
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-7">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-8">
 <caption style="caption-side: top; text-align: center;">
 Patient age recode (Patient sex = Male) {NAMCS 2019 PUF}
 </caption>
@@ -1333,9 +1312,9 @@ of <code>AGER</code>.</p>
 100% for each value of <code>SEX</code>.</p>
 <p>The title of each table reflects the value of <code>SEX</code>.</p>
 <p>Alternatively, you could use this command:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_cross</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"SEX"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-8">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-9">
 <caption style="caption-side: top; text-align: center;">
 (Patient age recode) x (Patient sex) {NAMCS 2019 PUF}
 </caption>
@@ -1736,10 +1715,10 @@ Under 15 years : Male
 population.</p>
 <p>You can also create a new variable by crossing two variables, and use
 it later:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">var_cross</a></span><span class="op">(</span><span class="st">"Age x Sex"</span>, <span class="st">"AGER"</span>, <span class="st">"SEX"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/var_list.html">var_list</a></span><span class="op">(</span><span class="st">"age"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-9">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-10">
 <caption style="caption-side: top; text-align: center;">
 Variables beginning with ‘age’ {NAMCS 2019 PUF}
 </caption>
@@ -1813,9 +1792,9 @@ Patient age recode
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"Age x Sex"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-9">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-10">
 <caption style="caption-side: top; text-align: center;">
 (Patient age recode) x (Patient sex) {NAMCS 2019 PUF}
 </caption>
@@ -2217,9 +2196,9 @@ Under 15 years : Male
 </h2>
 <p>The above functions also work with numeric variables, though the
 output is a bit different.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"NUMMED"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-10">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-11">
 <caption style="caption-side: top; text-align: center;">
 Number of medications coded {NAMCS 2019 PUF}
 </caption>
@@ -2260,9 +2239,9 @@ SD
 <code>NA</code>), mean, standard error of the mean (SEM), and standard
 deviation (SD).</p>
 <p>Subsetting works too:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"NUMMED"</span>, <span class="st">"AGER"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-11">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-12">
 <caption style="caption-side: top; text-align: center;">
 Number of medications coded (for different levels of Patient age recode)
 {NAMCS 2019 PUF}
@@ -2401,9 +2380,9 @@ argument.</p>
 <div class="section level3">
 <h3 id="categorical-variable">Categorical variable<a class="anchor" aria-label="anchor" href="#categorical-variable"></a>
 </h3>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span>, test <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-12">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-13">
 <caption style="caption-side: top; text-align: center;">
 Patient age recode {NAMCS 2019 PUF}
 </caption>
@@ -2625,7 +2604,7 @@ Under 15 years
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-12">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-13">
 <caption style="caption-side: top; text-align: center;">
 Comparison of all possible pairs of Patient age recode {NAMCS 2019 PUF}
 </caption>
@@ -2865,9 +2844,9 @@ Under 15 years
 <div class="section level3">
 <h3 id="categorical-variable-subset">Categorical variable (subset)<a class="anchor" aria-label="anchor" href="#categorical-variable-subset"></a>
 </h3>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"SEX"</span>, test <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-13">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-14">
 <caption style="caption-side: top; text-align: center;">
 Patient age recode (Patient sex = Female) {NAMCS 2019 PUF}
 </caption>
@@ -3089,7 +3068,7 @@ Under 15 years
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-13">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-14">
 <caption style="caption-side: top; text-align: center;">
 Comparison of all possible pairs of Patient age recode (Patient sex =
 Female) {NAMCS 2019 PUF}
@@ -3326,7 +3305,7 @@ Under 15 years
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-13">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-14">
 <caption style="caption-side: top; text-align: center;">
 Patient age recode (Patient sex = Male) {NAMCS 2019 PUF}
 </caption>
@@ -3548,7 +3527,7 @@ Under 15 years
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-13">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-14">
 <caption style="caption-side: top; text-align: center;">
 Comparison of all possible pairs of Patient age recode (Patient sex =
 Male) {NAMCS 2019 PUF}
@@ -3787,9 +3766,9 @@ Under 15 years
 <div class="section level3">
 <h3 id="numeric-variable">Numeric variable<a class="anchor" aria-label="anchor" href="#numeric-variable"></a>
 </h3>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"NUMMED"</span>, <span class="st">"AGER"</span>, test <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-14">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-15">
 <caption style="caption-side: top; text-align: center;">
 Number of medications coded (for different levels of Patient age recode)
 {NAMCS 2019 PUF}
@@ -3919,7 +3898,7 @@ Under 15 years
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-14">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-15">
 <caption style="caption-side: top; text-align: center;">
 Comparison of Number of medications coded across all possible pairs of
 Patient age recode {NAMCS 2019 PUF}
@@ -4169,9 +4148,9 @@ into the correct format. The <code>surveytable</code> package comes with
 an object called <code>uspop2019</code> that contains several population
 estimates for use in these examples.</p>
 <p>Overall rate:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/total_rate.html">total_rate</a></span><span class="op">(</span><span class="va">uspop2019</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-15">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-16">
 <caption style="caption-side: top; text-align: center;">
 Total (rate per 100 population) {NAMCS 2019 PUF}
 </caption>
@@ -4214,12 +4193,11 @@ UL
 </tr>
 </table>
 <p>Rate for a particular variable:</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">AGER</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-16">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-17">
 <caption style="caption-side: top; text-align: center;">
-Patient age recode {NAMCS 2019 PUF} (rate per 100 population) {NAMCS
-2019 PUF}
+Patient age recode (rate per 100 population) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -4352,12 +4330,12 @@ Under 15 years
 </tr>
 </table>
 <p>Rate for an interaction of variables:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset_rate.html">tab_subset_rate</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"SEX"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">`AGER x SEX`</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-17">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-18">
 <caption style="caption-side: top; text-align: center;">
-Patient age recode (Patient sex = Female) {NAMCS 2019 PUF} (rate per 100
-population) {NAMCS 2019 PUF}
+Patient age recode (Patient sex = Female) (rate per 100 population)
+{NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -4489,10 +4467,10 @@ Under 15 years
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-17">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-18">
 <caption style="caption-side: top; text-align: center;">
-Patient age recode (Patient sex = Male) {NAMCS 2019 PUF} (rate per 100
-population) {NAMCS 2019 PUF}
+Patient age recode (Patient sex = Male) (rate per 100 population) {NAMCS
+2019 PUF}
 </caption>
 <col>
 <col>
@@ -4630,11 +4608,11 @@ Under 15 years
 </h2>
 <p>Send all future output to a CSV file, create whatever tables you
 need, then turn off sending output to the file:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_output.html">set_output</a></span><span class="op">(</span>csv <span class="op">=</span> <span class="st">"out.csv"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_output.html">set_output</a></span><span class="op">(</span>csv <span class="op">=</span> <span class="st">"out.csv"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"MDDO"</span>, <span class="st">"SPECCAT"</span>, <span class="st">"MSA"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-19">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-20">
 <caption style="caption-side: top; text-align: center;">
 Type of doctor (MD or DO) {NAMCS 2019 PUF}
 </caption>
@@ -4740,7 +4718,7 @@ D.O. - Doctor of Osteopathy
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-19">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-20">
 <caption style="caption-side: top; text-align: center;">
 Type of specialty (Primary, Medical, Surgical) {NAMCS 2019 PUF}
 </caption>
@@ -4875,7 +4853,7 @@ Medical care specialty
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-19">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-20">
 <caption style="caption-side: top; text-align: center;">
 Metropolitan Statistical Area Status of physician location {NAMCS 2019
 PUF}
@@ -4982,7 +4960,7 @@ Non-MSA
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/set_output.html">set_output</a></span><span class="op">(</span>csv <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
 <span><span class="co">#&gt; * Turning off CSV output.</span></span>
 <span><span class="co">#&gt; * ?set_output for other options.</span></span></code></pre></div>

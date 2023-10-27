@@ -57,13 +57,13 @@
 #' , lvls = c("Chronic problem, routine", "Chronic problem, flare-up"))
 #'
 #' # Numeric variables
-#' tab_subset("BMI.nospecial", "AGER")
+#' tab_subset("NUMMED", "AGER")
 #'
 #' # Hypothesis testing with categorical variables
 #' tab_subset("AGER", "SEX", test = TRUE)
 #'
 #' # Hypothesis testing with numeric variables
-#' tab_subset("BMI.nospecial", "AGER", test = TRUE)
+#' tab_subset("NUMMED", "AGER", test = TRUE)
 tab_subset = function(vr, vrby, lvls = c()
                 , test = FALSE, alpha = 0.05
                 , drop_na = getOption("surveytable.drop_na")

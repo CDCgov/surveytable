@@ -18,13 +18,21 @@ The goal of `surveytable` is to generate streamlined output from the `survey` pa
 
 The examples below use the National Ambulatory Medical Care Survey (NAMCS) 2019 Public Use File (PUF). NAMCS is "an annual nationally representative sample survey of visits to nonfederal office-based patient care physicians, excluding anesthesiologists, radiologists, and pathologists." Note that the unit of observation is visits, not patients – this distinction is important since a single patient can make multiple visits.
 
-Selected variables from NAMCS 2019 come with the `surveytable` package, in an object called `vars2019`. Alternatively, to access the full NAMCS 2019, use `nchsdata::namcs2019`.
+Selected variables from NAMCS 2019 come with the `surveytable` package, in an object called `vars2019`. Alternatively, if you have installed the `nchsdata` package, to access the full NAMCS 2019, use `nchsdata::namcs2019`.
 
-To make the below code more reusable, we'll call the survey by a generic name -- `mysurvey`.
+To make the below code more reusable, we'll call the survey by a generic name, namely, `mysurvey`.
 
 # Begin
-```{r, results='asis'}
+
+Begin by loading the `surveytable` package. When you do, it will print a message explaining how to specify the survey that you'd like to analyze. We are not showing that message here. 
+
+```{r, results=FALSE, message=FALSE, warning=FALSE}
 library(surveytable)
+```
+
+Now, specify the survey which you'd like to analyze.
+
+```{r, results='asis'}
 mysurvey = vars2019
 # Or, if nchsdata has been installed, 
 # mysurvey = nchsdata::namcs2019
@@ -63,7 +71,7 @@ Several more tables:
 tab("MDDO", "SPECCAT", "MSA")
 ```
 
-## Entire population
+# Entire population
 To estimate the total count for the entire population:
 
 ```{r, results='asis'}

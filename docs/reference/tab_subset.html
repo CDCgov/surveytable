@@ -383,22 +383,22 @@ but does not tabulate the new variable. Use <code><a href="tab.html">tab()</a></
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Numeric variables</span></span></span>
-<span class="r-in"><span><span class="fu">tab_subset</span><span class="op">(</span><span class="st">"BMI.nospecial"</span>, <span class="st">"AGER"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Body mass index - calculated from height and weight (NA = special values - use caution) (for different levels of Patient age recode) {NAMCS 2019 PUF}</span>
+<span class="r-in"><span><span class="fu">tab_subset</span><span class="op">(</span><span class="st">"NUMMED"</span>, <span class="st">"AGER"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of medications coded (for different levels of Patient age recode) {NAMCS 2019 PUF}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Level             ¦ % known ¦ Mean ¦   SEM ¦   SD ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15 years    ¦    36   ¦ 18.6 ¦ 0.347 ¦ 4.21 ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15 years    ¦     100 ¦ 1.58 ¦ 0.168 ¦ 1.75 ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 15-24 years       ¦    48.9 ¦ 25.8 ¦ 0.566 ¦ 6.47 ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 15-24 years       ¦     100 ¦ 1.64 ¦ 0.112 ¦ 1.7  ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 25-44 years       ¦    53.3 ¦ 29.5 ¦ 0.442 ¦ 7.6  ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 25-44 years       ¦     100 ¦ 2.15 ¦ 0.225 ¦ 2.74 ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 45-64 years       ¦    61.2 ¦ 30.3 ¦ 0.478 ¦ 7.21 ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 45-64 years       ¦     100 ¦ 3.49 ¦ 0.303 ¦ 4.49 ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 65-74 years       ¦    56.8 ¦ 29.9 ¦ 0.377 ¦ 6.23 ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 65-74 years       ¦     100 ¦ 4.44 ¦ 0.431 ¦ 5.03 ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 75 years and over ¦    53.3 ¦ 27.4 ¦ 0.305 ¦ 5.5  ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 75 years and over ¦     100 ¦ 5.53 ¦ 0.494 ¦ 5.59 ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
@@ -518,32 +518,31 @@ but does not tabulate the new variable. Use <code><a href="tab.html">tab()</a></
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Hypothesis testing with numeric variables</span></span></span>
-<span class="r-in"><span><span class="fu">tab_subset</span><span class="op">(</span><span class="st">"BMI.nospecial"</span>, <span class="st">"AGER"</span>, test <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Body mass index - calculated from height and weight (NA = special values - use caution) (for different levels of Patient age recode) {NAMCS 2019 PUF}</span>
+<span class="r-in"><span><span class="fu">tab_subset</span><span class="op">(</span><span class="st">"NUMMED"</span>, <span class="st">"AGER"</span>, test <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of medications coded (for different levels of Patient age recode) {NAMCS 2019 PUF}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Level             ¦ % known ¦ Mean ¦   SEM ¦   SD ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15 years    ¦    36   ¦ 18.6 ¦ 0.347 ¦ 4.21 ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15 years    ¦     100 ¦ 1.58 ¦ 0.168 ¦ 1.75 ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 15-24 years       ¦    48.9 ¦ 25.8 ¦ 0.566 ¦ 6.47 ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 15-24 years       ¦     100 ¦ 1.64 ¦ 0.112 ¦ 1.7  ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 25-44 years       ¦    53.3 ¦ 29.5 ¦ 0.442 ¦ 7.6  ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 25-44 years       ¦     100 ¦ 2.15 ¦ 0.225 ¦ 2.74 ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 45-64 years       ¦    61.2 ¦ 30.3 ¦ 0.478 ¦ 7.21 ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 45-64 years       ¦     100 ¦ 3.49 ¦ 0.303 ¦ 4.49 ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 65-74 years       ¦    56.8 ¦ 29.9 ¦ 0.377 ¦ 6.23 ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 65-74 years       ¦     100 ¦ 4.44 ¦ 0.431 ¦ 5.03 ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 75 years and over ¦    53.3 ¦ 27.4 ¦ 0.305 ¦ 5.5  ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 75 years and over ¦     100 ¦ 5.53 ¦ 0.494 ¦ 5.59 ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Comparison of Body mass index - calculated from height and weight (NA = special values - use caution) across all possible pairs of Patient age recode</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                    {NAMCS 2019 PUF}                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Comparison of Number of medications coded across all possible pairs of Patient age recode {NAMCS 2019 PUF}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-----------------------------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Level 1        ¦ Level 2           ¦ p-value ¦ Flag ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15 years ¦ 15-24 years       ¦   0     ¦ *    ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15 years ¦ 15-24 years       ¦   0.739 ¦      ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15 years ¦ 25-44 years       ¦   0     ¦ *    ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15 years ¦ 25-44 years       ¦   0.043 ¦ *    ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15 years ¦ 45-64 years       ¦   0     ¦ *    ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
@@ -551,25 +550,25 @@ but does not tabulate the new variable. Use <code><a href="tab.html">tab()</a></
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15 years ¦ 75 years and over ¦   0     ¦ *    ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 15-24 years    ¦ 25-44 years       ¦   0     ¦ *    ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 15-24 years    ¦ 25-44 years       ¦   0.029 ¦ *    ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 15-24 years    ¦ 45-64 years       ¦   0     ¦ *    ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 15-24 years    ¦ 65-74 years       ¦   0     ¦ *    ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 15-24 years    ¦ 75 years and over ¦   0.016 ¦ *    ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 15-24 years    ¦ 75 years and over ¦   0     ¦ *    ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 25-44 years    ¦ 45-64 years       ¦   0.168 ¦      ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 25-44 years    ¦ 45-64 years       ¦   0     ¦ *    ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 25-44 years    ¦ 65-74 years       ¦   0.436 ¦      ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 25-44 years    ¦ 65-74 years       ¦   0     ¦ *    ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 25-44 years    ¦ 75 years and over ¦   0     ¦ *    ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 45-64 years    ¦ 65-74 years       ¦   0.569 ¦      ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 45-64 years    ¦ 65-74 years       ¦   0.007 ¦ *    ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 45-64 years    ¦ 75 years and over ¦   0     ¦ *    ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 65-74 years    ¦ 75 years and over ¦   0     ¦ *    ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 65-74 years    ¦ 75 years and over ¦   0.002 ¦ *    ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-----------------------------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   *: p-value &lt;= 0.05                                   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>

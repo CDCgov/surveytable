@@ -129,8 +129,9 @@ level of <code>vr</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +--------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * To adjust how counts are rounded, see ?set_count_int</span>
+<span class="r-in"><span><span class="co"># pop is a data frame</span></span></span>
 <span class="r-in"><span><span class="fu">tab_rate</span><span class="op">(</span><span class="st">"MSA"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">MSA</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Metropolitan Statistical Area Status of physician location {NAMCS 2019 PUF} (rate per 100 population) {NAMCS 2019 PUF}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Metropolitan Statistical Area Status of physician location (rate per 100 population) {NAMCS 2019 PUF}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-----------------------------------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Level                      ¦  Rate ¦   SE ¦    LL ¦    UL ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------------------+-------+------+-------+-------¦</span>
@@ -142,9 +143,10 @@ level of <code>vr</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   (No flags.)                                                </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Rates based on the entire population</span></span></span>
+<span class="r-in"><span><span class="co"># pop is a single number</span></span></span>
 <span class="r-in"><span><span class="fu">tab_rate</span><span class="op">(</span><span class="st">"MDDO"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Type of doctor (MD or DO) {NAMCS 2019 PUF} (rate per 100 population) {NAMCS 2019 PUF}</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * Rate based on the entire population.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Type of doctor (MD or DO) (rate per 100 population) {NAMCS 2019 PUF}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Level                      ¦  Rate ¦ SE ¦    LL ¦    UL ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------------------+-------+----+-------+-------¦</span>

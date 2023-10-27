@@ -22,7 +22,12 @@ Determines how counts should be rounded.
 }
 }
 \examples{
+set_survey("vars2019")
+set_count_int()
+total()
+
 set_count_1k()
+total()
 }
 \seealso{
 Other options: 

@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Background
+# Survey table: streamlined output from the `survey` package
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -36,19 +36,24 @@ package also performs checking for presentation standards.
 You can install the development version of `surveytable` like so:
 
 ``` r
-install.packages(c("git2r", "remotes"))
-
 # On local computer
+install.packages(c("git2r", "remotes"))
 remotes::install_git(
     url = "https://git.biotech.cdc.gov/kpr9/surveytable"
     , git = "git2r"
     , upgrade = "never")
 
 # On EDAV RStudio
+install.packages("remotes")
 remotes::install_git(
     url = "https://git.biotech.cdc.gov/kpr9/surveytable"
     , upgrade = "never")
 ```
+
+# Documentation
+
+Find the documentation for `surveytable` here:
+<https://kpr9.pages.biotech.cdc.gov/surveytable/index.html>
 
 # Example
 
@@ -56,33 +61,9 @@ Here is a basic example, to get you started.
 
 ``` r
 library(surveytable)
-#> * Rounding counts to the nearest 1,000.
-#> * ?set_count_1k for other options.
-#> 
-#> There are 3 related packages:
-#> * surveytable: functions for tabulating survey estimates
-#> * nchsdata: public use files (PUFs) from the the National Center for Health Statistics (NCHS)
-#> * importsurvey: functions for importing data into R
-#> 
-#> You've just loaded surveytable.
-#> * Before you can tabulate estimates, you have to specify which survey you would like to use. You can do this in one of several ways:
-#> 
-#> a) This package comes with a survey for use in examples called 'vars2019'. This survey has selected variables from NAMCS 2019 PUF. To use this survey:
-#> set_survey('vars2019')
-#> 
-#> b) If you have installed the nchsdata package (which only has public use files):
-#> library(nchsdata)
-#> set_survey('survey_name')
-#> 
-#> For example:
-#> set_survey('namcs2019')
-#> 
-#> To see the surveys available in nchsdata:
-#> help(package = 'nchsdata')
-#> 
-#> c)
-#> survey_name = readRDS('file_name.rds')
-#> set_survey('survey_name')
+```
+
+``` r
 set_survey("vars2019")
 #> * Analyzing NAMCS 2019 PUF
 ```
@@ -90,7 +71,7 @@ set_survey("vars2019")
 Stratified 1 - level Cluster Sampling design (with replacement) With
 (398) clusters. svydesign(ids = \~CPSUM, strata = \~CSTRATM, weights =
 \~PATWT, data = d1)
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-2">
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-3">
 <caption style="caption-side: top; text-align: center;">
 Data summary {NAMCS 2019 PUF}
 </caption>
@@ -128,7 +109,7 @@ Number of observations
 tab("AGER")
 ```
 
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-3">
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-4">
 <caption style="caption-side: top; text-align: center;">
 Patient age recode {NAMCS 2019 PUF}
 </caption>

@@ -19,9 +19,10 @@
 #'
 #' @examples
 #' set_survey("vars2019")
+#' # pop is a data frame
 #' tab_rate("MSA", uspop2019$MSA)
 #'
-#' # Rates based on the entire population
+#' # pop is a single number
 #' tab_rate("MDDO", uspop2019$total)
 tab_rate = function(vr, pop
   , per = getOption("surveytable.rate_per")
@@ -72,6 +73,7 @@ tab_rate = function(vr, pop
   } else {
     m1 = tfo
     m1$Population = pop / per
+    message("* Rate based on the entire population.")
   }
   idx = which(is.na(m1$Population))
   if (length(idx) > 0) {
@@ -91,7 +93,7 @@ tab_rate = function(vr, pop
   cc = c("Rate", "SE", "LL", "UL")
   m1[,cc] = getOption("surveytable.tx_rate") %>% do.call(list(m1[,cc]))
 
-  attr(m1, "title") = paste(attr(tfo, "title"), "(rate per", per, "population)")
+  attr(m1, "title") = paste(.getvarname(design, vr), "(rate per", per, "population)")
   attr(m1, "num") = 2:5
   attr(m1, "footer") = attr(tfo, "footer")
 

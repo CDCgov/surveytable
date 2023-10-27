@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Background
+# Survey table: streamlined output from the `survey` package
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -29,27 +29,35 @@ The `surveytable` package is easier to use than using `survey` directly. With fe
 You can install the development version of `surveytable` like so:
 
 ``` r
-install.packages(c("git2r", "remotes"))
-
 # On local computer
+install.packages(c("git2r", "remotes"))
 remotes::install_git(
 	url = "https://git.biotech.cdc.gov/kpr9/surveytable"
 	, git = "git2r"
 	, upgrade = "never")
 
 # On EDAV RStudio
+install.packages("remotes")
 remotes::install_git(
 	url = "https://git.biotech.cdc.gov/kpr9/surveytable"
 	, upgrade = "never")
 
 ```
 
+# Documentation
+
+Find the documentation for `surveytable` here: https://kpr9.pages.biotech.cdc.gov/surveytable/index.html
+
+
 # Example
 
 Here is a basic example, to get you started. 
 
-```{r, results='asis'}
+```{r, results=FALSE, message=FALSE, warning=FALSE}
 library(surveytable)
+```
+
+```{r, results='asis'}
 set_survey("vars2019")
 ```
 

@@ -36,7 +36,7 @@
 #' tab("MDDO", "SPECCAT", "MSA")
 #'
 #' # Numeric variables
-#' tab("BMI.nospecial")
+#' tab("NUMMED")
 #'
 #' # Hypothesis testing with categorical variables
 #' tab("AGER", test = TRUE)

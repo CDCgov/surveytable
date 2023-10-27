@@ -8,6 +8,14 @@
 \description{
 Streamlined output from the `survey` package.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://kpr9.pages.biotech.cdc.gov/surveytable/index.html }
+  \item \url{https://git.biotech.cdc.gov/kpr9/surveytable}
+}
+
+}
 \author{
 \strong{Maintainer}: Alex Strashny \email{AStrashny@cdc.gov}
 

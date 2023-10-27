@@ -1,4 +1,29 @@
 url: ~
 template:
   bootstrap: 5
-
+reference:
+- title: "Begin"
+  contents:
+  - set_survey
+  - var_list
+- title: "Counts and percentages"
+  contents:
+  - tab
+  - tab_cross
+  - total
+- title: "Rates"
+  contents:
+  - tab_rate
+  - tab_subset_rate
+  - total_rate
+- title: "Data for use in examples"
+  contents:
+  - vars2019
+  - uspop2019
+- title: "Other"
+  contents:
+  - set_count_1k
+  - set_output
+  - show_options
+  - surveytable-options
+  - var_num

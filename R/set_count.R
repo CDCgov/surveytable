@@ -10,7 +10,12 @@
 #' @export
 #'
 #' @examples
+#' set_survey("vars2019")
+#' set_count_int()
+#' total()
+#'
 #' set_count_1k()
+#' total()
 set_count_1k = function() {
   options(
     surveytable.tx_count = ".tx_count_1k"

@@ -16,14 +16,24 @@ knitr::opts_chunk$set(
 
 This example uses the National Ambulatory Medical Care Survey (NAMCS) 2019 Public Use File (PUF) to replicate certain tables from the [National Ambulatory Medical Care Survey: 2019 National Summary Tables](https://www.cdc.gov/nchs/data/ahcd/namcs_summary/2019-namcs-web-tables-508.pdf). NAMCS is "an annual nationally representative sample survey of visits to nonfederal office-based patient care physicians, excluding anesthesiologists, radiologists, and pathologists." Note that the unit of observation is visits, not patients – this distinction is important since a single patient can make multiple visits.
 
-Selected variables from NAMCS 2019 come with the `surveytable` package, in an object called `vars2019`. This object is enough to recreate the tables. Alternatively, to access the full NAMCS 2019, use `nchsdata::namcs2019`.
+Selected variables from NAMCS 2019 come with the `surveytable` package, in an object called `vars2019`. Alternatively, if you have installed the `nchsdata` package, to access the full NAMCS 2019, use `nchsdata::namcs2019`.
 
-To make the below code more reusable, we'll call the survey by a generic name -- `mysurvey`.
+To make the below code more reusable, we'll call the survey by a generic name, namely, `mysurvey`.
 
 # Begin
-```{r, results='asis'}
+
+Begin by loading the `surveytable` package. When you do, it will print a message explaining how to specify the survey that you'd like to analyze. We are omitting that message here. 
+
+```{r, results=FALSE, message=FALSE, warning=FALSE}
 library(surveytable)
+```
+
+Now, specify the survey which you'd like to analyze.
+
+```{r, results='asis'}
 mysurvey = vars2019
+# Or, if nchsdata has been installed, 
+# mysurvey = nchsdata::namcs2019
 set_survey("mysurvey")
 ```
 
@@ -165,4 +175,103 @@ tab("PAYPRIV", "PAYMCARE", "PAYMCAID", "Medicare and Medicaid"
 
 Check the presentation standards flags! Under NCHS presentation standards rules, some of these estimates should not be shown.
 
+# Table 6
 
+This table shows the primary care provider and referral status, by prior-visit status.
+
+In the table, the "Unknown" and "Blank" values are collapsed into a single value. We can collapse two or more levels of a factor into a single level using the `forcats::fct_collapse` function.
+
+```{r}
+mysurvey$variables$PRIMCARE = forcats::fct_collapse(mysurvey$variables$PRIMCARE
+    , `Unknown if PCP` = c("Unknown", "Blank"))
+mysurvey$variables$REFER = forcats::fct_collapse(mysurvey$variables$REFER
+    , `Unknown if referred` = c("Unknown", "Blank"))
+```
+
+Now, for the table:
+
+```{r, results='asis'}
+tab("PRIMCARE", "REFER", "SENBEFOR")
+```
+
+The percentages within each subset that is defined by `SENBEFOR` add up to 100% -- for this reason, we want to use `tab_subset()`, not `tab_cross()`.
+
+```{r, results='asis'}
+tab_subset("PRIMCARE", "SENBEFOR")
+tab_subset("REFER", "SENBEFOR")
+```
+
+# Table 11
+
+This table shows the same information as Table 3, but only for preventive care visits. That is, it's estimates for each age group, as well as for each age group by sex, but only for preventive care visits.
+
+The variable `Another age recode` has already been created in a previous example. Cross `AGER` and `SEX` to create a variable called `Age x Sex`: 
+
+```{r}
+var_cross("Age x Sex", "AGER", "SEX")
+```
+
+To see the possible values of `MAJOR` (Major reason for this visit), and to estimate the total count for preventive care visits:
+
+```{r, results='asis'}
+tab("MAJOR")
+```
+
+To create the tables of age, sex, and their interaction, and limit them to only the preventive care visits:
+
+```{r, results='asis'}
+tab_subset("AGER", "MAJOR", "Preventive care")
+tab_subset("Another age recode", "MAJOR", "Preventive care")
+tab_subset("SEX", "MAJOR", "Preventive care")
+tab_subset("Age x Sex", "MAJOR", "Preventive care")
+```
+
+As each of the above commands is similar, and differs only in the first variable that is passed to the `tab_subset()` function, this code can be streamlined with a `for` loop:
+
+```{r, results='asis'}
+for (vr in c("AGER", "Another age recode", "SEX", "Age x Sex")) {
+	tab_subset(vr, "MAJOR", "Preventive care")
+}
+```
+
+## More advanced coding
+
+In addition, for each age-sex category, the published table shows the percentage of preventive care visits made to primary care physicians. 
+
+To calculate these percentages, a slightly more involved `for` loop is needed. Below is the code, followed by an explanation:
+
+```{r, results=FALSE, message=FALSE, warning=FALSE}
+set_output(csv = "out.csv", screen = FALSE)
+```
+
+```{r}
+for (vr in c("AGER", "Another age recode", "SEX", "Age x Sex")) {
+	var_cross("tmp", "MAJOR", vr)
+	for (lvl in levels(mysurvey$variables[,vr])) {
+		tab_subset("SPECCAT", "tmp", paste0("Preventive care : ", lvl))
+	}
+}
+set_output(csv = "", screen = TRUE)
+```
+
+```{r, echo=FALSE}
+unlink("out.csv")
+```
+
+* Since so many tables are being produced, the output is sent to a CSV file, and is not printed to the screen. 
+* As before, the loop goes through the age, sex, and age / sex interaction variables, calling each of these variables `vr`. 
+* MAJOR and `vr` are crossed, with the result stored in a variable called `tmp`.
+* Next, the inner loop goes through all levels of `vr`, calling each of these levels `lvl`. 
+* The code tabulates `SPECCAT` (Type of specialty – Primary, Medical, Surgical) on a subset in which `tmp` (which is `MAJOR` crossed with `vr`) is restricted to “Preventive care:” followed by `lvl`, which is some level of `vr`, such as “Under 15 years” for `AGER`. 
+* Finally, CSV output is turned off, and screen output is turned back on. 
+
+If you run this code, all of the tables should be stored in the CSV file. To give you an idea of what the tables should look like, here is just one of the tables:
+
+```{r, results='asis'}
+vr = "AGER"
+var_cross("tmp", "MAJOR", vr)
+lvl = levels(mysurvey$variables[,vr])[1]
+tab_subset("SPECCAT", "tmp", paste0("Preventive care : ", lvl))
+```
+
+To match the percentage in the published table, see the "Primary care specialty" row. Be sure to check the presentation standards flags.
