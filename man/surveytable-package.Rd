@@ -11,8 +11,8 @@ Streamlined output from the `survey` package.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://kpr9.pages.biotech.cdc.gov/surveytable/index.html }
-  \item \url{https://git.biotech.cdc.gov/kpr9/surveytable}
+  \item \url{https://cdcgov.github.io/surveytable}
+  \item \url{https://github.com/CDCgov/surveytable}
 }
 
 }

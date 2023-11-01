@@ -5,7 +5,7 @@ Authors@R:
     person("Alex", "Strashny", , "AStrashny@cdc.gov", role = c("aut", "cre"))
 Description: Streamlined output from the `survey` package.
 Date/Publication: 2023
-License: GPL (>= 3)
+License: Apache License (>= 2)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
@@ -24,4 +24,4 @@ Suggests:
     rmarkdown, 
     nchsdata
 VignetteBuilder: knitr
-URL: https://kpr9.pages.biotech.cdc.gov/surveytable/index.html , https://git.biotech.cdc.gov/kpr9/surveytable
+URL: https://cdcgov.github.io/surveytable, https://github.com/CDCgov/surveytable

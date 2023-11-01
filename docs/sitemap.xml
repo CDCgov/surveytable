@@ -4,16 +4,10 @@
     <loc>/404.html</loc>
   </url>
   <url>
-    <loc>/articles/example-1-NAMCS-web-tables.html</loc>
-  </url>
-  <url>
     <loc>/articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.html</loc>
   </url>
   <url>
     <loc>/articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html</loc>
-  </url>
-  <url>
-    <loc>/articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS.html</loc>
   </url>
   <url>
     <loc>/articles/Example-Residential-Care-Community-RCC-Services-User-SU.html</loc>
@@ -28,7 +22,16 @@
     <loc>/authors.html</loc>
   </url>
   <url>
+    <loc>/CONTRIBUTING.html</loc>
+  </url>
+  <url>
+    <loc>/DISCLAIMER.html</loc>
+  </url>
+  <url>
     <loc>/index.html</loc>
+  </url>
+  <url>
+    <loc>/LICENSE-text.html</loc>
   </url>
   <url>
     <loc>/LICENSE.html</loc>
