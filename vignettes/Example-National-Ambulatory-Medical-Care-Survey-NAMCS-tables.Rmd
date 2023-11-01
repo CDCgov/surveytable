@@ -1,8 +1,8 @@
 ---
-title: "Example 1: NAMCS web tables"
+title: "Example: National Ambulatory Medical Care Survey (NAMCS) tables"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{example-1-NAMCS-web-tables}
+  %\VignetteIndexEntry{Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -28,7 +28,7 @@ Begin by loading the `surveytable` package. When you do, it will print a message
 library(surveytable)
 ```
 
-Now, specify the survey which you'd like to analyze.
+Now, specify the survey that you'd like to analyze.
 
 ```{r, results='asis'}
 mysurvey = vars2019
@@ -203,7 +203,7 @@ tab_subset("REFER", "SENBEFOR")
 
 # Table 11
 
-This table shows the same information as Table 3, but only for preventive care visits. That is, it's estimates for each age group, as well as for each age group by sex, but only for preventive care visits.
+This table shows the same information as Table 3, but only for preventive care visits. That is, estimates for each age group, as well as for each age group by sex, but only for preventive care visits.
 
 The variable `Another age recode` has already been created in a previous example. Cross `AGER` and `SEX` to create a variable called `Age x Sex`: 
 

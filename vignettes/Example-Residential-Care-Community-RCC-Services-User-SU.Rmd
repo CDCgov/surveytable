@@ -1,0 +1,183 @@
+---
+title: "Example: Residential Care Community (RCC) Services User (SU)"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Example-Residential-Care-Community-RCC-Services-User-SU}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This example uses the National Study of Long-Term Care Providers (NSLTCP) Residential Care Community (RCC) Services User (SU) 2018 Public Use File (PUF) to replicate the estimates from a report called [Residential Care Community Resident Characteristics: United States, 2018](https://www.cdc.gov/nchs/products/databriefs/db404.htm). "The survey used a sample of residential care community residents, obtained from a frame that was constructed from lists of licensed residential care communities acquired from the state licensing agencies in each of the 50 states and the District of Columbia." 
+
+The survey is available in the `nchsdata` package. To make the below code more reusable, we'll call the survey by a generic name, namely, `mysurvey`.
+
+# Begin
+
+Begin by loading the `surveytable` package. When you do, it will print a message explaining how to specify the survey that you'd like to analyze. We are omitting that message here. 
+
+```{r, results=FALSE, message=FALSE, warning=FALSE}
+library(surveytable)
+```
+
+Now, specify the survey that you'd like to analyze.
+
+```{r, results='asis'}
+mysurvey = nchsdata::rccsu2018
+set_survey("mysurvey")
+```
+
+Check the survey name, survey design variables, and the number of observations to verify that it all looks correct.
+
+# Figure 1
+This figure shows the percentage of residents by sex, race / ethnicity, and age group.
+
+Let's find the race / ethnicity variable:
+
+```{r, results='asis'}
+var_list("race")
+tab("raceeth2")
+```
+
+In the published figure, the Hispanic and Other categories have been merged into a single category called "Another race or ethnicity". Let's see how we can do that.  
+
+Each survey design object has an element called `variables`, which is a data frame that contains the survey variables. **We can add variables to this data frame or change the variables currently there.** To collapse the levels of `raceeth2`, we'll use the `forcats::fct_collapse` function.
+
+```{r}
+mysurvey$variables$raceeth2 = forcats::fct_collapse(mysurvey$variables$raceeth2
+                           , `Another race or ethnicity` = c("Hispanic", "Other"))
+```
+
+Now, let's take a look at the age variable:
+
+```{r, results='asis'}
+var_list("age")
+```
+
+`age2` is a numeric variable. We need to create a categorical variable based on this numeric variable. This is done using the `cut` function. 
+
+```{r}
+mysurvey$variables$Age = cut(mysurvey$variables$age2
+                             , breaks = c(-Inf, 64, 74, 84, Inf)
+                             , labels = c("Under 65", "65-74", "75-84", "85 and over"))
+```
+
+We now have all the variables needed for the figure. Let's tabulate them:
+
+```{r, results='asis'}
+tab("sex", "raceeth2", "Age")
+```
+
+# Figure 2
+This figure shows the percentage of residents with Medicaid, overall and by age group.
+
+```{r, results='asis'}
+tab("medicaid2")
+```
+
+As we can see, for some observations, the value of this variable is unknown (it's missing or `NA`). The above command calculates percentages based on all observations, including the `NA` values. However, in the published figure, the percentages are based on the knowns only. To exclude the `NA`'s from the calculation, use the `drop_na` argument:
+
+```{r, results='asis'}
+tab("medicaid2", drop_na = TRUE)
+```
+
+Note that the table title alerts you to the fact that you are using known values only.
+
+By age group:
+
+```{r, results='asis'}
+tab_subset("medicaid2", "Age", drop_na = TRUE)
+```
+
+Note that according to the NCHS presentation criteria, some of the percentages should be suppressed.
+
+# Figure 4
+(Figure 3 is slightly more involved, so we'll do it next.)
+
+This figure shows the percentage of residents who have one of a select set of chronic conditions. In addition, it shows the distribution of residents by the number of conditions. 
+
+```{r, results='asis'}
+tab("hbp")
+```
+
+Once again, unknown values (`NA`) are present, while the figure is based on knowns only. Therefore, we again will use the `drop_na` argument:
+
+```{r, results='asis'}
+tab("hbp", "alz", "depress", "arth", "diabetes", "heartdise", "osteo"
+    , "copd", "stroke", "cancer"
+    , drop_na = TRUE)
+```
+
+Now, count how many chronic conditions were present.
+
+```{r}
+mysurvey$variables$num_cc = 0
+for (vr in c("hbp", "alz", "depress", "arth", "diabetes", "heartdise", "osteo"
+             , "copd", "stroke", "cancer")) {
+  idx = which(mysurvey$variables[,vr])
+  mysurvey$variables$num_cc[idx] = mysurvey$variables$num_cc[idx] + 1
+}
+```
+
+For generating the figure, create a categorical variable based on `num_cc`, which is numeric. When using `cut`, to avoid errors, it is a good practice for `breaks` to start at `-Inf` and end at `Inf`.
+
+```{r, results='asis'}
+mysurvey$variables$`Number of chronic conditions` = cut(mysurvey$variables$num_cc
+                                            , breaks = c(-Inf, 0, 1, 3, 10, Inf)
+                                            , labels = c("0", "1", "2-3", "4-10", "??"))
+tab("Number of chronic conditions")
+```
+
+# Figure 3
+This figure shows the percentage of residents who need help with one of the activities of daily living (ADLs). In addition, it shows the distribution of residents by the number of ADLs which which they need help.
+
+As presented in the figure, for each ADLs, a resident either does or does not need help. In other words, in the figure, it's a binary variable. 
+
+Let's take a look at the levels of one of these ADLs variables, as it exists in the survey:
+
+```{r}
+levels(mysurvey$variables$bathhlp)
+```
+
+Several of these levels correspond to a resident needing help, one level = does not need help, and one level = unknown. 
+
+Let's convert each of these ADLs variables to logical variables (called `tmp` below) and immediately tabulate the logical variables. In addition, let's count how many ADLs were present:
+
+```{r, results='asis'}
+vrs = c("bathhlp", "walkhlp", "dreshlp", "transhlp", "toilhlp", "eathlp")
+mysurvey$variables$num_adl = 0
+for (vr in vrs) {
+  mysurvey$variables$tmp = NA
+  mysurvey$variables$tmp[which(mysurvey$variables[,vr] %in%
+                                 c("NEED HELP OR SUPERVISION FROM ANOTHER PERSON"
+                                   , "USE OF AN ASSISTIVE DEVICE"
+                                   , "BOTH"))] = TRUE
+  mysurvey$variables$tmp[which(mysurvey$variables[,vr] == "NEED NO ASSISTANCE")] = FALSE
+  # If neither TRUE nor FALSE, stays as NA (unknown).
+
+  # Transfer the variable label
+  attr(mysurvey$variables$tmp, "label") = attr(mysurvey$variables[,vr], "label")
+  # Percentages based on knowns only
+  tab("tmp", drop_na = TRUE)
+
+  # Count
+  idx = which(mysurvey$variables$tmp)
+  mysurvey$variables$num_adl[idx] = mysurvey$variables$num_adl[idx] + 1
+}
+
+```
+
+For generating the figure, create a categorical variable based on `num_adl`, which is numeric. When using `cut`, to avoid errors, it is a good practice for `breaks` to start at `-Inf` and end at `Inf`.
+
+```{r, results='asis'}
+mysurvey$variables$`Number of ADLs` = cut(mysurvey$variables$num_adl
+                                          , breaks = c(-Inf, 0, 2, 6, Inf)
+                                          , labels = c("0", "1-2", "3-6", "??"))
+tab("Number of ADLs")
+```

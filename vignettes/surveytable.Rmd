@@ -30,7 +30,7 @@ Begin by loading the `surveytable` package. When you do, it will print a message
 library(surveytable)
 ```
 
-Now, specify the survey which you'd like to analyze.
+Now, specify the survey that you'd like to analyze.
 
 ```{r, results='asis'}
 mysurvey = vars2019
@@ -49,7 +49,7 @@ List the variables that start with the letters `age`:
 var_list("age")
 ```
 
-The table lists variable name, class (or the type of variable), and variable label, which is the long name of the variable. Common classes are `factor` (categorical variable), `logical` (yes / no variable), and numeric.
+The table lists variable name, class (or the type of variable), and variable label, which is the long name of the variable. Common classes are `factor` (categorical variable), `logical` (yes / no variable), and `numeric`.
 
 # Tabulate categorical and logical variables
 ```{r, results='asis'}

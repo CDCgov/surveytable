@@ -21,6 +21,7 @@ Imports:
     survey
 Suggests: 
     knitr, 
-    rmarkdown
+    rmarkdown, 
+    nchsdata
 VignetteBuilder: knitr
 URL: https://kpr9.pages.biotech.cdc.gov/surveytable/index.html , https://git.biotech.cdc.gov/kpr9/surveytable
