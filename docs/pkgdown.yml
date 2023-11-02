@@ -6,5 +6,8 @@ articles:
   Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables: Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html
   Example-Residential-Care-Community-RCC-Services-User-SU: Example-Residential-Care-Community-RCC-Services-User-SU.html
   surveytable: surveytable.html
-last_built: 2023-11-01T17:31Z
+last_built: 2023-11-02T17:32Z
+urls:
+  reference: https://cdcgov.github.io/surveytable/reference
+  article: https://cdcgov.github.io/surveytable/articles
 

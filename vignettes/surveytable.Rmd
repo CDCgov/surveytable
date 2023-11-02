@@ -63,7 +63,7 @@ For each level of the variable, the table shows:
 * estimated count, its standard error, and the 95% confidence interval
 * estimated percentage, its standard error, and the 95% confidence interval
 
-If there are flags for presentation standards for counts and percentages, they are shown in an additional column and in the footnote. 
+If there are flags for presentation standards for counts or percentages, they are shown in an additional column and in the footnote. 
 
 Several more tables: 
 
