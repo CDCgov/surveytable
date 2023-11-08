@@ -69,13 +69,13 @@ For each level of the variable, the table shows:
 
 **NCHS presentation standards.** The `tab` function also applies the NCHS presentation standards for counts and percentages, and flags estimates if, according to the standards, they should be suppressed, footnoted, or reviewed by an analyst. The CIs that are displayed are the ones that are used by the NCHS presentation standards. Specifically, for counts, the tables show the log Student's t 95% CI, with adaptations for complex surveys; for percentages, they show the 95% Korn and Graubard CI.
 
-One does not need to do anything extra to perform presentation standards checking. It is performed automatically. For example, let's tabulate `PAYWKCMP` (Expected source of payment for visit: Workers Compensation):
+One does not need to do anything extra to perform presentation standards checking -- it is performed automatically. For example, let's tabulate `PAYNOCHG` (a variable indicating whether there was no charge for the physician visit): 
 
 ```{r, results='asis'}
-tab("PAYWKCMP")
+tab("PAYNOCHG")
 ```
 
-This table tells us that, according to the NCHS presentation standards, both the count and the percentage of visits in which the expected source of payment was workers' compensation should be suppressed due to low precision. This makes intuitive sense as the confidence intervals for these estimates are very wide.
+This table tells us that, according to the NCHS presentation standards, the estimated number of visits in which there was no charge for the visit should be suppressed due to low precision. However, the lack of a percentage flag indicates that the estimated percentage of such visits can be shown. 
 
 **Drop missing values.** Some variables might contain missing values (`NA`). Consider the following variable, which is not part of the actual survey, but was constructed specifically for this example:
 
@@ -240,13 +240,37 @@ tab_subset_rate("AGER", "SEX", uspop2019$`AGER x SEX`)
 
 In some situations, it might be necessary to modify survey variables, or to create new ones. This section describes how to do this.
 
-**Collapse levels.** The variable `PRIMCARE` has levels "Unknown" and "Blank", among others. 
+**Convert factor to logical.** The variable `MAJOR` (major reason for this visit) has several levels. 
+
+```{r, results='asis'}
+tab("MAJOR")
+```
+
+Suppose an analyst is only interested in preventive care visits. Instead of tabulating all levels of `MAJOR`, they could type:
+
+```{r, results='asis'}
+var_case("Preventive care visits", "MAJOR", "Preventive care")
+tab("Preventive care visits")
+```
+
+This creates a logical variable that is `TRUE` for preventive care visits and then tabulates it. When using the `var_case` function, specify the name of the new logical variable to be created, an existing factor variable, and one or more levels of the factor variable that should be set to `TRUE` in the logical variable. 
+
+Thus, if an analyst is interested in surgery-related visits, they could type:
+
+```{r, results='asis'}
+var_case("Surgery-related visits"
+  , "MAJOR"
+  , c("Pre-surgery", "Post-surgery"))
+tab("Surgery-related visits")
+```
+
+**Collapse levels.** The variable `PRIMCARE` (whether the physician is this patient's primary care provider) has levels `Unknown` and `Blank`, among others. 
 
 ```{r, results='asis'}
 tab("PRIMCARE")
 ```
 
-To collapse these two levels into a single level, type:
+To collapse `Unknown` and `Blank` into a single level, type:
 
 ```{r, results='asis'}
 var_collapse("PRIMCARE", "Unknown if PCP", c("Unknown", "Blank"))

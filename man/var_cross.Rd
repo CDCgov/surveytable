@@ -28,6 +28,7 @@ tab("Age x Sex")
 \seealso{
 Other variables: 
 \code{\link{var_any}()},
+\code{\link{var_case}()},
 \code{\link{var_collapse}()},
 \code{\link{var_copy}()},
 \code{\link{var_cut}()}

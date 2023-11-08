@@ -1,6 +1,6 @@
 Package: surveytable
 Title: Streamlined output from the `survey` package
-Version: 0.5
+Version: 0.9
 Authors@R: 
     person("Alex", "Strashny", , "AStrashny@cdc.gov", role = c("aut", "cre"))
 Description: Streamlined output from the `survey` package.
