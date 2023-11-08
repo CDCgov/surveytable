@@ -4,13 +4,13 @@
     <loc>https://cdcgov.github.io/surveytable/404.html</loc>
   </url>
   <url>
-    <loc>https://cdcgov.github.io/surveytable/articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.html</loc>
+    <loc>https://cdcgov.github.io/surveytable/articles/a01-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html</loc>
   </url>
   <url>
-    <loc>https://cdcgov.github.io/surveytable/articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html</loc>
+    <loc>https://cdcgov.github.io/surveytable/articles/a02-Example-Residential-Care-Community-RCC-Services-User-SU.html</loc>
   </url>
   <url>
-    <loc>https://cdcgov.github.io/surveytable/articles/Example-Residential-Care-Community-RCC-Services-User-SU.html</loc>
+    <loc>https://cdcgov.github.io/surveytable/articles/a03-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.html</loc>
   </url>
   <url>
     <loc>https://cdcgov.github.io/surveytable/articles/index.html</loc>
@@ -79,9 +79,21 @@
     <loc>https://cdcgov.github.io/surveytable/reference/vars2019.html</loc>
   </url>
   <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/var_list.html</loc>
+    <loc>https://cdcgov.github.io/surveytable/reference/var_any.html</loc>
   </url>
   <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/var_num.html</loc>
+    <loc>https://cdcgov.github.io/surveytable/reference/var_collapse.html</loc>
+  </url>
+  <url>
+    <loc>https://cdcgov.github.io/surveytable/reference/var_copy.html</loc>
+  </url>
+  <url>
+    <loc>https://cdcgov.github.io/surveytable/reference/var_cross.html</loc>
+  </url>
+  <url>
+    <loc>https://cdcgov.github.io/surveytable/reference/var_cut.html</loc>
+  </url>
+  <url>
+    <loc>https://cdcgov.github.io/surveytable/reference/var_list.html</loc>
   </url>
 </urlset>

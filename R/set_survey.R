@@ -25,22 +25,25 @@
 set_survey = function(survey_name = "") {
   assert_that(is.string(survey_name), nzchar(survey_name)
               , msg = "survey_name must be a character string.")
-  tmp = get0(survey_name)
-  assert_that(!is.null(tmp)
+  design = get0(survey_name)
+  assert_that(!is.null(design)
       , msg = paste0(survey_name, " does not exist. Did you forget to load it?"))
-  assert_that(inherits(tmp, "survey.design")
-      , msg = paste0(survey_name, " must be a survey.design. Is ", class(tmp)[1] ))
+  assert_that(inherits(design, "survey.design")
+      , msg = paste0(survey_name, " must be a survey.design. Is ", class(design)[1] ))
 
   options(surveytable.survey = survey_name)
 
-  dl = attr(tmp, "label")
+  dl = attr(design, "label")
   if(is.null(dl)) dl = survey_name
   assert_that(is.string(dl), nzchar(dl))
   options(surveytable.survey_label = dl)
 
-  message("* Analyzing ", dl)
-  print(tmp)
-  var_num()
+  out = list(`Survey name` = dl
+             , `Number of variables` = ncol(design$variables)
+             , `Number of observations` = nrow(design$variables))
+  class(out) = "simple.list"
+  print(out)
+  print(design)
 
   message("* To adjust how counts are rounded, see ?set_count_int")
   invisible(NULL)
@@ -50,11 +53,14 @@ set_survey = function(survey_name = "") {
 #' @export
 show_survey = function() {
   dl = getOption("surveytable.survey_label")
-  message("* Analyzing ", dl)
 
   design = .load_survey()
+  out = list(`Survey name` = dl
+             , `Number of variables` = ncol(design$variables)
+             , `Number of observations` = nrow(design$variables))
+  class(out) = "simple.list"
+  print(out)
   print(design)
-  var_num()
 
   message("* To adjust how counts are rounded, see ?set_count_int")
   invisible(NULL)
@@ -64,10 +70,10 @@ show_survey = function() {
   survey_name = getOption("surveytable.survey")
   assert_that(is.string(survey_name), nzchar(survey_name)
               , msg = "You need to specify a survey before the other functions will work. See ?set_survey")
-  tmp = get0(survey_name)
-  assert_that(!is.null(tmp)
+  design = get0(survey_name)
+  assert_that(!is.null(design)
               , msg = paste0(survey_name, " does not exist. Did you forget to load it? See ?set_survey"))
-  assert_that(inherits(tmp, "survey.design")
-          , msg = paste0(survey_name, " must be a survey.design. Is ", class(tmp)[1] ))
-  tmp
+  assert_that(inherits(design, "survey.design")
+          , msg = paste0(survey_name, " must be a survey.design. Is ", class(design)[1] ))
+  design
 }

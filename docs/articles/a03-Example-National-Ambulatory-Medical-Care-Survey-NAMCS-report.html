@@ -44,9 +44,9 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.html">Example: National Ambulatory Medical Care Survey (NAMCS) report</a>
-    <a class="dropdown-item" href="../articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a>
-    <a class="dropdown-item" href="../articles/Example-Residential-Care-Community-RCC-Services-User-SU.html">Example: Residential Care Community (RCC) Services User (SU)</a>
+    <a class="dropdown-item" href="../articles/a01-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a>
+    <a class="dropdown-item" href="../articles/a02-Example-Residential-Care-Community-RCC-Services-User-SU.html">Example: Residential Care Community (RCC) Services User (SU)</a>
+    <a class="dropdown-item" href="../articles/a03-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.html">Example: National Ambulatory Medical Care Survey (NAMCS) report</a>
   </div>
 </li>
       </ul>
@@ -76,8 +76,8 @@
       <img src="" class="logo" alt=""><h1>Example: National Ambulatory Medical Care Survey (NAMCS) report</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/CDCgov/surveytable/blob/HEAD/vignettes/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.Rmd" class="external-link"><code>vignettes/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.Rmd</code></a></small>
-      <div class="d-none name"><code>Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/CDCgov/surveytable/blob/HEAD/vignettes/a03-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.Rmd" class="external-link"><code>vignettes/a03-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.Rmd</code></a></small>
+      <div class="d-none name"><code>a03-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.Rmd</code></div>
     </div>
 
     
@@ -94,12 +94,13 @@ patient can make multiple visits.</p>
 <p>The survey is available in the <code>nchsdata</code> package. To make
 the below code more reusable, we’ll call the survey by a generic name,
 namely, <code>mysurvey</code>.</p>
-<p>To calculate rates, we need another source of information with
-population estimates. You would typically use a function like
-<code><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv()</a></code> to load the population estimates and get them
-into the correct format. The <code>surveytable</code> package comes with
-an object called <code>uspop2019</code> that contains several population
-estimates. These will be used here to calculate rates.</p>
+<p>To calculate rates, in addition to the survey, we need a source of
+information with population estimates. You would typically use a
+function such as <code><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv()</a></code> to load the population
+estimates and get them into the correct format. The
+<code>surveytable</code> package comes with an object called
+<code>uspop2019</code> that contains several population estimates for
+use in these examples.</p>
 <div class="section level2">
 <h2 id="begin">Begin<a class="anchor" aria-label="anchor" href="#begin"></a>
 </h2>
@@ -112,42 +113,15 @@ like to analyze. We are omitting that message here.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mysurvey</span> <span class="op">=</span> <span class="fu">nchsdata</span><span class="fu">::</span><span class="va"><a href="https://cdcgov.github.io/nchsdata/reference/namcs2019.html" class="external-link">namcs2019</a></span></span>
 <span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="st">"mysurvey"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; * Analyzing NAMCS 2019 PUF</span></span></code></pre></div>
-Stratified 1 - level Cluster Sampling design (with replacement) With
-(398) clusters. svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights =
-~PATWT, data = d1)
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-3">
-<caption style="caption-side: top; text-align: center;">
-Data summary {NAMCS 2019 PUF}
-</caption>
-<col>
-<col>
-<tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-What
-</th>
-<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-Value
-</th>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-Number of variables
-</td>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-1,095
-</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-Number of observations
-</td>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-8,250
-</td>
-</tr>
-</table>
-<pre><code><span><span class="co">#&gt; * To adjust how counts are rounded, see ?set_count_int</span></span></code></pre>
+<span><span class="co">#&gt;                        _             </span></span>
+<span><span class="co">#&gt; Survey name            NAMCS 2019 PUF</span></span>
+<span><span class="co">#&gt; Number of variables    1100          </span></span>
+<span><span class="co">#&gt; Number of observations 8250          </span></span>
+<span><span class="co">#&gt; Stratified 1 - level Cluster Sampling design (with replacement)</span></span>
+<span><span class="co">#&gt; With (398) clusters.</span></span>
+<span><span class="co">#&gt; svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span></span>
+<span><span class="co">#&gt;     data = d1)</span></span>
+<span><span class="co">#&gt; * To adjust how counts are rounded, see ?set_count_int</span></span></code></pre></div>
 <p>Check the survey name, survey design variables, and the number of
 observations to verify that it all looks correct.</p>
 </div>
@@ -158,14 +132,15 @@ observations to verify that it all looks correct.</p>
 and by sex.</p>
 <p>First, let’s convert the numeric variable <code>AGE</code> into a
 categorical variable with the categories that are used in the figure.
-This is done using the <code>cut</code> function.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">`Age group`</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html" class="external-link">cut</a></span><span class="op">(</span><span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">AGE</span></span>
-<span>  , breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fl">0</span>, <span class="fl">17</span>, <span class="fl">44</span>, <span class="fl">64</span>, <span class="cn">Inf</span><span class="op">)</span></span>
-<span>  , labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Under 1"</span>, <span class="st">"1-17"</span>, <span class="st">"18-44"</span>, <span class="st">"45-64"</span>, <span class="st">"65 and over"</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div>
+Converting a numeric variable to a categorical variable is done with the
+<code>var_cut</code> function.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/var_cut.html">var_cut</a></span><span class="op">(</span><span class="st">"Age group 5"</span>, <span class="st">"AGE"</span></span>
+<span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fl">0</span>, <span class="fl">17</span>, <span class="fl">44</span>, <span class="fl">64</span>, <span class="cn">Inf</span><span class="op">)</span></span>
+<span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Under 1"</span>, <span class="st">"1-17"</span>, <span class="st">"18-44"</span>, <span class="st">"45-64"</span>, <span class="st">"65 and over"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Given the population estimates that are available in
 <code>uspop2019</code>, calculate the rates:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/total_rate.html">total_rate</a></span><span class="op">(</span><span class="va">uspop2019</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-5">
 <caption style="caption-side: top; text-align: center;">
@@ -209,11 +184,11 @@ UL
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"Age group"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">`Age group`</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"Age group 5"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">`Age group 5`</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-5">
 <caption style="caption-side: top; text-align: center;">
-Age group (rate per 100 population) {NAMCS 2019 PUF}
+Age group 5 (rate per 100 population) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -328,7 +303,7 @@ Under 1
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"SEX"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">SEX</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-5">
 <caption style="caption-side: top; text-align: center;">
@@ -404,8 +379,10 @@ Male
 payment, and tests whether any of the pairs of percentages are equal.
 The table shows the same info by age group.</p>
 <p>First, let’s examine the levels of <code>PAYTYPER</code> (Type of
-payment).</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+payment). Recall that survey design objects have an element called
+<code>variables</code>, which is a data frame that contains the survey
+variables.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">PAYTYPER</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "All sources of payment are blank"           </span></span>
 <span><span class="co">#&gt; [2] "Unknown"                                    </span></span>
@@ -420,13 +397,14 @@ payment).</p>
 combined into a category called “No insurance”. Additionally, some
 categories are not shown in the published figure, which we will combine
 into a category called “etc”. Let’s combine the categories:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">PAYTYPER</span> <span class="op">=</span> <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_collapse.html" class="external-link">fct_collapse</a></span><span class="op">(</span><span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">PAYTYPER</span></span>
-<span>    , `No insurance` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Self-pay"</span>, <span class="st">"No charge/Charity"</span><span class="op">)</span></span>
-<span>    , etc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"All sources of payment are blank"</span>, <span class="st">"Unknown"</span></span>
-<span>      , <span class="st">"Worker's compensation"</span>, <span class="st">"Other"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/var_collapse.html">var_collapse</a></span><span class="op">(</span><span class="st">"PAYTYPER"</span>, <span class="st">"No insurance"</span></span>
+<span>             , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Self-pay"</span>, <span class="st">"No charge/Charity"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/var_collapse.html">var_collapse</a></span><span class="op">(</span><span class="st">"PAYTYPER"</span>, <span class="st">"etc"</span></span>
+<span>             , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"All sources of payment are blank"</span>, <span class="st">"Unknown"</span></span>
+<span>              , <span class="st">"Worker's compensation"</span>, <span class="st">"Other"</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div>
 <p>Now, tabulate this variable, testing equality of levels:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"PAYTYPER"</span>, test <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-8">
 <caption style="caption-side: top; text-align: center;">
@@ -812,10 +790,10 @@ statistically significant.</p>
 <p>To replicate the table, we need a variable of age categories – but
 these categories are different from the ones created above. Thus, create
 another age category variable, then tabulate subsets:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">`Age group`</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html" class="external-link">cut</a></span><span class="op">(</span><span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">AGE</span></span>
-<span>  , breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fl">17</span>, <span class="fl">64</span>, <span class="cn">Inf</span><span class="op">)</span></span>
-<span>  , labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Under 18"</span>, <span class="st">"18-64"</span>, <span class="st">"65 and over"</span><span class="op">)</span> <span class="op">)</span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/var_cut.html">var_cut</a></span><span class="op">(</span><span class="st">"Age group"</span>, <span class="st">"AGE"</span></span>
+<span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fl">17</span>, <span class="fl">64</span>, <span class="cn">Inf</span><span class="op">)</span></span>
+<span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Under 18"</span>, <span class="st">"18-64"</span>, <span class="st">"65 and over"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"PAYTYPER"</span>, <span class="st">"Age group"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-9">
 <caption style="caption-side: top; text-align: center;">
@@ -1448,9 +1426,9 @@ Cx: suppress count (and rate)
 </tr>
 </table>
 <p>Again, note the presentation flags. Some of the flags are concerned
-with counts – since the published table does not show counts, we are not
-concerned with these. However, for the 18-64 age group, the “No
-insurance” category is flagged.</p>
+with counts – since the published table does not show counts, these are
+not relevant. However, for the 18-64 age group, the “No insurance”
+category is flagged.</p>
 </div>
 <div class="section level2">
 <h2 id="figure-3-and-table-3">Figure 3 and Table 3<a class="anchor" aria-label="anchor" href="#figure-3-and-table-3"></a>
@@ -1467,7 +1445,7 @@ according to the value of <code>MAJOR</code>. In addition, the figure
 collapses some of the levels of <code>MAJOR</code>.</p>
 <p>Let’s begin by collapsing these levels of <code>MAJOR</code>, to
 match the figure:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">MAJOR</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Blank"                               </span></span>
 <span><span class="co">#&gt; [2] "New problem (less than 3 mos. onset)"</span></span>
@@ -1476,16 +1454,17 @@ match the figure:</p>
 <span><span class="co">#&gt; [5] "Pre-surgery"                         </span></span>
 <span><span class="co">#&gt; [6] "Post-surgery"                        </span></span>
 <span><span class="co">#&gt; [7] "Preventive care"</span></span>
-<span><span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">MAJOR</span> <span class="op">=</span> <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_collapse.html" class="external-link">fct_collapse</a></span><span class="op">(</span><span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">MAJOR</span></span>
-<span>    , `Pre- and postsurgery` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Pre-surgery"</span>, <span class="st">"Post-surgery"</span><span class="op">)</span></span>
-<span>    , Chronic <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Chronic problem, routine"</span>, <span class="st">"Chronic problem, flare-up"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/var_collapse.html">var_collapse</a></span><span class="op">(</span><span class="st">"MAJOR"</span>, <span class="st">"Pre- and postsurgery"</span></span>
+<span>              , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Pre-surgery"</span>, <span class="st">"Post-surgery"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/var_collapse.html">var_collapse</a></span><span class="op">(</span><span class="st">"MAJOR"</span>, <span class="st">"Chronic"</span></span>
+<span>              , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Chronic problem, routine"</span>, <span class="st">"Chronic problem, flare-up"</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
 <p>Create a new variable, called <code>Reason</code>. Initialize it to
 <code>NA</code>. Copy over all values of <code>MAJOR</code> to
 <code>Reason</code> other than “Blank” – when <code>MAJOR</code> is
 “Blank”, <code>Reason</code> becomes <code>NA</code>. Since we’ll be
 combining two factor variables, an easy solution is to convert to
 character here, and then convert back to factor later.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">idx</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span> <span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">MAJOR</span> <span class="op">!=</span> <span class="st">"Blank"</span> <span class="op">)</span></span>
 <span><span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">Reason</span><span class="op">[</span><span class="va">idx</span><span class="op">]</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span> <span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">MAJOR</span><span class="op">[</span><span class="va">idx</span><span class="op">]</span> <span class="op">)</span></span></code></pre></div>
 <p>Now, let’s incorporate the <code>INJURY</code> variable.
@@ -1493,7 +1472,7 @@ character here, and then convert back to factor later.</p>
 <strong>then</strong> <code>INJURY</code>. Since <code>INJURY</code> is
 added second, it trumps any value of <code>MAJOR</code>. This is what we
 want.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">INJURY</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Blank"                      "Unknown"                   </span></span>
 <span><span class="co">#&gt; [3] "No"                         "Yes"                       </span></span>
@@ -1505,7 +1484,7 @@ want.</p>
 <p>Since the figure is based on knowns only, use the
 <code>drop_na</code> argument to ignore missing values
 (<code>NA</code>):</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"Reason"</span>, drop_na <span class="op">=</span> <span class="cn">TRUE</span>, test <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-13">
 <caption style="caption-side: top; text-align: center;">
@@ -1869,7 +1848,7 @@ Preventive care
 </tr>
 </table>
 <p>The table shows the same information, by age group:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"Reason"</span>, <span class="st">"Age group"</span>, drop_na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-14">
 <caption style="caption-side: top; text-align: center;">
@@ -2465,6 +2444,815 @@ Preventive care
 </td>
 </tr>
 </table>
+</div>
+<div class="section level2">
+<h2 id="figure-4-and-table-4">Figure 4 and Table 4<a class="anchor" aria-label="anchor" href="#figure-4-and-table-4"></a>
+</h2>
+<p>The figure shows the percentage of visits by selected services
+ordered or provided (not mutually exclusive). The table shows this
+information by age.</p>
+<p><strong>Laboratory tests.</strong> The survey has several binary
+variables indicating whether a certain laboratory test was ordered or
+provided. If any of these variables are <code>TRUE</code>, then it
+counts as a laboratory test visit.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/var_list.html">var_list</a></span><span class="op">(</span><span class="st">"bmp"</span><span class="op">)</span></span></code></pre></div>
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-15">
+<caption style="caption-side: top; text-align: center;">
+Variables beginning with ‘bmp’ {NAMCS 2019 PUF}
+</caption>
+<col>
+<col>
+<col>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Variable
+</th>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Class
+</th>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Label
+</th>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+BMP
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+logical
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Basic metabolic panel (BMP)
+</td>
+</tr>
+</table>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/var_list.html">var_list</a></span><span class="op">(</span><span class="st">"cbc"</span><span class="op">)</span></span></code></pre></div>
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-15">
+<caption style="caption-side: top; text-align: center;">
+Variables beginning with ‘cbc’ {NAMCS 2019 PUF}
+</caption>
+<col>
+<col>
+<col>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Variable
+</th>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Class
+</th>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Label
+</th>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+CBC
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+logical
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+CBC (complete blood count)
+</td>
+</tr>
+</table>
+<p>To create a variable that is <code>TRUE</code> if any variable in a
+list is <code>TRUE</code>, use the <code>var_any</code> function:</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/var_any.html">var_any</a></span><span class="op">(</span><span class="st">"Laboratory tests"</span></span>
+<span>  , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BMP"</span>, <span class="st">"CBC"</span>, <span class="st">"CHLAMYD"</span>, <span class="st">"CMP"</span>, <span class="st">"CREAT"</span>, <span class="st">"BLDCX"</span>, <span class="st">"TRTCX"</span></span>
+<span>      , <span class="st">"URNCX"</span>, <span class="st">"OTHCX"</span>, <span class="st">"GLUCOSE"</span>, <span class="st">"GCT"</span>, <span class="st">"HGBA"</span>, <span class="st">"HEPTEST"</span></span>
+<span>      , <span class="st">"HIVTEST"</span>, <span class="st">"HPVDNA"</span>, <span class="st">"CHOLEST"</span>, <span class="st">"HEPATIC"</span>, <span class="st">"PAP"</span></span>
+<span>      , <span class="st">"PREGTEST"</span>, <span class="st">"PSA"</span>, <span class="st">"STREP"</span>, <span class="st">"THYROID"</span>, <span class="st">"URINE"</span>, <span class="st">"VITD"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"Laboratory tests"</span><span class="op">)</span></span></code></pre></div>
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-16">
+<caption style="caption-side: top; text-align: center;">
+Laboratory tests {NAMCS 2019 PUF}
+</caption>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Level
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Number (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+SE (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+LL (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+UL (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Percent
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+SE
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+LL
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+UL
+</th>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+FALSE
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+785,962
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+42,467
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+706,937
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+873,821
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+75.8
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+1.7
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+72.2
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+79.2
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+TRUE
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+250,522
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+20,667
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+213,061
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+294,571
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+24.2
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+1.7
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+20.8
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+27.8
+</td>
+</tr>
+<tr>
+<td colspan="9" style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+(No flags.)
+</td>
+</tr>
+</table>
+<p><strong>Other variables.</strong> Three other variables in the figure
+follow the same logic. Let’s create and tabulate them now.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/var_any.html">var_any</a></span><span class="op">(</span><span class="st">"Health education"</span></span>
+<span>  , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ETOHED"</span>, <span class="st">"ASTHMAED"</span>, <span class="st">"ASTHMAP"</span>, <span class="st">"DIAEDUC"</span>, <span class="st">"DIETNUTR"</span>, <span class="st">"EXERCISE"</span></span>
+<span>      ,<span class="st">"FAMPLAN"</span>, <span class="st">"GENETIC"</span>, <span class="st">"GRWTHDEV"</span>, <span class="st">"INJPREV"</span>, <span class="st">"STDPREV"</span>, <span class="st">"STRESMGT"</span></span>
+<span>      , <span class="st">"SUBSTED"</span>, <span class="st">"TOBACED"</span>, <span class="st">"WTREDUC"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"Health education"</span><span class="op">)</span></span></code></pre></div>
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-17">
+<caption style="caption-side: top; text-align: center;">
+Health education {NAMCS 2019 PUF}
+</caption>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Level
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Number (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+SE (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+LL (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+UL (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Percent
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+SE
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+LL
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+UL
+</th>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+FALSE
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+829,589
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+41,635
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+751,829
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+915,392
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+80
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+2
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+75.7
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+83.9
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+TRUE
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+206,895
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+24,348
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+164,193
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+260,703
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+20
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+2
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+16.1
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+24.3
+</td>
+</tr>
+<tr>
+<td colspan="9" style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+(No flags.)
+</td>
+</tr>
+</table>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="../reference/var_any.html">var_any</a></span><span class="op">(</span><span class="st">"Imaging services"</span></span>
+<span>  , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ANYIMAGE"</span>, <span class="st">"BONEDENS"</span>, <span class="st">"CATSCAN"</span>, <span class="st">"ECHOCARD"</span>, <span class="st">"OTHULTRA"</span>, <span class="st">"MAMMO"</span></span>
+<span>      , <span class="st">"MRI"</span>, <span class="st">"XRAY"</span>, <span class="st">"OTHIMAGE"</span><span class="op">)</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"Imaging services"</span><span class="op">)</span></span></code></pre></div>
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-17">
+<caption style="caption-side: top; text-align: center;">
+Imaging services {NAMCS 2019 PUF}
+</caption>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Level
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Number (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+SE (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+LL (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+UL (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Percent
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+SE
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+LL
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+UL
+</th>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+FALSE
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+901,115
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+43,298
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+820,085
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+990,151
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+86.9
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+1.1
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+84.6
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+89.1
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+TRUE
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+135,369
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+13,574
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+111,134
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+164,890
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+13.1
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+1.1
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+10.9
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+15.4
+</td>
+</tr>
+<tr>
+<td colspan="9" style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+(No flags.)
+</td>
+</tr>
+</table>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="../reference/var_any.html">var_any</a></span><span class="op">(</span><span class="st">"Procedures"</span></span>
+<span>  , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AUDIO"</span>, <span class="st">"BIOPSY"</span>, <span class="st">"CARDIAC"</span>, <span class="st">"COLON"</span>, <span class="st">"CRYO"</span>, <span class="st">"EKG"</span>, <span class="st">"EEG"</span>,</span>
+<span>      <span class="st">"EMG"</span>, <span class="st">"EXCISION"</span>, <span class="st">"FETAL"</span>, <span class="st">"PEAK"</span>, <span class="st">"SIGMOID"</span>, <span class="st">"SPIRO"</span>, <span class="st">"TONO"</span>,</span>
+<span>      <span class="st">"TBTEST"</span>, <span class="st">"EGD"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"Procedures"</span><span class="op">)</span></span></code></pre></div>
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-17">
+<caption style="caption-side: top; text-align: center;">
+Procedures {NAMCS 2019 PUF}
+</caption>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Level
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Number (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+SE (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+LL (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+UL (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Percent
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+SE
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+LL
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+UL
+</th>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+FALSE
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+912,142
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+45,863
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+826,496
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+1,006,663
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+88
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+1.4
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+85.1
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+90.6
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+TRUE
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+124,342
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+14,939
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+98,168
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+157,495
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+12
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+1.4
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+9.4
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+14.9
+</td>
+</tr>
+<tr>
+<td colspan="9" style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+(No flags.)
+</td>
+</tr>
+</table>
+<p><strong>Examinations and screenings.</strong>
+<code>Examinations and screenings</code> is a little bit more involved.
+As with the variables above, it is <code>TRUE</code> if any of a number
+of variables are <code>TRUE</code>. However, it is also
+<code>TRUE</code> in another situation.</p>
+<p>There are five <code>DIAGx.unformatted</code> variables that contain
+diagnosis codes. Here they are:</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/var_list.html">var_list</a></span><span class="op">(</span><span class="st">"diag"</span><span class="op">)</span></span></code></pre></div>
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-18">
+<caption style="caption-side: top; text-align: center;">
+Variables beginning with ‘diag’ {NAMCS 2019 PUF}
+</caption>
+<col>
+<col>
+<col>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Variable
+</th>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Class
+</th>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Label
+</th>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+DIAG1
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+factor
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Diagnosis #1
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+DIAG1.unformatted
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+character
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Diagnosis #1 (unformatted)
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+DIAG2
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+factor
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Diagnosis #2
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+DIAG2.unformatted
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+character
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Diagnosis #2 (unformatted)
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+DIAG3
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+factor
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Diagnosis #3
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+DIAG3.unformatted
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+character
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Diagnosis #3 (unformatted)
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+DIAG4
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+factor
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Diagnosis #4
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+DIAG4.unformatted
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+character
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Diagnosis #4 (unformatted)
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+DIAG5
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+factor
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Diagnosis #5
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+DIAG5.unformatted
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+character
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Diagnosis #5 (unformatted)
+</td>
+</tr>
+</table>
+<p>If any of these diagnosis codes begins with either “Z0” or “Z1”, then
+<code>Examinations and screenings</code> is also <code>TRUE</code>.</p>
+<p>To begin, let’s create logical variables that are true if the
+diagnosis codes begin with either “Z0” or “Z1”:</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">ii</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">vr</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"DIAG"</span>, <span class="va">ii</span>, <span class="st">".unformatted"</span><span class="op">)</span></span>
+<span>  <span class="va">newvr</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Z_DIAG"</span>, <span class="va">ii</span><span class="op">)</span></span>
+<span>  <span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span><span class="op">[</span>,<span class="va">newvr</span><span class="op">]</span> <span class="op">=</span> <span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/startsWith.html" class="external-link">startsWith</a></span><span class="op">(</span><span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span><span class="op">[</span>,<span class="va">vr</span><span class="op">]</span>, <span class="st">"Z0"</span><span class="op">)</span></span>
+<span>    <span class="op">|</span> <span class="fu"><a href="https://rdrr.io/r/base/startsWith.html" class="external-link">startsWith</a></span><span class="op">(</span><span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span><span class="op">[</span>,<span class="va">vr</span><span class="op">]</span>, <span class="st">"Z1"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>Now, we can use <code>var_any</code> with the list of variables from
+the original survey, plus the variables that we just created:</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/var_any.html">var_any</a></span><span class="op">(</span><span class="st">"Examinations and screenings"</span></span>
+<span>  <span class="co"># Variables from the original survey</span></span>
+<span>  , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ETOH"</span>, <span class="st">"BREAST"</span>, <span class="st">"DEPRESS"</span>, <span class="st">"DVS"</span>, <span class="st">"FOOT"</span>, <span class="st">"NEURO"</span></span>
+<span>    , <span class="st">"PELVIC"</span>, <span class="st">"RECTAL"</span>, <span class="st">"RETINAL"</span>, <span class="st">"SKIN"</span>, <span class="st">"SUBST"</span></span>
+<span>  <span class="co"># Newly created variables  </span></span>
+<span>    , <span class="st">"Z_DIAG1"</span>, <span class="st">"Z_DIAG2"</span>, <span class="st">"Z_DIAG3"</span>, <span class="st">"Z_DIAG4"</span>, <span class="st">"Z_DIAG5"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"Examinations and screenings"</span><span class="op">)</span></span></code></pre></div>
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-20">
+<caption style="caption-side: top; text-align: center;">
+Examinations and screenings {NAMCS 2019 PUF}
+</caption>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Level
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Number (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+SE (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+LL (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+UL (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Percent
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+SE
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+LL
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+UL
+</th>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+FALSE
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+543,390
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+40,853
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+468,882
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+629,739
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+52.4
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+3.4
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+45.5
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+59.2
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+TRUE
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+493,094
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+44,378
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+413,280
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+588,322
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+47.6
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+3.4
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+40.8
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+54.5
+</td>
+</tr>
+<tr>
+<td colspan="9" style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+(No flags.)
+</td>
+</tr>
+</table>
+<p><strong>Table.</strong> The published table shows all of the above by
+age. Because so many tables are created, let’s send them to a CSV file
+instead of the screen:</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_output.html">set_output</a></span><span class="op">(</span>csv <span class="op">=</span> <span class="st">"out.csv"</span>, screen <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">vr</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Laboratory tests"</span>, <span class="st">"Health education"</span>, <span class="st">"Imaging services"</span></span>
+<span>  , <span class="st">"Procedures"</span>, <span class="st">"Examinations and screenings"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="va">vr</span>, <span class="st">"Age group"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu"><a href="../reference/set_output.html">set_output</a></span><span class="op">(</span>csv <span class="op">=</span> <span class="st">""</span>, screen <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; * Turning off CSV output.</span></span>
+<span><span class="co">#&gt; * Sending output to the screen.</span></span>
+<span><span class="co">#&gt; * ?set_output for other options.</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

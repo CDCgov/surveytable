@@ -2,7 +2,6 @@
 % Please edit documentation in R/tab_cross.R, R/tab_subset.R
 \name{tab_cross}
 \alias{tab_cross}
-\alias{var_cross}
 \alias{tab_subset}
 \title{Tabulate subsets or interactions}
 \usage{
@@ -13,8 +12,6 @@ tab_cross(
   screen = getOption("surveytable.screen"),
   csv = getOption("surveytable.csv")
 )
-
-var_cross(newvr, vr, vrby)
 
 tab_subset(
   vr,
@@ -39,8 +36,6 @@ tab_subset(
 
 \item{csv}{name of a CSV file}
 
-\item{newvr}{name of the new variable to be created}
-
 \item{lvls}{(optional) only show these levels of \code{vrby}}
 
 \item{test}{perform hypothesis test?}
@@ -53,7 +48,6 @@ tab_subset(
 \itemize{
 \item \code{tab_subset}: A list of \code{data.frame} tables or a single \code{data.frame} table.
 \item \code{tab_cross}: A \code{data.frame} table.
-\item \code{var_cross}: (Nothing.)
 }
 }
 \description{
@@ -70,10 +64,7 @@ Test equality of proportions or means.
 variable. Tables created using \code{tab_subset} and \code{tab_cross} have the same
 counts but different percentages. With \code{tab_subset}, percentages within each
 subset add up to 100\%. With \code{tab_cross}, percentages across the entire
-population add up to 100\%.
-
-\code{var_cross} creates the new variable and updates the survey,
-but does not tabulate the new variable. Use \code{\link[=tab]{tab()}} to tabulate it.
+population add up to 100\%. Also see \code{\link[=var_cross]{var_cross()}}.
 }
 \examples{
 set_survey("vars2019")
@@ -83,10 +74,6 @@ tab_subset("AGER", "SEX")
 
 # Same counts as tab_subset(), but different percentages.
 tab_cross("AGER", "SEX")
-
-# Same thing, but creates and retains the new variable:
-var_cross("Age x Sex", "AGER", "SEX")
-tab("Age x Sex")
 
 # What are the levels or MAJOR?
 tab("MAJOR")

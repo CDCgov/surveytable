@@ -2,7 +2,7 @@
 title: "Example: National Ambulatory Medical Care Survey (NAMCS) tables"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables}
+  %\VignetteIndexEntry{Example: National Ambulatory Medical Care Survey (NAMCS) tables}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 This example uses the National Ambulatory Medical Care Survey (NAMCS) 2019 Public Use File (PUF) to replicate certain tables from the [National Ambulatory Medical Care Survey: 2019 National Summary Tables](https://www.cdc.gov/nchs/data/ahcd/namcs_summary/2019-namcs-web-tables-508.pdf). NAMCS is "an annual nationally representative sample survey of visits to nonfederal office-based patient care physicians, excluding anesthesiologists, radiologists, and pathologists." Note that the unit of observation is visits, not patients – this distinction is important since a single patient can make multiple visits.
 
-Selected variables from NAMCS 2019 come with the `surveytable` package, in an object called `vars2019`. Alternatively, if you have installed the `nchsdata` package, to access the full NAMCS 2019, use `nchsdata::namcs2019`.
+Selected variables from NAMCS 2019 come with the `surveytable` package, for use in examples, in an object called `vars2019`. Alternatively, if you have installed the `nchsdata` package, to access the full NAMCS 2019, use `nchsdata::namcs2019`.
 
 To make the below code more reusable, we'll call the survey by a generic name, namely, `mysurvey`.
 
@@ -30,7 +30,7 @@ library(surveytable)
 
 Now, specify the survey that you'd like to analyze.
 
-```{r, results='asis'}
+```{r}
 mysurvey = vars2019
 # Or, if nchsdata has been installed, 
 # mysurvey = nchsdata::namcs2019
@@ -54,7 +54,7 @@ tab("MDDO", "SPECCAT", "MSA")
 
 ## Rates
 
-The table also shows several rates. To calculate rates, we need another source of information with population estimates. You would typically use a function like `read.csv()` to load the population estimates and get them into the correct format. The `surveytable` package comes with an object called `uspop2019` that contains several population estimates for use in these examples.
+The published table also shows several rates. To calculate rates, in addition to the survey, we need a source of information with population estimates. You would typically use a function such as `read.csv()` to load the population estimates and get them into the correct format. The `surveytable` package comes with an object called `uspop2019` that contains several population estimates for use in these examples.
 
 ```{r}
 class(uspop2019)
@@ -71,24 +71,26 @@ Once we have the overall population estimate, the overall rate is:
 total_rate(uspop2019$total)
 ```
 
-Each survey design object has an element called `variables`, which is a data frame that contains the survey variables. Let's examine the levels of `MSA`.
+Recall that survey design objects have an element called `variables`, which is a data frame that contains the survey variables. Let's examine the levels of `MSA`.
 
 ```{r}
 levels(mysurvey$variables$MSA)
 ```
 
-To calculate the rates, we need to provide a data frame with a variable called `Level` that matches the levels of the variable in the survey. `Population` gives the population estimate.
+To calculate the rates for a particular variable, we need to provide a data frame with a variable called `Level` that matches the levels of the variable in the survey. `Population` gives the population estimate.
+
+For example, for `MSA`, we need a data frame as follows:
 
 ```{r}
 uspop2019$MSA
 ```
 
-Now that we have the appropriate population estimates:
+Now that we have the appropriate population estimates, the rate is:
 ```{r, results='asis'}
 tab_rate("MSA", uspop2019$MSA)
 ```
 
-We can also calculate rates based on the entire population.
+We can also calculate rates of a specific variable based on the entire population:
 ```{r, results='asis'}
 tab_rate("MDDO", uspop2019$total)
 tab_rate("SPECCAT", uspop2019$total)
@@ -104,26 +106,18 @@ This table presents estimates for each age group, as well as for each age group 
 var_list("age")
 ```
 
-The survey has a couple of relevant age-related variables. `AGE` is the patient age in years. `AGER` is a categorical variable based on `AGE`. However, for this table, in addition to `AGER`, we need an additional variable, with different age categories. 
-
-Each survey design object has an element called `variables`, which is a data frame that contains the survey variables. **We can add variables to this data frame.** We will create a new age recode, and add it to `mysurvey$variables`.
+The survey has a couple of relevant age-related variables. `AGE` is the patient age in years. `AGER` is a categorical variable based on `AGE`. However, for this table, in addition to `AGER`, we need another age group variable, with different age categories. We create it using the `var_cut` function. 
 
 ```{r}
-mysurvey$variables$`Another age recode` = cut(mysurvey$variables$AGE
-              , breaks = c(-Inf, 0, 4, 14, 64, Inf)
-              , labels = c("Under 1", "1-4", "5-14", "15-64", "65 and over") )
+var_cut("Age group", "AGE"
+        , c(-Inf, 0, 4, 14, 64, Inf)
+        , c("Under 1", "1-4", "5-14", "15-64", "65 and over") )
 ```
 
-Note:
-
-* We're using `cut()`, the standard way of creating a factor variable from a numeric variable.
-* **The survey variables are located in a data frame called `variables` inside the survey object.**
-* We're using backticks with variable names that include special characters, such as spaces.
-
-Now that we've created the `Another age recode` variable, we can create the tables:
+Now that we've created the `Age group` variable, we can create the tables:
 
 ```{r, results='asis'}
-tab("AGER", "Another age recode", "SEX")
+tab("AGER", "Age group", "SEX")
 tab_cross("AGER", "SEX")
 ```
 
@@ -131,7 +125,7 @@ tab_cross("AGER", "SEX")
 
 ```{r, results='asis'}
 tab_rate("AGER", uspop2019$AGER)
-tab_rate("Another age recode", uspop2019$`Another age recode`)
+tab_rate("Age group", uspop2019$`Age group`)
 tab_rate("SEX", uspop2019$SEX)
 ```
 
@@ -147,16 +141,18 @@ tab_subset_rate("AGER", "SEX", uspop2019$`AGER x SEX`)
 
 # Table 5
 
-This table gives the expected sources of payment. We use the `PAY*` variables to create several new variables that are required by the table. Note that the `PAY*` variables are logical (`TRUE` or `FALSE`), which simplifies the syntax. (The survey was imported into R using the `importsurvey` package, which automatically detects binary variables.)
+This table gives the expected sources of payment. We use the `PAY*` variables to create several new variables that are required by the table. Note that the `PAY*` variables are logical (`TRUE` or `FALSE`), which simplifies the syntax. (The survey was imported into R using the `importsurvey` package, which automatically detects binary variables and imports them as logical variables.)
+
+Recall that survey design objects have an element called `variables`, which is a data frame that contains the survey variables. 
 
 ```{r}
 mysurvey$variables = within(mysurvey$variables, {
   `Medicare and Medicaid` = PAYMCARE & PAYMCAID
   `Unknown or blank` = PAYDK | (NOPAY == "No categories marked")
-  bool.nop = !( PAYPRIV | PAYMCARE | PAYMCAID | PAYWKCMP
+  nopwu = !( PAYPRIV | PAYMCARE | PAYMCAID | PAYWKCMP
                 | PAYOTH | PAYDK)
-  `Self-pay (real)` = PAYSELF & bool.nop
-  `No charge (real)` = PAYNOCHG & bool.nop
+  `Self-pay (real)` = PAYSELF & nopwu
+  `No charge (real)` = PAYNOCHG & nopwu
   `No insurance` = `Self-pay (real)` | `No charge (real)`
 })
 ```
@@ -164,7 +160,7 @@ mysurvey$variables = within(mysurvey$variables, {
 Notes:
 
 * We're using the `within()` function to simplify the syntax.
-* `bool.nop` = No payment was used, such as private, Medicare, etc.
+* `nopwu` = No other payment was used, such as private, Medicare, etc.
 * `Self-pay (real)` = self-pay was used AND no other payment was used.
 
 ```{r, results='asis'}
@@ -179,13 +175,11 @@ Check the presentation standards flags! Under NCHS presentation standards rules,
 
 This table shows the primary care provider and referral status, by prior-visit status.
 
-In the table, the "Unknown" and "Blank" values are collapsed into a single value. We can collapse two or more levels of a factor into a single level using the `forcats::fct_collapse` function.
+In the table, the "Unknown" and "Blank" values are collapsed into a single value. We can collapse two or more levels of a factor into a single level using the `var_collapse` function.
 
 ```{r}
-mysurvey$variables$PRIMCARE = forcats::fct_collapse(mysurvey$variables$PRIMCARE
-    , `Unknown if PCP` = c("Unknown", "Blank"))
-mysurvey$variables$REFER = forcats::fct_collapse(mysurvey$variables$REFER
-    , `Unknown if referred` = c("Unknown", "Blank"))
+var_collapse("PRIMCARE", "Unknown if PCP", c("Unknown", "Blank"))
+var_collapse("REFER", "Unknown if referred", c("Unknown", "Blank"))
 ```
 
 Now, for the table:
@@ -205,7 +199,7 @@ tab_subset("REFER", "SENBEFOR")
 
 This table shows the same information as Table 3, but only for preventive care visits. That is, estimates for each age group, as well as for each age group by sex, but only for preventive care visits.
 
-The variable `Another age recode` has already been created in a previous example. Cross `AGER` and `SEX` to create a variable called `Age x Sex`: 
+The variable `Age group` has already been created in a previous example. Cross `AGER` and `SEX` to create a variable called `Age x Sex`: 
 
 ```{r}
 var_cross("Age x Sex", "AGER", "SEX")
@@ -221,7 +215,7 @@ To create the tables of age, sex, and their interaction, and limit them to only 
 
 ```{r, results='asis'}
 tab_subset("AGER", "MAJOR", "Preventive care")
-tab_subset("Another age recode", "MAJOR", "Preventive care")
+tab_subset("Age group", "MAJOR", "Preventive care")
 tab_subset("SEX", "MAJOR", "Preventive care")
 tab_subset("Age x Sex", "MAJOR", "Preventive care")
 ```
@@ -229,7 +223,7 @@ tab_subset("Age x Sex", "MAJOR", "Preventive care")
 As each of the above commands is similar, and differs only in the first variable that is passed to the `tab_subset()` function, this code can be streamlined with a `for` loop:
 
 ```{r, results='asis'}
-for (vr in c("AGER", "Another age recode", "SEX", "Age x Sex")) {
+for (vr in c("AGER", "Age group", "SEX", "Age x Sex")) {
 	tab_subset(vr, "MAJOR", "Preventive care")
 }
 ```
@@ -245,7 +239,7 @@ set_output(csv = "out.csv", screen = FALSE)
 ```
 
 ```{r}
-for (vr in c("AGER", "Another age recode", "SEX", "Age x Sex")) {
+for (vr in c("AGER", "Age group", "SEX", "Age x Sex")) {
 	var_cross("tmp", "MAJOR", vr)
 	for (lvl in levels(mysurvey$variables[,vr])) {
 		tab_subset("SPECCAT", "tmp", paste0("Preventive care : ", lvl))

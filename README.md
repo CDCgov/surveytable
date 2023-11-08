@@ -9,8 +9,8 @@
 In R, the standard way of analyzing complex surveys is using the
 `survey` package. The major purpose of the `surveytable` package is to
 ease the use of the `survey` package in certain applications.
-`surveytable` improves the output of `survey` functions by formatting
-and tabulating it; performs hypothesis tests; reduces the number of
+`surveytable` improves the output of `survey` functions (by formatting
+and tabulating it); performs hypothesis tests; reduces the number of
 commands that users need to execute; and applies presentation standards
 to estimates, which is the usual practice at the National Center for
 Health Statistics (NCHS).
@@ -57,45 +57,16 @@ library(surveytable)
 
 ``` r
 set_survey("vars2019")
-#> * Analyzing NAMCS 2019 PUF
+#>                        _             
+#> Survey name            NAMCS 2019 PUF
+#> Number of variables    36            
+#> Number of observations 8250          
+#> Stratified 1 - level Cluster Sampling design (with replacement)
+#> With (398) clusters.
+#> svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, 
+#>     data = d1)
+#> * To adjust how counts are rounded, see ?set_count_int
 ```
-
-Stratified 1 - level Cluster Sampling design (with replacement) With
-(398) clusters. svydesign(ids = \~CPSUM, strata = \~CSTRATM, weights =
-\~PATWT, data = d1)
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-3">
-<caption style="caption-side: top; text-align: center;">
-Data summary {NAMCS 2019 PUF}
-</caption>
-<col>
-<col>
-<tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-What
-</th>
-<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-Value
-</th>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-Number of variables
-</td>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-28
-</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-Number of observations
-</td>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-8,250
-</td>
-</tr>
-</table>
-
-    #> * To adjust how counts are rounded, see ?set_count_int
 
 ``` r
 tab("AGER")

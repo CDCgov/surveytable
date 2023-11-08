@@ -31,9 +31,9 @@ Test equality of proportions or means."><!-- mathjax --><script src="https://cdn
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.html">Example: National Ambulatory Medical Care Survey (NAMCS) report</a>
-    <a class="dropdown-item" href="../articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a>
-    <a class="dropdown-item" href="../articles/Example-Residential-Care-Community-RCC-Services-User-SU.html">Example: Residential Care Community (RCC) Services User (SU)</a>
+    <a class="dropdown-item" href="../articles/a01-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a>
+    <a class="dropdown-item" href="../articles/a02-Example-Residential-Care-Community-RCC-Services-User-SU.html">Example: Residential Care Community (RCC) Services User (SU)</a>
+    <a class="dropdown-item" href="../articles/a03-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.html">Example: National Ambulatory Medical Care Survey (NAMCS) report</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -73,8 +73,6 @@ Test equality of proportions or means.</p>
 <span>  csv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"surveytable.csv"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">var_cross</span><span class="op">(</span><span class="va">newvr</span>, <span class="va">vr</span>, <span class="va">vrby</span><span class="op">)</span></span>
-<span></span>
 <span><span class="fu">tab_subset</span><span class="op">(</span></span>
 <span>  <span class="va">vr</span>,</span>
 <span>  <span class="va">vrby</span>,</span>
@@ -110,10 +108,6 @@ Test equality of proportions or means.</p>
 <dd><p>name of a CSV file</p></dd>
 
 
-<dt>newvr</dt>
-<dd><p>name of the new variable to be created</p></dd>
-
-
 <dt>lvls</dt>
 <dd><p>(optional) only show these levels of <code>vrby</code></p></dd>
 
@@ -136,7 +130,6 @@ Test equality of proportions or means.</p>
 
 <ul><li><p><code>tab_subset</code>: A list of <code>data.frame</code> tables or a single <code>data.frame</code> table.</p></li>
 <li><p><code>tab_cross</code>: A <code>data.frame</code> table.</p></li>
-<li><p><code>var_cross</code>: (Nothing.)</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -147,9 +140,7 @@ Test equality of proportions or means.</p>
 variable. Tables created using <code>tab_subset</code> and <code>tab_cross</code> have the same
 counts but different percentages. With <code>tab_subset</code>, percentages within each
 subset add up to 100%. With <code>tab_cross</code>, percentages across the entire
-population add up to 100%.</p>
-<p><code>var_cross</code> creates the new variable and updates the survey,
-but does not tabulate the new variable. Use <code><a href="tab.html">tab()</a></code> to tabulate it.</p>
+population add up to 100%. Also see <code><a href="var_cross.html">var_cross()</a></code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -164,20 +155,14 @@ but does not tabulate the new variable. Use <code><a href="tab.html">tab()</a></
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="st">"vars2019"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> * Analyzing NAMCS 2019 PUF</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        _             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Survey name            NAMCS 2019 PUF</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of variables    36            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations 8250          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Stratified 1 - level Cluster Sampling design (with replacement)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> With (398) clusters.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     data = d1)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Data summary {NAMCS 2019 PUF}   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +--------------------------------+</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ What                   ¦ Value ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +------------------------+-------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Number of variables    ¦    28 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +------------------------+-------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Number of observations ¦ 8,250 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +--------------------------------+</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * To adjust how counts are rounded, see ?set_count_int</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># For each SEX, tabulate AGER</span></span></span>
@@ -225,53 +210,6 @@ but does not tabulate the new variable. Use <code><a href="tab.html">tab()</a></
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Same counts as tab_subset(), but different percentages.</span></span></span>
 <span class="r-in"><span><span class="fu">tab_cross</span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"SEX"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                      (Patient age recode) x (Patient sex) {NAMCS 2019 PUF}                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------------------------------------------+</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Level         ¦ Number (000) ¦ SE (000) ¦ LL (000) ¦ UL (000) ¦ Percent ¦  SE ¦   LL ¦   UL ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15      ¦       59,958 ¦    7,206 ¦   47,318 ¦   75,974 ¦     5.8 ¦ 0.7 ¦  4.5 ¦  7.3 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ years :       ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Female        ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 15-24 years : ¦       41,128 ¦    4,532 ¦   33,066 ¦   51,156 ¦     4   ¦ 0.4 ¦  3.2 ¦  4.9 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Female        ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 25-44 years : ¦      113,708 ¦   11,461 ¦   93,256 ¦  138,646 ¦    11   ¦ 1   ¦  9   ¦ 13.2 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Female        ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 45-64 years : ¦      175,978 ¦   16,009 ¦  147,153 ¦  210,450 ¦    17   ¦ 1.1 ¦ 14.8 ¦ 19.3 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Female        ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 65-74 years : ¦      120,099 ¦   11,066 ¦  100,171 ¦  143,992 ¦    11.6 ¦ 1   ¦  9.7 ¦ 13.7 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Female        ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 75 years and  ¦       94,173 ¦   11,085 ¦   74,682 ¦  118,751 ¦     9.1 ¦ 0.9 ¦  7.3 ¦ 11.1 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ over : Female ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15      ¦       57,959 ¦    7,728 ¦   44,570 ¦   75,371 ¦     5.6 ¦ 0.7 ¦  4.3 ¦  7.2 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ years : Male  ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 15-24 years : ¦       23,728 ¦    4,344 ¦   16,457 ¦   34,210 ¦     2.3 ¦ 0.4 ¦  1.6 ¦  3.2 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Male          ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 25-44 years : ¦       56,562 ¦    7,277 ¦   43,861 ¦   72,942 ¦     5.5 ¦ 0.6 ¦  4.3 ¦  6.8 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Male          ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 45-64 years : ¦      133,528 ¦   12,956 ¦  110,319 ¦  161,619 ¦    12.9 ¦ 1   ¦ 10.9 ¦ 15.1 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Male          ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 65-74 years : ¦       86,766 ¦    6,767 ¦   74,409 ¦  101,176 ¦     8.4 ¦ 0.6 ¦  7.2 ¦  9.7 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Male          ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 75 years and  ¦       72,896 ¦    6,661 ¦   60,872 ¦   87,296 ¦     7   ¦ 0.6 ¦  5.9 ¦  8.3 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ over : Male   ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------------------------------------------+</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   (No flags.)                                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Same thing, but creates and retains the new variable:</span></span></span>
-<span class="r-in"><span><span class="fu">var_cross</span><span class="op">(</span><span class="st">"Age x Sex"</span>, <span class="st">"AGER"</span>, <span class="st">"SEX"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="tab.html">tab</a></span><span class="op">(</span><span class="st">"Age x Sex"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                      (Patient age recode) x (Patient sex) {NAMCS 2019 PUF}                     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------------------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Level         ¦ Number (000) ¦ SE (000) ¦ LL (000) ¦ UL (000) ¦ Percent ¦  SE ¦   LL ¦   UL ¦</span>

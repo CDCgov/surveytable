@@ -53,5 +53,6 @@
 
   # Important for integrating the output into other programming tasks
   names(df1) %<>% make.unique
+  rownames(df1) = NULL
 	invisible(df1)
 }

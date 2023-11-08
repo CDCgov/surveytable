@@ -2,7 +2,7 @@
 title: "Example: Residential Care Community (RCC) Services User (SU)"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Example-Residential-Care-Community-RCC-Services-User-SU}
+  %\VignetteIndexEntry{Example: Residential Care Community (RCC) Services User (SU)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -28,7 +28,7 @@ library(surveytable)
 
 Now, specify the survey that you'd like to analyze.
 
-```{r, results='asis'}
+```{r}
 mysurvey = nchsdata::rccsu2018
 set_survey("mysurvey")
 ```
@@ -45,13 +45,10 @@ var_list("race")
 tab("raceeth2")
 ```
 
-In the published figure, the Hispanic and Other categories have been merged into a single category called "Another race or ethnicity". Let's see how we can do that.  
-
-Each survey design object has an element called `variables`, which is a data frame that contains the survey variables. **We can add variables to this data frame or change the variables currently there.** To collapse the levels of `raceeth2`, we'll use the `forcats::fct_collapse` function.
+In the published figure, the Hispanic and Other categories have been merged into a single category called "Another race or ethnicity". We can do that using the `var_collapse` function.
 
 ```{r}
-mysurvey$variables$raceeth2 = forcats::fct_collapse(mysurvey$variables$raceeth2
-                           , `Another race or ethnicity` = c("Hispanic", "Other"))
+var_collapse("raceeth2", "Another race or ethnicity", c("Hispanic", "Other"))
 ```
 
 Now, let's take a look at the age variable:
@@ -60,12 +57,12 @@ Now, let's take a look at the age variable:
 var_list("age")
 ```
 
-`age2` is a numeric variable. We need to create a categorical variable based on this numeric variable. This is done using the `cut` function. 
+`age2` is a numeric variable. We need to create a categorical variable based on this numeric variable. This is done using the `var_cut` function. 
 
 ```{r}
-mysurvey$variables$Age = cut(mysurvey$variables$age2
-                             , breaks = c(-Inf, 64, 74, 84, Inf)
-                             , labels = c("Under 65", "65-74", "75-84", "85 and over"))
+var_cut("Age", "age2"
+        , c(-Inf, 64, 74, 84, Inf)
+        , c("Under 65", "65-74", "75-84", "85 and over") )
 ```
 
 We now have all the variables needed for the figure. Let's tabulate them:
@@ -114,7 +111,7 @@ tab("hbp", "alz", "depress", "arth", "diabetes", "heartdise", "osteo"
     , drop_na = TRUE)
 ```
 
-Now, count how many chronic conditions were present.
+Now, count how many chronic conditions were present. Recall that survey design objects have an element called `variables`, which is a data frame that contains the survey variables.
 
 ```{r}
 mysurvey$variables$num_cc = 0
@@ -125,12 +122,12 @@ for (vr in c("hbp", "alz", "depress", "arth", "diabetes", "heartdise", "osteo"
 }
 ```
 
-For generating the figure, create a categorical variable based on `num_cc`, which is numeric. When using `cut`, to avoid errors, it is a good practice for `breaks` to start at `-Inf` and end at `Inf`.
+For generating the figure, create a categorical variable based on `num_cc`, which is numeric. 
 
 ```{r, results='asis'}
-mysurvey$variables$`Number of chronic conditions` = cut(mysurvey$variables$num_cc
-                                            , breaks = c(-Inf, 0, 1, 3, 10, Inf)
-                                            , labels = c("0", "1", "2-3", "4-10", "??"))
+var_cut("Number of chronic conditions", "num_cc"
+        , c(-Inf, 0, 1, 3, 10, Inf)
+        , c("0", "1", "2-3", "4-10", "??"))
 tab("Number of chronic conditions")
 ```
 
@@ -173,11 +170,11 @@ for (vr in vrs) {
 
 ```
 
-For generating the figure, create a categorical variable based on `num_adl`, which is numeric. When using `cut`, to avoid errors, it is a good practice for `breaks` to start at `-Inf` and end at `Inf`.
+For generating the figure, create a categorical variable based on `num_adl`, which is numeric. 
 
 ```{r, results='asis'}
-mysurvey$variables$`Number of ADLs` = cut(mysurvey$variables$num_adl
-                                          , breaks = c(-Inf, 0, 2, 6, Inf)
-                                          , labels = c("0", "1-2", "3-6", "??"))
+var_cut("Number of ADLs", "num_adl"
+        , c(-Inf, 0, 2, 6, Inf)
+        , c("0", "1-2", "3-6", "??"))
 tab("Number of ADLs")
 ```

@@ -12,10 +12,7 @@
 #' variable. Tables created using `tab_subset` and `tab_cross` have the same
 #' counts but different percentages. With `tab_subset`, percentages within each
 #' subset add up to 100%. With `tab_cross`, percentages across the entire
-#' population add up to 100%.
-#'
-#' `var_cross` creates the new variable and updates the survey,
-#' but does not tabulate the new variable. Use [`tab()`] to tabulate it.
+#' population add up to 100%. Also see [`var_cross()`].
 #'
 #' @param vr      variable to tabulate
 #' @param vrby    use this variable to subset the survey
@@ -26,12 +23,10 @@
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
 #' @param screen  print to the screen?
 #' @param csv     name of a CSV file
-#' @param newvr   name of the new variable to be created
 #'
 #' @return
 #' * `tab_subset`: A list of `data.frame` tables or a single `data.frame` table.
 #' * `tab_cross`: A `data.frame` table.
-#' * `var_cross`: (Nothing.)
 #'
 #' @family tables
 #'
@@ -45,10 +40,6 @@
 #'
 #' # Same counts as tab_subset(), but different percentages.
 #' tab_cross("AGER", "SEX")
-#'
-#' # Same thing, but creates and retains the new variable:
-#' var_cross("Age x Sex", "AGER", "SEX")
-#' tab("Age x Sex")
 #'
 #' # What are the levels or MAJOR?
 #' tab("MAJOR")

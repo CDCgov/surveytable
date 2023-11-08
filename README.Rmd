@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-In R, the standard way of analyzing complex surveys is using the `survey` package. The major purpose of the `surveytable` package is to ease the use of the `survey` package in certain applications. `surveytable` improves the output of `survey` functions by formatting and tabulating it; performs hypothesis tests; reduces the number of commands that users need to execute; and applies presentation standards to estimates, which is the usual practice at the National Center for Health Statistics (NCHS). 
+In R, the standard way of analyzing complex surveys is using the `survey` package. The major purpose of the `surveytable` package is to ease the use of the `survey` package in certain applications. `surveytable` improves the output of `survey` functions (by formatting and tabulating it); performs hypothesis tests; reduces the number of commands that users need to execute; and applies presentation standards to estimates, which is the usual practice at the National Center for Health Statistics (NCHS). 
 
 The `surveytable` package allows users to use simple commands and produces formatted tabulated output. One useful function, which operates on categorical and logical variables, tabulates estimated counts and percentages with their standard errors and confidence intervals. It applies presentation standards for counts and percentages, and flags estimates if they should be suppressed, footnoted, or reviewed. Other functions list the variables in a survey, estimate the total population, tabulate survey subsets and variable interactions, tabulate numeric variables, calculate rates, perform t-tests, and save the output. 
 
@@ -49,7 +49,7 @@ Here is a basic example, to get you started.
 library(surveytable)
 ```
 
-```{r, results='asis'}
+```{r}
 set_survey("vars2019")
 ```
 

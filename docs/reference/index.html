@@ -27,9 +27,9 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.html">Example: National Ambulatory Medical Care Survey (NAMCS) report</a>
-    <a class="dropdown-item" href="../articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a>
-    <a class="dropdown-item" href="../articles/Example-Residential-Care-Community-RCC-Services-User-SU.html">Example: Residential Care Community (RCC) Services User (SU)</a>
+    <a class="dropdown-item" href="../articles/a01-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a>
+    <a class="dropdown-item" href="../articles/a02-Example-Residential-Care-Community-RCC-Services-User-SU.html">Example: Residential Care Community (RCC) Services User (SU)</a>
+    <a class="dropdown-item" href="../articles/a03-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.html">Example: National Ambulatory Medical Care Survey (NAMCS) report</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -73,7 +73,7 @@
         </dt>
         <dd>List variables in a survey.</dd>
       </dl></div><div class="section level2">
-      <h2 id="counts-and-percentages">Counts and percentages<a class="anchor" aria-label="anchor" href="#counts-and-percentages"></a></h2>
+      <h2 id="counts-percentages-and-means">Counts, percentages, and means<a class="anchor" aria-label="anchor" href="#counts-percentages-and-means"></a></h2>
       
       
 
@@ -90,14 +90,14 @@
         <dd>Tabulate variables</dd>
       </dl><dl><dt>
           
-          <code><a href="tab_subset.html">tab_cross()</a></code> <code><a href="tab_subset.html">var_cross()</a></code> <code><a href="tab_subset.html">tab_subset()</a></code> 
-        </dt>
-        <dd>Tabulate subsets or interactions</dd>
-      </dl><dl><dt>
-          
           <code><a href="total.html">total()</a></code> 
         </dt>
         <dd>Total count</dd>
+      </dl><dl><dt>
+          
+          <code><a href="tab_subset.html">tab_cross()</a></code> <code><a href="tab_subset.html">tab_subset()</a></code> 
+        </dt>
+        <dd>Tabulate subsets or interactions</dd>
       </dl></div><div class="section level2">
       <h2 id="rates">Rates<a class="anchor" aria-label="anchor" href="#rates"></a></h2>
       
@@ -111,6 +111,11 @@
 
       <dl><dt>
           
+          <code><a href="total_rate.html">total_rate()</a></code> 
+        </dt>
+        <dd>Overall rate</dd>
+      </dl><dl><dt>
+          
           <code><a href="tab_rate.html">tab_rate()</a></code> 
         </dt>
         <dd>Calculate rates</dd>
@@ -119,11 +124,42 @@
           <code><a href="tab_subset_rate.html">tab_subset_rate()</a></code> 
         </dt>
         <dd>Calculate rates for subsets</dd>
+      </dl></div><div class="section level2">
+      <h2 id="create-or-modify-variables">Create or modify variables<a class="anchor" aria-label="anchor" href="#create-or-modify-variables"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="var_collapse.html">var_collapse()</a></code> 
+        </dt>
+        <dd>Collapse factor levels</dd>
       </dl><dl><dt>
           
-          <code><a href="total_rate.html">total_rate()</a></code> 
+          <code><a href="var_cut.html">var_cut()</a></code> 
         </dt>
-        <dd>Overall rate</dd>
+        <dd>Convert numeric to factor</dd>
+      </dl><dl><dt>
+          
+          <code><a href="var_any.html">var_any()</a></code> 
+        </dt>
+        <dd>Is any variable true?</dd>
+      </dl><dl><dt>
+          
+          <code><a href="var_cross.html">var_cross()</a></code> 
+        </dt>
+        <dd>Cross or interact two variables</dd>
+      </dl><dl><dt>
+          
+          <code><a href="var_copy.html">var_copy()</a></code> 
+        </dt>
+        <dd>Copy a variable</dd>
       </dl></div><div class="section level2">
       <h2 id="data-for-use-in-examples">Data for use in examples<a class="anchor" aria-label="anchor" href="#data-for-use-in-examples"></a></h2>
       
@@ -176,11 +212,6 @@
           <code><a href="surveytable-options.html">surveytable-options</a></code> 
         </dt>
         <dd>Package options</dd>
-      </dl><dl><dt>
-          
-          <code><a href="var_num.html">var_num()</a></code> 
-        </dt>
-        <dd>Number of variables in a survey.</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
