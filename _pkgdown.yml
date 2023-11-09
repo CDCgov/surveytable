@@ -34,3 +34,4 @@ reference:
   - set_output
   - show_options
   - surveytable-options
+  - survey_subset

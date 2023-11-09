@@ -131,8 +131,10 @@ tab = function(...
 	  attr(mp, "title") = .getvarname(design, vr)
     return(.write_out(mp, screen = screen, csv = csv))
 	} else if (nlv > max_levels) {
-	  warning(.getvarname(design, vr)
-          , ": Categorical variable with too many levels: "
+	  # don't use assert_that
+	  # if multiple tables are being produced, want to go to the next table
+	  warning(vr
+          , ": categorical variable with too many levels: "
           , nlv, ", but ", max_levels
           , " allowed. Try increasing the max_levels argument or "
           , "see ?set_output"
@@ -144,6 +146,7 @@ tab = function(...
 
 	##
 	counts = svyby(frm, frm, design, unwtd.count)$counts
+	assert_that(length(counts) == nlv)
 	if (getOption("surveytable.do_present")) {
 	  pro = getOption("surveytable.present_restricted") %>% do.call(list(counts))
 	} else {

@@ -33,6 +33,24 @@ set_survey = function(survey_name = "") {
 
   options(surveytable.survey = survey_name)
 
+  # zero weights cause issues with tab():
+  # counts = svyby(frm, frm, design, unwtd.count)$counts
+  # assert_that(length(neff) == length(counts))
+  #
+  # prob == 1 / weight ?
+  if (any(design$prob == Inf)) {
+    dl = attr(design, "label")
+    if(is.null(dl)) dl = survey_name
+    assert_that(is.string(dl), nzchar(dl))
+    dl %<>% paste("(positive weights only)")
+
+    design %<>% survey_subset(design$prob < Inf, label = dl)
+
+    message(paste0("* ", survey_name, ": retaining positive weights only."))
+    assign(survey_name, design, envir = .GlobalEnv)
+  }
+  assert_that( all(design$prob > 0), all(design$prob < Inf) )
+
   dl = attr(design, "label")
   if(is.null(dl)) dl = survey_name
   assert_that(is.string(dl), nzchar(dl))
@@ -66,14 +84,16 @@ show_survey = function() {
   invisible(NULL)
 }
 
+
 .load_survey = function() {
   survey_name = getOption("surveytable.survey")
   assert_that(is.string(survey_name), nzchar(survey_name)
-              , msg = "You need to specify a survey before the other functions will work. See ?set_survey")
+    , msg = "You need to specify a survey before the other functions will work. See ?set_survey")
   design = get0(survey_name)
   assert_that(!is.null(design)
-              , msg = paste0(survey_name, " does not exist. Did you forget to load it? See ?set_survey"))
+      , msg = paste0(survey_name, " does not exist. Did you forget to load it? See ?set_survey"))
   assert_that(inherits(design, "survey.design")
-          , msg = paste0(survey_name, " must be a survey.design. Is ", class(design)[1] ))
+              , msg = paste0(survey_name, " must be a survey.design. Is ", class(design)[1] ))
+  assert_that( all(design$prob > 0), all(design$prob < Inf) )
   design
 }
