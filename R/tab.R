@@ -147,7 +147,7 @@ tab = function(...
 	##
 	counts = svyby(frm, frm, design, unwtd.count)$counts
 	assert_that(length(counts) == nlv)
-	if (getOption("surveytable.do_present")) {
+	if (getOption("surveytable.check_present")) {
 	  pro = getOption("surveytable.present_restricted") %>% do.call(list(counts))
 	} else {
 		pro = list(flags = rep("", length(counts)), has.flag = c())
@@ -170,7 +170,7 @@ tab = function(...
   mmcr$ll = exp(mmcr$lnx - mmcr$k)
   mmcr$ul = exp(mmcr$lnx + mmcr$k)
 
-	if (getOption("surveytable.do_present")) {
+	if (getOption("surveytable.check_present")) {
 	  pco = getOption("surveytable.present_count") %>% do.call(list(mmcr))
 	} else {
 		pco = list(flags = rep("", nrow(mmcr)), has.flag = c())
@@ -188,7 +188,12 @@ tab = function(...
 		design$variables$.tmp = NULL
 		design$variables$.tmp = (design$variables[,vr] == lv)
 		# Korn and Graubard, 1998
-		xp = svyciprop(~ .tmp, design, method="beta", level = 0.95)
+		xp = if ( getOption("surveytable.adjust_svyciprop") ) {
+		  svyciprop_adjusted(~ .tmp, design, method="beta", level = 0.95
+		      , df_method = getOption("surveytable.adjust_svyciprop.df_method"))
+		} else {
+		  svyciprop(~ .tmp, design, method="beta", level = 0.95)
+		}
 		ret1 = data.frame(Proportion = xp %>% as.numeric
 		                  , SE = attr(xp, "var") %>% as.numeric %>% sqrt)
 
@@ -204,7 +209,7 @@ tab = function(...
 	}
 	ret$degf = df1
 
-	if (getOption("surveytable.do_present")) {
+	if (getOption("surveytable.check_present")) {
 	  ppo = getOption("surveytable.present_prop") %>% do.call(list(ret))
 	} else {
 		nlvs = design$variables[, vr] %>% nlevels
@@ -238,8 +243,10 @@ tab = function(...
 }
 
 .add_flags = function(df1, has.flag) {
-	if (is.null(has.flag)) {
-	  attr(df1, "footer") = "(No flags.)"
+  if (!getOption("surveytable.check_present")) {
+    attr(df1, "footer") = NULL
+  } else if (is.null(has.flag)) {
+	  attr(df1, "footer") = "(Checked presentation standards. Nothing to report.)"
 	} else {
 		v1 = c()
 		for (ff in has.flag) {

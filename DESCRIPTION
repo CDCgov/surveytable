@@ -1,9 +1,9 @@
 Package: surveytable
-Title: Streamlined output from the `survey` package
+Title: Formatted Survey Estimates
 Version: 0.9
 Authors@R: 
     person("Alex", "Strashny", , "AStrashny@cdc.gov", role = c("aut", "cre"))
-Description: Streamlined output from the `survey` package.
+Description: Formatted Survey Estimates.
 Date/Publication: 2023
 License: Apache License (>= 2)
 Encoding: UTF-8

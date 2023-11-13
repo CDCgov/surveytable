@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Survey table: streamlined output from the `survey` package
+# Survey table: formatted survey estimates
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -29,11 +29,8 @@ The `surveytable` package is easier to use than using `survey` directly. With fe
 You can install `surveytable` like so:
 
 ``` r
-install.packages("remotes")
-remotes::install_git(
-	url = "https://github.com/CDCgov/surveytable"
-	, upgrade = "never")
-
+install.packages(c("remotes", "git2r"))
+remotes::install_github("CDCgov/surveytable", upgrade = "never")
 ```
 
 ## Documentation

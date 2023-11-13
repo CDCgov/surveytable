@@ -32,7 +32,7 @@
     surveytable.survey = ""
     , surveytable.survey_label = ""
 
-    , surveytable.do_present = TRUE
+    , surveytable.check_present = TRUE
     , surveytable.present_restricted = ".present_restricted"
     , surveytable.present_count = ".present_count"
     , surveytable.present_prop = ".present_prop"
@@ -50,6 +50,9 @@
 
     , surveytable.rate_per = 100
     , surveytable.tx_rate = ".tx_rate"
+
+    , surveytable.adjust_svyciprop = FALSE
+    , surveytable.adjust_svyciprop.df_method = "NHIS"
   )
   set_count_1k()
 #  set_output(csv = "", screen = TRUE, max_levels = 20)

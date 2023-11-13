@@ -26,7 +26,7 @@ total = function(screen = getOption("surveytable.screen")
 
   ##
   counts = nrow(design$variables)
-  if (getOption("surveytable.do_present")) {
+  if (getOption("surveytable.check_present")) {
     pro = getOption("surveytable.present_restricted") %>% do.call(list(counts))
   } else {
     pro = list(flags = rep("", length(counts)), has.flag = c())
@@ -49,7 +49,7 @@ total = function(screen = getOption("surveytable.screen")
   mmcr$ll = exp(mmcr$lnx - mmcr$k)
   mmcr$ul = exp(mmcr$lnx + mmcr$k)
 
-  if (getOption("surveytable.do_present")) {
+  if (getOption("surveytable.check_present")) {
     pco = getOption("surveytable.present_count") %>% do.call(list(mmcr))
   } else {
     pco = list(flags = rep("", nrow(mmcr)), has.flag = c())

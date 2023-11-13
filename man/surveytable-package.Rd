@@ -4,9 +4,9 @@
 \name{surveytable-package}
 \alias{surveytable}
 \alias{surveytable-package}
-\title{surveytable: Streamlined output from the `survey` package}
+\title{surveytable: Formatted Survey Estimates}
 \description{
-Streamlined output from the `survey` package.
+Formatted Survey Estimates.
 }
 \seealso{
 Useful links:
