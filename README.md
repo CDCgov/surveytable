@@ -6,30 +6,18 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-In R, the standard way of analyzing complex surveys is using the
-`survey` package. The major purpose of the `surveytable` package is to
-ease the use of the `survey` package in certain applications.
-`surveytable` improves the output of `survey` functions (by formatting
-and tabulating it); performs hypothesis tests; reduces the number of
-commands that users need to execute; and applies presentation standards
-to estimates, which is the usual practice at the National Center for
-Health Statistics (NCHS).
-
-The `surveytable` package allows users to use simple commands and
-produces formatted tabulated output. One useful function, which operates
-on categorical and logical variables, tabulates estimated counts and
-percentages with their standard errors and confidence intervals. It
-applies presentation standards for counts and percentages, and flags
-estimates if they should be suppressed, footnoted, or reviewed. Other
-functions list the variables in a survey, estimate the total population,
-tabulate survey subsets and variable interactions, tabulate numeric
-variables, calculate rates, perform t-tests, and save the output.
-
-The `surveytable` package is easier to use than using `survey` directly.
-With fewer commands, `surveytable` output has survey name, variable
-labels, formatted estimates, cleaner category values, both count and
-percentage estimates in a single table, and confidence intervals. The
-package also performs checking for presentation standards.
+The `surveytable` package provides short and understandable commands
+that generate tabulated, formatted, and rounded survey estimates. One
+useful function, which operates on categorical and logical variables,
+tabulates estimated counts and percentages with their standard errors
+and confidence intervals. Other functions list the variables in a
+survey, estimate the total population, tabulate survey subsets and
+variable interactions, tabulate numeric variables, tabulate rates,
+create or modify survey variables, perform t-tests, and save the output.
+All of the tabulation functions check the NCHS presentation standards to
+flag low-precision estimates. If the `surveytable` code is called from
+an R Markdown notebook or a Quarto document, it generates HTML tables,
+which can be incorporated directly into documents.
 
 ## Installation
 

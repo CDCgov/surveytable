@@ -31,7 +31,7 @@ var_list = function(sw = "", all=FALSE
       Variable = ii
       , Class = paste(class(design$variables[,ii])
                       , collapse = ", ")
-      , Label = .getvarname(design, ii)
+      , `Long name` = .getvarname(design, ii)
     )
     ret %<>% rbind(r1)
   }
