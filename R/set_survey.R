@@ -23,6 +23,10 @@
 #' set_survey("vars2019")
 #' show_survey()
 set_survey = function(survey_name = "") {
+  # In case there's an error below and we don't set a new survey,
+  # don't retain the previous survey either.
+  options(surveytable.survey = "")
+
   assert_that(is.string(survey_name), nzchar(survey_name)
               , msg = "survey_name must be a character string.")
   design = get0(survey_name)
@@ -47,7 +51,7 @@ set_survey = function(survey_name = "") {
     design %<>% survey_subset(design$prob < Inf, label = dl)
 
     message(paste0("* ", survey_name, ": retaining positive weights only."))
-    assign(survey_name, design, envir = .GlobalEnv)
+    assign(getOption("surveytable.survey"), design, envir = .GlobalEnv)
   }
   assert_that( all(design$prob > 0), all(design$prob < Inf) )
 
