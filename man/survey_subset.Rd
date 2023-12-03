@@ -20,7 +20,9 @@ a new survey design object
 Subset a survey, while preserving variable labels
 }
 \examples{
+\dontrun{
 children = survey_subset(vars2019, AGE < 18, "Children")
 set_survey("children")
 tab("AGER")
+}
 }
