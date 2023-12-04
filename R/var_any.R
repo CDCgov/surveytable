@@ -28,7 +28,7 @@ var_any = function(newvr, vrs) {
     assert_that(vr %in% nm, msg = paste("Variable", vr, "not in the data."))
     assert_that(is.logical(design$variables[,vr])
       , msg = paste0(vr, ": must be logical. Is ", class(design$variables[,vr])[1] ))
-    design$variables[,newvr] %<>% `|`(design$variables[,vr])
+    design$variables[,newvr] = design$variables[,newvr] | design$variables[,vr]
   }
   assign(getOption("surveytable.survey"), design, envir = .GlobalEnv)
 }
