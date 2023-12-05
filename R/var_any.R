@@ -30,5 +30,5 @@ var_any = function(newvr, vrs) {
       , msg = paste0(vr, ": must be logical. Is ", class(design$variables[,vr])[1] ))
     design$variables[,newvr] = design$variables[,newvr] | design$variables[,vr]
   }
-  assign(getOption("surveytable.survey"), design, envir = .GlobalEnv)
+  assign(getOption("surveytable.survey"), design, envir = getOption("surveytable.survey_envir"))
 }

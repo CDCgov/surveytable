@@ -21,6 +21,6 @@ tab_cross = function(vr, vrby
                 , csv = csv)
 
   design$variables[,newvr] = NULL
-  assign(getOption("surveytable.survey"), design, envir = .GlobalEnv)
+  assign(getOption("surveytable.survey"), design, envir = getOption("surveytable.survey_envir"))
   invisible(ret)
 }

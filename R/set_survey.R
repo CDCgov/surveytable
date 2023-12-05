@@ -51,7 +51,7 @@ set_survey = function(survey_name = "") {
     design %<>% survey_subset(design$prob < Inf, label = dl)
 
     message(paste0("* ", survey_name, ": retaining positive weights only."))
-    assign(getOption("surveytable.survey"), design, envir = .GlobalEnv)
+    assign(getOption("surveytable.survey"), design, envir = getOption("surveytable.survey_envir"))
   }
   assert_that( all(design$prob > 0), all(design$prob < Inf) )
 

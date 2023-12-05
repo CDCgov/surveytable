@@ -33,5 +33,5 @@ var_case = function(newvr, vr, cases) {
   idx = which(design$variables[,vr] %in% cases)
   design$variables[idx, newvr] = TRUE
 
-  assign(getOption("surveytable.survey"), design, envir = .GlobalEnv)
+  assign(getOption("surveytable.survey"), design, envir = getOption("surveytable.survey_envir"))
 }

@@ -31,6 +31,7 @@
   options(
     surveytable.survey = ""
     , surveytable.survey_label = ""
+    , surveytable.survey_envir = .GlobalEnv
 
     , surveytable.check_present = TRUE
     , surveytable.present_restricted = ".present_restricted"

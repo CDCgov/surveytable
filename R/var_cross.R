@@ -45,5 +45,5 @@ var_cross = function(newvr, vr, vrby) {
     "(", .getvarname(design, vr), ") x ("
     , .getvarname(design, vrby), ")")
 
-  assign(getOption("surveytable.survey"), design, envir = .GlobalEnv)
+  assign(getOption("surveytable.survey"), design, envir = getOption("surveytable.survey_envir"))
 }

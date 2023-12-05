@@ -27,5 +27,5 @@ var_collapse = function(vr, newlevel, oldlevels) {
   idx = which(levels(design$variables[,vr]) %in% oldlevels)
   levels(design$variables[,vr])[idx] = newlevel
 
-  assign(getOption("surveytable.survey"), design, envir = .GlobalEnv)
+  assign(getOption("surveytable.survey"), design, envir = getOption("surveytable.survey_envir"))
 }

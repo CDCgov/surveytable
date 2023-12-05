@@ -27,5 +27,5 @@ var_copy = function(newvr, vr) {
   design$variables[,newvr] = design$variables[,vr]
   # attr(design$variables[,newvr], "label") = .getvarname(design, vr)
   attr(design$variables[,newvr], "label") = NULL
-  assign(getOption("surveytable.survey"), design, envir = .GlobalEnv)
+  assign(getOption("surveytable.survey"), design, envir = getOption("surveytable.survey_envir"))
 }

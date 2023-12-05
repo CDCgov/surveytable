@@ -31,5 +31,5 @@ var_cut = function(newvr, vr, breaks, labels) {
   design$variables[,newvr] = cut(x = design$variables[,vr]
                                  , breaks = breaks, labels = labels)
   # attr(design$variables[,newvr], "label") = paste(.getvarname(design, vr), "(categorized)")
-  assign(getOption("surveytable.survey"), design, envir = .GlobalEnv)
+  assign(getOption("surveytable.survey"), design, envir = getOption("surveytable.survey_envir"))
 }
