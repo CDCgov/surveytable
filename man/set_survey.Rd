@@ -10,7 +10,7 @@ set_survey(survey_name = "")
 show_survey()
 }
 \arguments{
-\item{survey_name}{the name of a \code{survey.design} object (in quotation marks)}
+\item{survey_name}{the name of a survey object (\code{survey.design} or \code{svyrep.design}), in quotation marks}
 }
 \value{
 (Nothing.)

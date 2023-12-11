@@ -13,7 +13,7 @@
 #' which is the variable's long name. This attribute is set by the `haven` and
 #' `importsurvey` packages, and can also be set manually.
 #'
-#' @param survey_name the name of a `survey.design` object (in quotation marks)
+#' @param survey_name the name of a survey object (`survey.design` or `svyrep.design`), in quotation marks
 #'
 #' @return (Nothing.)
 #' @family options
@@ -32,10 +32,19 @@ set_survey = function(survey_name = "") {
   design = get0(survey_name)
   assert_that(!is.null(design)
       , msg = paste0(survey_name, " does not exist. Did you forget to load it?"))
-  assert_that(inherits(design, "survey.design")
-      , msg = paste0(survey_name, " must be a survey.design. Is ", class(design)[1] ))
+  assert_that(inherits(design, c("survey.design", "svyrep.design"))
+      , msg = paste0(survey_name, " must be a survey.design or svyrep.design. Is "
+      , class(design)[1] ))
 
   options(surveytable.survey = survey_name)
+
+  if(inherits(design, "svyrep.design") && !isTRUE(attr(design, "prob_set"))) {
+    assert_that(!("prob" %in% names(design))
+      , msg = "prob already exists")
+    design$prob = 1 / design$pweights
+    attr(design, "prob_set") = TRUE
+    assign(getOption("surveytable.survey"), design, envir = getOption("surveytable.survey_envir"))
+  }
 
   # zero weights cause issues with tab():
   # counts = svyby(frm, frm, design, unwtd.count)$counts
@@ -96,8 +105,10 @@ show_survey = function() {
   design = get0(survey_name)
   assert_that(!is.null(design)
       , msg = paste0(survey_name, " does not exist. Did you forget to load it? See ?set_survey"))
-  assert_that(inherits(design, "survey.design")
-              , msg = paste0(survey_name, " must be a survey.design. Is ", class(design)[1] ))
+  assert_that(inherits(design, c("survey.design", "svyrep.design"))
+      , msg = paste0(survey_name, " must be a survey.design or svyrep.design. Is "
+      , class(design)[1] ))
+
   assert_that( all(design$prob > 0), all(design$prob < Inf) )
   design
 }
