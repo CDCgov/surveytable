@@ -19,6 +19,12 @@
   smo = svymean(frm, design, na.rm = TRUE)
   ret$Mean = smo %>% as.numeric
   ret$SEM = smo %>% attr("var") %>% sqrt %>% as.numeric
-  ret$SD = svyvar(frm, design, na.rm = TRUE) %>% as.numeric %>% sqrt
+
+  # Warning messages:
+  #   1: In thetas - meantheta :
+  #   Recycling array of length 1 in vector-array arithmetic is deprecated.
+  # Use c() or as.vector() instead.
+  ret$SD = (svyvar(frm, design, na.rm = TRUE)
+            %>% as.numeric %>% sqrt %>% suppressWarnings)
   ret
 }
