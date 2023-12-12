@@ -94,6 +94,10 @@ tab_subset = function(vr, vrby, lvls = c()
   if (is.logical(design$variables[,vr]) || is.factor(design$variables[,vr])) {
     for (ii in lvl0) {
       d1 = design[which(design$variables[,vrby] == ii),]
+      if(inherits(d1, "svyrep.design")) {
+        d1$prob = 1 / d1$pweights
+      }
+
       attr(d1$variables[,vr], "label") = paste0(
         .getvarname(design, vr), " ("
         , .getvarname(design, vrby), " = ", ii
