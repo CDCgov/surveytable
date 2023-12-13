@@ -108,6 +108,9 @@ tab = function(...
 	design$variables[,vr] %<>% droplevels
 	if (drop_na) {
 	  design = design[which(!is.na(design$variables[,vr])),]
+	  if(inherits(design, "svyrep.design")) {
+	    design$prob = 1 / design$pweights
+	  }
 	  lbl %<>% paste("(knowns only)")
 	} else {
 	  design$variables[,vr] %<>% .fix_factor
