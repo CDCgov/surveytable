@@ -32,6 +32,9 @@ while the original remains unchanged. See examples."><!-- mathjax --><script src
     <a class="dropdown-item" href="../articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a>
   </div>
 </li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -94,7 +97,7 @@ while the original remains unchanged. See examples.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="st">"namcs2019sv"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                        _             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Survey name            NAMCS 2019 PUF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of variables    36            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of variables    38            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations 8250          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Stratified 1 - level Cluster Sampling design (with replacement)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> With (398) clusters.</span>
@@ -102,6 +105,7 @@ while the original remains unchanged. See examples.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     data = namcs2019sv_df)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * To adjust how counts are rounded, see ?set_count_int</span>
 <span class="r-in"><span><span class="fu">var_copy</span><span class="op">(</span><span class="st">"Age group"</span>, <span class="st">"AGER"</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Age group: overwriting a variable that already exists.</span>
 <span class="r-in"><span><span class="fu"><a href="var_collapse.html">var_collapse</a></span><span class="op">(</span><span class="st">"Age group"</span>, <span class="st">"65+"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"65-74 years"</span>, <span class="st">"75 years and over"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="var_collapse.html">var_collapse</a></span><span class="op">(</span><span class="st">"Age group"</span>, <span class="st">"25-64"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"25-44 years"</span>, <span class="st">"45-64 years"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"Age group"</span><span class="op">)</span></span></span>

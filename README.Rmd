@@ -29,6 +29,12 @@ install.packages(c("remotes", "git2r"))
 remotes::install_github("CDCgov/surveytable", upgrade = "never")
 ```
 
+Once `surveytable` is available on CRAN, you will be able to install it like this:
+
+``` r
+install.packages("surveytable")
+```
+
 ## Documentation
 
 Find the documentation for `surveytable` here: https://cdcgov.github.io/surveytable/

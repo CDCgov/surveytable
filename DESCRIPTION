@@ -2,8 +2,14 @@ Package: surveytable
 Title: Formatted Survey Estimates
 Version: 0.9.1
 Authors@R: 
-    person("Alex", "Strashny", , "AStrashny@cdc.gov", role = c("aut", "cre"))
-Description: Formatted Survey Estimates.
+    person(given = "Alex"
+        , family = "Strashny"
+        , role = c("aut", "cre")
+        , email = "AStrashny@cdc.gov"
+        , comment = c(ORCID = "0000-0002-6408-7745")
+        )
+Description: Short and understandable commands that generate tabulated, 
+    formatted, and rounded survey estimates.
 Date/Publication: 2023
 License: Apache License (>= 2)
 Encoding: UTF-8

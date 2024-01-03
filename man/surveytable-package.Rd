@@ -6,7 +6,7 @@
 \alias{surveytable-package}
 \title{surveytable: Formatted Survey Estimates}
 \description{
-Formatted Survey Estimates.
+Short and understandable commands that generate tabulated, formatted, and rounded survey estimates.
 }
 \seealso{
 Useful links:
@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Alex Strashny \email{AStrashny@cdc.gov}
+\strong{Maintainer}: Alex Strashny \email{AStrashny@cdc.gov} (\href{https://orcid.org/0000-0002-6408-7745}{ORCID})
 
 }
 \keyword{internal}
