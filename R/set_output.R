@@ -17,6 +17,7 @@
 #' }
 #' set_output(csv = "") # Turn off CSV output
 set_output = function(csv = NULL, screen = NULL, max_levels = NULL) {
+  # If making changes, update .onLoad()
   if (!is.null(csv)) {
     assert_that(is.string(csv)
       , msg = "CSV file name must be a character string.")

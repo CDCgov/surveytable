@@ -18,7 +18,6 @@
     , "\n\nFor info on how to create a survey object from a data frame, see"
     , " ?survey::svydesign or ?survey::svrepdesign ."
   )
-
 }
 
 .onLoad = function(libname, pkgname) {
@@ -32,8 +31,8 @@
     , surveytable.present_count = ".present_count"
     , surveytable.present_prop = ".present_prop"
 
-    # , surveytable.tx_count = ".tx_count"
-    # , surveytable.names_count = c("Number (000)", "SE (000)", "LL (000)", "UL (000)")
+    , surveytable.tx_count = ".tx_count_1k"
+    , surveytable.names_count = c("Number (000)", "SE (000)", "LL (000)", "UL (000)")
 
     , surveytable.tx_prct = ".tx_prct"
     , surveytable.names_prct = c("Percent", "SE", "LL", "UL")
@@ -49,8 +48,8 @@
     , surveytable.adjust_svyciprop = FALSE
     , surveytable.adjust_svyciprop.df_method = "NHIS"
   )
-  set_count_1k()
-#  set_output(csv = "", screen = TRUE, max_levels = 20)
+  # No - creates a startup message which cannot be suppressed.
+  # set_count_1k()
 }
 
 .tx_prct = function(x) {

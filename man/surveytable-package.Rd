@@ -11,7 +11,7 @@ Formatted Survey Estimates.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://cdcgov.github.io/surveytable}
+  \item \url{https://cdcgov.github.io/surveytable/}
   \item \url{https://github.com/CDCgov/surveytable}
 }
 

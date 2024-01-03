@@ -5,6 +5,7 @@ reference:
 - title: "Begin"
   contents:
   - set_survey
+  - set_count_1k
   - var_list
 - title: "Counts, percentages, and means"
   contents:
@@ -30,7 +31,6 @@ reference:
   - uspop2019
 - title: "Other"
   contents:
-  - set_count_1k
   - set_output
   - show_options
   - surveytable-options

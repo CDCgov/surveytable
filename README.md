@@ -31,7 +31,7 @@ remotes::install_github("CDCgov/surveytable", upgrade = "never")
 ## Documentation
 
 Find the documentation for `surveytable` here:
-<https://cdcgov.github.io/surveytable>
+<https://cdcgov.github.io/surveytable/>
 
 ## Example
 
@@ -310,7 +310,7 @@ Apache Software License for more details.
 
 You should have received a copy of the Apache Software License along
 with this program. If not, see
-<http://www.apache.org/licenses/LICENSE-2.0.html>
+<https://www.apache.org/licenses/LICENSE-2.0.html>
 
 The source code forked from other open source projects will inherit its
 license.
@@ -323,30 +323,30 @@ information. All material and community participation is covered by the
 and [Code of
 Conduct](https://github.com/CDCgov/template/blob/master/code-of-conduct.md).
 For more information about CDC’s privacy policy, please visit
-[http://www.cdc.gov/other/privacy.html](https://www.cdc.gov/other/privacy.html).
+<https://www.cdc.gov/other/privacy.html>.
 
 ## Contributing Standard Notice
 
 Anyone is encouraged to contribute to the repository by
-[forking](https://help.github.com/articles/fork-a-repo) and submitting a
+[forking](https://docs.github.com/articles/fork-a-repo) and submitting a
 pull request. (If you are new to GitHub, you might start with a [basic
-tutorial](https://help.github.com/articles/set-up-git).) By contributing
+tutorial](https://docs.github.com/articles/set-up-git).) By contributing
 to this project, you grant a world-wide, royalty-free, perpetual,
 irrevocable, non-exclusive, transferable license to all users under the
 terms of the [Apache Software License
-v2](http://www.apache.org/licenses/LICENSE-2.0.html) or later.
+v2](https://www.apache.org/licenses/LICENSE-2.0.html) or later.
 
 All comments, messages, pull requests, and other submissions received
 through CDC including this GitHub page may be subject to applicable
 federal law, including but not limited to the Federal Records Act, and
-may be archived. Learn more at <http://www.cdc.gov/other/privacy.html>.
+may be archived. Learn more at <https://www.cdc.gov/other/privacy.html>.
 
 ## Records Management Standard Notice
 
 This repository is not a source of government records, but is a copy to
 increase collaboration and collaborative potential. All government
 records will be published through the [CDC web
-site](http://www.cdc.gov).
+site](https://www.cdc.gov).
 
 ## Additional Standard Notices
 

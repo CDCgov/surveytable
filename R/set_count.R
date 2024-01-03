@@ -17,6 +17,7 @@
 #' set_count_1k()
 #' total()
 set_count_1k = function() {
+  # If making changes, update .onLoad()
   options(
     surveytable.tx_count = ".tx_count_1k"
     , surveytable.names_count = c("Number (000)", "SE (000)", "LL (000)", "UL (000)")

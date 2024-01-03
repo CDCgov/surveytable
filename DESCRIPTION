@@ -23,5 +23,5 @@ Suggests:
     knitr, 
     rmarkdown
 VignetteBuilder: knitr
-URL: https://cdcgov.github.io/surveytable, https://github.com/CDCgov/surveytable
+URL: https://cdcgov.github.io/surveytable/, https://github.com/CDCgov/surveytable
 Language: en-US
