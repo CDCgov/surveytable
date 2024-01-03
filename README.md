@@ -49,7 +49,7 @@ set_survey("namcs2019sv")
 #> Number of observations 8250          
 #> Stratified 1 - level Cluster Sampling design (with replacement)
 #> With (398) clusters.
-#> svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, 
+#> survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, 
 #>     data = namcs2019sv_df)
 #> * To adjust how counts are rounded, see ?set_count_int
 ```

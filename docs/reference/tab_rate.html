@@ -122,16 +122,17 @@ level of <code>vr</code>.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="st">"namcs2019sv"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                        _             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Survey name            NAMCS 2019 PUF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of variables    38            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of variables    33            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations 8250          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Stratified 1 - level Cluster Sampling design (with replacement)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> With (398) clusters.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     data = namcs2019sv_df)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * To adjust how counts are rounded, see ?set_count_int</span>
 <span class="r-in"><span><span class="co"># pop is a data frame</span></span></span>
 <span class="r-in"><span><span class="fu">tab_rate</span><span class="op">(</span><span class="st">"MSA"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">MSA</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Metropolitan Statistical Area Status of physician location (rate per 100 population) {NAMCS 2019 PUF}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Metropolitan Statistical Area Status of physician location (rate per</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100 population) {NAMCS 2019 PUF}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-----------------------------------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Level                      ¦  Rate ¦   SE ¦    LL ¦    UL ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------------------+-------+------+-------+-------¦</span>

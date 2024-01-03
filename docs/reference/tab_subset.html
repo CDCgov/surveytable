@@ -155,11 +155,11 @@ population add up to 100%. Also see <code><a href="var_cross.html">var_cross()</
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="st">"namcs2019sv"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                        _             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Survey name            NAMCS 2019 PUF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of variables    38            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of variables    33            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations 8250          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Stratified 1 - level Cluster Sampling design (with replacement)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> With (398) clusters.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     data = namcs2019sv_df)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * To adjust how counts are rounded, see ?set_count_int</span>
 <span class="r-in"><span></span></span>
@@ -274,7 +274,8 @@ population add up to 100%. Also see <code><a href="var_cross.html">var_cross()</
 <span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------------------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   (Checked presentation standards. Nothing to report.)                                         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Comparison of all possible pairs of Patient age recode (Patient sex = Female) {NAMCS 2019 PUF}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Comparison of all possible pairs of Patient age recode (Patient sex =</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Female) {NAMCS 2019 PUF}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-----------------------------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Level 1        ¦ Level 2           ¦ p-value ¦ Flag ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
@@ -330,7 +331,8 @@ population add up to 100%. Also see <code><a href="var_cross.html">var_cross()</
 <span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------------------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   (Checked presentation standards. Nothing to report.)                                         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Comparison of all possible pairs of Patient age recode (Patient sex = Male) {NAMCS 2019 PUF}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Comparison of all possible pairs of Patient age recode (Patient sex =</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Male) {NAMCS 2019 PUF}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-----------------------------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Level 1        ¦ Level 2           ¦ p-value ¦ Flag ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
@@ -369,7 +371,8 @@ population add up to 100%. Also see <code><a href="var_cross.html">var_cross()</
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Numeric variables</span></span></span>
 <span class="r-in"><span><span class="fu">tab_subset</span><span class="op">(</span><span class="st">"NUMMED"</span>, <span class="st">"AGER"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of medications coded (for different levels of Patient age recode) {NAMCS 2019 PUF}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of medications coded (for different levels of Patient age</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> recode) {NAMCS 2019 PUF}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Level             ¦ % known ¦ Mean ¦   SEM ¦   SD ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>

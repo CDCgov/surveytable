@@ -7,6 +7,9 @@
   if (screen) {
     hh = df1 %>% hux %>% set_all_borders
 	  if (!is.null(txt <- attr(df1, "title"))) {
+	    if (isTRUE(nchar(txt) > getOption("width"))) {
+	      txt = paste(strwrap(txt), collapse = "\n")
+	    }
       caption(hh) = txt
 	  }
     if (!is.null(nc <- attr(df1, "num"))) {

@@ -7,15 +7,16 @@
   # )
 
   packageStartupMessage("Before you can tabulate estimates, you have to specify which survey object"
-    , " you would like to use. You can do this in one of a couple of ways:"
+    , " you would like to analyze. You can do this in a couple of ways:"
     , "\n\na) This package comes with a survey object for use in examples called"
     , " 'namcs2019sv'. This object has selected variables from the NAMCS 2019 PUF survey."
     , " To use this survey object:"
     , "\n\nset_survey('namcs2019sv')"
-    , "\n\nb) If you have a survey object stored in an RDS file:"
+    , "\n\nb) If you have a survey object stored in a file:"
     , "\n\nmysurvey = readRDS('file_name.rds')"
     , "\nset_survey('mysurvey')"
-    , "\n\nFor info on how to create survey objects, see ?survey::svydesign"
+    , "\n\nFor info on how to create a survey object from a data frame, see"
+    , " ?survey::svydesign or ?survey::svrepdesign ."
   )
 
 }
