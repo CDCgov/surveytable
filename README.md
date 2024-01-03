@@ -45,7 +45,7 @@ library(surveytable)
 set_survey("namcs2019sv")
 #>                        _             
 #> Survey name            NAMCS 2019 PUF
-#> Number of variables    36            
+#> Number of variables    33            
 #> Number of observations 8250          
 #> Stratified 1 - level Cluster Sampling design (with replacement)
 #> With (398) clusters.

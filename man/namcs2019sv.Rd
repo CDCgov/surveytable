@@ -6,9 +6,9 @@
 \alias{namcs2019sv_df}
 \title{Selected variables from the National Ambulatory Medical Care Survey (NAMCS) 2019 Public Use File (PUF)}
 \format{
-An object of class \code{survey.design2} (inherits from \code{survey.design}) with 8250 rows and 36 columns.
+An object of class \code{survey.design2} (inherits from \code{survey.design}) with 8250 rows and 33 columns.
 
-An object of class \code{data.frame} with 8250 rows and 36 columns.
+An object of class \code{data.frame} with 8250 rows and 33 columns.
 }
 \source{
 \itemize{
