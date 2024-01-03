@@ -19,7 +19,7 @@ Create a new variable that is a copy of another variable. You can modify the cop
 while the original remains unchanged. See examples.
 }
 \examples{
-set_survey("vars2019")
+set_survey("namcs2019sv")
 var_copy("Age group", "AGER")
 var_collapse("Age group", "65+", c("65-74 years", "75 years and over"))
 var_collapse("Age group", "25-64", c("25-44 years", "45-64 years"))

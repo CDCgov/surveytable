@@ -20,7 +20,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("vars2019")
+#' set_survey("namcs2019sv")
 #' tab_subset_rate("AGER", "SEX", uspop2019$`AGER x SEX`)
 tab_subset_rate = function(vr, vrby
                            , pop

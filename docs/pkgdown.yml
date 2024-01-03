@@ -2,11 +2,9 @@ pandoc: 2.17.1.1
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
-  a01-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables: a01-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html
-  a02-Example-Residential-Care-Community-RCC-Services-User-SU: a02-Example-Residential-Care-Community-RCC-Services-User-SU.html
-  a03-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report: a03-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.html
+  Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables: Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html
   surveytable: surveytable.html
-last_built: 2023-12-11T19:28Z
+last_built: 2024-01-03T11:42Z
 urls:
   reference: https://cdcgov.github.io/surveytable/reference
   article: https://cdcgov.github.io/surveytable/articles

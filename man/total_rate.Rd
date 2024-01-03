@@ -27,7 +27,7 @@ total_rate(
 Overall rate
 }
 \examples{
-set_survey("vars2019")
+set_survey("namcs2019sv")
 total_rate(uspop2019$total)
 }
 \seealso{

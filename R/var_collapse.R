@@ -11,7 +11,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("vars2019")
+#' set_survey("namcs2019sv")
 #' tab("PRIMCARE")
 #' var_collapse("PRIMCARE", "Unknown if PCP", c("Blank", "Unknown"))
 #' tab("PRIMCARE")

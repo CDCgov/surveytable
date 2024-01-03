@@ -45,7 +45,7 @@ Create subsets of the survey using one variable, and tabulate
 the rates of another variable within each of the subsets.
 }
 \examples{
-set_survey("vars2019")
+set_survey("namcs2019sv")
 tab_subset_rate("AGER", "SEX", uspop2019$`AGER x SEX`)
 }
 \seealso{

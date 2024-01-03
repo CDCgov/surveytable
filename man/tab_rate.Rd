@@ -39,7 +39,7 @@ A list of \code{data.frame} tables or a single \code{data.frame} table.
 Calculate the rates for categorical (factor) or logical variables.
 }
 \examples{
-set_survey("vars2019")
+set_survey("namcs2019sv")
 # pop is a data frame
 tab_rate("MSA", uspop2019$MSA)
 

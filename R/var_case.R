@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("vars2019")
+#' set_survey("namcs2019sv")
 #' var_case("Preventive care visits", "MAJOR", "Preventive care")
 #' tab("Preventive care visits")
 #' var_case("Surgery-related visits"

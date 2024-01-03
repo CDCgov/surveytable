@@ -6,12 +6,10 @@
 #' `show_survey()` shows the survey that you've specified.
 #'
 #' Optionally, the survey can have an attribute called `label`, which is the
-#' long name of the survey. This attribute is set by the `importsurvey` package,
-#' and can also be set manually.
+#' long name of the survey.
 #'
 #' Optionally, each variable in the survey can have an attribute called `label`,
-#' which is the variable's long name. This attribute is set by the `haven` and
-#' `importsurvey` packages, and can also be set manually.
+#' which is the variable's long name.
 #'
 #' @param survey_name the name of a survey object (`survey.design` or `svyrep.design`), in quotation marks
 #'
@@ -20,7 +18,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("vars2019")
+#' set_survey("namcs2019sv")
 #' show_survey()
 set_survey = function(survey_name = "") {
   # In case there's an error below and we don't set a new survey,

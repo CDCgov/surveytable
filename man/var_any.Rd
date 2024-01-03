@@ -19,7 +19,7 @@ Create a new variable which is true if any of the variables in a list of
 variables are true.
 }
 \examples{
-set_survey("vars2019")
+set_survey("namcs2019sv")
 var_any("Imaging services"
 , c("ANYIMAGE", "BONEDENS", "CATSCAN", "ECHOCARD", "OTHULTRA"
 , "MAMMO", "MRI", "XRAY", "OTHIMAGE"))

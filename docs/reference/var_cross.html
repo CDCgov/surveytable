@@ -29,9 +29,7 @@ see tab_cross()."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/a01-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a>
-    <a class="dropdown-item" href="../articles/a02-Example-Residential-Care-Community-RCC-Services-User-SU.html">Example: Residential Care Community (RCC) Services User (SU)</a>
-    <a class="dropdown-item" href="../articles/a03-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.html">Example: National Ambulatory Medical Care Survey (NAMCS) report</a>
+    <a class="dropdown-item" href="../articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -97,7 +95,7 @@ see <code><a href="tab_subset.html">tab_cross()</a></code>.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="st">"vars2019"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="st">"namcs2019sv"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                        _             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Survey name            NAMCS 2019 PUF</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of variables    40            </span>
@@ -105,7 +103,7 @@ see <code><a href="tab_subset.html">tab_cross()</a></code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Stratified 1 - level Cluster Sampling design (with replacement)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> With (398) clusters.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     data = d1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     data = namcs2019sv_df)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * To adjust how counts are rounded, see ?set_count_int</span>
 <span class="r-in"><span><span class="fu">var_cross</span><span class="op">(</span><span class="st">"Age x Sex"</span>, <span class="st">"AGER"</span>, <span class="st">"SEX"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="tab.html">tab</a></span><span class="op">(</span><span class="st">"Age x Sex"</span><span class="op">)</span></span></span>

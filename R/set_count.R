@@ -10,7 +10,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("vars2019")
+#' set_survey("namcs2019sv")
 #' set_count_int()
 #' total()
 #'

@@ -23,15 +23,13 @@ will work.
 \code{show_survey()} shows the survey that you've specified.
 
 Optionally, the survey can have an attribute called \code{label}, which is the
-long name of the survey. This attribute is set by the \code{importsurvey} package,
-and can also be set manually.
+long name of the survey.
 
 Optionally, each variable in the survey can have an attribute called \code{label},
-which is the variable's long name. This attribute is set by the \code{haven} and
-\code{importsurvey} packages, and can also be set manually.
+which is the variable's long name.
 }
 \examples{
-set_survey("vars2019")
+set_survey("namcs2019sv")
 show_survey()
 }
 \seealso{

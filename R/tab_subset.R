@@ -33,7 +33,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("vars2019")
+#' set_survey("namcs2019sv")
 #'
 #' # For each SEX, tabulate AGER
 #' tab_subset("AGER", "SEX")
@@ -41,20 +41,11 @@
 #' # Same counts as tab_subset(), but different percentages.
 #' tab_cross("AGER", "SEX")
 #'
-#' # What are the levels or MAJOR?
-#' tab("MAJOR")
-#' # Tabulate AGER by only 2 of the levels of MAJOR
-#' tab_subset("AGER", "MAJOR"
-#' , lvls = c("Chronic problem, routine", "Chronic problem, flare-up"))
+#' # Hypothesis testing
+#' tab_subset("AGER", "SEX", test = TRUE)
 #'
 #' # Numeric variables
 #' tab_subset("NUMMED", "AGER")
-#'
-#' # Hypothesis testing with categorical variables
-#' tab_subset("AGER", "SEX", test = TRUE)
-#'
-#' # Hypothesis testing with numeric variables
-#' tab_subset("NUMMED", "AGER", test = TRUE)
 tab_subset = function(vr, vrby, lvls = c()
                 , test = FALSE, alpha = 0.05
                 , drop_na = getOption("surveytable.drop_na")

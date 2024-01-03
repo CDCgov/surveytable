@@ -44,9 +44,7 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/a01-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a>
-    <a class="dropdown-item" href="../articles/a02-Example-Residential-Care-Community-RCC-Services-User-SU.html">Example: Residential Care Community (RCC) Services User (SU)</a>
-    <a class="dropdown-item" href="../articles/a03-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.html">Example: National Ambulatory Medical Care Survey (NAMCS) report</a>
+    <a class="dropdown-item" href="../articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a>
   </div>
 </li>
       </ul>
@@ -94,9 +92,7 @@ pathologists.” Note that the unit of observation is visits, not patients
 visits.</p>
 <p>Selected variables from NAMCS 2019 come with the
 <code>surveytable</code> package, for use in examples, in an object
-called <code>vars2019</code>. Alternatively, if you have installed the
-<code>nchsdata</code> package, to access the full NAMCS 2019, use
-<code><a href="https://cdcgov.github.io/nchsdata/reference/namcs2019.html" class="external-link">nchsdata::namcs2019</a></code>.</p>
+called <code>namcs2019sv</code>.</p>
 <div class="section level2">
 <h2 id="begin">Begin<a class="anchor" aria-label="anchor" href="#begin"></a>
 </h2>
@@ -107,7 +103,7 @@ like to analyze. We are not showing that message here.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cdcgov.github.io/surveytable">surveytable</a></span><span class="op">)</span></span></code></pre></div>
 <p>Now, specify the survey that you’d like to analyze.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="st">"vars2019"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="st">"namcs2019sv"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                        _             </span></span>
 <span><span class="co">#&gt; Survey name            NAMCS 2019 PUF</span></span>
 <span><span class="co">#&gt; Number of variables    36            </span></span>
@@ -115,7 +111,7 @@ like to analyze. We are not showing that message here.</p>
 <span><span class="co">#&gt; Stratified 1 - level Cluster Sampling design (with replacement)</span></span>
 <span><span class="co">#&gt; With (398) clusters.</span></span>
 <span><span class="co">#&gt; svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span></span>
-<span><span class="co">#&gt;     data = d1)</span></span>
+<span><span class="co">#&gt;     data = namcs2019sv_df)</span></span>
 <span><span class="co">#&gt; * To adjust how counts are rounded, see ?set_count_int</span></span></code></pre></div>
 <p>Check the survey label, survey design variables, and the number of
 observations to verify that it all looks correct.</p>
@@ -4126,7 +4122,7 @@ is statistically different for all other pairs of categories.</p>
 divided by population size, which is assumed to be known. For example,
 the number of physician visits per 100 people in the population is a
 rate: the number of physician visits is estimated from the
-<code>vars2019</code> survey, while the number of people in the
+<code>namcs2019sv</code> survey, while the number of people in the
 population comes from another source.</p>
 <p>To calculate rates, in addition to the survey, we need a source of
 information on population size. You would typically use a function such
@@ -6627,7 +6623,7 @@ Under 15 years
 survey design objects have an element called <code>variables</code>,
 which is a data frame that contains the survey variables.</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">vars2019</span><span class="op">$</span><span class="va">variables</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">$</span><span class="va">variables</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "data.frame"</span></span></code></pre></div>
 <p>More advanced users can create or modify variables in the
 <code>variables</code> data frame directly.</p>

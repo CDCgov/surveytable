@@ -26,7 +26,7 @@ reference:
   - var_copy
 - title: "Data for use in examples"
   contents:
-  - vars2019
+  - namcs2019sv
   - uspop2019
 - title: "Other"
   contents:

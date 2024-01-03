@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("vars2019")
+#' set_survey("namcs2019sv")
 #' var_list("age")
 var_list = function(sw = "", all=FALSE
                     , screen = getOption("surveytable.screen")

@@ -31,9 +31,7 @@ Test equality of proportions or means."><!-- mathjax --><script src="https://cdn
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/a01-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a>
-    <a class="dropdown-item" href="../articles/a02-Example-Residential-Care-Community-RCC-Services-User-SU.html">Example: Residential Care Community (RCC) Services User (SU)</a>
-    <a class="dropdown-item" href="../articles/a03-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.html">Example: National Ambulatory Medical Care Survey (NAMCS) report</a>
+    <a class="dropdown-item" href="../articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -154,7 +152,7 @@ population add up to 100%. Also see <code><a href="var_cross.html">var_cross()</
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="st">"vars2019"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="st">"namcs2019sv"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                        _             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Survey name            NAMCS 2019 PUF</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of variables    36            </span>
@@ -162,7 +160,7 @@ population add up to 100%. Also see <code><a href="var_cross.html">var_cross()</
 <span class="r-out co"><span class="r-pr">#&gt;</span> Stratified 1 - level Cluster Sampling design (with replacement)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> With (398) clusters.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     data = d1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     data = namcs2019sv_df)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * To adjust how counts are rounded, see ?set_count_int</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># For each SEX, tabulate AGER</span></span></span>
@@ -254,101 +252,7 @@ population add up to 100%. Also see <code><a href="var_cross.html">var_cross()</
 <span class="r-out co"><span class="r-pr">#&gt;</span>   (Checked presentation standards. Nothing to report.)                                         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># What are the levels or MAJOR?</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="tab.html">tab</a></span><span class="op">(</span><span class="st">"MAJOR"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                          Major reason for this visit {NAMCS 2019 PUF}                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------------------------------------------+</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Level         ¦ Number (000) ¦ SE (000) ¦ LL (000) ¦ UL (000) ¦ Percent ¦  SE ¦   LL ¦   UL ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Blank         ¦       15,887 ¦    3,354 ¦   10,335 ¦   24,419 ¦     1.5 ¦ 0.3 ¦  1   ¦  2.3 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ New problem   ¦      275,014 ¦   19,691 ¦  238,955 ¦  316,514 ¦    26.5 ¦ 1.5 ¦ 23.7 ¦ 29.5 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ (less than 3  ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ mos. onset)   ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Chronic       ¦      380,910 ¦   35,080 ¦  317,916 ¦  456,386 ¦    36.8 ¦ 2.5 ¦ 31.8 ¦ 41.9 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ problem,      ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ routine       ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Chronic       ¦       74,017 ¦    9,329 ¦   57,706 ¦   94,939 ¦     7.1 ¦ 0.9 ¦  5.5 ¦  9.1 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ problem,      ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ flare-up      ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Pre-surgery   ¦       12,864 ¦    2,151 ¦    9,188 ¦   18,010 ¦     1.2 ¦ 0.2 ¦  0.9 ¦  1.7 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Post-surgery  ¦       54,170 ¦    6,749 ¦   42,350 ¦   69,289 ¦     5.2 ¦ 0.7 ¦  4   ¦  6.7 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Preventive    ¦      223,624 ¦   18,520 ¦  190,068 ¦  263,103 ¦    21.6 ¦ 1.7 ¦ 18.3 ¦ 25.1 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ care          ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------------------------------------------+</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   (Checked presentation standards. Nothing to report.)                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="co"># Tabulate AGER by only 2 of the levels of MAJOR</span></span></span>
-<span class="r-in"><span><span class="fu">tab_subset</span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"MAJOR"</span></span></span>
-<span class="r-in"><span>, lvls <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Chronic problem, routine"</span>, <span class="st">"Chronic problem, flare-up"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Patient age recode (Major reason for this visit = Chronic problem, routine) {NAMCS 2019 PUF}  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------------------------------------------+</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Level         ¦ Number (000) ¦ SE (000) ¦ LL (000) ¦ UL (000) ¦ Percent ¦  SE ¦   LL ¦   UL ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15      ¦       10,161 ¦    1,941 ¦    6,898 ¦   14,966 ¦     2.7 ¦ 0.5 ¦  1.7 ¦  4   ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ years         ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 15-24 years   ¦       12,648 ¦    2,365 ¦    8,632 ¦   18,534 ¦     3.3 ¦ 0.7 ¦  2.1 ¦  4.9 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 25-44 years   ¦       48,324 ¦    8,017 ¦   34,763 ¦   67,175 ¦    12.7 ¦ 1.7 ¦  9.5 ¦ 16.5 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 45-64 years   ¦      125,018 ¦   14,947 ¦   98,780 ¦  158,225 ¦    32.8 ¦ 2.1 ¦ 28.6 ¦ 37.2 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 65-74 years   ¦       92,148 ¦   11,411 ¦   72,189 ¦  117,625 ¦    24.2 ¦ 1.9 ¦ 20.5 ¦ 28.2 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+--------------+----------+----------+----------+---------+-----+------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 75 years and  ¦       92,612 ¦   12,722 ¦   70,637 ¦  121,422 ¦    24.3 ¦ 2.5 ¦ 19.6 ¦ 29.6 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ over          ¦              ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------------------------------------------+</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   (Checked presentation standards. Nothing to report.)                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Patient age recode (Major reason for this visit = Chronic problem, flare-up) {NAMCS 2019 PUF}    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------------------------------------------------+</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Level       ¦      Number ¦ SE (000) ¦ LL (000) ¦ UL (000) ¦ Percent ¦  SE ¦   LL ¦   UL ¦ Flags  ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦             ¦       (000) ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦        ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +-------------+-------------+----------+----------+----------+---------+-----+------+------+--------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15    ¦       3,242 ¦    1,303 ¦    1,207 ¦    8,706 ¦     4.4 ¦ 1.8 ¦  1.6 ¦  9.4 ¦ Cx Px  ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ years       ¦             ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦        ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +-------------+-------------+----------+----------+----------+---------+-----+------+------+--------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 15-24 years ¦       2,653 ¦      713 ¦    1,497 ¦    4,705 ¦     3.6 ¦ 1   ¦  1.9 ¦  6.1 ¦        ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +-------------+-------------+----------+----------+----------+---------+-----+------+------+--------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 25-44 years ¦      10,733 ¦    2,199 ¦    7,022 ¦   16,405 ¦    14.5 ¦ 2.9 ¦  9.1 ¦ 21.4 ¦        ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +-------------+-------------+----------+----------+----------+---------+-----+------+------+--------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 45-64 years ¦      26,435 ¦    4,930 ¦   18,194 ¦   38,408 ¦    35.7 ¦ 4.3 ¦ 27.3 ¦ 44.9 ¦        ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +-------------+-------------+----------+----------+----------+---------+-----+------+------+--------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 65-74 years ¦      19,642 ¦    4,285 ¦   12,605 ¦   30,608 ¦    26.5 ¦ 4.4 ¦ 18.1 ¦ 36.4 ¦        ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +-------------+-------------+----------+----------+----------+---------+-----+------+------+--------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 75 years    ¦      11,312 ¦    2,615 ¦    7,048 ¦   18,156 ¦    15.3 ¦ 2.7 ¦ 10.3 ¦ 21.5 ¦        ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ and over    ¦             ¦          ¦          ¦          ¦         ¦     ¦      ¦      ¦        ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------------------------------------------------+</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Cx: suppress count (and rate); Px: suppress percent                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Numeric variables</span></span></span>
-<span class="r-in"><span><span class="fu">tab_subset</span><span class="op">(</span><span class="st">"NUMMED"</span>, <span class="st">"AGER"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of medications coded (for different levels of Patient age recode) {NAMCS 2019 PUF}</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------+</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Level             ¦ % known ¦ Mean ¦   SEM ¦   SD ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15 years    ¦     100 ¦ 1.58 ¦ 0.168 ¦ 1.75 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 15-24 years       ¦     100 ¦ 1.64 ¦ 0.112 ¦ 1.7  ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 25-44 years       ¦     100 ¦ 2.15 ¦ 0.225 ¦ 2.74 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 45-64 years       ¦     100 ¦ 3.49 ¦ 0.303 ¦ 4.49 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 65-74 years       ¦     100 ¦ 4.44 ¦ 0.431 ¦ 5.03 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 75 years and over ¦     100 ¦ 5.53 ¦ 0.494 ¦ 5.59 ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------+</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Hypothesis testing with categorical variables</span></span></span>
+<span class="r-in"><span><span class="co"># Hypothesis testing</span></span></span>
 <span class="r-in"><span><span class="fu">tab_subset</span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"SEX"</span>, test <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                   Patient age recode (Patient sex = Female) {NAMCS 2019 PUF}                   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------------------------------------------+</span>
@@ -463,8 +367,8 @@ population add up to 100%. Also see <code><a href="var_cross.html">var_cross()</
 <span class="r-out co"><span class="r-pr">#&gt;</span>   *: p-value &lt;= 0.05                                   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Hypothesis testing with numeric variables</span></span></span>
-<span class="r-in"><span><span class="fu">tab_subset</span><span class="op">(</span><span class="st">"NUMMED"</span>, <span class="st">"AGER"</span>, test <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Numeric variables</span></span></span>
+<span class="r-in"><span><span class="fu">tab_subset</span><span class="op">(</span><span class="st">"NUMMED"</span>, <span class="st">"AGER"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of medications coded (for different levels of Patient age recode) {NAMCS 2019 PUF}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Level             ¦ % known ¦ Mean ¦   SEM ¦   SD ¦</span>
@@ -481,42 +385,6 @@ population add up to 100%. Also see <code><a href="var_cross.html">var_cross()</
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-------------------+---------+------+-------+------¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 75 years and over ¦     100 ¦ 5.53 ¦ 0.494 ¦ 5.59 ¦</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------+</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Comparison of Number of medications coded across all possible pairs of Patient age recode {NAMCS 2019 PUF}</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +-----------------------------------------------------+</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Level 1        ¦ Level 2           ¦ p-value ¦ Flag ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15 years ¦ 15-24 years       ¦   0.739 ¦      ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15 years ¦ 25-44 years       ¦   0.043 ¦ *    ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15 years ¦ 45-64 years       ¦   0     ¦ *    ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15 years ¦ 65-74 years       ¦   0     ¦ *    ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Under 15 years ¦ 75 years and over ¦   0     ¦ *    ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 15-24 years    ¦ 25-44 years       ¦   0.029 ¦ *    ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 15-24 years    ¦ 45-64 years       ¦   0     ¦ *    ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 15-24 years    ¦ 65-74 years       ¦   0     ¦ *    ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 15-24 years    ¦ 75 years and over ¦   0     ¦ *    ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 25-44 years    ¦ 45-64 years       ¦   0     ¦ *    ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 25-44 years    ¦ 65-74 years       ¦   0     ¦ *    ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 25-44 years    ¦ 75 years and over ¦   0     ¦ *    ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 45-64 years    ¦ 65-74 years       ¦   0.007 ¦ *    ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 45-64 years    ¦ 75 years and over ¦   0     ¦ *    ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+-------------------+---------+------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ 65-74 years    ¦ 75 years and over ¦   0.002 ¦ *    ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +-----------------------------------------------------+</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   *: p-value &lt;= 0.05                                   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>

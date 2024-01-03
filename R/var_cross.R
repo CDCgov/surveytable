@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("vars2019")
+#' set_survey("namcs2019sv")
 #' var_cross("Age x Sex", "AGER", "SEX")
 #' tab("Age x Sex")
 var_cross = function(newvr, vr, vrby) {

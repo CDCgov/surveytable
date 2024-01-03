@@ -29,9 +29,7 @@ variables are true."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/a
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/a01-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a>
-    <a class="dropdown-item" href="../articles/a02-Example-Residential-Care-Community-RCC-Services-User-SU.html">Example: Residential Care Community (RCC) Services User (SU)</a>
-    <a class="dropdown-item" href="../articles/a03-Example-National-Ambulatory-Medical-Care-Survey-NAMCS-report.html">Example: National Ambulatory Medical Care Survey (NAMCS) report</a>
+    <a class="dropdown-item" href="../articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -93,7 +91,7 @@ variables are true.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="st">"vars2019"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="st">"namcs2019sv"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                        _             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Survey name            NAMCS 2019 PUF</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of variables    36            </span>
@@ -101,7 +99,7 @@ variables are true.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Stratified 1 - level Cluster Sampling design (with replacement)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> With (398) clusters.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     data = d1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     data = namcs2019sv_df)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * To adjust how counts are rounded, see ?set_count_int</span>
 <span class="r-in"><span><span class="fu">var_any</span><span class="op">(</span><span class="st">"Imaging services"</span></span></span>
 <span class="r-in"><span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ANYIMAGE"</span>, <span class="st">"BONEDENS"</span>, <span class="st">"CATSCAN"</span>, <span class="st">"ECHOCARD"</span>, <span class="st">"OTHULTRA"</span></span></span>

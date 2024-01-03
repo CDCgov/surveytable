@@ -40,7 +40,7 @@ Written by Makram Talih in 2019.
 To use this function in tabulations, type: \code{options(surveytable.adjust_svyciprop = TRUE)}.
 }
 \examples{
-set_survey("vars2019")
+set_survey("namcs2019sv")
 options(surveytable.adjust_svyciprop = TRUE)
 tab("AGER")
 options(surveytable.adjust_svyciprop = FALSE)

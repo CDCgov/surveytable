@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("vars2019")
+#' set_survey("namcs2019sv")
 #' total()
 total = function(screen = getOption("surveytable.screen")
                , csv = getOption("surveytable.csv") ) {

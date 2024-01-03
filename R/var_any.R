@@ -11,7 +11,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("vars2019")
+#' set_survey("namcs2019sv")
 #' var_any("Imaging services"
 #' , c("ANYIMAGE", "BONEDENS", "CATSCAN", "ECHOCARD", "OTHULTRA"
 #' , "MAMMO", "MRI", "XRAY", "OTHIMAGE"))

@@ -53,7 +53,7 @@ for complex surveys. CIs for percentage estimates are
 the Korn and Graubard CIs.
 }
 \examples{
-set_survey("vars2019")
+set_survey("namcs2019sv")
 tab("AGER")
 tab("MDDO", "SPECCAT", "MSA")
 

@@ -42,7 +42,7 @@ library(surveytable)
 ```
 
 ``` r
-set_survey("vars2019")
+set_survey("namcs2019sv")
 #>                        _             
 #> Survey name            NAMCS 2019 PUF
 #> Number of variables    36            
@@ -50,7 +50,7 @@ set_survey("vars2019")
 #> Stratified 1 - level Cluster Sampling design (with replacement)
 #> With (398) clusters.
 #> svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, 
-#>     data = d1)
+#>     data = namcs2019sv_df)
 #> * To adjust how counts are rounded, see ?set_count_int
 ```
 
@@ -280,23 +280,6 @@ Under 15 years
 </td>
 </tr>
 </table>
-
-## Related packages
-
-In all, there are 3 related packages:
-
--   [surveytable: functions for tabulating survey
-    estimates](https://cdcgov.github.io/surveytable/)
--   [nchsdata: public use files (PUFs) from the the National Center for
-    Health Statistics (NCHS)](https://cdcgov.github.io/nchsdata/)
--   [importsurvey: functions for importing data into
-    R](https://cdcgov.github.io/importsurvey/)
-
-`importsurvey` imports surveys into R that are currently in other
-formats. Public versions of surveys that have already been imported are
-stored in `nchsdata`. Tables of estimates can be generated using
-`surveytable`.
-
 <!-- CDC standard text -->
 
 ## Public Domain Standard Notice

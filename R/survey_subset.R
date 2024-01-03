@@ -9,7 +9,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' children = survey_subset(vars2019, AGE < 18, "Children")
+#' children = survey_subset(namcs2019sv, AGE < 18, "Children")
 #' set_survey("children")
 #' tab("AGER")
 #' }

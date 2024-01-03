@@ -27,6 +27,6 @@ var_list(
 List variables in a survey.
 }
 \examples{
-set_survey("vars2019")
+set_survey("namcs2019sv")
 var_list("age")
 }

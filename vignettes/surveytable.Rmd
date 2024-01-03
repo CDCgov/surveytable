@@ -18,7 +18,7 @@ The `surveytable` package provides short and understandable commands that genera
 
 The examples below use the National Ambulatory Medical Care Survey (NAMCS) 2019 Public Use File (PUF). NAMCS is "an annual nationally representative sample survey of visits to nonfederal office-based patient care physicians, excluding anesthesiologists, radiologists, and pathologists." Note that the unit of observation is visits, not patients – this distinction is important since a single patient can make multiple visits.
 
-Selected variables from NAMCS 2019 come with the `surveytable` package, for use in examples, in an object called `vars2019`. Alternatively, if you have installed the `nchsdata` package, to access the full NAMCS 2019, use `nchsdata::namcs2019`.
+Selected variables from NAMCS 2019 come with the `surveytable` package, for use in examples, in an object called `namcs2019sv`.
 
 # Begin
 
@@ -31,7 +31,7 @@ library(surveytable)
 Now, specify the survey that you'd like to analyze.
 
 ```{r}
-set_survey("vars2019")
+set_survey("namcs2019sv")
 ```
 
 Check the survey label, survey design variables, and the number of observations to verify that it all looks correct.
@@ -190,7 +190,7 @@ According to this, `NUMMED` is statistically similar for the "Under 15 years" an
 
 # Calculate rates
 
-A rate is a ratio of count estimates based on the survey in question divided by population size, which is assumed to be known. For example, the number of physician visits per 100 people in the population is a rate: the number of physician visits is estimated from the `vars2019` survey, while the number of people in the population comes from another source. 
+A rate is a ratio of count estimates based on the survey in question divided by population size, which is assumed to be known. For example, the number of physician visits per 100 people in the population is a rate: the number of physician visits is estimated from the `namcs2019sv` survey, while the number of people in the population comes from another source. 
 
 To calculate rates, in addition to the survey, we need a source of information on population size. You would typically use a function such as `read.csv()` to load the population figures and get them into the correct format. The `surveytable` package comes with an object called `uspop2019` that contains several population figures for use in these examples.
 
@@ -334,7 +334,7 @@ tab("AGER", "Age group")
 **The `variables` data frame.** Recall that survey design objects have an element called `variables`, which is a data frame that contains the survey variables.
 
 ```{r}
-class(vars2019$variables)
+class(namcs2019sv$variables)
 ```
 
 More advanced users can create or modify variables in the `variables` data frame directly.
