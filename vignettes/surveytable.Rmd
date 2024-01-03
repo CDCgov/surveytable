@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 The `surveytable` package provides short and understandable commands that generate tabulated, formatted, and rounded survey estimates.
 
-The examples below use the National Ambulatory Medical Care Survey (NAMCS) 2019 Public Use File (PUF). NAMCS is "an annual nationally representative sample survey of visits to nonfederal office-based patient care physicians, excluding anesthesiologists, radiologists, and pathologists." Note that the unit of observation is visits, not patients – this distinction is important since a single patient can make multiple visits.
+The examples below use the National Ambulatory Medical Care Survey (NAMCS) 2019 Public Use File (PUF). NAMCS is "an annual nationally representative sample survey of visits to non-federal office-based patient care physicians, excluding anesthesiologists, radiologists, and pathologists." Note that the unit of observation is visits, not patients – this distinction is important since a single patient can make multiple visits.
 
 Selected variables from NAMCS 2019 come with the `surveytable` package, for use in examples, in an object called `namcs2019sv`.
 

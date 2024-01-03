@@ -22,7 +22,7 @@
 
 #' US Population in 2019
 #'
-#' Population estimates of the civilian noninstitutional population of the
+#' Population estimates of the civilian non-institutional population of the
 #' United States as of July 1, 2019. Used for calculating rates. For usage
 #' examples, see the `*_rate` functions.
 "uspop2019"

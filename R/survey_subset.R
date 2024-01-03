@@ -1,7 +1,7 @@
 #' Subset a survey, while preserving variable labels
 #'
 #' @param design a survey design object
-#' @param subset an expression specifying the subpopulation
+#' @param subset an expression specifying the sub-population
 #' @param label survey label of the newly created survey design object
 #'
 #' @return a new survey design object

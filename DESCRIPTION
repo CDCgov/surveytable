@@ -1,6 +1,6 @@
 Package: surveytable
 Title: Formatted Survey Estimates
-Version: 0.9
+Version: 0.9.1
 Authors@R: 
     person("Alex", "Strashny", , "AStrashny@cdc.gov", role = c("aut", "cre"))
 Description: Formatted Survey Estimates.
@@ -24,3 +24,4 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 URL: https://cdcgov.github.io/surveytable, https://github.com/CDCgov/surveytable
+Language: en-US

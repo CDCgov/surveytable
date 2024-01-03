@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-This example uses the National Ambulatory Medical Care Survey (NAMCS) 2019 Public Use File (PUF) to replicate certain tables from the [National Ambulatory Medical Care Survey: 2019 National Summary Tables](https://www.cdc.gov/nchs/data/ahcd/namcs_summary/2019-namcs-web-tables-508.pdf). NAMCS is "an annual nationally representative sample survey of visits to nonfederal office-based patient care physicians, excluding anesthesiologists, radiologists, and pathologists." Note that the unit of observation is visits, not patients – this distinction is important since a single patient can make multiple visits.
+This example uses the National Ambulatory Medical Care Survey (NAMCS) 2019 Public Use File (PUF) to replicate certain tables from the [National Ambulatory Medical Care Survey: 2019 National Summary Tables](https://www.cdc.gov/nchs/data/ahcd/namcs_summary/2019-namcs-web-tables-508.pdf). NAMCS is "an annual nationally representative sample survey of visits to non-federal office-based patient care physicians, excluding anesthesiologists, radiologists, and pathologists." Note that the unit of observation is visits, not patients – this distinction is important since a single patient can make multiple visits.
 
 Selected variables from NAMCS 2019 come with the `surveytable` package, for use in examples, in an object called `namcs2019sv`. To make the below code more reusable, we'll call the survey by a generic name, namely, `mysurvey`.
 
