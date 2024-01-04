@@ -3,8 +3,10 @@ title: "Introduction to surveytable"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to surveytable}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r, include = FALSE}
@@ -16,19 +18,98 @@ knitr::opts_chunk$set(
 
 The `surveytable` package provides short and understandable commands that generate tabulated, formatted, and rounded survey estimates.
 
-The examples below use the National Ambulatory Medical Care Survey (NAMCS) 2019 Public Use File (PUF). NAMCS is "an annual nationally representative sample survey of visits to non-federal office-based patient care physicians, excluding anesthesiologists, radiologists, and pathologists." Note that the unit of observation is visits, not patients – this distinction is important since a single patient can make multiple visits.
+# Preliminaries
 
-Selected variables from NAMCS 2019 come with the `surveytable` package, for use in examples, in an object called `namcs2019sv`.
+## Concepts
 
-# Begin
+There are two important concepts that we need to learn and distinguish:
 
-Begin by loading the `surveytable` package. When you do, it will print a message explaining how to specify the survey that you'd like to analyze. We are not showing that message here. 
+1) A **data frame** is a standard way of storing data in R. A data frame is rectangular data. Variables are in columns, observations are in rows. Example:
 
-```{r, results=FALSE, message=FALSE, warning=FALSE}
-library(surveytable)
+```{r}
+head(iris)
 ```
 
-Now, specify the survey that you'd like to analyze.
+A data frame, in an of itself, cannot represent a complex survey. This is because, just by looking at a data frame, R does not know what the sampling weights are, what the strata are, etc. Even if the variables that represent the sampling weights, etc, are part of the data frame, just by looking at the data frame, R does not know which variable represents the weights or other survey design variables. 
+
+You can get a data frame into R in many different ways. If your data is currently in a comma-separated values (CSV) file, you can use `read.csv()`. If it's in a SAS file, you can use a package like `haven` or [importsurvey](https://cdcgov.github.io/importsurvey/). If it's already in R format, use `readRDS()`, and so on.
+
+2) A **survey object** is an object that describes a survey. It tells R what the sampling weights are, what the strata are, and so on. A data frame can be converted into a survey object using the `survey::svydesign()` function; if a survey uses replicate weights, the `survey::svrepdesign()` function should be used.
+
+Generally speaking, you only need to convert a data frame to a survey object once. After it has been converted, you can save it with `saveRDS()` (or similar). In the future, you can load it with `readRDS()`. You do not need to re-convert a data frame to a survey object every time. 
+
+## NAMCS
+
+Examples in this tutorial use a survey called the National Ambulatory Medical Care Survey (NAMCS) 2019 Public Use File (PUF). NAMCS is "an annual nationally representative sample survey of visits to non-federal office-based patient care physicians, excluding anesthesiologists, radiologists, and pathologists." Note that the unit of observation is visits, not patients – this distinction is important since a single patient can make multiple visits.
+
+The `surveytable` package comes with a data frame of selected variables from NAMCS, called `namcs2019sv_df` (`sv` = selected variables; `df` = data frame). The survey object of this survey is called `namcs2019sv`. 
+
+`namcs2019sv` is the object that we analyze. You really only need `namcs2019sv`. The reason that the package has `namcs2019sv_df` is to illustrate how to convert the data frame to the survey object. 
+
+## More concepts
+
+When importing data from another source, such as SAS or CSV, analysts should be aware of the standard way in which variables are handled in R. 
+
+* Specifically, categorical variables should be stored as `factor`. 
+* While true / false variables could be stored as `factor` as well, some programming tasks are easier if they are stored as `logical`. 
+* Unknown values should be stored as missing (`NA`). If a variable contains "special values", such as a negative value indicating that the age is missing, those "special values" need to be converted to `NA`.
+
+Variables in `namcs2019sv_df` are already stored correctly. Thus, 
+
+* `AGER` (patient's age group) is a `factor` variable; 
+* `PAYNOCHG` (which indicates whether there was no charge for the physician visit) is a `logical` variable; and 
+* `AGE` (patient's age in years) is a `numeric` variable.
+
+```{r, results=FALSE, message=FALSE, warning=FALSE}
+library("surveytable")
+```
+
+```{r}
+class(namcs2019sv_df$AGER)
+class(namcs2019sv_df$PAYNOCHG)
+class(namcs2019sv_df$AGE)
+```
+
+## Create a survey object
+
+As seen below, tables produced by `surveytable` are clearer if either the variable names themselves are descriptive, or if the variables have the `"label"` attribute that is descriptive. In `namcs2019sv_df`, all variables already have the `"label"` attribute set. For example, while the variable name `AGE` itself is not very descriptive, the variable does have a more descriptive `"label"` attribute:
+
+```{r}
+attr(namcs2019sv_df$AGE, "label")
+```
+
+Documentation for the NAMCS survey provides the names of the survey design variables. Specifically, in NAMCS, 
+
+* cluster ID's, also known as primary sampling units (PSU's), are given in `CPSUM`; 
+* strata are given in `CSTRATM`; and 
+* sampling weights are given in `PATWT`. 
+
+Thus, the `namcs2019sv_df` data frame can be turned into a survey object as follows:
+
+```{r}
+mysurvey = survey::svydesign(ids = ~ CPSUM
+  , strata = ~ CSTRATM
+  , weights = ~ PATWT
+  , data = namcs2019sv_df)
+```
+
+Tables produced by `surveytable` are clearer if either the name of the survey object is descriptive, or if the object has the `"label"` attribute that is descriptive. Let's set this attribute for `mysurvey`:
+
+```{r}
+attr(mysurvey, "label") = "NAMCS 2019 PUF"
+```
+
+The `mysurvey` object should now be identical to `namcs2019sv`. Let's verify this:
+
+```{r}
+identical(namcs2019sv, mysurvey)
+```
+
+We have just successfully created a survey object from a data frame. 
+
+# Begin analysis
+
+First, specify the survey object that you'd like to analyze.
 
 ```{r}
 set_survey("namcs2019sv")
@@ -38,7 +119,7 @@ Check the survey label, survey design variables, and the number of observations 
 
 ## List variables
 
-The `var_list` function lists the variables in the survey. To avoid unintentionally listing all the variables in a survey, which can be many, the starting characters of variable names are specified. For example, to list the variables that start with the letters `age`, type:
+The `var_list()` function lists the variables in the survey. To avoid unintentionally listing all the variables in a survey, which can be many, the starting characters of variable names are specified. For example, to list the variables that start with the letters `age`, type:
 
 ```{r, results='asis'}
 var_list("age")
@@ -54,7 +135,7 @@ Common classes are `factor` (categorical variable), `logical` (yes / no variable
 
 # Tabulate categorical and logical variables
 
-The main function of the `surveytable` package is `tab`, which tabulates variables. It operates on categorical and logical variables, and presents both estimated counts, with their standard errors (SEs) and 95% confidence intervals (CIs), and percentages, with their SEs and CIs. For example, to tabulate `AGER`, a categorical variable of age groups, type:
+The main function of the `surveytable` package is `tab()`, which tabulates variables. It operates on categorical and logical variables, and presents both estimated counts, with their standard errors (SEs) and 95% confidence intervals (CIs), and percentages, with their SEs and CIs. For example, to tabulate `AGER`, type:
 
 ```{r, results='asis'}
 tab("AGER")
@@ -67,9 +148,9 @@ For each level of the variable, the table shows:
 * the estimated count, its standard error, and its 95% confidence interval; and 
 * the estimated percentage, its standard error, and its 95% confidence interval.
 
-**NCHS presentation standards.** The `tab` function also applies the NCHS presentation standards for counts and percentages, and flags estimates if, according to the standards, they should be suppressed, footnoted, or reviewed by an analyst. The CIs that are displayed are the ones that are used by the NCHS presentation standards. Specifically, for counts, the tables show the log Student's t 95% CI, with adaptations for complex surveys; for percentages, they show the 95% Korn and Graubard CI.
+**NCHS presentation standards.** The `tab()` function also applies the NCHS presentation standards for counts and percentages, and flags estimates if, according to the standards, they should be suppressed, footnoted, or reviewed by an analyst. The CIs that are displayed are the ones that are used by the NCHS presentation standards. Specifically, for counts, the tables show the log Student's t 95% CI, with adaptations for complex surveys; for percentages, they show the 95% Korn and Graubard CI.
 
-One does not need to do anything extra to perform presentation standards checking -- it is performed automatically. For example, let's tabulate `PAYNOCHG` (a variable indicating whether there was no charge for the physician visit): 
+One does not need to do anything extra to perform presentation standards checking -- it is performed automatically. For example, let's tabulate `PAYNOCHG`: 
 
 ```{r, results='asis'}
 tab("PAYNOCHG")
@@ -98,7 +179,7 @@ tab("MDDO", "SPECCAT", "MSA")
 ```
 
 ## Entire population
-Estimate the total count for the entire population using the `total` command:
+Estimate the total count for the entire population using the `total()` command:
 
 ```{r, results='asis'}
 total()
@@ -112,21 +193,24 @@ To create a table of `AGER` for each value of the variable `SEX`, type:
 tab_subset("AGER", "SEX")
 ```
 
-Optionally, one or more levels of the subsetting variable can be specified, to tabulate only on those subsets.
+In addition to giving the long name of the variable being tabulated, the title of each table reflects the value of the subsetting variable (in this case, either `Female` or `Male`).
 
-The title of each table reflects the value of the subsetting variable (in this case, `SEX`).
+With the `tab_subset()` command, in each table (that is, in each subset), the percentages add up to 100%.
 
-With the `tab_subset` command, in each table (that is, in each subset), the percentages add up to 100%.
-
-Another way to tabulate subsets is using the `tab_cross` function, which crosses or interacts two variables and generates a table using this new variable. While the estimated counts produced by `tab_subset` and `tab_cross` are the same, with `tab_cross`, percentages across the entire population add up to 100%.
+The `tab_cross()` function is similar -- it crosses or interacts two variables and generates a table using this new variable. Thus, to create a table of the interaction of `AGER` and  `SEX`, type:
 
 ```{r, results='asis'}
 tab_cross("AGER", "SEX")
 ```
 
+While the estimated counts produced by `tab_subset()` and `tab_cross()` are the same, the percentages are different. 
+
+* With the `tab_subset()` command, within each table (that is, within each subset), the percentages add up to 100%. 
+* On the other hand, with `tab_cross()`, the percentages across the entire population add up to 100%.
+
 # Tabulate numeric variables
 
-The `tab` and `tab_subset` functions also work with numeric variables, though with such  variables, the output is different. To tabulate `NUMMED` (number of medications), a numeric variable, type:
+The `tab()` and `tab_subset()` functions also work with numeric variables, though with such  variables, the output is different. To tabulate `NUMMED` (number of medications), a numeric variable, type:
 
 ```{r, results='asis'}
 tab("NUMMED")
@@ -144,7 +228,7 @@ tab_subset("NUMMED", "AGER")
 
 # Perform statistical hypothesis testing
 
-The `tab` and `tab_subset` functions make it easy to perform the design-based t-test by using the `test` argument. 
+The `tab()` and `tab_subset()` functions make it easy to perform the design-based t-test by using the `test` argument. 
 
 ## Categorical variables
 To test whether any levels of `AGER` are statistically similar or different, type:
@@ -180,7 +264,8 @@ According to this, the following pairs of categories are statistically similar:
   
 ## Numeric variables
 
-To test whether the numeric variable `NUMMED` varies with the categorical variable `AGER`, type:
+To test whether, for each possible pair of levels of the categorical variable `AGER`, the numeric variable `NUMMED` is statistically similar or different, type:
+
 
 ```{r, results='asis'}
 tab_subset("NUMMED", "AGER", test = TRUE)
@@ -194,14 +279,14 @@ A rate is a ratio of count estimates based on the survey in question divided by 
 
 To calculate rates, in addition to the survey, we need a source of information on population size. You would typically use a function such as `read.csv()` to load the population figures and get them into the correct format. The `surveytable` package comes with an object called `uspop2019` that contains several population figures for use in these examples.
 
-Examine `uspop2019`:
+Let's examine `uspop2019`:
 
 ```{r}
 class(uspop2019)
 names(uspop2019)
 ```
 
-The overall population size for the country as a whole:
+The overall population size for the country as a whole is:
 ```{r}
 uspop2019$total
 ```
@@ -246,16 +331,16 @@ In some situations, it might be necessary to modify survey variables, or to crea
 tab("MAJOR")
 ```
 
-Suppose an analyst is only interested in preventive care visits. Instead of tabulating all levels of `MAJOR`, they could type:
+Notice that one of the levels is called `"Preventive care"`. Suppose an analyst is only interested in whether or not a visit is a preventive care visit -- they are not interested in the other visit types. They can create a new variable called `Preventive care visits` that is `TRUE` for preventive care visits and `FALSE` for all other types of visits, as follows:
 
 ```{r, results='asis'}
 var_case("Preventive care visits", "MAJOR", "Preventive care")
 tab("Preventive care visits")
 ```
 
-This creates a logical variable that is `TRUE` for preventive care visits and then tabulates it. When using the `var_case` function, specify the name of the new logical variable to be created, an existing factor variable, and one or more levels of the factor variable that should be set to `TRUE` in the logical variable. 
+This creates a logical variable that is `TRUE` for preventive care visits and then tabulates it. When using the `var_case()` function, specify the name of the new logical variable to be created, an existing factor variable, and one or more levels of the factor variable that should be set to `TRUE` in the logical variable. 
 
-Thus, if an analyst is interested in surgery-related visits, they could type:
+Thus, if an analyst is interested in surgery-related visits, which are indicated by two different levels of `MAJOR`, they could type:
 
 ```{r, results='asis'}
 var_case("Surgery-related visits"
@@ -292,14 +377,14 @@ var_cut("Age group", "AGE"
 tab("Age group")
 ```
 
-In the `var_cut` command, specify the following information:
+In the `var_cut()` command, specify the following information:
 
 * name of the new categorical variable; 
 * name of the existing numeric variable;
 * cut points -- note that the intervals are inclusive on the right; and  
 * category labels.
 
-**Check whether any variable is true.** For a series of logical variables, you can check whether any of them are `TRUE` using the `var_any` command. 
+**Check whether any variable is true.** For a series of logical variables, you can check whether any of them are `TRUE` using the `var_any()` command. 
 
 A physician visit is considered to be an "imaging services" visit if it had any of a number of imaging services ordered or provided. Imaging services are indicated using logical variables, such as `MRI` and `XRAY`. To create the `Imaging services` variable, type:
 
@@ -310,19 +395,15 @@ var_any("Imaging services"
 tab("Imaging services")
 ```
 
-**Interact variables.** The `tab_cross` function creates a table of an interaction of two variables, but it does not save the interacted variable. An analyst might need to do something with the interacted variable, such as possibly subset it later. To create the interacted variable, use the `var_cross` command:
+**Interact variables.** The `tab_cross()` function creates a table of an interaction of two variables, but it does not save the interacted variable. To create the interacted variable, use the `var_cross()` command:
 
 ```{r}
 var_cross("Age x Sex", "AGER", "SEX")
 ```
 
-Now, for example, create a table of the age / sex interaction in preventive care visits:
+Specify the name of the new variable as well as names of the two variables to interact.
 
-```{r, results='asis'}
-tab_subset("Age x Sex", "MAJOR", "Preventive care")
-```
-
-**Copy a variable.** Create a new variable that is a copy of another variable using `var_copy`. You can modify the copy, while the original remains unchanged. For example:
+**Copy a variable.** Create a new variable that is a copy of another variable using `var_copy()`. You can modify the copy, while the original remains unchanged. For example:
 
 ```{r, results='asis'}
 var_copy("Age group", "AGER")
@@ -331,7 +412,9 @@ var_collapse("Age group", "25-64", c("25-44 years", "45-64 years"))
 tab("AGER", "Age group")
 ```
 
-**The `variables` data frame.** Recall that survey design objects have an element called `variables`, which is a data frame that contains the survey variables.
+Here, the `AGER` variable remains unchanged, while the `Age group` variable has fewer categories.
+
+**The `variables` data frame.** Recall that survey objects have an element called `variables`, which is a data frame that contains the survey variables.
 
 ```{r}
 class(namcs2019sv$variables)
@@ -341,7 +424,7 @@ More advanced users can create or modify variables in the `variables` data frame
 
 # Save the output
 
-The `tab*` and `total*` functions have an argument called `csv` that specifies the name of a comma-separated values (CSV) file to save the output to. Alternatively, you can name the default CSV output file using the `set_output` function. For example, the following directs `surveytable` to send all future output to a CSV file, create some tables, and then turn off sending output to the file:
+The `tab*` and `total*` functions have an argument called `csv` that specifies the name of a comma-separated values (CSV) file to save the output to. Alternatively, you can name the default CSV output file using the `set_output()` function. For example, the following directs `surveytable` to send all future output to a CSV file, create some tables, and then turn off sending output to the file:
 
 ```{r, results=FALSE, message=FALSE, warning=FALSE}
 set_output(csv = "out.csv")
