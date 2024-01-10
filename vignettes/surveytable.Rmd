@@ -148,7 +148,7 @@ For each level of the variable, the table shows:
 * the estimated count, its standard error, and its 95% confidence interval; and 
 * the estimated percentage, its standard error, and its 95% confidence interval.
 
-**NCHS presentation standards.** The `tab()` function also applies the NCHS presentation standards for counts and percentages, and flags estimates if, according to the standards, they should be suppressed, footnoted, or reviewed by an analyst. The CIs that are displayed are the ones that are used by the NCHS presentation standards. Specifically, for counts, the tables show the log Student's t 95% CI, with adaptations for complex surveys; for percentages, they show the 95% Korn and Graubard CI.
+**NCHS presentation standards.** The `tab()` function also applies the National Center for Health Statistics (NCHS) presentation standards for counts and percentages, and flags estimates if, according to the standards, they should be suppressed, footnoted, or reviewed by an analyst. The CIs that are displayed are the ones that are used by the NCHS presentation standards. Specifically, for counts, the tables show the log Student's t 95% CI, with adaptations for complex surveys; for percentages, they show the 95% Korn and Graubard CI.
 
 One does not need to do anything extra to perform presentation standards checking -- it is performed automatically. For example, let's tabulate `PAYNOCHG`: 
 

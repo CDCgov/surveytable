@@ -14,10 +14,11 @@ and confidence intervals. Other functions list the variables in a
 survey, estimate the total population, tabulate survey subsets and
 variable interactions, tabulate numeric variables, tabulate rates,
 create or modify survey variables, perform t-tests, and save the output.
-All of the tabulation functions check the NCHS presentation standards to
-flag low-precision estimates. If the `surveytable` code is called from
-an R Markdown notebook or a Quarto document, it generates HTML tables,
-which can be incorporated directly into documents.
+All of the tabulation functions check the National Center for Health
+Statistics (NCHS) presentation standards to flag low-precision
+estimates. If the `surveytable` code is called from an R Markdown
+notebook or a Quarto document, it generates HTML tables, which can be
+incorporated directly into documents.
 
 ## Installation
 
