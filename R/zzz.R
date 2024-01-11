@@ -47,6 +47,8 @@
 
     , surveytable.adjust_svyciprop = FALSE
     , surveytable.adjust_svyciprop.df_method = "NHIS"
+
+    , surveytable.svychisq_statistic = "Wald"
   )
   # No - creates a startup message which cannot be suppressed.
   # set_count_1k()

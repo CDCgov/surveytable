@@ -2,7 +2,6 @@
 #'
 #' Create subsets of the survey using one variable, and tabulate another
 #' variable within each of the subsets. Interact two variables and tabulate.
-#' Test equality of proportions or means.
 #'
 #' `tab_subset` creates subsets using the levels of `vrby`, and tabulates
 #' `vr` in each subset. Optionally, only use the `lvls` levels of `vrby`.
@@ -14,11 +13,14 @@
 #' subset add up to 100%. With `tab_cross`, percentages across the entire
 #' population add up to 100%. Also see [`var_cross()`].
 #'
+#' `test = TRUE` performs a test of association between the two variables. Also
+#' performs t-tests for all possible pairs of levels of `vr` and `vrby`.
+#'
 #' @param vr      variable to tabulate
 #' @param vrby    use this variable to subset the survey
 #' @param lvls    (optional) only show these levels of `vrby`
-#' @param test    perform hypothesis test?
-#' @param alpha   significance level for the above test.
+#' @param test    perform hypothesis tests?
+#' @param alpha   significance level for tests
 #' @param drop_na drop missing values (`NA`)? Categorical variables only.
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
 #' @param screen  print to the screen?
@@ -48,13 +50,16 @@
 #' tab_subset("NUMMED", "AGER")
 tab_subset = function(vr, vrby, lvls = c()
                 , test = FALSE, alpha = 0.05
+                # , test_pairs = "depends"
                 , drop_na = getOption("surveytable.drop_na")
                 , max_levels = getOption("surveytable.max_levels")
                 , screen = getOption("surveytable.screen")
                 , csv = getOption("surveytable.csv")
               ) {
   assert_that(test %in% c(TRUE, FALSE)
-              , alpha > 0, alpha < 0.5)
+              , alpha > 0, alpha < 0.5
+              # , test_pairs %in% c("depends", "yes", "no")
+              )
   design = .load_survey()
   nm = names(design$variables)
   assert_that(vr %in% nm, msg = paste("Variable", vr, "not in the data."))
@@ -64,6 +69,14 @@ tab_subset = function(vr, vrby, lvls = c()
               || is.numeric(design$variables[,vr])
         , msg = paste0(vr, ": must be factor, logical, or numeric. Is "
                    , class(design$variables[,vr])[1] ))
+
+  # Need to convert to factor for testing
+  if (is.logical(design$variables[,vr])) {
+    lbl = attr(design$variables[,vr], "label")
+    design$variables[,vr] %<>% factor
+    design$variables[,vr] %<>% droplevels %>% .fix_factor
+    attr(design$variables[,vr], "label") = lbl
+  }
 
   lbl = attr(design$variables[,vrby], "label")
   if (is.logical(design$variables[,vrby])) {
@@ -83,6 +96,27 @@ tab_subset = function(vr, vrby, lvls = c()
 
   ret = list()
   if (is.logical(design$variables[,vr]) || is.factor(design$variables[,vr])) {
+    if (test) {
+      frm = as.formula(paste0("~ `", vr, "` + `", vrby, "`"))
+      fo = svychisq(frm, design, statistic = getOption("surveytable.svychisq_statistic"))
+      rT = data.frame(`p-value` = fo$p.value, check.names = FALSE)
+      test_name = fo$method
+      test_title = paste0("Association between "
+                           , .getvarname(design, vr)
+                           , " and ", .getvarname(design, vrby))
+      # do_pairs = if(test_pairs == "no") {
+      #   FALSE
+      # } else if(test_pairs == "yes") {
+      #   TRUE
+      # } else {
+      #   rT$`p-value` <= alpha
+      # }
+
+      ret[[ test_name ]] = .test_table(rT = rT
+        , test_name = test_name, test_title = test_title, alpha = alpha
+        , screen = screen, csv = csv)
+    }
+
     for (ii in lvl0) {
       d1 = design[which(design$variables[,vrby] == ii),]
       if(inherits(d1, "svyrep.design")) {
@@ -99,12 +133,41 @@ tab_subset = function(vr, vrby, lvls = c()
                         , max_levels = max_levels
                         , screen = screen
                         , csv = csv)
-      if (test) {
+    }
+    # if (test && do_pairs) {
+    if (test) {
+      for (ii in lvl0 ) {
+        d1 = design[which(design$variables[,vrby] == ii),]
+        if(inherits(d1, "svyrep.design")) {
+          d1$prob = 1 / d1$pweights
+        }
+
+        attr(d1$variables[,vr], "label") = paste0(
+          .getvarname(design, vr), " ("
+          , .getvarname(design, vrby), " = ", ii
+          , ")")
         ret[[paste0(ii, " - test")]] = .test_factor(design = d1
-                                         , vr = vr
-                                         , drop_na = drop_na
-                                         , alpha = alpha
-                                         , screen = screen, csv = csv)
+                                                    , vr = vr
+                                                    , drop_na = drop_na
+                                                    , alpha = alpha
+                                                    , screen = screen, csv = csv)
+      }
+
+      for (jj in levels(design$variables[,vr]) ) {
+        d1 = design[which(design$variables[,vr] == jj),]
+        if(inherits(d1, "svyrep.design")) {
+          d1$prob = 1 / d1$pweights
+        }
+
+        attr(d1$variables[,vrby], "label") = paste0(
+          .getvarname(design, vrby), " ("
+          , .getvarname(design, vr), " = ", jj
+          , ")")
+        ret[[paste0(jj, " - test")]] = .test_factor(design = d1
+                                                    , vr = vrby
+                                                    , drop_na = drop_na
+                                                    , alpha = alpha
+                                                    , screen = screen, csv = csv)
       }
     }
   } else if (is.numeric(design$variables[,vr])) {
@@ -123,6 +186,29 @@ tab_subset = function(vr, vrby, lvls = c()
     ret[["Means"]] = .write_out(rA, screen = screen, csv = csv)
 
     if (test) {
+      frm = as.formula(paste0("`", vr, "` ~ `", vrby, "`"))
+      model1 = svyglm(frm, design)
+      fo = regTermTest(model1, vrby, method = "Wald")
+      rT = data.frame(`p-value` = fo$p, check.names = FALSE)
+      # survey:::print.regTermTest
+      test_name = "Wald test"
+      test_title = paste0("Association between "
+                          , .getvarname(design, vr)
+                          , " and ", .getvarname(design, vrby))
+
+      # do_pairs = if(test_pairs == "no") {
+      #   FALSE
+      # } else if(test_pairs == "yes") {
+      #   TRUE
+      # } else {
+      #   rT$`p-value` <= alpha
+      # }
+
+      ret[[ test_name ]] = .test_table(rT = rT
+             , test_name = test_name, test_title = test_title, alpha = alpha
+             , screen = screen, csv = csv)
+    # }
+    # if (test && do_pairs) {
       nlvl = length(lvl0)
       assert_that(nlvl >= 2L
         , msg = paste0("For ", vrby, ", at least 2 levels must be selected. "
@@ -139,22 +225,18 @@ tab_subset = function(vr, vrby, lvls = c()
           lvlB = lvl0[jj]
           d1 = design[which(design$variables[,vrby] %in% c(lvlA, lvlB)),]
           r1 = data.frame(`Level 1` = lvlA, `Level 2` = lvlB, check.names = FALSE)
-          r1$`p-value` = svyttest(frm, d1)$p.value
+          xx = svyttest(frm, d1)
+          r1$`p-value` = xx$p.value
           rT %<>% rbind(r1)
         }
       }
-
-      rT$Flag = ""
-      idx = which(rT$`p-value` <= alpha)
-      rT$Flag[idx] = "*"
-
-      rT$`p-value` %<>% round(3)
-
-      attr(rT, "title") = paste0("Comparison of "
-          , .getvarname(design, vr)
-          , " across all possible pairs of ", .getvarname(design, vrby))
-      attr(rT, "footer") = paste0("*: p-value <= ", alpha)
-      ret[["p-values"]] = .write_out(rT, screen = screen, csv = csv)
+      test_name = xx$method
+      test_title = paste0("Comparison of "
+                          , .getvarname(design, vr)
+                          , " across all possible pairs of ", .getvarname(design, vrby))
+      ret[[ test_name ]] = .test_table(rT = rT
+                            , test_name = test_name, test_title = test_title, alpha = alpha
+                            , screen = screen, csv = csv)
     }
   } else {
     stop("How did we get here?")

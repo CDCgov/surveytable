@@ -17,9 +17,9 @@ tab(
 \arguments{
 \item{...}{names of variables (in quotes)}
 
-\item{test}{perform hypothesis test?}
+\item{test}{perform hypothesis tests?}
 
-\item{alpha}{significance level for the above test.}
+\item{alpha}{significance level for tests}
 
 \item{drop_na}{drop missing values (\code{NA})? Categorical variables only.}
 

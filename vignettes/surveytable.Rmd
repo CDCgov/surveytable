@@ -228,50 +228,57 @@ tab_subset("NUMMED", "AGER")
 
 # Perform statistical hypothesis testing
 
-The `tab()` and `tab_subset()` functions make it easy to perform the design-based t-test by using the `test` argument. 
+The `tab_subset()` function makes it easy to perform hypothesis testing by using the `test` argument. When the argument is `TRUE`, a test of association is performed. In addition, t-tests for all pairs of levels are performed as well.
 
 ## Categorical variables
-To test whether any levels of `AGER` are statistically similar or different, type:
+
+Consider the relationship between `SEX` an `SPECCAT`:
 
 ```{r, results='asis'}
-tab("AGER", test = TRUE)
+tab_subset("SEX", "SPECCAT", test = TRUE)
 ```
 
-According to this, the following pairs of categories are statistically similar:
+According to these tables, there is an association between physician specialty type and patient sex. Among visits to primary care physicians, there is a statistical difference between male and female patients. But this difference is not statistically significant among the other two specialty types. Looking at it another way, among female patients, surgical and medical care specialties are statistically similar, and are statistically different from primary care. On the other hand, among male patients, there is only a statistical difference between primary and surgical specialties. 
 
-* "25-44 years" and "65-74 years"; and 
-* "25-44 years" and "75 years and over".
-
-All other pairs of categories are statistically different. 
-
-## Categorical variables (subset)
-To test whether any levels of `AGER` are statistically similar or different within subpopulations defined by the `SEX` variable, type:
+As another example, consider the relationship between `MRI` and `SPECCAT`:
 
 ```{r, results='asis'}
-tab_subset("AGER", "SEX", test = TRUE)
+tab_subset("MRI", "SPECCAT", test = TRUE)
 ```
 
-According to this, the following pairs of categories are statistically similar:
+According to these tables, there is no statistical association between MRI and physician specialty. For each of the 3 specialty types, a minority of visits have MRI's. For the visits with MRI's, there was no statistical difference between specialty types. 
 
-* Among Females:
-  * "25-44 years" and "65-74 years"; and 
-  * "25-44 years" and "75 years and over".
-* Among Males:
-  * "Under 15 years" and "25-44 years";
-  * "Under 15 years" and "75 years and over";
-  * "25-44 years" and "75 years and over"; and 
-  * "65-74 years" and "75 years and over".
-  
+As a general rule of thumb, since there is no statistical association between MRI and physician specialty, presenting this tabulation would not be particularly interesting, especially since the subsetting decreases the sample size and therefore also decreases the estimate reliability. Instead, it would generally make more sense to just tabulate `MRI` without subsetting by `SPECCAT`.
+
 ## Numeric variables
 
-To test whether, for each possible pair of levels of the categorical variable `AGER`, the numeric variable `NUMMED` is statistically similar or different, type:
-
+The relationship between `NUMMED` and `AGER`:
 
 ```{r, results='asis'}
 tab_subset("NUMMED", "AGER", test = TRUE)
 ```
 
-According to this, `NUMMED` is statistically similar for the "Under 15 years" and "15-24 years" `AGER` categories. It is statistically different for all other pairs of categories. 
+According to these tables, there is an association between the number of medications and age category. `NUMMED` is statistically similar for the "Under 15 years" and "15-24 years" `AGER` categories. It is statistically different for all other pairs of age categories. 
+
+Finally, let's look at the relationship between `NUMMED` and `SPECCAT`:
+
+```{r, results='asis'}
+tab_subset("NUMMED", "SPECCAT", test = TRUE)
+```
+
+According to these tables, there is no association between the number of medications and physician specialty type. `NUMMED` is statistically similar for all pairs of physician specialties. 
+
+As a general rule of thumb, since there is no statistical association between the number of medications and physician specialty, presenting this tabulation would not be particularly interesting, especially since the subsetting decreases the sample size and therefore also decreases the estimate reliability. Instead, it would generally make more sense to just tabulate `NUMMED` without subsetting by `SPECCAT`.
+
+## Categorical variables (single variable)
+
+To test whether any pair of `SPECCAT` levels is statistically similar or different, type:
+
+```{r, results='asis'}
+tab("SPECCAT", test = TRUE)
+```
+
+According to this, surgical and medical care specialties are statistically similar, and are statistically different from primary care.
 
 # Calculate rates
 

@@ -38,9 +38,9 @@ tab_subset(
 
 \item{lvls}{(optional) only show these levels of \code{vrby}}
 
-\item{test}{perform hypothesis test?}
+\item{test}{perform hypothesis tests?}
 
-\item{alpha}{significance level for the above test.}
+\item{alpha}{significance level for tests}
 
 \item{drop_na}{drop missing values (\code{NA})? Categorical variables only.}
 }
@@ -53,7 +53,6 @@ tab_subset(
 \description{
 Create subsets of the survey using one variable, and tabulate another
 variable within each of the subsets. Interact two variables and tabulate.
-Test equality of proportions or means.
 }
 \details{
 \code{tab_subset} creates subsets using the levels of \code{vrby}, and tabulates
@@ -65,6 +64,9 @@ variable. Tables created using \code{tab_subset} and \code{tab_cross} have the s
 counts but different percentages. With \code{tab_subset}, percentages within each
 subset add up to 100\%. With \code{tab_cross}, percentages across the entire
 population add up to 100\%. Also see \code{\link[=var_cross]{var_cross()}}.
+
+\code{test = TRUE} performs a test of association between the two variables. Also
+performs t-tests for all possible pairs of levels of \code{vr} and \code{vrby}.
 }
 \examples{
 set_survey("namcs2019sv")

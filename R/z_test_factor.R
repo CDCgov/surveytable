@@ -41,19 +41,17 @@
       d1$variables$tmp = 0
       d1$variables$tmp[d1$variables[,vr] == lvlB] = 1
       sgo = svyglm(tmp ~ 1, d1)
-      # See survey:::svyttest.default
+      # survey:::svyttest.default
       r1$`p-value` = 2 * pt(-abs( (coef(sgo) - 0.5) / SE(sgo)), df = sgo$df.residual)
       rT %<>% rbind(r1)
     }
   }
 
-  rT$Flag = ""
-  idx = which(rT$`p-value` <= alpha)
-  rT$Flag[idx] = "*"
-
-  rT$`p-value` %<>% round(3)
-  attr(rT, "title") = paste0("Comparison of all possible pairs of "
-                             , .getvarname(design, vr) )
-  attr(rT, "footer") = paste0("*: p-value <= ", alpha)
-  .write_out(rT, screen = screen, csv = csv)
+  # survey:::svyttest.default
+  test_name = "Design-based t-test"
+  test_title = paste0("Comparison of all possible pairs of "
+                      , .getvarname(design, vr) )
+  .test_table(rT = rT
+              , test_name = test_name, test_title = test_title, alpha = alpha
+              , screen = screen, csv = csv)
 }

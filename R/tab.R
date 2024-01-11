@@ -19,8 +19,8 @@
 #' the Korn and Graubard CIs.
 #'
 #' @param ...     names of variables (in quotes)
-#' @param test    perform hypothesis test?
-#' @param alpha   significance level for the above test.
+#' @param test    perform hypothesis tests?
+#' @param alpha   significance level for tests
 #' @param drop_na drop missing values (`NA`)? Categorical variables only.
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
 #' @param screen  print to the screen?
