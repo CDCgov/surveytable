@@ -73,8 +73,7 @@ tab_subset = function(vr, vrby, lvls = c()
   # Need to convert to factor for testing
   if (is.logical(design$variables[,vr])) {
     lbl = attr(design$variables[,vr], "label")
-    design$variables[,vr] %<>% factor
-    design$variables[,vr] %<>% droplevels %>% .fix_factor
+    design$variables[,vr] %<>% factor %>% droplevels %>% .fix_factor
     attr(design$variables[,vr], "label") = lbl
   }
 
@@ -96,27 +95,6 @@ tab_subset = function(vr, vrby, lvls = c()
 
   ret = list()
   if (is.logical(design$variables[,vr]) || is.factor(design$variables[,vr])) {
-    if (test) {
-      frm = as.formula(paste0("~ `", vr, "` + `", vrby, "`"))
-      fo = svychisq(frm, design, statistic = getOption("surveytable.svychisq_statistic"))
-      rT = data.frame(`p-value` = fo$p.value, check.names = FALSE)
-      test_name = fo$method
-      test_title = paste0("Association between "
-                           , .getvarname(design, vr)
-                           , " and ", .getvarname(design, vrby))
-      # do_pairs = if(test_pairs == "no") {
-      #   FALSE
-      # } else if(test_pairs == "yes") {
-      #   TRUE
-      # } else {
-      #   rT$`p-value` <= alpha
-      # }
-
-      ret[[ test_name ]] = .test_table(rT = rT
-        , test_name = test_name, test_title = test_title, alpha = alpha
-        , screen = screen, csv = csv)
-    }
-
     for (ii in lvl0) {
       d1 = design[which(design$variables[,vrby] == ii),]
       if(inherits(d1, "svyrep.design")) {
@@ -134,8 +112,29 @@ tab_subset = function(vr, vrby, lvls = c()
                         , screen = screen
                         , csv = csv)
     }
+
     # if (test && do_pairs) {
     if (test) {
+      frm = as.formula(paste0("~ `", vr, "` + `", vrby, "`"))
+      fo = svychisq(frm, design, statistic = getOption("surveytable.svychisq_statistic"))
+      rT = data.frame(`p-value` = fo$p.value, check.names = FALSE)
+      test_name = fo$method
+      test_title = paste0("Association between "
+                          , .getvarname(design, vr)
+                          , " and ", .getvarname(design, vrby))
+      # do_pairs = if(test_pairs == "no") {
+      #   FALSE
+      # } else if(test_pairs == "yes") {
+      #   TRUE
+      # } else {
+      #   rT$`p-value` <= alpha
+      # }
+
+      ret[[ test_name ]] = .test_table(rT = rT
+             , test_name = test_name, test_title = test_title, alpha = alpha
+             , screen = screen, csv = csv)
+
+      ###
       for (ii in lvl0 ) {
         d1 = design[which(design$variables[,vrby] == ii),]
         if(inherits(d1, "svyrep.design")) {
