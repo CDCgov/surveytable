@@ -235,10 +235,10 @@ The `tab_subset()` function makes it easy to perform hypothesis testing by using
 Consider the relationship between `SEX` an `SPECCAT`:
 
 ```{r, results='asis'}
-tab_subset("SEX", "SPECCAT", test = TRUE)
+tab_subset("AGER", "SPECCAT", test = TRUE)
 ```
 
-According to these tables, there is an association between physician specialty type and patient sex. Among visits to primary care physicians, there is a statistical difference between male and female patients. But this difference is not statistically significant among the other two specialty types. Looking at it another way, among female patients, surgical and medical care specialties are statistically similar, and are statistically different from primary care. On the other hand, among male patients, there is only a statistical difference between primary and surgical specialties. 
+According to these tables, there is an association between physician specialty type and patient age. For instance, for patients under 15 years, there is a statistical difference between primary care physician specialty and medical care specialty. But for older patients, such as in the 45-64 age group, there is no statistical difference between the two specialty types.  
 
 As another example, consider the relationship between `MRI` and `SPECCAT`:
 
