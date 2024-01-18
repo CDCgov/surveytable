@@ -7,7 +7,7 @@
 #' @param breaks see [`cut()`]
 #' @param labels see [`cut()`]
 #'
-#' @return (Nothing.)
+#' @return Survey object
 #' @family variables
 #' @export
 #'

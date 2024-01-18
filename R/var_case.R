@@ -4,7 +4,7 @@
 #' @param vr factor variable
 #' @param cases one or more levels of `vr` that are converted to `TRUE`. All other levels are converted to `FALSE`.
 #'
-#' @return (Nothing.)
+#' @return Survey object
 #' @family variables
 #' @export
 #'

@@ -7,7 +7,7 @@
 #' `namcs2019sv_df` is a data frame.
 #'
 #' `namcs2019sv` is a survey object created from `namcs2019sv_df`
-#' using `survey::svydesign()`.
+#' using `[survey::svydesign()]`.
 #'
 #' @source
 #' * SAS data: <https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Dataset_Documentation/NAMCS/sas/namcs2019_sas.zip>

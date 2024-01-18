@@ -6,7 +6,7 @@
 #' @param newvr   name of the new variable to be created
 #' @param vrs   vector of logical variables
 #'
-#' @return (Nothing.)
+#' @return Survey object
 #' @family variables
 #' @export
 #'

@@ -14,7 +14,7 @@ var_cross(newvr, vr, vrby)
 \item{vrby}{second variable}
 }
 \value{
-(Nothing.)
+Survey object
 }
 \description{
 Create a new variable which is an interaction of two other variables. Also

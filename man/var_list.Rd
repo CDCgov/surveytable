@@ -14,7 +14,7 @@ var_list(sw = "", all = FALSE, csv = getOption("surveytable.csv"))
 \item{csv}{name of a CSV file}
 }
 \value{
-\code{data.frame}
+A table
 }
 \description{
 List variables in a survey.

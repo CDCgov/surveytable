@@ -27,7 +27,7 @@ tab(
 \item{csv}{name of a CSV file}
 }
 \value{
-A list of \code{data.frame} tables or a single \code{data.frame} table.
+A list of tables or a single table.
 }
 \description{
 Tabulate categorical (factor), logical, or numeric variables.

@@ -30,7 +30,7 @@ level of \code{vr}.}
 \item{csv}{name of a CSV file}
 }
 \value{
-A list of \code{data.frame} tables or a single \code{data.frame} table.
+A list of tables or a single table.
 }
 \description{
 Calculate the rates for categorical (factor) or logical variables.

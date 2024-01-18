@@ -12,7 +12,7 @@ var_any(newvr, vrs)
 \item{vrs}{vector of logical variables}
 }
 \value{
-(Nothing.)
+Survey object
 }
 \description{
 Create a new variable which is true if any of the variables in a list of

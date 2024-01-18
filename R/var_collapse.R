@@ -6,7 +6,7 @@
 #' @param newlevel name of the new level
 #' @param oldlevels vector of old levels
 #'
-#' @return (Nothing.)
+#' @return Survey object
 #' @family variables
 #' @export
 #'

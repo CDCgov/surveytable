@@ -14,7 +14,7 @@ var_collapse(vr, newlevel, oldlevels)
 \item{oldlevels}{vector of old levels}
 }
 \value{
-(Nothing.)
+Survey object
 }
 \description{
 Collapse two or more levels of a factor variable into a single level.

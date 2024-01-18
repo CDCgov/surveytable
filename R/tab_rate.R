@@ -2,7 +2,7 @@
 #'
 #' Calculate the rates for categorical (factor) or logical variables.
 #'
-#' @param vr      variable to tabulate
+#' @param vr variable to tabulate
 #' @param pop   either a single number or a `data.frame` with columns named
 #' `Level` and `Population`. `Level` must
 #' exactly match the levels of `vr`. `Population` is the population for that
@@ -12,7 +12,7 @@
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
 #' @param csv     name of a CSV file
 #'
-#' @return A list of `data.frame` tables or a single `data.frame` table.
+#' @return A list of tables or a single table.
 #' @family tables
 #' @export
 #'

@@ -18,7 +18,7 @@ total_rate(
 \item{csv}{name of a CSV file}
 }
 \value{
-\code{data.frame}
+A table
 }
 \description{
 Overall rate

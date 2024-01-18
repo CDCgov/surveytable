@@ -7,24 +7,24 @@
 svyciprop_adjusted(
   formula,
   design,
-  method = c("logit", "likelihood", "asin", "beta", "mean"),
+  method = c("logit", "likelihood", "asin", "beta", "mean", "xlogit"),
   level = 0.95,
   df_method,
   ...
 )
 }
 \arguments{
-\item{formula}{see \code{survey::svyciprop}.}
+\item{formula}{see \code{survey::svyciprop()}.}
 
-\item{design}{see \code{survey::svyciprop}.}
+\item{design}{see \code{survey::svyciprop()}.}
 
-\item{method}{see \code{survey::svyciprop}.}
+\item{method}{see \code{survey::svyciprop()}.}
 
-\item{level}{see \code{survey::svyciprop}.}
+\item{level}{see \code{survey::svyciprop()}.}
 
 \item{df_method}{how \code{df} should be calculated: "default" or "NHIS".}
 
-\item{...}{see \code{survey::svyciprop}.
+\item{...}{see \code{survey::svyciprop()}.
 
 \code{df_method}: for "default", \code{df = degf(design)}; for "NHIS", \code{df = nrow(design) - 1}.}
 }
@@ -32,7 +32,7 @@ svyciprop_adjusted(
 The point estimate of the proportion, with the confidence interval as an attribute.
 }
 \description{
-A version of \code{survey::svyciprop} that adjusts for the degrees of freedom when \code{method == "beta"}.
+A version of \code{survey::svyciprop()} that adjusts for the degrees of freedom when \code{method = "beta"}.
 }
 \details{
 Written by Makram Talih in 2019.

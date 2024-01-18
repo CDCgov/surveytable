@@ -10,7 +10,7 @@ total(csv = getOption("surveytable.csv"))
 \item{csv}{name of a CSV file}
 }
 \value{
-\code{data.frame}
+A table
 }
 \description{
 Total count

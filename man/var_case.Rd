@@ -14,7 +14,7 @@ var_case(newvr, vr, cases)
 \item{cases}{one or more levels of \code{vr} that are converted to \code{TRUE}. All other levels are converted to \code{FALSE}.}
 }
 \value{
-(Nothing.)
+Survey object
 }
 \description{
 Convert factor to logical

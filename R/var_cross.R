@@ -7,7 +7,7 @@
 #' @param vr      first variable
 #' @param vrby    second variable
 #'
-#' @return (Nothing.)
+#' @return Survey object
 #' @family variables
 #' @export
 #'

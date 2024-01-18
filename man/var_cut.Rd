@@ -16,7 +16,7 @@ var_cut(newvr, vr, breaks, labels)
 \item{labels}{see \code{\link[=cut]{cut()}}}
 }
 \value{
-(Nothing.)
+Survey object
 }
 \description{
 Create a new categorical variable based on a numeric variable.

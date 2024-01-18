@@ -4,7 +4,7 @@
 #' @param all     print all variables?
 #' @param csv     name of a CSV file
 #'
-#' @return `data.frame`
+#' @return A table
 #' @export
 #'
 #' @examples

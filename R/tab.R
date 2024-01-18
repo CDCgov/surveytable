@@ -25,7 +25,7 @@
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
 #' @param csv     name of a CSV file
 #'
-#' @return A list of `data.frame` tables or a single `data.frame` table.
+#' @return A list of tables or a single table.
 #' @family tables
 #' @export
 #'

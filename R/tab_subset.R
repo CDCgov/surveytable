@@ -25,9 +25,7 @@
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
 #' @param csv     name of a CSV file
 #'
-#' @return
-#' * `tab_subset`: A list of `data.frame` tables or a single `data.frame` table.
-#' * `tab_cross`: A `data.frame` table.
+#' @return A list of tables or a single table.
 #'
 #' @family tables
 #'
@@ -71,7 +69,20 @@ tab_subset = function(vr, vrby, lvls = c()
   # Need to convert to factor for testing
   if (is.logical(design$variables[,vr])) {
     lbl = attr(design$variables[,vr], "label")
-    design$variables[,vr] %<>% factor %>% droplevels %>% .fix_factor
+    design$variables[,vr] %<>% factor %>% droplevels
+
+    if (drop_na) {
+      design = design[which(!is.na(design$variables[,vr])),]
+      if(inherits(design, "svyrep.design")) {
+        design$prob = 1 / design$pweights
+      }
+      # drop_na in .tab_factor will set this
+      # lbl %<>% paste("(knowns only)")
+    } else {
+      design$variables[,vr] %<>% .fix_factor
+    }
+    assert_that(noNA(design$variables[,vr]), noNA(levels(design$variables[,vr])))
+
     attr(design$variables[,vr], "label") = lbl
   }
 

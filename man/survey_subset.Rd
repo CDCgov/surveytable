@@ -7,14 +7,14 @@
 survey_subset(design, subset, label)
 }
 \arguments{
-\item{design}{a survey design object}
+\item{design}{a survey object}
 
 \item{subset}{an expression specifying the sub-population}
 
-\item{label}{survey label of the newly created survey design object}
+\item{label}{survey label of the newly created survey object}
 }
 \value{
-a new survey design object
+a new survey object
 }
 \description{
 Subset a survey, while preserving variable labels

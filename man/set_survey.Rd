@@ -10,7 +10,7 @@ set_survey(design)
 \item{design}{a survey object (\code{survey.design} or \code{svyrep.design})}
 }
 \value{
-Object with info about the survey.
+Info about the survey.
 }
 \description{
 You need to specify a survey before the other functions, such as \code{\link[=tab]{tab()}},

@@ -240,9 +240,7 @@ To calculate these percentages, a slightly more involved `for` loop is needed. B
 ```{r}
 tmp_file = tempfile(fileext = ".csv")
 suppressMessages( set_output(csv = tmp_file) )
-```
 
-```{r}
 for (vr in c("AGER", "Age group", "SEX", "Age x Sex")) {
 	var_cross("tmp", "MAJOR", vr)
 	for (lvl in levels(surveytable:::env$survey$variables[,vr])) {

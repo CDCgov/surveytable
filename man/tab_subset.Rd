@@ -41,10 +41,7 @@ tab_subset(
 \item{drop_na}{drop missing values (\code{NA})? Categorical variables only.}
 }
 \value{
-\itemize{
-\item \code{tab_subset}: A list of \code{data.frame} tables or a single \code{data.frame} table.
-\item \code{tab_cross}: A \code{data.frame} table.
-}
+A list of tables or a single table.
 }
 \description{
 Create subsets of the survey using one variable, and tabulate another

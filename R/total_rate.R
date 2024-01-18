@@ -4,7 +4,7 @@
 #' @param per calculate rate per this many items in the population
 #' @param csv     name of a CSV file
 #'
-#' @return `data.frame`
+#' @return A table
 #' @family tables
 #' @export
 #'

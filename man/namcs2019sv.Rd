@@ -33,6 +33,6 @@ is important since a single patient can make multiple visits.
 \code{namcs2019sv_df} is a data frame.
 
 \code{namcs2019sv} is a survey object created from \code{namcs2019sv_df}
-using \code{survey::svydesign()}.
+using \verb{[survey::svydesign()]}.
 }
 \keyword{datasets}

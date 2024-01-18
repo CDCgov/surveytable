@@ -12,7 +12,7 @@ var_copy(newvr, vr)
 \item{vr}{variable}
 }
 \value{
-(Nothing.)
+Survey object
 }
 \description{
 Create a new variable that is a copy of another variable. You can modify the copy,

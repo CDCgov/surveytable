@@ -11,7 +11,7 @@
 #'
 #' @param design a survey object (`survey.design` or `svyrep.design`)
 #'
-#' @return Object with info about the survey.
+#' @return Info about the survey.
 #' @export
 #'
 #' @examples

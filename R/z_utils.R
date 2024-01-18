@@ -1,3 +1,5 @@
+# if (drop_na) do that, else .fix_factor
+# then, assert noNA
 .fix_factor = function(xx) {
   assert_that(is.factor(xx))
   idx = which(is.na(xx))
