@@ -4,14 +4,9 @@
 \alias{total}
 \title{Total count}
 \usage{
-total(
-  screen = getOption("surveytable.screen"),
-  csv = getOption("surveytable.csv")
-)
+total(csv = getOption("surveytable.csv"))
 }
 \arguments{
-\item{screen}{print to the screen?}
-
 \item{csv}{name of a CSV file}
 }
 \value{
@@ -21,7 +16,7 @@ total(
 Total count
 }
 \examples{
-set_survey("namcs2019sv")
+set_survey(namcs2019sv)
 total()
 }
 \seealso{

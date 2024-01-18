@@ -2,7 +2,6 @@
 #'
 #' @param pop population
 #' @param per calculate rate per this many items in the population
-#' @param screen  print to the screen?
 #' @param csv     name of a CSV file
 #'
 #' @return `data.frame`
@@ -10,11 +9,10 @@
 #' @export
 #'
 #' @examples
-#' set_survey("namcs2019sv")
+#' set_survey(namcs2019sv)
 #' total_rate(uspop2019$total)
 total_rate = function(pop
     , per = getOption("surveytable.rate_per")
-    , screen = getOption("surveytable.screen")
     , csv = getOption("surveytable.csv") ) {
   assert_that(pop > 0, per >= 1)
   if ( !(per %in% 10^c(2:5)) ) {
@@ -45,5 +43,5 @@ total_rate = function(pop
   attr(m1, "num") = 1:4
   attr(m1, "footer") = attr(mp, "footer")
 
-  .write_out(m1, screen = screen, csv = csv)
+  .write_out(m1, csv = csv)
 }

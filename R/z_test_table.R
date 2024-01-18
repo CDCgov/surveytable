@@ -1,4 +1,4 @@
-.test_table = function(rT, test_name, test_title, alpha, screen, csv) {
+.test_table = function(rT, test_name, test_title, alpha, csv) {
   assert_that("p-value" %in% names(rT))
 
   rT$Flag = ""
@@ -10,5 +10,5 @@
   attr(rT, "title") = test_title
   attr(rT, "footer") = paste0(test_name, ". *: p-value <= ", alpha)
 
-  .write_out(rT, screen = screen, csv = csv)
+  .write_out(rT, csv = csv)
 }

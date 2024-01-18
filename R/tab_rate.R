@@ -10,7 +10,6 @@
 #' @param per calculate rate per this many items in the population
 #' @param drop_na drop missing values (`NA`)?
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
-#' @param screen  print to the screen?
 #' @param csv     name of a CSV file
 #'
 #' @return A list of `data.frame` tables or a single `data.frame` table.
@@ -18,7 +17,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("namcs2019sv")
+#' set_survey(namcs2019sv)
 #' # pop is a data frame
 #' tab_rate("MSA", uspop2019$MSA)
 #'
@@ -28,7 +27,6 @@ tab_rate = function(vr, pop
   , per = getOption("surveytable.rate_per")
   , drop_na = getOption("surveytable.drop_na")
   , max_levels = getOption("surveytable.max_levels")
-  , screen = getOption("surveytable.screen")
   , csv = getOption("surveytable.csv")
   ) {
 
@@ -64,7 +62,6 @@ tab_rate = function(vr, pop
             , vr = vr
             , drop_na = drop_na
             , max_levels = max_levels
-            , screen = FALSE
             , csv = "")
 
   if (pop_df) {
@@ -97,5 +94,5 @@ tab_rate = function(vr, pop
   attr(m1, "num") = 2:5
   attr(m1, "footer") = attr(tfo, "footer")
 
-  .write_out(m1, screen = screen, csv = csv)
+  .write_out(m1, csv = csv)
 }

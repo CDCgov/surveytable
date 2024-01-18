@@ -20,7 +20,7 @@ var_case(newvr, vr, cases)
 Convert factor to logical
 }
 \examples{
-set_survey("namcs2019sv")
+set_survey(namcs2019sv)
 var_case("Preventive care visits", "MAJOR", "Preventive care")
 tab("Preventive care visits")
 var_case("Surgery-related visits"

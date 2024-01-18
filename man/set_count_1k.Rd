@@ -22,7 +22,7 @@ Determines how counts should be rounded.
 }
 }
 \examples{
-set_survey("namcs2019sv")
+set_survey(namcs2019sv)
 set_count_int()
 total()
 
@@ -32,7 +32,6 @@ total()
 \seealso{
 Other options: 
 \code{\link{set_output}()},
-\code{\link{set_survey}()},
 \code{\link{show_options}()},
 \code{\link{surveytable-options}}
 }

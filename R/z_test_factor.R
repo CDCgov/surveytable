@@ -1,4 +1,4 @@
-.test_factor = function(design, vr, drop_na, alpha, screen, csv) {
+.test_factor = function(design, vr, drop_na, alpha, csv) {
   assert_that(alpha > 0, alpha < 0.5)
   if ( !(alpha %in% c(0.05, 0.01, 0.001)) ) {
     warning("Value of alpha is not typical: ", alpha)
@@ -53,5 +53,5 @@
                       , .getvarname(design, vr) )
   .test_table(rT = rT
               , test_name = test_name, test_title = test_title, alpha = alpha
-              , screen = screen, csv = csv)
+              , csv = csv)
 }

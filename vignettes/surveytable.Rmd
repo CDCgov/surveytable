@@ -112,7 +112,7 @@ We have just successfully created a survey object from a data frame.
 First, specify the survey object that you'd like to analyze.
 
 ```{r}
-set_survey("namcs2019sv")
+set_survey(namcs2019sv)
 ```
 
 Check the survey label, survey design variables, and the number of observations to verify that it all looks correct.
@@ -232,7 +232,7 @@ The `tab_subset()` function makes it easy to perform hypothesis testing by using
 
 ## Categorical variables
 
-Consider the relationship between `SEX` an `SPECCAT`:
+Consider the relationship between `AGER` an `SPECCAT`:
 
 ```{r, results='asis'}
 tab_subset("AGER", "SPECCAT", test = TRUE)
@@ -427,27 +427,45 @@ Here, the `AGER` variable remains unchanged, while the `Age group` variable has 
 class(namcs2019sv$variables)
 ```
 
-More advanced users can create or modify variables in the `variables` data frame directly.
+More advanced users can create or modify variables in the `variables` data frame directly. After they modify these variables, they must call `set_survey()` again. For example:
+
+```{r}
+namcs2019sv$variables$`Medicare and Medicaid` = ( 
+  namcs2019sv$variables$PAYMCARE & namcs2019sv$variables$PAYMCAID)
+set_survey(namcs2019sv)
+```
+
+```{r, results='asis'}
+tab("Medicare and Medicaid")
+```
+
+Note, however, that the `var_*()` functions do not modify the survey object specified in `set_survey()` directly. Rather, they modify variables inside the following data frame: `surveytable:::env$survey$variables`. If you use the `var_*()` functions and then need access to the modified / created variables, that's where you should look. For example:
+
+```{r}
+var_cross("newvar", "MAJOR", "AGER")
+# This should give NULL. The new variable does not exist here:
+namcs2019sv$variables$newvar
+# Rather, the new variable is here:
+str(surveytable:::env$survey$variables$newvar)
+```
 
 # Save the output
 
 The `tab*` and `total*` functions have an argument called `csv` that specifies the name of a comma-separated values (CSV) file to save the output to. Alternatively, you can name the default CSV output file using the `set_output()` function. For example, the following directs `surveytable` to send all future output to a CSV file, create some tables, and then turn off sending output to the file:
 
-```{r, results=FALSE, message=FALSE, warning=FALSE}
-set_output(csv = "out.csv")
+```{r}
+tmp_file = tempfile(fileext = ".csv")
+suppressMessages( set_output(csv = tmp_file) )
 ```
 
 ```{r, results='asis'}
 tab("MDDO", "SPECCAT", "MSA")
+```
+
+```{r}
 set_output(csv = "")
 ```
 
-```{r, echo=FALSE}
-unlink("out.csv")
-```
-
-Tabulation functions also have an argument called `screen`, `TRUE` by default, which determines whether the output is sent to the screen. If many tables are being produced, a user might choose to turn off screen printing, and only output to a CSV file. 
-
 If the tabulation functions are called from within an R Markdown notebook, they produce HTML tables. This makes it easy to incorporate the output of the `surveytable` package directly into documents, presentations, “shiny” web apps, and other output types.
 
-Finally, the tabulation functions return the tables that they produce, either as a data frame, or as a list of data frames. More advanced analysts can use this functionality to integrate `surveytable` into other programming tasks.
+Finally, the tabulation functions return the tables that they produce. More advanced analysts can use this functionality to integrate `surveytable` into other programming tasks.

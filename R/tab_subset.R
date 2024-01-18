@@ -23,7 +23,6 @@
 #' @param alpha   significance level for tests
 #' @param drop_na drop missing values (`NA`)? Categorical variables only.
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
-#' @param screen  print to the screen?
 #' @param csv     name of a CSV file
 #'
 #' @return
@@ -35,7 +34,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("namcs2019sv")
+#' set_survey(namcs2019sv)
 #'
 #' # For each SEX, tabulate AGER
 #' tab_subset("AGER", "SEX")
@@ -43,17 +42,16 @@
 #' # Same counts as tab_subset(), but different percentages.
 #' tab_cross("AGER", "SEX")
 #'
-#' # Hypothesis testing
-#' tab_subset("AGER", "SEX", test = TRUE)
-#'
 #' # Numeric variables
 #' tab_subset("NUMMED", "AGER")
+#'
+#' # Hypothesis testing
+#' tab_subset("NUMMED", "AGER", test = TRUE)
 tab_subset = function(vr, vrby, lvls = c()
                 , test = FALSE, alpha = 0.05
                 # , test_pairs = "depends"
                 , drop_na = getOption("surveytable.drop_na")
                 , max_levels = getOption("surveytable.max_levels")
-                , screen = getOption("surveytable.screen")
                 , csv = getOption("surveytable.csv")
               ) {
   assert_that(test %in% c(TRUE, FALSE)
@@ -109,7 +107,6 @@ tab_subset = function(vr, vrby, lvls = c()
                         , vr = vr
                         , drop_na = drop_na
                         , max_levels = max_levels
-                        , screen = screen
                         , csv = csv)
     }
 
@@ -132,7 +129,7 @@ tab_subset = function(vr, vrby, lvls = c()
 
       ret[[ test_name ]] = .test_table(rT = rT
              , test_name = test_name, test_title = test_title, alpha = alpha
-             , screen = screen, csv = csv)
+             , csv = csv)
 
       ###
       for (ii in lvl0 ) {
@@ -149,7 +146,7 @@ tab_subset = function(vr, vrby, lvls = c()
                                                     , vr = vr
                                                     , drop_na = drop_na
                                                     , alpha = alpha
-                                                    , screen = screen, csv = csv)
+                                                    , csv = csv)
       }
 
       for (jj in levels(design$variables[,vr]) ) {
@@ -166,7 +163,7 @@ tab_subset = function(vr, vrby, lvls = c()
                                                     , vr = vrby
                                                     , drop_na = drop_na
                                                     , alpha = alpha
-                                                    , screen = screen, csv = csv)
+                                                    , csv = csv)
       }
     }
   } else if (is.numeric(design$variables[,vr])) {
@@ -182,7 +179,7 @@ tab_subset = function(vr, vrby, lvls = c()
     attr(rA, "title") = paste0(.getvarname(design, vr)
          , " (for different levels of "
          , .getvarname(design, vrby), ")")
-    ret[["Means"]] = .write_out(rA, screen = screen, csv = csv)
+    ret[["Means"]] = .write_out(rA, csv = csv)
 
     if (test) {
       frm = as.formula(paste0("`", vr, "` ~ `", vrby, "`"))
@@ -205,7 +202,7 @@ tab_subset = function(vr, vrby, lvls = c()
 
       ret[[ test_name ]] = .test_table(rT = rT
              , test_name = test_name, test_title = test_title, alpha = alpha
-             , screen = screen, csv = csv)
+             , csv = csv)
     # }
     # if (test && do_pairs) {
       nlvl = length(lvl0)
@@ -234,13 +231,13 @@ tab_subset = function(vr, vrby, lvls = c()
                           , .getvarname(design, vr)
                           , " across all possible pairs of ", .getvarname(design, vrby))
       ret[[ test_name ]] = .test_table(rT = rT
-                            , test_name = test_name, test_title = test_title, alpha = alpha
-                            , screen = screen, csv = csv)
+                            , test_name = test_name, test_title = test_title
+                            , alpha = alpha, csv = csv)
     }
   } else {
     stop("How did we get here?")
   }
 
-  if (length(ret) == 1L) return(invisible(ret[[1]]))
-  invisible(ret)
+  class(ret) = "surveytable_list"
+  if (length(ret) == 1L) ret[[1]] else ret
 }

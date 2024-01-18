@@ -1,6 +1,5 @@
 #' Total count
 #'
-#' @param screen  print to the screen?
 #' @param csv     name of a CSV file
 #'
 #' @return `data.frame`
@@ -8,18 +7,17 @@
 #' @export
 #'
 #' @examples
-#' set_survey("namcs2019sv")
+#' set_survey(namcs2019sv)
 #' total()
-total = function(screen = getOption("surveytable.screen")
-               , csv = getOption("surveytable.csv") ) {
+total = function(csv = getOption("surveytable.csv") ) {
   design = .load_survey()
-  mp = .total(design)
-  assert_that(ncol(mp) %in% c(4L, 5L))
-  attr(mp, "num") = 1:4
-  attr(mp, "title") = "Total"
-  .write_out(mp, screen = screen, csv = csv)
-}
+  m1 = .total(design)
+  assert_that(ncol(m1) %in% c(4L, 5L))
+  attr(m1, "num") = 1:4
+  attr(m1, "title") = "Total"
 
+  .write_out(m1, csv = csv)
+}
 
 .total = function(design) {
   design$variables$Total = 1

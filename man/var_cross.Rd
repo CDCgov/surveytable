@@ -21,7 +21,7 @@ Create a new variable which is an interaction of two other variables. Also
 see \code{\link[=tab_cross]{tab_cross()}}.
 }
 \examples{
-set_survey("namcs2019sv")
+set_survey(namcs2019sv)
 var_cross("Age x Sex", "AGER", "SEX")
 tab("Age x Sex")
 }

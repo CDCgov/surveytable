@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">surveytable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,7 +66,6 @@
 <span>  alpha <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  drop_na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"surveytable.drop_na"</span><span class="op">)</span>,</span>
 <span>  max_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"surveytable.max_levels"</span><span class="op">)</span>,</span>
-<span>  screen <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"surveytable.screen"</span><span class="op">)</span>,</span>
 <span>  csv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"surveytable.csv"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -91,10 +90,6 @@
 
 <dt>max_levels</dt>
 <dd><p>a categorical variable can have at most this many levels. Used to avoid printing huge tables.</p></dd>
-
-
-<dt>screen</dt>
-<dd><p>print to the screen?</p></dd>
 
 
 <dt>csv</dt>
@@ -135,16 +130,16 @@ the Korn and Graubard CIs.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="st">"namcs2019sv"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                        _             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Survey name            NAMCS 2019 PUF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of variables    33            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations 8250          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Stratified 1 - level Cluster Sampling design (with replacement)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> With (398) clusters.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     data = namcs2019sv_df)</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * To adjust how counts are rounded, see ?set_count_int</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        _                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Survey name            NAMCS 2019 PUF                                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of variables    33                                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations 8250                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Info1                  Stratified 1 - level Cluster Sampling design (with replacement)      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Info2                  With (398) clusters.                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Info3                  survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Info4                      data = namcs2019sv_df)                                           </span>
 <span class="r-in"><span><span class="fu">tab</span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                               Patient age recode {NAMCS 2019 PUF}                              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------------------------------------------+</span>
@@ -276,10 +271,6 @@ the Korn and Graubard CIs.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +-----------------------------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Design-based t-test. *: p-value &lt;= 0.05              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Integrate the output into other programming tasks</span></span></span>
-<span class="r-in"><span><span class="va">my_table</span> <span class="op">=</span> <span class="fu">tab</span><span class="op">(</span><span class="st">"AGER"</span>, screen <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">my_table</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">within</a></span><span class="op">(</span><span class="va">my_table</span>, <span class="op">{</span><span class="va">RSE</span> <span class="op">=</span> <span class="va">`SE (000)`</span> <span class="op">/</span> <span class="va">`Number (000)`</span><span class="op">}</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

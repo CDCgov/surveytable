@@ -19,7 +19,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("namcs2019sv")
+#' set_survey(namcs2019sv)
 #' options(surveytable.adjust_svyciprop = TRUE)
 #' tab("AGER")
 #' options(surveytable.adjust_svyciprop = FALSE)

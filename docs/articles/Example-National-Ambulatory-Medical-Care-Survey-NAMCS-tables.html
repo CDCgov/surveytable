@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">surveytable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -107,16 +107,16 @@ like to analyze. We are omitting that message here.</p>
 <p>Now, specify the survey that you’d like to analyze.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mysurvey</span> <span class="op">=</span> <span class="va">namcs2019sv</span></span>
-<span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="st">"mysurvey"</span><span class="op">)</span></span>
-<span><span class="co">##                        _             </span></span>
-<span><span class="co">## Survey name            NAMCS 2019 PUF</span></span>
-<span><span class="co">## Number of variables    33            </span></span>
-<span><span class="co">## Number of observations 8250          </span></span>
-<span><span class="co">## Stratified 1 - level Cluster Sampling design (with replacement)</span></span>
-<span><span class="co">## With (398) clusters.</span></span>
-<span><span class="co">## survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span></span>
-<span><span class="co">##     data = namcs2019sv_df)</span></span>
-<span><span class="co">## * To adjust how counts are rounded, see ?set_count_int</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">mysurvey</span><span class="op">)</span></span>
+<span><span class="co">## * To adjust how counts are rounded, see ?set_count_int</span></span>
+<span><span class="co">##                        _                                                                    </span></span>
+<span><span class="co">## Survey name            NAMCS 2019 PUF                                                       </span></span>
+<span><span class="co">## Number of variables    33                                                                   </span></span>
+<span><span class="co">## Number of observations 8250                                                                 </span></span>
+<span><span class="co">## Info1                  Stratified 1 - level Cluster Sampling design (with replacement)      </span></span>
+<span><span class="co">## Info2                  With (398) clusters.                                                 </span></span>
+<span><span class="co">## Info3                  survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span></span>
+<span><span class="co">## Info4                      data = namcs2019sv_df)</span></span></code></pre></div>
 <p>Check the survey name, survey design variables, and the number of
 observations to verify that it all looks correct.</p>
 </div>
@@ -2467,7 +2467,17 @@ variables.</p>
 <span>  <span class="va">`Self-pay (real)`</span> <span class="op">=</span> <span class="va">PAYSELF</span> <span class="op">&amp;</span> <span class="va">nopwu</span></span>
 <span>  <span class="va">`No charge (real)`</span> <span class="op">=</span> <span class="va">PAYNOCHG</span> <span class="op">&amp;</span> <span class="va">nopwu</span></span>
 <span>  <span class="va">`No insurance`</span> <span class="op">=</span> <span class="va">`Self-pay (real)`</span> <span class="op">|</span> <span class="va">`No charge (real)`</span></span>
-<span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
+<span><span class="op">}</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">mysurvey</span><span class="op">)</span></span>
+<span><span class="co">## * To adjust how counts are rounded, see ?set_count_int</span></span>
+<span><span class="co">##                        _                                                                    </span></span>
+<span><span class="co">## Survey name            NAMCS 2019 PUF                                                       </span></span>
+<span><span class="co">## Number of variables    39                                                                   </span></span>
+<span><span class="co">## Number of observations 8250                                                                 </span></span>
+<span><span class="co">## Info1                  Stratified 1 - level Cluster Sampling design (with replacement)      </span></span>
+<span><span class="co">## Info2                  With (398) clusters.                                                 </span></span>
+<span><span class="co">## Info3                  survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span></span>
+<span><span class="co">## Info4                      data = namcs2019sv_df)</span></span></code></pre></div>
 <p>Notes:</p>
 <ul>
 <li>We’re using the <code><a href="https://rdrr.io/r/base/with.html" class="external-link">within()</a></code> function to simplify the
@@ -2478,6 +2488,8 @@ Medicare, etc.</li>
 <li>
 <code>Self-pay (real)</code> = self-pay was used AND no other
 payment was used.</li>
+<li>After making changes to <code>mysurvey</code>, we need to call
+<code><a href="../reference/set_survey.html">set_survey()</a></code> again.</li>
 </ul>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"PAYPRIV"</span>, <span class="st">"PAYMCARE"</span>, <span class="st">"PAYMCAID"</span>, <span class="st">"Medicare and Medicaid"</span></span>
@@ -4636,11 +4648,14 @@ No
 <p>This table shows the same information as Table 3, but only for
 preventive care visits. That is, estimates for each age group, as well
 as for each age group by sex, but only for preventive care visits.</p>
-<p>The variable <code>Age group</code> has already been created in a
-previous example. Cross <code>AGER</code> and <code>SEX</code> to create
-a variable called <code>Age x Sex</code>:</p>
+<p>Let’s create <code>Age group</code> from <code>AGE</code> and cross
+<code>AGER</code> and <code>SEX</code> to create a variable called
+<code>Age x Sex</code>:</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/var_cross.html">var_cross</a></span><span class="op">(</span><span class="st">"Age x Sex"</span>, <span class="st">"AGER"</span>, <span class="st">"SEX"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/var_cut.html">var_cut</a></span><span class="op">(</span><span class="st">"Age group"</span>, <span class="st">"AGE"</span></span>
+<span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fl">0</span>, <span class="fl">4</span>, <span class="fl">14</span>, <span class="fl">64</span>, <span class="cn">Inf</span><span class="op">)</span></span>
+<span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Under 1"</span>, <span class="st">"1-4"</span>, <span class="st">"5-14"</span>, <span class="st">"15-64"</span>, <span class="st">"65 and over"</span><span class="op">)</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/var_cross.html">var_cross</a></span><span class="op">(</span><span class="st">"Age x Sex"</span>, <span class="st">"AGER"</span>, <span class="st">"SEX"</span><span class="op">)</span></span></code></pre></div>
 <p>To see the possible values of <code>MAJOR</code> (Major reason for
 this visit), and to estimate the total count for preventive care
 visits:</p>
@@ -5833,7 +5848,7 @@ first variable that is passed to the <code><a href="../reference/tab_subset.html
 this code can be streamlined with a <code>for</code> loop:</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">vr</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"Age group"</span>, <span class="st">"SEX"</span>, <span class="st">"Age x Sex"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="va">vr</span>, <span class="st">"MAJOR"</span>, <span class="st">"Preventive care"</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span> <span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="va">vr</span>, <span class="st">"MAJOR"</span>, <span class="st">"Preventive care"</span><span class="op">)</span> <span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-26">
 <caption style="caption-side: top; text-align: center;">
@@ -6756,6 +6771,8 @@ Under 15 years : Male
 </td>
 </tr>
 </table>
+<p>Note that when called from inside a <code>for</code> loop, the
+<code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> function needs to be called explicitly.</p>
 <div class="section level3">
 <h3 id="more-advanced-coding">More advanced coding<a class="anchor" aria-label="anchor" href="#more-advanced-coding"></a>
 </h3>
@@ -6766,11 +6783,12 @@ physicians.</p>
 <code>for</code> loop is needed. Below is the code, followed by an
 explanation:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_output.html">set_output</a></span><span class="op">(</span>csv <span class="op">=</span> <span class="st">"out.csv"</span>, screen <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tmp_file</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".csv"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span> <span class="fu"><a href="../reference/set_output.html">set_output</a></span><span class="op">(</span>csv <span class="op">=</span> <span class="va">tmp_file</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">vr</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"Age group"</span>, <span class="st">"SEX"</span>, <span class="st">"Age x Sex"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu"><a href="../reference/var_cross.html">var_cross</a></span><span class="op">(</span><span class="st">"tmp"</span>, <span class="st">"MAJOR"</span>, <span class="va">vr</span><span class="op">)</span></span>
-<span>    <span class="kw">for</span> <span class="op">(</span><span class="va">lvl</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span><span class="op">[</span>,<span class="va">vr</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw">for</span> <span class="op">(</span><span class="va">lvl</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="fu">surveytable</span><span class="fu">:::</span><span class="va">env</span><span class="op">$</span><span class="va">survey</span><span class="op">$</span><span class="va">variables</span><span class="op">[</span>,<span class="va">vr</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>        <span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"SPECCAT"</span>, <span class="st">"tmp"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Preventive care : "</span>, <span class="va">lvl</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="op">}</span></span>
 <span><span class="op">}</span></span>
@@ -6782,13 +6800,16 @@ explanation:</p>
 <span></span>
 <span><span class="co">## Warning in var_cross("tmp", "MAJOR", vr): tmp: overwriting a variable that</span></span>
 <span><span class="co">## already exists.</span></span>
-<span><span class="fu"><a href="../reference/set_output.html">set_output</a></span><span class="op">(</span>csv <span class="op">=</span> <span class="st">""</span>, screen <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/set_output.html">set_output</a></span><span class="op">(</span>csv <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
 <span><span class="co">## * Turning off CSV output.</span></span>
-<span><span class="co">## * Sending output to the screen.</span></span>
 <span><span class="co">## * ?set_output for other options.</span></span></code></pre></div>
 <ul>
-<li>Since so many tables are being produced, the output is sent to a CSV
-file, and is not printed to the screen.</li>
+<li>Since <code><a href="../reference/tab_subset.html">tab_subset()</a></code> is called from within a
+<code>for</code> loop, if we wanted to print to the screen, we would
+need to use <code>print( tab_subset(*) )</code>. Since we don’t want to
+print to the screen, a call to <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> is omitted.</li>
+<li>Since so many tables are being produced, the output is being sent to
+a CSV file.</li>
 <li>As before, the loop goes through the age, sex, and age / sex
 interaction variables, calling each of these variables
 <code>vr</code>.</li>
@@ -6801,8 +6822,7 @@ Primary, Medical, Surgical) on a subset in which <code>tmp</code> (which
 is <code>MAJOR</code> crossed with <code>vr</code>) is restricted to
 “Preventive care:” followed by <code>lvl</code>, which is some level of
 <code>vr</code>, such as “Under 15 years” for <code>AGER</code>.</li>
-<li>Finally, CSV output is turned off, and screen output is turned back
-on.</li>
+<li>Finally, CSV output is turned off.</li>
 </ul>
 <p>If you run this code, all of the tables should be stored in the CSV
 file. To give you an idea of what the tables should look like, here is
@@ -6812,9 +6832,9 @@ just one of the tables:</p>
 <span><span class="fu"><a href="../reference/var_cross.html">var_cross</a></span><span class="op">(</span><span class="st">"tmp"</span>, <span class="st">"MAJOR"</span>, <span class="va">vr</span><span class="op">)</span></span>
 <span><span class="co">## Warning in var_cross("tmp", "MAJOR", vr): tmp: overwriting a variable that</span></span>
 <span><span class="co">## already exists.</span></span>
-<span><span class="va">lvl</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span><span class="op">[</span>,<span class="va">vr</span><span class="op">]</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">lvl</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="fu">surveytable</span><span class="fu">:::</span><span class="va">env</span><span class="op">$</span><span class="va">survey</span><span class="op">$</span><span class="va">variables</span><span class="op">[</span>,<span class="va">vr</span><span class="op">]</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"SPECCAT"</span>, <span class="st">"tmp"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Preventive care : "</span>, <span class="va">lvl</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-30">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-29">
 <caption style="caption-side: top; text-align: center;">
 Type of specialty (Primary, Medical, Surgical) ((Major reason for this
 visit) x (Patient age recode) = Preventive care : Under 15 years) {NAMCS

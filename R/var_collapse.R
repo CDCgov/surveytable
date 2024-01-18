@@ -11,7 +11,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("namcs2019sv")
+#' set_survey(namcs2019sv)
 #' tab("PRIMCARE")
 #' var_collapse("PRIMCARE", "Unknown if PCP", c("Blank", "Unknown"))
 #' tab("PRIMCARE")
@@ -27,5 +27,5 @@ var_collapse = function(vr, newlevel, oldlevels) {
   idx = which(levels(design$variables[,vr]) %in% oldlevels)
   levels(design$variables[,vr])[idx] = newlevel
 
-  assign(getOption("surveytable.survey"), design, envir = getOption("surveytable.survey_envir"))
+  env$survey = design
 }

@@ -4,19 +4,12 @@
 \alias{var_list}
 \title{List variables in a survey.}
 \usage{
-var_list(
-  sw = "",
-  all = FALSE,
-  screen = getOption("surveytable.screen"),
-  csv = getOption("surveytable.csv")
-)
+var_list(sw = "", all = FALSE, csv = getOption("surveytable.csv"))
 }
 \arguments{
 \item{sw}{starting characters in variable name (case insensitive)}
 
 \item{all}{print all variables?}
-
-\item{screen}{print to the screen?}
 
 \item{csv}{name of a CSV file}
 }
@@ -27,6 +20,6 @@ var_list(
 List variables in a survey.
 }
 \examples{
-set_survey("namcs2019sv")
+set_survey(namcs2019sv)
 var_list("age")
 }

@@ -1,39 +1,9 @@
-.write_out = function(df1, screen, csv) {
-  if (!is.null(txt <- attr(df1, "title"))) {
-    txt %<>% paste0(" {", getOption("surveytable.survey_label"), "}")
-    attr(df1, "title") = txt
-  }
+.write_out = function(df1, csv) {
+  assert_that(is.data.frame(df1))
 
-  if (screen) {
-    hh = df1 %>% hux %>% set_all_borders
-	  if (!is.null(txt <- attr(df1, "title"))) {
-	    if (isTRUE(nchar(txt) > getOption("width"))) {
-	      txt = paste(strwrap(txt), collapse = "\n")
-	    }
-      caption(hh) = txt
-	  }
-    if (!is.null(nc <- attr(df1, "num"))) {
-      number_format(hh)[-1,nc] = fmt_pretty()
-    }
-    if (!is.null(txt <- attr(df1, "footer"))) {
-      hh %<>% add_footnote(txt)
-    }
-
-    # See inside guess_knitr_output_format
-    not_screen = (requireNamespace("knitr", quietly = TRUE)
-                && requireNamespace("rmarkdown", quietly = TRUE)
-                && guess_knitr_output_format() != "")
-
-    if (not_screen) {
-      hh %>% print_html
-    } else {
-      gow = getOption("width")
-      options(width = 10)
-      hh %>% print_screen(colnames = FALSE, min_width = 0, max_width = max(gow * 1.5, 150, na.rm=TRUE))
-      options(width = gow)
-      cat("\n")
-    }
-  }
+  txt = attr(df1, "title")
+  txt %<>% paste0(" {", getOption("surveytable.survey_label"), "}")
+  attr(df1, "title") = txt
 
 	if (nzchar(csv)) {
 	  if (!is.null(txt <- attr(df1, "title"))) {
@@ -55,7 +25,8 @@
 	}
 
   # Important for integrating the output into other programming tasks
-  names(df1) %<>% make.unique
+  # names(df1) %<>% make.unique
   rownames(df1) = NULL
-	invisible(df1)
+  class(df1) = c("surveytable_table", "data.frame")
+	df1
 }

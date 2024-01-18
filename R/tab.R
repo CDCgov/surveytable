@@ -23,7 +23,6 @@
 #' @param alpha   significance level for tests
 #' @param drop_na drop missing values (`NA`)? Categorical variables only.
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
-#' @param screen  print to the screen?
 #' @param csv     name of a CSV file
 #'
 #' @return A list of `data.frame` tables or a single `data.frame` table.
@@ -31,7 +30,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("namcs2019sv")
+#' set_survey(namcs2019sv)
 #' tab("AGER")
 #' tab("MDDO", "SPECCAT", "MSA")
 #'
@@ -40,15 +39,10 @@
 #'
 #' # Hypothesis testing with categorical variables
 #' tab("AGER", test = TRUE)
-#'
-#' # Integrate the output into other programming tasks
-#' my_table = tab("AGER", screen = FALSE)
-#' my_table = within(my_table, {RSE = `SE (000)` / `Number (000)`})
 tab = function(...
                , test = FALSE, alpha = 0.05
                , drop_na = getOption("surveytable.drop_na")
                , max_levels = getOption("surveytable.max_levels")
-               , screen = getOption("surveytable.screen")
                , csv = getOption("surveytable.csv")
                ) {
 	ret = list()
@@ -69,19 +63,17 @@ tab = function(...
                       , vr = vr
                       , drop_na = drop_na
                       , max_levels = max_levels
-                      , screen = screen
                       , csv = csv)
 			  if (test) {
 			    ret[[paste0(vr, " - test")]] = .test_factor(design = design
                                             , vr = vr
                                             , drop_na = drop_na
                                             , alpha = alpha
-                                            , screen = screen, csv = csv)
+                                            , csv = csv)
 			  }
 			} else if (is.numeric(design$variables[,vr])) {
 			  ret[[vr]] = .tab_numeric(design = design
                       , vr = vr
-                      , screen = screen
                       , csv = csv)
 			} else {
         warning(vr, ": must be logical, factor, or numeric. Is "
@@ -90,11 +82,11 @@ tab = function(...
 		}
 	}
 
-	if (length(ret) == 1L) return(invisible(ret[[1]]))
-	invisible(ret)
+	class(ret) = "surveytable_list"
+	if (length(ret) == 1L) ret[[1]] else ret
 }
 
-.tab_factor = function(design, vr, drop_na, max_levels, screen, csv) {
+.tab_factor = function(design, vr, drop_na, max_levels, csv) {
   nm = names(design$variables)
   assert_that(vr %in% nm, msg = paste("Variable", vr, "not in the data."))
 
@@ -132,7 +124,7 @@ tab = function(...
 	  }
 	  attr(mp, "num") = 2:5
 	  attr(mp, "title") = .getvarname(design, vr)
-    return(.write_out(mp, screen = screen, csv = csv))
+    return(.write_out(mp, csv = csv))
 	} else if (nlv > max_levels) {
 	  # don't use assert_that
 	  # if multiple tables are being produced, want to go to the next table
@@ -242,7 +234,7 @@ tab = function(...
   attr(mp, "num") = 2:5
   attr(mp, "title") = .getvarname(design, vr)
 	mp %<>% .add_flags( c(pro$has.flag, pco$has.flag, ppo$has.flag) )
-	.write_out(mp, screen = screen, csv = csv)
+	.write_out(mp, csv = csv)
 }
 
 .add_flags = function(df1, has.flag) {

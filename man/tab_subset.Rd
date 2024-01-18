@@ -9,7 +9,6 @@ tab_cross(
   vr,
   vrby,
   max_levels = getOption("surveytable.max_levels"),
-  screen = getOption("surveytable.screen"),
   csv = getOption("surveytable.csv")
 )
 
@@ -21,7 +20,6 @@ tab_subset(
   alpha = 0.05,
   drop_na = getOption("surveytable.drop_na"),
   max_levels = getOption("surveytable.max_levels"),
-  screen = getOption("surveytable.screen"),
   csv = getOption("surveytable.csv")
 )
 }
@@ -31,8 +29,6 @@ tab_subset(
 \item{vrby}{use this variable to subset the survey}
 
 \item{max_levels}{a categorical variable can have at most this many levels. Used to avoid printing huge tables.}
-
-\item{screen}{print to the screen?}
 
 \item{csv}{name of a CSV file}
 
@@ -69,7 +65,7 @@ population add up to 100\%. Also see \code{\link[=var_cross]{var_cross()}}.
 performs t-tests for all possible pairs of levels of \code{vr} and \code{vrby}.
 }
 \examples{
-set_survey("namcs2019sv")
+set_survey(namcs2019sv)
 
 # For each SEX, tabulate AGER
 tab_subset("AGER", "SEX")
@@ -77,11 +73,11 @@ tab_subset("AGER", "SEX")
 # Same counts as tab_subset(), but different percentages.
 tab_cross("AGER", "SEX")
 
-# Hypothesis testing
-tab_subset("AGER", "SEX", test = TRUE)
-
 # Numeric variables
 tab_subset("NUMMED", "AGER")
+
+# Hypothesis testing
+tab_subset("NUMMED", "AGER", test = TRUE)
 }
 \seealso{
 Other tables: 

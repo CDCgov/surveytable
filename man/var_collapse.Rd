@@ -20,7 +20,7 @@ var_collapse(vr, newlevel, oldlevels)
 Collapse two or more levels of a factor variable into a single level.
 }
 \examples{
-set_survey("namcs2019sv")
+set_survey(namcs2019sv)
 tab("PRIMCARE")
 var_collapse("PRIMCARE", "Unknown if PCP", c("Blank", "Unknown"))
 tab("PRIMCARE")

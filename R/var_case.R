@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("namcs2019sv")
+#' set_survey(namcs2019sv)
 #' var_case("Preventive care visits", "MAJOR", "Preventive care")
 #' tab("Preventive care visits")
 #' var_case("Surgery-related visits"
@@ -33,5 +33,5 @@ var_case = function(newvr, vr, cases) {
   idx = which(design$variables[,vr] %in% cases)
   design$variables[idx, newvr] = TRUE
 
-  assign(getOption("surveytable.survey"), design, envir = getOption("surveytable.survey_envir"))
+  env$survey = design
 }

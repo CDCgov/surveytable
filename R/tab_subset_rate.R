@@ -12,7 +12,6 @@
 #' @param per calculate rate per this many items in the population
 #' @param drop_na drop missing values (`NA`)?
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
-#' @param screen  print to the screen?
 #' @param csv     name of a CSV file
 #'
 #' @return A list of `data.frame` tables or a single `data.frame` table.
@@ -20,7 +19,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("namcs2019sv")
+#' set_survey(namcs2019sv)
 #' tab_subset_rate("AGER", "SEX", uspop2019$`AGER x SEX`)
 tab_subset_rate = function(vr, vrby
                            , pop
@@ -28,7 +27,6 @@ tab_subset_rate = function(vr, vrby
                            , per = getOption("surveytable.rate_per")
                            , drop_na = getOption("surveytable.drop_na")
                            , max_levels = getOption("surveytable.max_levels")
-                           , screen = getOption("surveytable.screen")
                            , csv = getOption("surveytable.csv")
                            ) {
   design = .load_survey()
@@ -83,7 +81,6 @@ tab_subset_rate = function(vr, vrby
                       , vr = vr
                       , drop_na = drop_na
                       , max_levels = max_levels
-                      , screen = FALSE
                       , csv = "")
     pop1 = pop[which(pop$Subset == ii),]
     m1 = merge(tfo, pop1, by = "Level", all.x = TRUE, all.y = FALSE, sort = FALSE)
@@ -109,9 +106,9 @@ tab_subset_rate = function(vr, vrby
     attr(m1, "num") = 2:5
     attr(m1, "footer") = attr(tfo, "footer")
 
-    ret[[ii]] = .write_out(m1, screen = screen, csv = csv)
+    ret[[ii]] = .write_out(m1, csv = csv)
   }
 
-  if (length(ret) == 1L) return(invisible(ret[[1]]))
-  invisible(ret)
+  class(ret) = "surveytable_list"
+  if (length(ret) == 1L) ret[[1]] else ret
 }

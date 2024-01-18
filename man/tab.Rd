@@ -10,7 +10,6 @@ tab(
   alpha = 0.05,
   drop_na = getOption("surveytable.drop_na"),
   max_levels = getOption("surveytable.max_levels"),
-  screen = getOption("surveytable.screen"),
   csv = getOption("surveytable.csv")
 )
 }
@@ -24,8 +23,6 @@ tab(
 \item{drop_na}{drop missing values (\code{NA})? Categorical variables only.}
 
 \item{max_levels}{a categorical variable can have at most this many levels. Used to avoid printing huge tables.}
-
-\item{screen}{print to the screen?}
 
 \item{csv}{name of a CSV file}
 }
@@ -53,7 +50,7 @@ for complex surveys. CIs for percentage estimates are
 the Korn and Graubard CIs.
 }
 \examples{
-set_survey("namcs2019sv")
+set_survey(namcs2019sv)
 tab("AGER")
 tab("MDDO", "SPECCAT", "MSA")
 
@@ -62,10 +59,6 @@ tab("NUMMED")
 
 # Hypothesis testing with categorical variables
 tab("AGER", test = TRUE)
-
-# Integrate the output into other programming tasks
-my_table = tab("AGER", screen = FALSE)
-my_table = within(my_table, {RSE = `SE (000)` / `Number (000)`})
 }
 \seealso{
 Other tables: 

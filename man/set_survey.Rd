@@ -2,26 +2,21 @@
 % Please edit documentation in R/set_survey.R
 \name{set_survey}
 \alias{set_survey}
-\alias{show_survey}
 \title{Specify the survey to analyze}
 \usage{
-set_survey(survey_name = "")
-
-show_survey()
+set_survey(design)
 }
 \arguments{
-\item{survey_name}{the name of a survey object (\code{survey.design} or \code{svyrep.design}), in quotation marks}
+\item{design}{a survey object (\code{survey.design} or \code{svyrep.design})}
 }
 \value{
-(Nothing.)
+Object with info about the survey.
 }
 \description{
 You need to specify a survey before the other functions, such as \code{\link[=tab]{tab()}},
 will work.
 }
 \details{
-\code{show_survey()} shows the survey that you've specified.
-
 Optionally, the survey can have an attribute called \code{label}, which is the
 long name of the survey.
 
@@ -29,14 +24,5 @@ Optionally, each variable in the survey can have an attribute called \code{label
 which is the variable's long name.
 }
 \examples{
-set_survey("namcs2019sv")
-show_survey()
+set_survey(namcs2019sv)
 }
-\seealso{
-Other options: 
-\code{\link{set_count_1k}()},
-\code{\link{set_output}()},
-\code{\link{show_options}()},
-\code{\link{surveytable-options}}
-}
-\concept{options}

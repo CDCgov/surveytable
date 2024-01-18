@@ -22,7 +22,7 @@ var_cut(newvr, vr, breaks, labels)
 Create a new categorical variable based on a numeric variable.
 }
 \examples{
-set_survey("namcs2019sv")
+set_survey(namcs2019sv)
 var_cut("Age group"
 , "AGE"
 , c(-Inf, 0, 4, 14, 64, Inf)

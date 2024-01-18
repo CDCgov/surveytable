@@ -10,7 +10,6 @@ tab_rate(
   per = getOption("surveytable.rate_per"),
   drop_na = getOption("surveytable.drop_na"),
   max_levels = getOption("surveytable.max_levels"),
-  screen = getOption("surveytable.screen"),
   csv = getOption("surveytable.csv")
 )
 }
@@ -28,8 +27,6 @@ level of \code{vr}.}
 
 \item{max_levels}{a categorical variable can have at most this many levels. Used to avoid printing huge tables.}
 
-\item{screen}{print to the screen?}
-
 \item{csv}{name of a CSV file}
 }
 \value{
@@ -39,7 +36,7 @@ A list of \code{data.frame} tables or a single \code{data.frame} table.
 Calculate the rates for categorical (factor) or logical variables.
 }
 \examples{
-set_survey("namcs2019sv")
+set_survey(namcs2019sv)
 # pop is a data frame
 tab_rate("MSA", uspop2019$MSA)
 

@@ -6,7 +6,7 @@
 \alias{surveytable-package}
 \title{surveytable: Formatted Survey Estimates}
 \description{
-Short and understandable commands that generate tabulated, formatted, and rounded survey estimates.
+Short and understandable commands that generate tabulated, formatted, and rounded survey estimates. Mostly a wrapper for the 'survey' package (Lumley (2004) \doi{10.18637/jss.v009.i08} \url{https://CRAN.R-project.org/package=survey}) that implements the National Center for Health Statistics (NCHS) presentation standards (Parker et al. (2017) \url{https://www.cdc.gov/nchs/data/series/sr_02/sr02_175.pdf}, Parker et al. (2023) \doi{10.15620/cdc:124368}).
 }
 \seealso{
 Useful links:

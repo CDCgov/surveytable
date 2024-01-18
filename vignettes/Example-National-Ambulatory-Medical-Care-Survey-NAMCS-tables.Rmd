@@ -30,7 +30,7 @@ Now, specify the survey that you'd like to analyze.
 
 ```{r}
 mysurvey = namcs2019sv
-set_survey("mysurvey")
+set_survey(mysurvey)
 ```
 
 Check the survey name, survey design variables, and the number of observations to verify that it all looks correct.
@@ -151,6 +151,7 @@ mysurvey$variables = within(mysurvey$variables, {
   `No charge (real)` = PAYNOCHG & nopwu
   `No insurance` = `Self-pay (real)` | `No charge (real)`
 })
+set_survey(mysurvey)
 ```
 
 Notes:
@@ -158,6 +159,7 @@ Notes:
 * We're using the `within()` function to simplify the syntax.
 * `nopwu` = No other payment was used, such as private, Medicare, etc.
 * `Self-pay (real)` = self-pay was used AND no other payment was used.
+* After making changes to `mysurvey`, we need to call `set_survey()` again.
 
 ```{r, results='asis'}
 tab("PAYPRIV", "PAYMCARE", "PAYMCAID", "Medicare and Medicaid"
@@ -195,9 +197,12 @@ tab_subset("REFER", "SENBEFOR")
 
 This table shows the same information as Table 3, but only for preventive care visits. That is, estimates for each age group, as well as for each age group by sex, but only for preventive care visits.
 
-The variable `Age group` has already been created in a previous example. Cross `AGER` and `SEX` to create a variable called `Age x Sex`: 
+Let's create `Age group` from `AGE` and cross `AGER` and `SEX` to create a variable called `Age x Sex`: 
 
 ```{r}
+var_cut("Age group", "AGE"
+        , c(-Inf, 0, 4, 14, 64, Inf)
+        , c("Under 1", "1-4", "5-14", "15-64", "65 and over") )
 var_cross("Age x Sex", "AGER", "SEX")
 ```
 
@@ -220,9 +225,11 @@ As each of the above commands is similar, and differs only in the first variable
 
 ```{r, results='asis'}
 for (vr in c("AGER", "Age group", "SEX", "Age x Sex")) {
-	tab_subset(vr, "MAJOR", "Preventive care")
+	print( tab_subset(vr, "MAJOR", "Preventive care") )
 }
 ```
+
+Note that when called from inside a `for` loop, the `print()` function needs to be called explicitly. 
 
 ## More advanced coding
 
@@ -230,37 +237,35 @@ In addition, for each age-sex category, the published table shows the percentage
 
 To calculate these percentages, a slightly more involved `for` loop is needed. Below is the code, followed by an explanation:
 
-```{r, results=FALSE, message=FALSE, warning=FALSE}
-set_output(csv = "out.csv", screen = FALSE)
+```{r}
+tmp_file = tempfile(fileext = ".csv")
+suppressMessages( set_output(csv = tmp_file) )
 ```
 
 ```{r}
 for (vr in c("AGER", "Age group", "SEX", "Age x Sex")) {
 	var_cross("tmp", "MAJOR", vr)
-	for (lvl in levels(mysurvey$variables[,vr])) {
+	for (lvl in levels(surveytable:::env$survey$variables[,vr])) {
 		tab_subset("SPECCAT", "tmp", paste0("Preventive care : ", lvl))
 	}
 }
-set_output(csv = "", screen = TRUE)
+set_output(csv = "")
 ```
 
-```{r, echo=FALSE}
-unlink("out.csv")
-```
-
-* Since so many tables are being produced, the output is sent to a CSV file, and is not printed to the screen. 
+* Since `tab_subset()` is called from within a `for` loop, if we wanted to print to the screen, we would need to use `print( tab_subset(*) )`. Since we don't want to print to the screen, a call to `print()` is omitted.
+* Since so many tables are being produced, the output is being sent to a CSV file. 
 * As before, the loop goes through the age, sex, and age / sex interaction variables, calling each of these variables `vr`. 
 * MAJOR and `vr` are crossed, with the result stored in a variable called `tmp`.
 * Next, the inner loop goes through all levels of `vr`, calling each of these levels `lvl`. 
 * The code tabulates `SPECCAT` (Type of specialty – Primary, Medical, Surgical) on a subset in which `tmp` (which is `MAJOR` crossed with `vr`) is restricted to “Preventive care:” followed by `lvl`, which is some level of `vr`, such as “Under 15 years” for `AGER`. 
-* Finally, CSV output is turned off, and screen output is turned back on. 
+* Finally, CSV output is turned off. 
 
 If you run this code, all of the tables should be stored in the CSV file. To give you an idea of what the tables should look like, here is just one of the tables:
 
 ```{r, results='asis'}
 vr = "AGER"
 var_cross("tmp", "MAJOR", vr)
-lvl = levels(mysurvey$variables[,vr])[1]
+lvl = levels(surveytable:::env$survey$variables[,vr])[1]
 tab_subset("SPECCAT", "tmp", paste0("Preventive care : ", lvl))
 ```
 

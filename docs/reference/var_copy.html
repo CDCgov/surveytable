@@ -12,7 +12,7 @@ while the original remains unchanged. See examples."><!-- mathjax --><script src
     
     <a class="navbar-brand me-2" href="../index.html">surveytable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,16 +94,16 @@ while the original remains unchanged. See examples.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="st">"namcs2019sv"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                        _             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Survey name            NAMCS 2019 PUF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of variables    36            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations 8250          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Stratified 1 - level Cluster Sampling design (with replacement)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> With (398) clusters.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     data = namcs2019sv_df)</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * To adjust how counts are rounded, see ?set_count_int</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        _                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Survey name            NAMCS 2019 PUF                                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of variables    33                                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations 8250                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Info1                  Stratified 1 - level Cluster Sampling design (with replacement)      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Info2                  With (398) clusters.                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Info3                  survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Info4                      data = namcs2019sv_df)                                           </span>
 <span class="r-in"><span><span class="fu">var_copy</span><span class="op">(</span><span class="st">"Age group"</span>, <span class="st">"AGER"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="var_collapse.html">var_collapse</a></span><span class="op">(</span><span class="st">"Age group"</span>, <span class="st">"65+"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"65-74 years"</span>, <span class="st">"75 years and over"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="var_collapse.html">var_collapse</a></span><span class="op">(</span><span class="st">"Age group"</span>, <span class="st">"25-64"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"25-44 years"</span>, <span class="st">"45-64 years"</span><span class="op">)</span><span class="op">)</span></span></span>

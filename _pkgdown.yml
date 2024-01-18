@@ -36,3 +36,4 @@ reference:
   - surveytable-options
   - survey_subset
   - svyciprop_adjusted
+  - print.surveytable_table

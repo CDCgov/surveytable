@@ -1,30 +1,27 @@
 .onAttach = function(libname, pkgname) {
-  # packageStartupMessage("\nThere are 3 related packages:"
-  #   , "\n* surveytable: functions for tabulating survey estimates"
-  #   , "\n* nchsdata: public use files (PUFs) from the the National Center for Health Statistics (NCHS)"
-  #   , "\n* importsurvey: functions for importing data into R"
-  #   , "\n\nYou've just loaded ", pkgname, "."
-  # )
-
-  packageStartupMessage("Before you can tabulate estimates, you have to specify which survey object"
+  txt = paste0(
+    "Before you can tabulate estimates, you have to specify which survey object"
     , " you would like to analyze. You can do this in a couple of ways:"
     , "\n\na) This package comes with a survey object for use in examples called"
     , " 'namcs2019sv'. This object has selected variables from the NAMCS 2019 PUF survey."
     , " To use this survey object:"
-    , "\n\nset_survey('namcs2019sv')"
+    , "\n\nset_survey(namcs2019sv)"
     , "\n\nb) If you have a survey object stored in a file:"
     , "\n\nmysurvey = readRDS('file_name.rds')"
-    , "\nset_survey('mysurvey')"
+    , "\n\nset_survey(mysurvey)"
     , "\n\nFor info on how to create a survey object from a data frame, see"
     , " ?survey::svydesign or ?survey::svrepdesign ."
   )
+
+  txt = paste(strwrap(txt), collapse = "\n")
+  packageStartupMessage(txt)
 }
+
+env = new.env()
 
 .onLoad = function(libname, pkgname) {
   options(
-    surveytable.survey = ""
-    , surveytable.survey_label = ""
-    , surveytable.survey_envir = .GlobalEnv
+    surveytable.survey_label = ""
 
     , surveytable.check_present = TRUE
     , surveytable.present_restricted = ".present_restricted"
@@ -38,7 +35,6 @@
     , surveytable.names_prct = c("Percent", "SE", "LL", "UL")
 
     , surveytable.csv = ""
-    , surveytable.screen = TRUE
     , surveytable.max_levels = 20
     , surveytable.drop_na = FALSE
 

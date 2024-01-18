@@ -12,7 +12,6 @@ tab_subset_rate(
   per = getOption("surveytable.rate_per"),
   drop_na = getOption("surveytable.drop_na"),
   max_levels = getOption("surveytable.max_levels"),
-  screen = getOption("surveytable.screen"),
   csv = getOption("surveytable.csv")
 )
 }
@@ -33,8 +32,6 @@ exactly match the levels of \code{vr}. \code{Subset} must exactly match the leve
 
 \item{max_levels}{a categorical variable can have at most this many levels. Used to avoid printing huge tables.}
 
-\item{screen}{print to the screen?}
-
 \item{csv}{name of a CSV file}
 }
 \value{
@@ -45,7 +42,7 @@ Create subsets of the survey using one variable, and tabulate
 the rates of another variable within each of the subsets.
 }
 \examples{
-set_survey("namcs2019sv")
+set_survey(namcs2019sv)
 tab_subset_rate("AGER", "SEX", uspop2019$`AGER x SEX`)
 }
 \seealso{

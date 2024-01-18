@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("namcs2019sv")
+#' set_survey(namcs2019sv)
 #' var_cross("Age x Sex", "AGER", "SEX")
 #' tab("Age x Sex")
 var_cross = function(newvr, vr, vrby) {
@@ -45,5 +45,5 @@ var_cross = function(newvr, vr, vrby) {
     "(", .getvarname(design, vr), ") x ("
     , .getvarname(design, vrby), ")")
 
-  assign(getOption("surveytable.survey"), design, envir = getOption("surveytable.survey_envir"))
+  env$survey = design
 }

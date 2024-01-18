@@ -11,7 +11,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("namcs2019sv")
+#' set_survey(namcs2019sv)
 #' var_any("Imaging services"
 #' , c("ANYIMAGE", "BONEDENS", "CATSCAN", "ECHOCARD", "OTHULTRA"
 #' , "MAMMO", "MRI", "XRAY", "OTHIMAGE"))
@@ -30,5 +30,5 @@ var_any = function(newvr, vrs) {
       , msg = paste0(vr, ": must be logical. Is ", class(design$variables[,vr])[1] ))
     design$variables[,newvr] = design$variables[,newvr] | design$variables[,vr]
   }
-  assign(getOption("surveytable.survey"), design, envir = getOption("surveytable.survey_envir"))
+  env$survey = design
 }

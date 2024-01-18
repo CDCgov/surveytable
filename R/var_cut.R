@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("namcs2019sv")
+#' set_survey(namcs2019sv)
 #' var_cut("Age group"
 #' , "AGE"
 #' , c(-Inf, 0, 4, 14, 64, Inf)
@@ -31,5 +31,5 @@ var_cut = function(newvr, vr, breaks, labels) {
   design$variables[,newvr] = cut(x = design$variables[,vr]
                                  , breaks = breaks, labels = labels)
   # attr(design$variables[,newvr], "label") = paste(.getvarname(design, vr), "(categorized)")
-  assign(getOption("surveytable.survey"), design, envir = getOption("surveytable.survey_envir"))
+  env$survey = design
 }

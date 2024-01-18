@@ -11,7 +11,7 @@
 #' @export
 #'
 #' @examples
-#' set_survey("namcs2019sv")
+#' set_survey(namcs2019sv)
 #' var_copy("Age group", "AGER")
 #' var_collapse("Age group", "65+", c("65-74 years", "75 years and over"))
 #' var_collapse("Age group", "25-64", c("25-44 years", "45-64 years"))
@@ -27,5 +27,5 @@ var_copy = function(newvr, vr) {
   design$variables[,newvr] = design$variables[,vr]
   # attr(design$variables[,newvr], "label") = .getvarname(design, vr)
   attr(design$variables[,newvr], "label") = NULL
-  assign(getOption("surveytable.survey"), design, envir = getOption("surveytable.survey_envir"))
+  env$survey = design
 }

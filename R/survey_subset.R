@@ -8,11 +8,9 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' children = survey_subset(namcs2019sv, AGE < 18, "Children")
-#' set_survey("children")
+#' children = survey_subset(namcs2019sv, AGE < 18, "Children < 18")
+#' set_survey(children)
 #' tab("AGER")
-#' }
 survey_subset = function(design, subset, label) {
   assert_that(inherits(design, c("survey.design", "svyrep.design"))
     , msg = paste0("Must be a survey.design or svyrep.design. Is "

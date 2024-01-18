@@ -13,12 +13,12 @@ tabulates estimated counts and percentages with their standard errors
 and confidence intervals. Other functions list the variables in a
 survey, estimate the total population, tabulate survey subsets and
 variable interactions, tabulate numeric variables, tabulate rates,
-create or modify survey variables, perform t-tests, and save the output.
-All of the tabulation functions check the National Center for Health
-Statistics (NCHS) presentation standards to flag low-precision
-estimates. If the `surveytable` code is called from an R Markdown
-notebook or a Quarto document, it generates HTML tables, which can be
-incorporated directly into documents.
+create or modify survey variables, perform hypothesis tests, and save
+the output. All of the tabulation functions check the National Center
+for Health Statistics (NCHS) presentation standards to flag
+low-precision estimates. If the `surveytable` code is called from an R
+Markdown notebook or a Quarto document, it generates HTML tables, which
+can be incorporated directly into documents.
 
 ## Installation
 
@@ -50,16 +50,16 @@ library(surveytable)
 ```
 
 ``` r
-set_survey("namcs2019sv")
-#>                        _             
-#> Survey name            NAMCS 2019 PUF
-#> Number of variables    33            
-#> Number of observations 8250          
-#> Stratified 1 - level Cluster Sampling design (with replacement)
-#> With (398) clusters.
-#> survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, 
-#>     data = namcs2019sv_df)
+set_survey(namcs2019sv)
 #> * To adjust how counts are rounded, see ?set_count_int
+#>                        _                                                                    
+#> Survey name            NAMCS 2019 PUF                                                       
+#> Number of variables    33                                                                   
+#> Number of observations 8250                                                                 
+#> Info1                  Stratified 1 - level Cluster Sampling design (with replacement)      
+#> Info2                  With (398) clusters.                                                 
+#> Info3                  survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, 
+#> Info4                      data = namcs2019sv_df)
 ```
 
 ``` r

@@ -7,7 +7,6 @@
 total_rate(
   pop,
   per = getOption("surveytable.rate_per"),
-  screen = getOption("surveytable.screen"),
   csv = getOption("surveytable.csv")
 )
 }
@@ -15,8 +14,6 @@ total_rate(
 \item{pop}{population}
 
 \item{per}{calculate rate per this many items in the population}
-
-\item{screen}{print to the screen?}
 
 \item{csv}{name of a CSV file}
 }
@@ -27,7 +24,7 @@ total_rate(
 Overall rate
 }
 \examples{
-set_survey("namcs2019sv")
+set_survey(namcs2019sv)
 total_rate(uspop2019$total)
 }
 \seealso{

@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">surveytable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -240,16 +240,16 @@ frame.</p>
 </h2>
 <p>First, specify the survey object that you’d like to analyze.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="st">"namcs2019sv"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                        _             </span></span>
-<span><span class="co">#&gt; Survey name            NAMCS 2019 PUF</span></span>
-<span><span class="co">#&gt; Number of variables    33            </span></span>
-<span><span class="co">#&gt; Number of observations 8250          </span></span>
-<span><span class="co">#&gt; Stratified 1 - level Cluster Sampling design (with replacement)</span></span>
-<span><span class="co">#&gt; With (398) clusters.</span></span>
-<span><span class="co">#&gt; survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span></span>
-<span><span class="co">#&gt;     data = namcs2019sv_df)</span></span>
-<span><span class="co">#&gt; * To adjust how counts are rounded, see ?set_count_int</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span>
+<span><span class="co">#&gt; * To adjust how counts are rounded, see ?set_count_int</span></span>
+<span><span class="co">#&gt;                        _                                                                    </span></span>
+<span><span class="co">#&gt; Survey name            NAMCS 2019 PUF                                                       </span></span>
+<span><span class="co">#&gt; Number of variables    33                                                                   </span></span>
+<span><span class="co">#&gt; Number of observations 8250                                                                 </span></span>
+<span><span class="co">#&gt; Info1                  Stratified 1 - level Cluster Sampling design (with replacement)      </span></span>
+<span><span class="co">#&gt; Info2                  With (398) clusters.                                                 </span></span>
+<span><span class="co">#&gt; Info3                  survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span></span>
+<span><span class="co">#&gt; Info4                      data = namcs2019sv_df)</span></span></code></pre></div>
 <p>Check the survey label, survey design variables, and the number of
 observations to verify that it all looks correct.</p>
 <div class="section level3">
@@ -2465,7 +2465,7 @@ addition, t-tests for all pairs of levels are performed as well.</p>
 <div class="section level3">
 <h3 id="categorical-variables">Categorical variables<a class="anchor" aria-label="anchor" href="#categorical-variables"></a>
 </h3>
-<p>Consider the relationship between <code>SEX</code> an
+<p>Consider the relationship between <code>AGER</code> an
 <code>SPECCAT</code>:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"SPECCAT"</span>, test <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
@@ -7882,7 +7882,145 @@ data frame that contains the survey variables.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">$</span><span class="va">variables</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "data.frame"</span></span></code></pre></div>
 <p>More advanced users can create or modify variables in the
-<code>variables</code> data frame directly.</p>
+<code>variables</code> data frame directly. After they modify these
+variables, they must call <code><a href="../reference/set_survey.html">set_survey()</a></code> again. For
+example:</p>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">namcs2019sv</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">`Medicare and Medicaid`</span> <span class="op">=</span> <span class="op">(</span> </span>
+<span>  <span class="va">namcs2019sv</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">PAYMCARE</span> <span class="op">&amp;</span> <span class="va">namcs2019sv</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">PAYMCAID</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span>
+<span><span class="co">#&gt; * To adjust how counts are rounded, see ?set_count_int</span></span>
+<span><span class="co">#&gt;                        _                                                                    </span></span>
+<span><span class="co">#&gt; Survey name            NAMCS 2019 PUF                                                       </span></span>
+<span><span class="co">#&gt; Number of variables    34                                                                   </span></span>
+<span><span class="co">#&gt; Number of observations 8250                                                                 </span></span>
+<span><span class="co">#&gt; Info1                  Stratified 1 - level Cluster Sampling design (with replacement)      </span></span>
+<span><span class="co">#&gt; Info2                  With (398) clusters.                                                 </span></span>
+<span><span class="co">#&gt; Info3                  survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span></span>
+<span><span class="co">#&gt; Info4                      data = namcs2019sv_df)</span></span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"Medicare and Medicaid"</span><span class="op">)</span></span></code></pre></div>
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-45">
+<caption style="caption-side: top; text-align: center;">
+Medicare and Medicaid {NAMCS 2019 PUF}
+</caption>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Level
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Number (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+SE (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+LL (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+UL (000)
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Percent
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+SE
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+LL
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+UL
+</th>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+FALSE
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+1,016,202
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+47,395
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+927,389
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+1,113,520
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+98
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+0.5
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+96.9
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+98.9
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+TRUE
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+20,282
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+5,177
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+12,120
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+33,941
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+2
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+0.5
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+1.1
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.8pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+3.1
+</td>
+</tr>
+<tr>
+<td colspan="9" style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+(Checked presentation standards. Nothing to report.)
+</td>
+</tr>
+</table>
+<p>Note, however, that the <code>var_*()</code> functions do not modify
+the survey object specified in <code><a href="../reference/set_survey.html">set_survey()</a></code> directly.
+Rather, they modify variables inside the following data frame:
+<code>surveytable:::env$survey$variables</code>. If you use the
+<code>var_*()</code> functions and then need access to the modified /
+created variables, that’s where you should look. For example:</p>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/var_cross.html">var_cross</a></span><span class="op">(</span><span class="st">"newvar"</span>, <span class="st">"MAJOR"</span>, <span class="st">"AGER"</span><span class="op">)</span></span>
+<span><span class="co"># This should give NULL. The new variable does not exist here:</span></span>
+<span><span class="va">namcs2019sv</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">newvar</span></span>
+<span><span class="co">#&gt; NULL</span></span>
+<span><span class="co"># Rather, the new variable is here:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu">surveytable</span><span class="fu">:::</span><span class="va">env</span><span class="op">$</span><span class="va">survey</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">newvar</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  Factor w/ 42 levels "Blank : Under 15 years",..: 17 31 24 38 38 24 30 31 24 38 ...</span></span>
+<span><span class="co">#&gt;  - attr(*, "label")= chr "(Major reason for this visit) x (Patient age recode)"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="save-the-output">Save the output<a class="anchor" aria-label="anchor" href="#save-the-output"></a>
@@ -7894,11 +8032,12 @@ you can name the default CSV output file using the
 <code><a href="../reference/set_output.html">set_output()</a></code> function. For example, the following directs
 <code>surveytable</code> to send all future output to a CSV file, create
 some tables, and then turn off sending output to the file:</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_output.html">set_output</a></span><span class="op">(</span>csv <span class="op">=</span> <span class="st">"out.csv"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tmp_file</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".csv"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span> <span class="fu"><a href="../reference/set_output.html">set_output</a></span><span class="op">(</span>csv <span class="op">=</span> <span class="va">tmp_file</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"MDDO"</span>, <span class="st">"SPECCAT"</span>, <span class="st">"MSA"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-45">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-48">
 <caption style="caption-side: top; text-align: center;">
 Type of doctor (MD or DO) {NAMCS 2019 PUF}
 </caption>
@@ -8004,7 +8143,7 @@ D.O. - Doctor of Osteopathy
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-45">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-48">
 <caption style="caption-side: top; text-align: center;">
 Type of specialty (Primary, Medical, Surgical) {NAMCS 2019 PUF}
 </caption>
@@ -8139,7 +8278,7 @@ Medical care specialty
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-45">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-48">
 <caption style="caption-side: top; text-align: center;">
 Metropolitan Statistical Area Status of physician location {NAMCS 2019
 PUF}
@@ -8246,22 +8385,16 @@ Non-MSA
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/set_output.html">set_output</a></span><span class="op">(</span>csv <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
 <span><span class="co">#&gt; * Turning off CSV output.</span></span>
 <span><span class="co">#&gt; * ?set_output for other options.</span></span></code></pre></div>
-<p>Tabulation functions also have an argument called
-<code>screen</code>, <code>TRUE</code> by default, which determines
-whether the output is sent to the screen. If many tables are being
-produced, a user might choose to turn off screen printing, and only
-output to a CSV file.</p>
 <p>If the tabulation functions are called from within an R Markdown
 notebook, they produce HTML tables. This makes it easy to incorporate
 the output of the <code>surveytable</code> package directly into
 documents, presentations, “shiny” web apps, and other output types.</p>
 <p>Finally, the tabulation functions return the tables that they
-produce, either as a data frame, or as a list of data frames. More
-advanced analysts can use this functionality to integrate
+produce. More advanced analysts can use this functionality to integrate
 <code>surveytable</code> into other programming tasks.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
