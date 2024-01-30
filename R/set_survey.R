@@ -9,7 +9,8 @@
 #' Optionally, each variable in the survey can have an attribute called `label`,
 #' which is the variable's long name.
 #'
-#' @param design a survey object (`survey.design` or `svyrep.design`)
+#' @param design either a survey object (`survey.design` or `svyrep.design`) or a
+#' `data.frame` for an unweighted survey.
 #'
 #' @return Info about the survey.
 #' @export
@@ -29,15 +30,27 @@ set_survey = function(design) {
     label_default = as.character(substitute(design))
   }
 
-  assert_that(inherits(design, c("survey.design", "svyrep.design"))
-      , msg = paste0(label_default, " must be a survey.design or svyrep.design. Is "
-      , class(design)[1] ))
+  assert_that(!is.null(design)
+              , msg = paste0(label_default, " does not exist. Did you forget to load it?"))
 
   if(is.null( attr(design, "label") )) {
     attr(design, "label") = label_default
   }
   assert_that(is.string(attr(design, "label")), nzchar(attr(design, "label"))
-              , msg = "Survey must have a label.")
+              , msg = paste0(label_default, ": survey must have a label attribute."))
+
+  if (is.data.frame(design)) {
+    message(paste0("* ", label_default, ": the survey is unweighted."))
+    dl = attr(design, "label")
+    design = survey::svydesign(ids = ~1, probs = rep(1, nrow(design)), data = design)
+    attr(design, "label") = paste(dl, "(unweighted)")
+  }
+
+
+  assert_that(inherits(design, c("survey.design", "svyrep.design"))
+      , msg = paste0(label_default, ": must be either a survey object"
+        , " (survey.design or svyrep.design) or a data.frame for an unweighted survey."
+        , " Is: ", class(design)[1] ))
 
   if(inherits(design, "svyrep.design") && !isTRUE(attr(design, "prob_set"))) {
     assert_that(!("prob" %in% names(design))
@@ -67,7 +80,8 @@ set_survey = function(design) {
   out = list(`Survey name` = getOption("surveytable.survey_label")
              , `Number of variables` = ncol(design$variables)
              , `Number of observations` = nrow(design$variables)
-             , `Info` = design %>% capture.output
+             , `Info ` = design %>% capture.output %>% strwrap(
+                  width = 0.7 * getOption("width")  )
              )
   class(out) = "simple.list"
   out

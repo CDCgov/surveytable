@@ -22,18 +22,17 @@ can be incorporated directly into documents.
 
 ## Installation
 
-You can install `surveytable` like so:
+Install from CRAN:
+
+``` r
+install.packages("surveytable")
+```
+
+or get a development version from GitHub:
 
 ``` r
 install.packages(c("remotes", "git2r"))
 remotes::install_github("CDCgov/surveytable", upgrade = "never")
-```
-
-Once `surveytable` is available on CRAN, you will be able to install it
-like this:
-
-``` r
-install.packages("surveytable")
 ```
 
 ## Documentation
@@ -52,14 +51,16 @@ library(surveytable)
 ``` r
 set_survey(namcs2019sv)
 #> * To adjust how counts are rounded, see ?set_count_int
-#>                        _                                                                    
-#> Survey name            NAMCS 2019 PUF                                                       
-#> Number of variables    33                                                                   
-#> Number of observations 8250                                                                 
-#> Info1                  Stratified 1 - level Cluster Sampling design (with replacement)      
-#> Info2                  With (398) clusters.                                                 
-#> Info3                  survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, 
-#> Info4                      data = namcs2019sv_df)
+#>                        _                                                 
+#> Survey name            NAMCS 2019 PUF                                    
+#> Number of variables    33                                                
+#> Number of observations 8250                                              
+#> Info 1                 Stratified 1 - level Cluster Sampling design (with
+#> Info 2                 replacement)                                      
+#> Info 3                 With (398) clusters.                              
+#> Info 4                 survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM,
+#> Info 5                 weights = ~PATWT,                                 
+#> Info 6                 data = namcs2019sv_df)
 ```
 
 ``` r

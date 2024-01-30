@@ -7,7 +7,8 @@
 set_survey(design)
 }
 \arguments{
-\item{design}{a survey object (\code{survey.design} or \code{svyrep.design})}
+\item{design}{either a survey object (\code{survey.design} or \code{svyrep.design}) or a
+\code{data.frame} for an unweighted survey.}
 }
 \value{
 Info about the survey.

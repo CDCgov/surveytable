@@ -67,7 +67,7 @@ Once we have the overall population estimate, the overall rate is:
 total_rate(uspop2019$total)
 ```
 
-Recall that survey design objects have an element called `variables`, which is a data frame that contains the survey variables. Let's examine the levels of `MSA`.
+Recall that survey objects have an element called `variables`, which is a data frame that contains the survey variables. Let's examine the levels of `MSA`.
 
 ```{r}
 levels(mysurvey$variables$MSA)
@@ -139,7 +139,7 @@ tab_subset_rate("AGER", "SEX", uspop2019$`AGER x SEX`)
 
 This table gives the expected sources of payment. We use the `PAY*` variables to create several new variables that are required by the table. Note that the `PAY*` variables are logical (`TRUE` or `FALSE`), which simplifies the syntax. (The survey was imported into R using the `importsurvey` package, which automatically detects binary variables and imports them as logical variables.)
 
-Recall that survey design objects have an element called `variables`, which is a data frame that contains the survey variables. 
+Recall that survey objects have an element called `variables`, which is a data frame that contains the survey variables. 
 
 ```{r}
 mysurvey$variables = within(mysurvey$variables, {

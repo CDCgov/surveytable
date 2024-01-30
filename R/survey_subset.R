@@ -25,7 +25,7 @@ survey_subset = function(design, subset, label) {
   r <- eval(e, design$variables, parent.frame())
   r <- r & !is.na(r)
   d1 <- design[r, ]
-  d1$call = NULL
+  d1$call <- sys.call(0)
 
   assert_that(all(nm == names(d1$variables)))
 

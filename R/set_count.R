@@ -38,9 +38,21 @@ set_count_int = function() {
 }
 
 .tx_count_1k = function(x) {
+  ## Huge UL -> Inf
+  x$rat = x$ul / x$x
+  idx = which(x$rat > 4e3)
+  x$ul[idx] = Inf
+  x$rat = NULL
+
   round(x / 1e3)
 }
 .tx_count_int = function(x) {
+  ## Huge UL -> Inf
+  x$rat = x$ul / x$x
+  idx = which(x$rat > 4e3)
+  x$ul[idx] = Inf
+  x$rat = NULL
+
   round(x)
 }
 .tx_count_none = function(x) {

@@ -38,7 +38,7 @@
     
     <a class="navbar-brand me-2" href="index.html">surveytable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.2.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,13 +90,13 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install <code>surveytable</code> like so:</p>
+<p>Install from CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"surveytable"</span><span class="op">)</span></span></code></pre></div>
+<p>or get a development version from GitHub:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"remotes"</span>, <span class="st">"git2r"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"CDCgov/surveytable"</span>, upgrade <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span></span></code></pre></div>
-<p>Once <code>surveytable</code> is available on CRAN, you will be able to install it like this:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"surveytable"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
@@ -112,14 +112,16 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span>
 <span><span class="co">#&gt; * To adjust how counts are rounded, see ?set_count_int</span></span>
-<span><span class="co">#&gt;                        _                                                                    </span></span>
-<span><span class="co">#&gt; Survey name            NAMCS 2019 PUF                                                       </span></span>
-<span><span class="co">#&gt; Number of variables    33                                                                   </span></span>
-<span><span class="co">#&gt; Number of observations 8250                                                                 </span></span>
-<span><span class="co">#&gt; Info1                  Stratified 1 - level Cluster Sampling design (with replacement)      </span></span>
-<span><span class="co">#&gt; Info2                  With (398) clusters.                                                 </span></span>
-<span><span class="co">#&gt; Info3                  survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, </span></span>
-<span><span class="co">#&gt; Info4                      data = namcs2019sv_df)</span></span></code></pre></div>
+<span><span class="co">#&gt;                        _                                                 </span></span>
+<span><span class="co">#&gt; Survey name            NAMCS 2019 PUF                                    </span></span>
+<span><span class="co">#&gt; Number of variables    33                                                </span></span>
+<span><span class="co">#&gt; Number of observations 8250                                              </span></span>
+<span><span class="co">#&gt; Info 1                 Stratified 1 - level Cluster Sampling design (with</span></span>
+<span><span class="co">#&gt; Info 2                 replacement)                                      </span></span>
+<span><span class="co">#&gt; Info 3                 With (398) clusters.                              </span></span>
+<span><span class="co">#&gt; Info 4                 survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM,</span></span>
+<span><span class="co">#&gt; Info 5                 weights = ~PATWT,                                 </span></span>
+<span><span class="co">#&gt; Info 6                 data = namcs2019sv_df)</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-4">
@@ -385,6 +387,7 @@ Under 15 years
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=surveytable" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/CDCgov/surveytable/" class="external-link">Browse source code</a></li>
 </ul>
 </div>
