@@ -4,11 +4,13 @@
 \alias{set_survey}
 \title{Specify the survey to analyze}
 \usage{
-set_survey(design)
+set_survey(design, csv = getOption("surveytable.csv"))
 }
 \arguments{
 \item{design}{either a survey object (\code{survey.design} or \code{svyrep.design}) or a
 \code{data.frame} for an unweighted survey.}
+
+\item{csv}{name of a CSV file}
 }
 \value{
 Info about the survey.

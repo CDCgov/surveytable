@@ -34,6 +34,7 @@ reference:
   - set_output
   - show_options
   - surveytable-options
+  - codebook
   - survey_subset
   - svyciprop_adjusted
   - print.surveytable_table

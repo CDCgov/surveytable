@@ -11,13 +11,14 @@
 #'
 #' @param design either a survey object (`survey.design` or `svyrep.design`) or a
 #' `data.frame` for an unweighted survey.
+#' @param csv     name of a CSV file
 #'
 #' @return Info about the survey.
 #' @export
 #'
 #' @examples
 #' set_survey(namcs2019sv)
-set_survey = function(design) {
+set_survey = function(design, csv = getOption("surveytable.csv")) {
   # In case there's an error below and we don't set a new survey,
   # don't retain the previous survey either.
   env$survey = NULL
@@ -76,15 +77,16 @@ set_survey = function(design) {
   env$survey = design
   message("* To adjust how counts are rounded, see ?set_count_int")
 
-  out = list()
-  out = list(`Survey name` = getOption("surveytable.survey_label")
-             , `Number of variables` = ncol(design$variables)
-             , `Number of observations` = nrow(design$variables)
-             , `Info ` = design %>% capture.output %>% strwrap(
-                  width = 0.7 * getOption("width")  )
-             )
-  class(out) = "simple.list"
-  out
+  out = data.frame(
+    `Survey name` = getOption("surveytable.survey_label")
+    , `Number of variables` = ncol(design$variables)
+    , `Number of observations` = nrow(design$variables)
+    , Design = design %>% capture.output %>% paste(collapse = "\n")
+    , check.names = FALSE
+  )
+  attr(out, "title") = "Survey info"
+  attr(out, "num") = c(2,3)
+  .write_out(out, csv = csv)
 }
 
 
