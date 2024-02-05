@@ -1,0 +1,88 @@
+name: Build and Security Scan
+
+on: [push, pull_request]
+
+jobs:
+  build-and-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+#    - name: Setting up Python Env
+ #     uses: actions/setup-python@v2
+ #     with:
+  #      python-version: '3.8'
+ #   - name: Update pip
+  #    run: pip install --upgrade pip
+   # - name: Install dependencies
+    #  run: pip install -r requirements.txt
+
+   # - name: Static code Analysis using Sonar Cloud scan
+   #   uses: sonarsource/sonarcloud-github-action@master
+   #   env:
+   #      GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+   #      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+   #   with:
+   #    args: >
+   #       -Dsonar.projectKey=SimplePython
+   #       -Dsonar.organization=preddyk19
+
+  #  - name: Build and Test Python
+   #   env:
+    #    NUM1: '1.5'
+    #    NUM2: '2.5'
+    #  run: |
+     #   python Simple.py install
+      #  python -m unittest discover
+
+    - name: Install libcurl4-openssl-dev
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev
+        # You can add more package installations here if needed
+
+
+    - name: Set up R
+      uses: r-lib/actions/setup-r@v2
+      with:
+        r-version: 4.3.2  # Specify your desired R version
+
+    - name: Install Dependencies
+      run: |
+        Rscript -e "install.packages('textshaping')"
+        Rscript -e "install.packages('curl')"
+        Rscript -e "install.packages('targets')"
+        Rscript -e "install.packages('futile.logger')" 
+        Rscript -e "install.packages('conflicted')"
+        # Add more package installations as needed
+        # Rscript -e "install.packages('shiny')"
+        # Rscript -e "install.packages('tidyverse')"
+        
+    - name: Install lintr
+      run: Rscript -e "install.packages('lintr')"
+       
+    - name: Run lintr
+      run: Rscript -e 'lintr::lint_package()'
+      
+    - name: Run R Script
+      run: |
+        Rscript matrix.R 
+
+    - name: Run CVE Scanning with Grype
+      run: |
+        docker run --rm -v ${{github.workspace}}:/src anchore/grype /src -o json > grype-output.json
+        if grep -q '"severity":"Critical"' grype-output.json; then
+          echo "Critical vulnerabilities found!"
+         exit 1
+        fi
+
+    - name: Generate SBOM with Syft
+      run: docker run --rm -v ${{github.workspace}}:/src anchore/syft /src -o json > sbom.json
+      
+    - name: Upload SBOM
+      uses: actions/upload-artifact@v2
+      with:
+        name: sbom
+        path: sbom.json
