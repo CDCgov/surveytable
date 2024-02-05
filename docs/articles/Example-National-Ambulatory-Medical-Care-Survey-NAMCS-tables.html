@@ -108,17 +108,46 @@ like to analyze. We are omitting that message here.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mysurvey</span> <span class="op">=</span> <span class="va">namcs2019sv</span></span>
 <span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">mysurvey</span><span class="op">)</span></span>
-<span><span class="co">## * To adjust how counts are rounded, see ?set_count_int</span></span>
-<span><span class="co">##                        _                                                 </span></span>
-<span><span class="co">## Survey name            NAMCS 2019 PUF                                    </span></span>
-<span><span class="co">## Number of variables    33                                                </span></span>
-<span><span class="co">## Number of observations 8250                                              </span></span>
-<span><span class="co">## Info 1                 Stratified 1 - level Cluster Sampling design (with</span></span>
-<span><span class="co">## Info 2                 replacement)                                      </span></span>
-<span><span class="co">## Info 3                 With (398) clusters.                              </span></span>
-<span><span class="co">## Info 4                 survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM,</span></span>
-<span><span class="co">## Info 5                 weights = ~PATWT,                                 </span></span>
-<span><span class="co">## Info 6                 data = namcs2019sv_df)</span></span></code></pre></div>
+<span><span class="co">## * To adjust how counts are rounded, see ?set_count_int</span></span></code></pre></div>
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-3">
+<caption style="caption-side: top; text-align: center;">
+Survey info {NAMCS 2019 PUF}
+</caption>
+<col>
+<col>
+<col>
+<col>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Survey name
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Number of variables
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Number of observations
+</th>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Design
+</th>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+NAMCS 2019 PUF
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+33
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+8,250
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Stratified 1 - level Cluster Sampling design (with replacement)<br>With
+(398) clusters.<br>survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM,
+weights = ~PATWT, <br> data = namcs2019sv_df)
+</td>
+</tr>
+</table>
 <p>Check the survey name, survey design variables, and the number of
 observations to verify that it all looks correct.</p>
 </div>
@@ -2471,17 +2500,46 @@ variables.</p>
 <span>  <span class="va">`No insurance`</span> <span class="op">=</span> <span class="va">`Self-pay (real)`</span> <span class="op">|</span> <span class="va">`No charge (real)`</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">mysurvey</span><span class="op">)</span></span>
-<span><span class="co">## * To adjust how counts are rounded, see ?set_count_int</span></span>
-<span><span class="co">##                        _                                                 </span></span>
-<span><span class="co">## Survey name            NAMCS 2019 PUF                                    </span></span>
-<span><span class="co">## Number of variables    39                                                </span></span>
-<span><span class="co">## Number of observations 8250                                              </span></span>
-<span><span class="co">## Info 1                 Stratified 1 - level Cluster Sampling design (with</span></span>
-<span><span class="co">## Info 2                 replacement)                                      </span></span>
-<span><span class="co">## Info 3                 With (398) clusters.                              </span></span>
-<span><span class="co">## Info 4                 survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM,</span></span>
-<span><span class="co">## Info 5                 weights = ~PATWT,                                 </span></span>
-<span><span class="co">## Info 6                 data = namcs2019sv_df)</span></span></code></pre></div>
+<span><span class="co">## * To adjust how counts are rounded, see ?set_count_int</span></span></code></pre></div>
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-18">
+<caption style="caption-side: top; text-align: center;">
+Survey info {NAMCS 2019 PUF}
+</caption>
+<col>
+<col>
+<col>
+<col>
+<tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Survey name
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Number of variables
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Number of observations
+</th>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Design
+</th>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+NAMCS 2019 PUF
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+39
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+8,250
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Stratified 1 - level Cluster Sampling design (with replacement)<br>With
+(398) clusters.<br>survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM,
+weights = ~PATWT, <br> data = namcs2019sv_df)
+</td>
+</tr>
+</table>
 <p>Notes:</p>
 <ul>
 <li>We’re using the <code><a href="https://rdrr.io/r/base/with.html" class="external-link">within()</a></code> function to simplify the

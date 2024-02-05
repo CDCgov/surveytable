@@ -47,7 +47,6 @@ set_survey = function(design, csv = getOption("surveytable.csv")) {
     attr(design, "label") = paste(dl, "(unweighted)")
   }
 
-
   assert_that(inherits(design, c("survey.design", "svyrep.design"))
       , msg = paste0(label_default, ": must be either a survey object"
         , " (survey.design or svyrep.design) or a data.frame for an unweighted survey."

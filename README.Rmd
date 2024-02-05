@@ -47,11 +47,8 @@ Here is a basic example, to get you started.
 library(surveytable)
 ```
 
-```{r}
-set_survey(namcs2019sv)
-```
-
 ```{r, results='asis'}
+set_survey(namcs2019sv)
 tab("AGER")
 ```
 

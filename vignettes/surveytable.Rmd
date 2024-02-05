@@ -111,7 +111,7 @@ We have just successfully created a survey object from a data frame.
 
 First, specify the survey object that you'd like to analyze.
 
-```{r}
+```{r, results='asis'}
 set_survey(namcs2019sv)
 ```
 
@@ -429,7 +429,7 @@ class(namcs2019sv$variables)
 
 More advanced users can create or modify variables in the `variables` data frame directly. After they modify these variables, they must call `set_survey()` again. For example:
 
-```{r}
+```{r, results='asis'}
 namcs2019sv$variables$`Medicare and Medicaid` = ( 
   namcs2019sv$variables$PAYMCARE & namcs2019sv$variables$PAYMCAID)
 set_survey(namcs2019sv)

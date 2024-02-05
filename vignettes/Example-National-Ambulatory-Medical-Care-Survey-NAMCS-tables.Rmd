@@ -28,7 +28,7 @@ library(surveytable)
 
 Now, specify the survey that you'd like to analyze.
 
-```{r}
+```{r, results='asis'}
 mysurvey = namcs2019sv
 set_survey(mysurvey)
 ```
@@ -141,7 +141,7 @@ This table gives the expected sources of payment. We use the `PAY*` variables to
 
 Recall that survey objects have an element called `variables`, which is a data frame that contains the survey variables. 
 
-```{r}
+```{r, results='asis'}
 mysurvey$variables = within(mysurvey$variables, {
   `Medicare and Medicaid` = PAYMCARE & PAYMCAID
   `Unknown or blank` = PAYDK | (NOPAY == "No categories marked")

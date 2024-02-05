@@ -89,14 +89,17 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">children</span> <span class="op">=</span> <span class="fu">survey_subset</span><span class="op">(</span><span class="va">namcs2019sv</span>, <span class="va">AGE</span> <span class="op">&lt;</span> <span class="fl">18</span>, <span class="st">"Children &lt; 18"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">children</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * To adjust how counts are rounded, see ?set_count_int</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                        _                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Survey name            Children &lt; 18                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of variables    33                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations 1066                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Info 1                 Stratified 1 - level Cluster Sampling design (with   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Info 2                 replacement)                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Info 3                 With (139) clusters.                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Info 4                 survey_subset(namcs2019sv, AGE &lt; 18, "Children &lt; 18")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                      Survey info {Children &lt; 18}                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------------------------------------------------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Survey name   ¦ Number of variables ¦ Number of observations ¦ Design                             ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------+---------------------+------------------------+------------------------------------¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Children &lt; 18 ¦                  33 ¦                  1,066 ¦ Stratified 1 - level Cluster       ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦               ¦                     ¦                        ¦ Sampling design (with replacement) ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦               ¦                     ¦                        ¦ With (139) clusters.               ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦               ¦                     ¦                        ¦ survey_subset(namcs2019sv, AGE &lt;   ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦               ¦                     ¦                        ¦ 18, "Children &lt; 18")               ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------------------------------------------------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                               Patient age recode {Children &lt; 18}                               </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------------------------------------------+</span>
