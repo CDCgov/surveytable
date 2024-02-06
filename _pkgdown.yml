@@ -23,6 +23,7 @@ reference:
   - var_collapse
   - var_cut
   - var_any
+  - var_all
   - var_cross
   - var_copy
 - title: "Data for use in examples"

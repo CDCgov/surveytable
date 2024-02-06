@@ -27,6 +27,7 @@ tab("PRIMCARE")
 }
 \seealso{
 Other variables: 
+\code{\link{var_all}()},
 \code{\link{var_any}()},
 \code{\link{var_case}()},
 \code{\link{var_copy}()},

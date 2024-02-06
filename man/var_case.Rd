@@ -30,6 +30,7 @@ tab("Surgery-related visits")
 }
 \seealso{
 Other variables: 
+\code{\link{var_all}()},
 \code{\link{var_any}()},
 \code{\link{var_collapse}()},
 \code{\link{var_copy}()},
