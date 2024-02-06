@@ -2483,81 +2483,31 @@ Under 15 years
 <code>PAY*</code> variables to create several new variables that are
 required by the table. Note that the <code>PAY*</code> variables are
 logical (<code>TRUE</code> or <code>FALSE</code>), which simplifies the
-syntax. (The survey was imported into R using the
+workflow. (The survey was imported into R using the
 <code>importsurvey</code> package, which automatically detects binary
 variables and imports them as logical variables.)</p>
-<p>Recall that survey objects have an element called
-<code>variables</code>, which is a data frame that contains the survey
-variables.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">within</a></span><span class="op">(</span><span class="va">mysurvey</span><span class="op">$</span><span class="va">variables</span>, <span class="op">{</span></span>
-<span>  <span class="va">`Medicare and Medicaid`</span> <span class="op">=</span> <span class="va">PAYMCARE</span> <span class="op">&amp;</span> <span class="va">PAYMCAID</span></span>
-<span>  <span class="va">`Unknown or blank`</span> <span class="op">=</span> <span class="va">PAYDK</span> <span class="op">|</span> <span class="op">(</span><span class="va">NOPAY</span> <span class="op">==</span> <span class="st">"No categories marked"</span><span class="op">)</span></span>
-<span>  <span class="va">nopwu</span> <span class="op">=</span> <span class="op">!</span><span class="op">(</span> <span class="va">PAYPRIV</span> <span class="op">|</span> <span class="va">PAYMCARE</span> <span class="op">|</span> <span class="va">PAYMCAID</span> <span class="op">|</span> <span class="va">PAYWKCMP</span></span>
-<span>                <span class="op">|</span> <span class="va">PAYOTH</span> <span class="op">|</span> <span class="va">PAYDK</span><span class="op">)</span></span>
-<span>  <span class="va">`Self-pay (real)`</span> <span class="op">=</span> <span class="va">PAYSELF</span> <span class="op">&amp;</span> <span class="va">nopwu</span></span>
-<span>  <span class="va">`No charge (real)`</span> <span class="op">=</span> <span class="va">PAYNOCHG</span> <span class="op">&amp;</span> <span class="va">nopwu</span></span>
-<span>  <span class="va">`No insurance`</span> <span class="op">=</span> <span class="va">`Self-pay (real)`</span> <span class="op">|</span> <span class="va">`No charge (real)`</span></span>
-<span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">mysurvey</span><span class="op">)</span></span>
-<span><span class="co">## * To adjust how counts are rounded, see ?set_count_int</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#</span></span>
+<span><span class="fu"><a href="../reference/var_all.html">var_all</a></span><span class="op">(</span><span class="st">"Medicare and Medicaid"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PAYMCARE"</span>, <span class="st">"PAYMCAID"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#</span></span>
+<span><span class="fu"><a href="../reference/var_any.html">var_any</a></span><span class="op">(</span><span class="st">"Payment used"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PAYPRIV"</span>, <span class="st">"PAYMCARE"</span>, <span class="st">"PAYMCAID"</span></span>
+<span>  , <span class="st">"PAYWKCMP"</span>, <span class="st">"PAYOTH"</span>, <span class="st">"PAYDK"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/var_not.html">var_not</a></span><span class="op">(</span><span class="st">"No other payment used"</span>, <span class="st">"Payment used"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/var_all.html">var_all</a></span><span class="op">(</span><span class="st">"Self-pay"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PAYSELF"</span>, <span class="st">"No other payment used"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/var_all.html">var_all</a></span><span class="op">(</span><span class="st">"No charge"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PAYNOCHG"</span>, <span class="st">"No other payment used"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/var_any.html">var_any</a></span><span class="op">(</span><span class="st">"No insurance"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Self-pay"</span>, <span class="st">"No charge"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#</span></span>
+<span><span class="fu"><a href="../reference/var_case.html">var_case</a></span><span class="op">(</span><span class="st">"No pay"</span>, <span class="st">"NOPAY"</span>, <span class="st">"No categories marked"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/var_any.html">var_any</a></span><span class="op">(</span><span class="st">"Unknown or blank"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PAYDK"</span>, <span class="st">"No pay"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">##</span></span>
+<span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"PAYPRIV"</span>, <span class="st">"PAYMCARE"</span>, <span class="st">"PAYMCAID"</span>, <span class="st">"Medicare and Medicaid"</span></span>
+<span>  , <span class="st">"No insurance"</span>, <span class="st">"Self-pay"</span>, <span class="st">"No charge"</span></span>
+<span>  , <span class="st">"PAYWKCMP"</span>, <span class="st">"PAYOTH"</span>, <span class="st">"Unknown or blank"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-18">
-<caption style="caption-side: top; text-align: center;">
-Survey info {NAMCS 2019 PUF}
-</caption>
-<col>
-<col>
-<col>
-<col>
-<tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-Survey name
-</th>
-<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-Number of variables
-</th>
-<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-Number of observations
-</th>
-<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-Design
-</th>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-NAMCS 2019 PUF
-</td>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-39
-</td>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-8,250
-</td>
-<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-Stratified 1 - level Cluster Sampling design (with replacement)<br>With
-(398) clusters.<br>survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM,
-weights = ~PATWT, <br> data = namcs2019sv_df)
-</td>
-</tr>
-</table>
-<p>Notes:</p>
-<ul>
-<li>We’re using the <code><a href="https://rdrr.io/r/base/with.html" class="external-link">within()</a></code> function to simplify the
-syntax.</li>
-<li>
-<code>nopwu</code> = No other payment was used, such as private,
-Medicare, etc.</li>
-<li>
-<code>Self-pay (real)</code> = self-pay was used AND no other
-payment was used.</li>
-<li>After making changes to <code>mysurvey</code>, we need to call
-<code><a href="../reference/set_survey.html">set_survey()</a></code> again.</li>
-</ul>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"PAYPRIV"</span>, <span class="st">"PAYMCARE"</span>, <span class="st">"PAYMCAID"</span>, <span class="st">"Medicare and Medicaid"</span></span>
-<span>    , <span class="st">"No insurance"</span>, <span class="st">"Self-pay (real)"</span>, <span class="st">"No charge (real)"</span></span>
-<span>    , <span class="st">"PAYWKCMP"</span>, <span class="st">"PAYOTH"</span>, <span class="st">"Unknown or blank"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-19">
 <caption style="caption-side: top; text-align: center;">
 Expected source of payment for visit: Private insurance {NAMCS 2019 PUF}
 </caption>
@@ -2663,7 +2613,7 @@ TRUE
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-19">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-18">
 <caption style="caption-side: top; text-align: center;">
 Expected source of payment for visit: Medicare {NAMCS 2019 PUF}
 </caption>
@@ -2769,7 +2719,7 @@ TRUE
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-19">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-18">
 <caption style="caption-side: top; text-align: center;">
 Expected source of payment for visit: Medicaid or CHIP or other
 state-based program {NAMCS 2019 PUF}
@@ -2876,7 +2826,7 @@ TRUE
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-19">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-18">
 <caption style="caption-side: top; text-align: center;">
 Medicare and Medicaid {NAMCS 2019 PUF}
 </caption>
@@ -2982,7 +2932,7 @@ TRUE
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-19">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-18">
 <caption style="caption-side: top; text-align: center;">
 No insurance {NAMCS 2019 PUF}
 </caption>
@@ -3099,9 +3049,9 @@ percent - complement
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-19">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-18">
 <caption style="caption-side: top; text-align: center;">
-Self-pay (real) {NAMCS 2019 PUF}
+Self-pay {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -3216,9 +3166,9 @@ percent - complement
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-19">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-18">
 <caption style="caption-side: top; text-align: center;">
-No charge (real) {NAMCS 2019 PUF}
+No charge {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -3331,7 +3281,7 @@ Cx: suppress count (and rate)
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-19">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-18">
 <caption style="caption-side: top; text-align: center;">
 Expected source of payment for visit: Workers Compensation {NAMCS 2019
 PUF}
@@ -3449,7 +3399,7 @@ percent - complement
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-19">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-18">
 <caption style="caption-side: top; text-align: center;">
 Expected source of payment for visit: Other {NAMCS 2019 PUF}
 </caption>
@@ -3555,7 +3505,7 @@ TRUE
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-19">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-18">
 <caption style="caption-side: top; text-align: center;">
 Unknown or blank {NAMCS 2019 PUF}
 </caption>
@@ -3672,13 +3622,13 @@ prior-visit status.</p>
 <p>In the table, the “Unknown” and “Blank” values are collapsed into a
 single value. We can collapse two or more levels of a factor into a
 single level using the <code>var_collapse</code> function.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/var_collapse.html">var_collapse</a></span><span class="op">(</span><span class="st">"PRIMCARE"</span>, <span class="st">"Unknown if PCP"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Unknown"</span>, <span class="st">"Blank"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/var_collapse.html">var_collapse</a></span><span class="op">(</span><span class="st">"REFER"</span>, <span class="st">"Unknown if referred"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Unknown"</span>, <span class="st">"Blank"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Now, for the table:</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"PRIMCARE"</span>, <span class="st">"REFER"</span>, <span class="st">"SENBEFOR"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-21">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-20">
 <caption style="caption-side: top; text-align: center;">
 Are you the patient’s primary care provider? {NAMCS 2019 PUF}
 </caption>
@@ -3813,7 +3763,7 @@ No
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-21">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-20">
 <caption style="caption-side: top; text-align: center;">
 Was patient referred for visit? {NAMCS 2019 PUF}
 </caption>
@@ -3977,7 +3927,7 @@ No
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-21">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-20">
 <caption style="caption-side: top; text-align: center;">
 Has this patient been seen in your practice before? {NAMCS 2019 PUF}
 </caption>
@@ -4086,9 +4036,9 @@ No, new patient
 <p>The percentages within each subset that is defined by
 <code>SENBEFOR</code> add up to 100% – for this reason, we want to use
 <code><a href="../reference/tab_subset.html">tab_subset()</a></code>, not <code><a href="../reference/tab_subset.html">tab_cross()</a></code>.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"PRIMCARE"</span>, <span class="st">"SENBEFOR"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-22">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-21">
 <caption style="caption-side: top; text-align: center;">
 Are you the patient’s primary care provider? (Has this patient been seen
 in your practice before? = Yes, established patient) {NAMCS 2019 PUF}
@@ -4224,7 +4174,7 @@ No
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-22">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-21">
 <caption style="caption-side: top; text-align: center;">
 Are you the patient’s primary care provider? (Has this patient been seen
 in your practice before? = No, new patient) {NAMCS 2019 PUF}
@@ -4371,9 +4321,9 @@ Cx: suppress count (and rate); Px: suppress percent
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"REFER"</span>, <span class="st">"SENBEFOR"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-22">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-21">
 <caption style="caption-side: top; text-align: center;">
 Was patient referred for visit? (Has this patient been seen in your
 practice before? = Yes, established patient) {NAMCS 2019 PUF}
@@ -4538,7 +4488,7 @@ No
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-22">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-21">
 <caption style="caption-side: top; text-align: center;">
 Was patient referred for visit? (Has this patient been seen in your
 practice before? = No, new patient) {NAMCS 2019 PUF}
@@ -4713,17 +4663,19 @@ as for each age group by sex, but only for preventive care visits.</p>
 <p>Let’s create <code>Age group</code> from <code>AGE</code> and cross
 <code>AGER</code> and <code>SEX</code> to create a variable called
 <code>Age x Sex</code>:</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/var_cut.html">var_cut</a></span><span class="op">(</span><span class="st">"Age group"</span>, <span class="st">"AGE"</span></span>
 <span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fl">0</span>, <span class="fl">4</span>, <span class="fl">14</span>, <span class="fl">64</span>, <span class="cn">Inf</span><span class="op">)</span></span>
 <span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Under 1"</span>, <span class="st">"1-4"</span>, <span class="st">"5-14"</span>, <span class="st">"15-64"</span>, <span class="st">"65 and over"</span><span class="op">)</span> <span class="op">)</span></span>
+<span><span class="co">## Warning in var_cut("Age group", "AGE", c(-Inf, 0, 4, 14, 64, Inf), c("Under 1",</span></span>
+<span><span class="co">## : Age group: overwriting a variable that already exists.</span></span>
 <span><span class="fu"><a href="../reference/var_cross.html">var_cross</a></span><span class="op">(</span><span class="st">"Age x Sex"</span>, <span class="st">"AGER"</span>, <span class="st">"SEX"</span><span class="op">)</span></span></code></pre></div>
 <p>To see the possible values of <code>MAJOR</code> (Major reason for
 this visit), and to estimate the total count for preventive care
 visits:</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"MAJOR"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-24">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-23">
 <caption style="caption-side: top; text-align: center;">
 Major reason for this visit {NAMCS 2019 PUF}
 </caption>
@@ -4976,9 +4928,9 @@ Preventive care
 </table>
 <p>To create the tables of age, sex, and their interaction, and limit
 them to only the preventive care visits:</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"MAJOR"</span>, <span class="st">"Preventive care"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-25">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-24">
 <caption style="caption-side: top; text-align: center;">
 Patient age recode (Major reason for this visit = Preventive care)
 {NAMCS 2019 PUF}
@@ -5201,9 +5153,9 @@ Under 15 years
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"Age group"</span>, <span class="st">"MAJOR"</span>, <span class="st">"Preventive care"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-25">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-24">
 <caption style="caption-side: top; text-align: center;">
 Age group (Major reason for this visit = Preventive care) {NAMCS 2019
 PUF}
@@ -5397,9 +5349,9 @@ Under 1
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"SEX"</span>, <span class="st">"MAJOR"</span>, <span class="st">"Preventive care"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-25">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-24">
 <caption style="caption-side: top; text-align: center;">
 Patient sex (Major reason for this visit = Preventive care) {NAMCS 2019
 PUF}
@@ -5506,9 +5458,9 @@ Male
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"Age x Sex"</span>, <span class="st">"MAJOR"</span>, <span class="st">"Preventive care"</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-25">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-24">
 <caption style="caption-side: top; text-align: center;">
 (Patient age recode) x (Patient sex) (Major reason for this visit =
 Preventive care) {NAMCS 2019 PUF}
@@ -5908,11 +5860,11 @@ Under 15 years : Male
 <p>As each of the above commands is similar, and differs only in the
 first variable that is passed to the <code><a href="../reference/tab_subset.html">tab_subset()</a></code> function,
 this code can be streamlined with a <code>for</code> loop:</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">vr</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"Age group"</span>, <span class="st">"SEX"</span>, <span class="st">"Age x Sex"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span> <span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="va">vr</span>, <span class="st">"MAJOR"</span>, <span class="st">"Preventive care"</span><span class="op">)</span> <span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-26">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-25">
 <caption style="caption-side: top; text-align: center;">
 Patient age recode (Major reason for this visit = Preventive care)
 {NAMCS 2019 PUF}
@@ -6135,7 +6087,7 @@ Under 15 years
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-26">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-25">
 <caption style="caption-side: top; text-align: center;">
 Age group (Major reason for this visit = Preventive care) {NAMCS 2019
 PUF}
@@ -6329,7 +6281,7 @@ Under 1
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-26">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-25">
 <caption style="caption-side: top; text-align: center;">
 Patient sex (Major reason for this visit = Preventive care) {NAMCS 2019
 PUF}
@@ -6436,7 +6388,7 @@ Male
 </td>
 </tr>
 </table>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-26">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-25">
 <caption style="caption-side: top; text-align: center;">
 (Patient age recode) x (Patient sex) (Major reason for this visit =
 Preventive care) {NAMCS 2019 PUF}
@@ -6844,7 +6796,7 @@ physicians.</p>
 <p>To calculate these percentages, a slightly more involved
 <code>for</code> loop is needed. Below is the code, followed by an
 explanation:</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tmp_file</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".csv"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span> <span class="fu"><a href="../reference/set_output.html">set_output</a></span><span class="op">(</span>csv <span class="op">=</span> <span class="va">tmp_file</span><span class="op">)</span> <span class="op">)</span></span>
 <span></span>
@@ -6889,14 +6841,14 @@ is <code>MAJOR</code> crossed with <code>vr</code>) is restricted to
 <p>If you run this code, all of the tables should be stored in the CSV
 file. To give you an idea of what the tables should look like, here is
 just one of the tables:</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">vr</span> <span class="op">=</span> <span class="st">"AGER"</span></span>
 <span><span class="fu"><a href="../reference/var_cross.html">var_cross</a></span><span class="op">(</span><span class="st">"tmp"</span>, <span class="st">"MAJOR"</span>, <span class="va">vr</span><span class="op">)</span></span>
 <span><span class="co">## Warning in var_cross("tmp", "MAJOR", vr): tmp: overwriting a variable that</span></span>
 <span><span class="co">## already exists.</span></span>
 <span><span class="va">lvl</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="fu">surveytable</span><span class="fu">:::</span><span class="va">env</span><span class="op">$</span><span class="va">survey</span><span class="op">$</span><span class="va">variables</span><span class="op">[</span>,<span class="va">vr</span><span class="op">]</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"SPECCAT"</span>, <span class="st">"tmp"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Preventive care : "</span>, <span class="va">lvl</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-28">
+<table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-27">
 <caption style="caption-side: top; text-align: center;">
 Type of specialty (Primary, Medical, Surgical) ((Major reason for this
 visit) x (Patient age recode) = Preventive care : Under 15 years) {NAMCS

@@ -2,7 +2,7 @@
 % Please edit documentation in R/var_all.R
 \name{var_all}
 \alias{var_all}
-\title{Are all the variables true?}
+\title{Are all the variables true? (Logical AND)}
 \usage{
 var_all(newvr, vrs)
 }
@@ -30,6 +30,7 @@ Other variables:
 \code{\link{var_collapse}()},
 \code{\link{var_copy}()},
 \code{\link{var_cross}()},
-\code{\link{var_cut}()}
+\code{\link{var_cut}()},
+\code{\link{var_not}()}
 }
 \concept{variables}

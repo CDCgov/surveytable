@@ -1,4 +1,4 @@
-#' Are all the variables true?
+#' Are all the variables true? (Logical AND)
 #'
 #' Create a new variable which is true if all of the variables in a list of
 #' variables are true.

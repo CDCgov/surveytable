@@ -2,7 +2,7 @@
 % Please edit documentation in R/var_any.R
 \name{var_any}
 \alias{var_any}
-\title{Is any variable true?}
+\title{Is any variable true? (Logical OR)}
 \usage{
 var_any(newvr, vrs)
 }
@@ -32,6 +32,7 @@ Other variables:
 \code{\link{var_collapse}()},
 \code{\link{var_copy}()},
 \code{\link{var_cross}()},
-\code{\link{var_cut}()}
+\code{\link{var_cut}()},
+\code{\link{var_not}()}
 }
 \concept{variables}

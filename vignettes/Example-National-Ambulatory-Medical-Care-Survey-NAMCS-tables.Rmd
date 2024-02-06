@@ -137,34 +137,29 @@ tab_subset_rate("AGER", "SEX", uspop2019$`AGER x SEX`)
 
 # Table 5
 
-This table gives the expected sources of payment. We use the `PAY*` variables to create several new variables that are required by the table. Note that the `PAY*` variables are logical (`TRUE` or `FALSE`), which simplifies the syntax. (The survey was imported into R using the `importsurvey` package, which automatically detects binary variables and imports them as logical variables.)
-
-Recall that survey objects have an element called `variables`, which is a data frame that contains the survey variables. 
+This table gives the expected sources of payment. We use the `PAY*` variables to create several new variables that are required by the table. Note that the `PAY*` variables are logical (`TRUE` or `FALSE`), which simplifies the workflow. (The survey was imported into R using the `importsurvey` package, which automatically detects binary variables and imports them as logical variables.)
 
 ```{r, results='asis'}
-mysurvey$variables = within(mysurvey$variables, {
-  `Medicare and Medicaid` = PAYMCARE & PAYMCAID
-  `Unknown or blank` = PAYDK | (NOPAY == "No categories marked")
-  nopwu = !( PAYPRIV | PAYMCARE | PAYMCAID | PAYWKCMP
-                | PAYOTH | PAYDK)
-  `Self-pay (real)` = PAYSELF & nopwu
-  `No charge (real)` = PAYNOCHG & nopwu
-  `No insurance` = `Self-pay (real)` | `No charge (real)`
-})
-set_survey(mysurvey)
-```
+#
+var_all("Medicare and Medicaid", c("PAYMCARE", "PAYMCAID"))
 
-Notes:
+#
+var_any("Payment used", c("PAYPRIV", "PAYMCARE", "PAYMCAID"
+  , "PAYWKCMP", "PAYOTH", "PAYDK"))
+var_not("No other payment used", "Payment used")
 
-* We're using the `within()` function to simplify the syntax.
-* `nopwu` = No other payment was used, such as private, Medicare, etc.
-* `Self-pay (real)` = self-pay was used AND no other payment was used.
-* After making changes to `mysurvey`, we need to call `set_survey()` again.
+var_all("Self-pay", c("PAYSELF", "No other payment used"))
+var_all("No charge", c("PAYNOCHG", "No other payment used"))
+var_any("No insurance", c("Self-pay", "No charge"))
 
-```{r, results='asis'}
+#
+var_case("No pay", "NOPAY", "No categories marked")
+var_any("Unknown or blank", c("PAYDK", "No pay"))
+
+##
 tab("PAYPRIV", "PAYMCARE", "PAYMCAID", "Medicare and Medicaid"
-    , "No insurance", "Self-pay (real)", "No charge (real)"
-    , "PAYWKCMP", "PAYOTH", "Unknown or blank")
+  , "No insurance", "Self-pay", "No charge"
+  , "PAYWKCMP", "PAYOTH", "Unknown or blank")
 ```
 
 Check the presentation standards flags! Under NCHS presentation standards rules, some of these estimates should not be shown.

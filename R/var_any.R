@@ -1,4 +1,4 @@
-#' Is any variable true?
+#' Is any variable true? (Logical OR)
 #'
 #' Create a new variable which is true if any of the variables in a list of
 #' variables are true.

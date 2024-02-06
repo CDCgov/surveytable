@@ -24,6 +24,7 @@ reference:
   - var_cut
   - var_any
   - var_all
+  - var_not
   - var_cross
   - var_copy
 - title: "Data for use in examples"
