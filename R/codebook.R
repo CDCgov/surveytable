@@ -47,8 +47,8 @@ codebook = function(all = FALSE
     } else if(design$variables[,ii] %>% is.logical) {
       r1$Values = ""
     } else { # numeric, character, all others
-      mn = min(design$variables[,ii])
-      mx = max(design$variables[,ii])
+      mn = min(design$variables[,ii], na.rm = TRUE)
+      mx = max(design$variables[,ii], na.rm = TRUE)
       if (mx > mn) {
         r1$Values = paste0(mn, " - ", mx)
       } else {
