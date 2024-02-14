@@ -89,18 +89,17 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * To adjust how counts are rounded, see ?set_count_int</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                      Survey info {NAMCS 2019 PUF}                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +----------------------------------------------------------------------------------------------------+</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Survey name    ¦ Number of variables ¦ Number of observations ¦ Design                             ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +----------------+---------------------+------------------------+------------------------------------¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ NAMCS 2019 PUF ¦                  33 ¦                  8,250 ¦ Stratified 1 - level Cluster       ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦                ¦                     ¦                        ¦ Sampling design (with replacement) ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦                ¦                     ¦                        ¦ With (398) clusters.               ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦                ¦                     ¦                        ¦ survey::svydesign(ids = ~CPSUM,    ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦                ¦                     ¦                        ¦ strata = ~CSTRATM, weights =       ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦                ¦                     ¦                        ¦ ~PATWT,                            ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ¦                ¦                     ¦                        ¦ data = namcs2019sv_df)             ¦</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +----------------------------------------------------------------------------------------------------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Survey info {NAMCS 2019 PUF}                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------------------------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Variables ¦ Observations ¦ Design                                         ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +-----------+--------------+------------------------------------------------¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦        33 ¦        8,250 ¦ Stratified 1 - level Cluster Sampling design   ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦           ¦              ¦ (with replacement)                             ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦           ¦              ¦ With (398) clusters.                           ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦           ¦              ¦ survey::svydesign(ids = ~CPSUM, strata =       ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦           ¦              ¦ ~CSTRATM, weights = ~PATWT,                    ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¦           ¦              ¦ data = namcs2019sv_df)                         ¦</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">set_count_int</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Rounding counts to the nearest integer.</span>

@@ -77,14 +77,14 @@ set_survey = function(design, csv = getOption("surveytable.csv")) {
   message("* To adjust how counts are rounded, see ?set_count_int")
 
   out = data.frame(
-    `Survey name` = getOption("surveytable.survey_label")
-    , `Number of variables` = ncol(design$variables)
-    , `Number of observations` = nrow(design$variables)
+    # `Survey name` = getOption("surveytable.survey_label")
+    Variables = ncol(design$variables)
+    , Observations = nrow(design$variables)
     , Design = design %>% capture.output %>% paste(collapse = "\n")
     , check.names = FALSE
   )
   attr(out, "title") = "Survey info"
-  attr(out, "num") = c(2,3)
+  attr(out, "num") = c(1,2)
   .write_out(out, csv = csv)
 }
 

@@ -22,9 +22,11 @@ codebook = function(all = FALSE
   c.f2c = c()
   c.c2f = c()
   for (ii in 1:ncol(design$variables)) {
+    lbl = attr(design$variables[,ii], "label")
+    if (is.null(lbl)) lbl = "(none)"
     r1 = data.frame(`Item no.` = ii
             , Variable = nn[ii]
-            , Description = attr(design$variables[,ii], "label")
+            , Description = lbl
             , Class = paste(class(design$variables[,ii])
                             , collapse = ", ")
             , `Missing (%)` = round(100 *
