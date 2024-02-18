@@ -66,9 +66,9 @@ jobs:
     - name: Run lintr
       run: Rscript -e 'lintr::lint_package()'
       
-    - name: Run R Script
-      run: |
-        Rscript matrix.R 
+#    - name: Run R Script
+#      run: |
+#        Rscript matrix.R 
 
     - name: Run CVE Scanning with Grype
       run: |
