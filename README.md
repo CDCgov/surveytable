@@ -50,7 +50,6 @@ library(surveytable)
 
 ``` r
 set_survey(namcs2019sv)
-#> * To adjust how counts are rounded, see ?set_count_int
 ```
 
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-3">

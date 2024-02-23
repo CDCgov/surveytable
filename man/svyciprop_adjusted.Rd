@@ -22,11 +22,9 @@ svyciprop_adjusted(
 
 \item{level}{see \code{survey::svyciprop()}.}
 
-\item{df_method}{how \code{df} should be calculated: "default" or "NHIS".}
+\item{df_method}{how \code{df} should be calculated: \code{"default"} or \code{"NHIS"}.}
 
-\item{...}{see \code{survey::svyciprop()}.
-
-\code{df_method}: for "default", \code{df = degf(design)}; for "NHIS", \code{df = nrow(design) - 1}.}
+\item{...}{see \code{survey::svyciprop()}.}
 }
 \value{
 The point estimate of the proportion, with the confidence interval as an attribute.
@@ -37,12 +35,12 @@ A version of \code{survey::svyciprop()} that adjusts for the degrees of freedom 
 \details{
 Written by Makram Talih in 2019.
 
-To use this function in tabulations, type: \code{options(surveytable.adjust_svyciprop = TRUE)}.
+\code{df_method}: for \code{"default"}, \code{df = degf(design)}; for \code{"NHIS"}, \code{df = nrow(design) - 1}.
+
+To use this function in tabulations, call \code{\link[=set_survey]{set_survey()}} with the \code{opts = "NCHS"} argument,
+or type: \code{options(surveytable.adjust_svyciprop = TRUE)}.
 }
 \examples{
-set_survey(namcs2019sv)
-options(surveytable.adjust_svyciprop = TRUE)
-tab("AGER")
-options(surveytable.adjust_svyciprop = FALSE)
+set_survey(namcs2019sv, opts = "NCHS")
 tab("AGER")
 }

@@ -4,25 +4,24 @@
 #'
 #' Written by Makram Talih in 2019.
 #'
-#' To use this function in tabulations, type: `options(surveytable.adjust_svyciprop = TRUE)`.
+#' `df_method`: for `"default"`, `df = degf(design)`; for `"NHIS"`, `df = nrow(design) - 1`.
+#'
+#' To use this function in tabulations, call [set_survey()] with the `opts = "NCHS"` argument,
+#' or type: `options(surveytable.adjust_svyciprop = TRUE)`.
 #'
 #' @param formula see `survey::svyciprop()`.
 #' @param design see `survey::svyciprop()`.
 #' @param method see `survey::svyciprop()`.
 #' @param level see `survey::svyciprop()`.
-#' @param df_method how `df` should be calculated: "default" or "NHIS".
+#' @param df_method how `df` should be calculated: `"default"` or `"NHIS"`.
 #' @param ... see `survey::svyciprop()`.
 #'
-#' `df_method`: for "default", `df = degf(design)`; for "NHIS", `df = nrow(design) - 1`.
 #'
 #' @return The point estimate of the proportion, with the confidence interval as an attribute.
 #' @export
 #'
 #' @examples
-#' set_survey(namcs2019sv)
-#' options(surveytable.adjust_svyciprop = TRUE)
-#' tab("AGER")
-#' options(surveytable.adjust_svyciprop = FALSE)
+#' set_survey(namcs2019sv, opts = "NCHS")
 #' tab("AGER")
 svyciprop_adjusted = function(formula
                     , design

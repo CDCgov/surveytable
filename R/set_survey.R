@@ -3,6 +3,16 @@
 #' You need to specify a survey before the other functions, such as [tab()],
 #' will work.
 #'
+#' `opts`:
+#' * `"nchs"`:
+#'    * Round counts to the nearest 1,000 -- see [set_count_1k()].
+#'    * Identify low-precision estimates (`surveytable.check_present` option).
+#'    * Percentage CI's: adjust Korn-Graubard CI's for the number of degrees of freedom, matching the SUDAAN calculation (`surveytable.adjust_svyciprop` option).
+#' * `"general":`
+#'    * Round counts to the nearest integer -- see [set_count_int()].
+#'    * Do not look for low-precision estimates (`surveytable.check_present` option).
+#'    * Percentage CI's: use standard Korn-Graubard CI's.
+#'
 #' Optionally, the survey can have an attribute called `label`, which is the
 #' long name of the survey.
 #'
@@ -11,14 +21,41 @@
 #'
 #' @param design either a survey object (`survey.design` or `svyrep.design`) or a
 #' `data.frame` for an unweighted survey.
-#' @param csv     name of a CSV file
+#' @param opts set certain options. See below.
+#' @param csv name of a CSV file
 #'
 #' @return Info about the survey.
 #' @export
 #'
 #' @examples
 #' set_survey(namcs2019sv)
-set_survey = function(design, csv = getOption("surveytable.csv")) {
+set_survey = function(design, opts = "NCHS"
+  , csv = getOption("surveytable.csv")) {
+
+  ##
+  opts.table = c("nchs", "general")
+  idx = opts %>% tolower %>% pmatch(opts.table)
+  assert_that(noNA(idx), msg = paste("Unknown value of opts:", opts))
+  opts = opts.table[idx]
+
+  if (opts == "nchs") {
+    options(
+      surveytable.tx_count = ".tx_count_1k"
+      , surveytable.names_count = c("Number (000)", "SE (000)", "LL (000)", "UL (000)")
+      , surveytable.check_present = TRUE
+      , surveytable.adjust_svyciprop = TRUE
+    )
+  } else if (opts == "general") {
+    options(
+      surveytable.tx_count = ".tx_count_int"
+      , surveytable.names_count = c("Number", "SE", "LL", "UL")
+      , surveytable.check_present = FALSE
+      , surveytable.adjust_svyciprop = FALSE
+    )
+  } else {
+    stop("!!")
+  }
+
   # In case there's an error below and we don't set a new survey,
   # don't retain the previous survey either.
   env$survey = NULL
@@ -74,7 +111,6 @@ set_survey = function(design, csv = getOption("surveytable.csv")) {
 
   options(surveytable.survey_label = attr(design, "label"))
   env$survey = design
-  message("* To adjust how counts are rounded, see ?set_count_int")
 
   out = data.frame(
     # `Survey name` = getOption("surveytable.survey_label")

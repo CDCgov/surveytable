@@ -4,6 +4,7 @@
 * `set_survey()`:
   * Improved output.
   * Allows an unweighted survey as a `data.frame`.
+  * Can set certain options using an argument.
 
 # surveytable 0.9.2
 

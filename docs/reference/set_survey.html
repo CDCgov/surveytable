@@ -63,7 +63,7 @@ will work.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">set_survey</span><span class="op">(</span><span class="va">design</span>, csv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"surveytable.csv"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">set_survey</span><span class="op">(</span><span class="va">design</span>, opts <span class="op">=</span> <span class="st">"NCHS"</span>, csv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"surveytable.csv"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -71,6 +71,10 @@ will work.</p>
     <dl><dt>design</dt>
 <dd><p>either a survey object (<code>survey.design</code> or <code>svyrep.design</code>) or a
 <code>data.frame</code> for an unweighted survey.</p></dd>
+
+
+<dt>opts</dt>
+<dd><p>set certain options. See below.</p></dd>
 
 
 <dt>csv</dt>
@@ -85,7 +89,15 @@ will work.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Optionally, the survey can have an attribute called <code>label</code>, which is the
+    <p><code>opts</code>:</p><ul><li><p><code>"nchs"</code>:</p><ul><li><p>Round counts to the nearest 1,000 -- see <code><a href="set_count_1k.html">set_count_1k()</a></code>.</p></li>
+<li><p>Identify low-precision estimates (<code>surveytable.check_present</code> option).</p></li>
+<li><p>Percentage CI's: adjust Korn-Graubard CI's for the number of degrees of freedom, matching the SUDAAN calculation (<code>surveytable.adjust_svyciprop</code> option).</p></li>
+</ul></li>
+<li><p><code>"general":</code></p><ul><li><p>Round counts to the nearest integer -- see <code><a href="set_count_1k.html">set_count_int()</a></code>.</p></li>
+<li><p>Do not look for low-precision estimates (<code>surveytable.check_present</code> option).</p></li>
+<li><p>Percentage CI's: use standard Korn-Graubard CI's.</p></li>
+</ul></li>
+</ul><p>Optionally, the survey can have an attribute called <code>label</code>, which is the
 long name of the survey.</p>
 <p>Optionally, each variable in the survey can have an attribute called <code>label</code>,
 which is the variable's long name.</p>
@@ -94,7 +106,6 @@ which is the variable's long name.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">set_survey</span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> * To adjust how counts are rounded, see ?set_count_int</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         Survey info {NAMCS 2019 PUF}                         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +---------------------------------------------------------------------------+</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ¦ Variables ¦ Observations ¦ Design                                         ¦</span>
