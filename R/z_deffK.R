@@ -15,8 +15,10 @@ deffK = function(prob)
 
   # if (any(w <= 0))
   #   warning("Some weights are less than or equal to 0.\n")
-  n <- length(w)
-  ret = 1 + sum((w - mean(w))^2)/n/mean(w)^2
-  assert_that(all(ret > 0))
+  # n <- length(w)
+  # ret = 1 + sum((w - mean(w))^2)/n/mean(w)^2
+  ret = 1 + mean((w - mean(w))^2)/mean(w)^2
+  # assert_that(all(ret > 0))
+  assert_that(all(ret >= 1)) # Second term >= 0
   ret
 }
