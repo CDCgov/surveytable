@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables: Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html
   surveytable: surveytable.html
-last_built: 2024-02-23T16:05Z
+last_built: 2024-02-29T02:56Z
 urls:
   reference: https://cdcgov.github.io/surveytable/reference
   article: https://cdcgov.github.io/surveytable/articles

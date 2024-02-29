@@ -31,11 +31,15 @@ total = function(csv = getOption("surveytable.csv") ) {
   }
 
   ##
-  sto = svytotal(~Total, design) # , deff = TRUE)
+  sto = svytotal(~Total, design) # , deff = "replace")
   mmcr = data.frame(x = as.numeric(sto)
               , s = sqrt(diag(attr(sto, "var"))) )
-  mmcr$samp.size = .calc_samp_size(design = design, vr = "Total", counts = counts)
   mmcr$counts = counts
+
+  mmcr$deff = deffK(design$prob)
+  mmcr$samp.size = mmcr$counts / mmcr$deff
+  idx.bad = which(mmcr$samp.size > mmcr$counts)
+  mmcr$samp.size[idx.bad] = mmcr$counts[idx.bad]
 
   df1 = degf(design)
   mmcr$degf = df1

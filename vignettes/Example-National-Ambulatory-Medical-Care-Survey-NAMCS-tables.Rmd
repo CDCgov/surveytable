@@ -14,9 +14,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-This example uses the National Ambulatory Medical Care Survey (NAMCS) 2019 Public Use File (PUF) to replicate certain tables from the [National Ambulatory Medical Care Survey: 2019 National Summary Tables](https://www.cdc.gov/nchs/data/ahcd/namcs_summary/2019-namcs-web-tables-508.pdf). NAMCS is "an annual nationally representative sample survey of visits to non-federal office-based patient care physicians, excluding anesthesiologists, radiologists, and pathologists." Note that the unit of observation is visits, not patients – this distinction is important since a single patient can make multiple visits.
+This example uses the National Ambulatory Medical Care Survey (NAMCS) 2019 Public Use File (PUF) to replicate certain tables from the [National Ambulatory Medical Care Survey: 2019 National Summary Tables](https://www.cdc.gov/nchs/data/ahcd/namcs_summary/2019-namcs-web-tables-508.pdf). NAMCS is "an annual nationally representative sample survey of visits to non-federal office-based patient care physicians, excluding anesthesiologists, radiologists, and pathologists." Note that the unit of observation is visits, not patients -- this distinction is important since a single patient can make multiple visits.
 
-Selected variables from NAMCS 2019 come with the `surveytable` package, for use in examples, in an object called `namcs2019sv`. To make the below code more reusable, we'll call the survey by a generic name, namely, `mysurvey`.
+Selected variables from NAMCS 2019 come with the `surveytable` package, for use in examples, in an object called `namcs2019sv`.
 
 # Begin
 
@@ -29,8 +29,7 @@ library(surveytable)
 Now, specify the survey that you'd like to analyze.
 
 ```{r, results='asis'}
-mysurvey = namcs2019sv
-set_survey(mysurvey)
+set_survey(namcs2019sv)
 ```
 
 Check the survey name, survey design variables, and the number of observations to verify that it all looks correct.
@@ -67,15 +66,9 @@ Once we have the overall population estimate, the overall rate is:
 total_rate(uspop2019$total)
 ```
 
-Recall that survey objects have an element called `variables`, which is a data frame that contains the survey variables. Let's examine the levels of `MSA`.
+To calculate the rates for a particular variable, we need to provide a data frame with a variable called `Level` that matches the levels of the variable in the survey, and a variable called `Population` that gives the population size (which is assumed to be a constant rather than a random variable).
 
-```{r}
-levels(mysurvey$variables$MSA)
-```
-
-To calculate the rates for a particular variable, we need to provide a data frame with a variable called `Level` that matches the levels of the variable in the survey. `Population` gives the population estimate.
-
-For example, for `MSA`, we need a data frame as follows:
+For `MSA`, we can see the levels of the variables just by using the `tab()` command, just as we did above. Thus, to calculate rates, we need a data frame as follows:
 
 ```{r}
 uspop2019$MSA

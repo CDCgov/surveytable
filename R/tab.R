@@ -149,11 +149,21 @@ tab = function(...
 	}
 
 	##
-	sto = svytotal(frm, design) # , deff = TRUE)
+	sto = svytotal(frm, design) # , deff = "replace")
 	mmcr = data.frame(x = as.numeric(sto)
 		, s = sqrt(diag(attr(sto, "var"))) )
-  mmcr$samp.size = .calc_samp_size(design = design, vr = vr, counts = counts)
-  mmcr$counts = counts
+	mmcr$counts = counts
+
+	# deff = attr(sto, "deff") %>% diag
+	# I am having trouble interpreting this deff.
+	# In some situations, results are unusual.
+	# total(), tab("AGER"), tab("PAYNOCHG")
+	# Using Kish design effect instead.
+
+	mmcr$deff = by(design$prob, design$variables[,vr], deffK) %>% as.numeric
+	mmcr$samp.size = mmcr$counts / mmcr$deff
+	idx.bad = which(mmcr$samp.size > mmcr$counts)
+	mmcr$samp.size[idx.bad] = mmcr$counts[idx.bad]
 
   df1 = degf(design)
   mmcr$degf = df1
@@ -260,22 +270,4 @@ tab = function(...
 		attr(df1, "footer") = v1 %>% paste(collapse="; ")
 	}
   df1
-}
-
-
-.calc_samp_size = function(design, vr, counts) {
-
-  # In svytotal(frm, design, deff = TRUE), DEff sometimes
-  # appears incorrect. If no variability, DEff = Inf.
-  # Calculating "Kish's Effective Sample Size" directly, bypassing DEff
-  #	deff = attr(sto, "deff") %>% diag
-
-  design$wi = 1 / design$prob
-  design$wi[design$prob <= 0] = 0
-  design$wi2 = design$wi^2
-  sum_wi = by(design$wi, design$variables[,vr], sum) %>% as.numeric
-  sum_wi2 = by(design$wi2, design$variables[,vr], sum) %>% as.numeric
-  neff = sum_wi^2 / sum_wi2
-  assert_that(length(neff) == length(counts))
-  pmin(counts, neff)
 }
