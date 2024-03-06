@@ -8,9 +8,20 @@
 Run \code{\link[=show_options]{show_options()}} to see available options.
 }
 \seealso{
+Useful links:
+\itemize{
+  \item \url{https://cdcgov.github.io/surveytable/}
+  \item \url{https://github.com/CDCgov/surveytable}
+}
+
+
 Other options: 
 \code{\link{set_count_1k}()},
 \code{\link{set_output}()},
 \code{\link{show_options}()}
+}
+\author{
+\strong{Maintainer}: Alex Strashny \email{AStrashny@cdc.gov} (\href{https://orcid.org/0000-0002-6408-7745}{ORCID})
+
 }
 \concept{options}

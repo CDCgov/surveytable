@@ -17,5 +17,4 @@ NULL
 #'
 #' @name surveytable-options
 #' @family options
-#' @docType package
-NULL
+"_PACKAGE"

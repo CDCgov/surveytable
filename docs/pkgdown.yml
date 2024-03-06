@@ -1,10 +1,10 @@
-pandoc: 2.17.1.1
+pandoc: 3.1.1
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables: Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html
   surveytable: surveytable.html
-last_built: 2024-02-29T15:32Z
+last_built: 2024-02-29T23:40Z
 urls:
   reference: https://cdcgov.github.io/surveytable/reference
   article: https://cdcgov.github.io/surveytable/articles

@@ -52,7 +52,7 @@ library(surveytable)
 set_survey(namcs2019sv)
 ```
 
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-3">
+<table class="huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Survey info {NAMCS 2019 PUF}
 </caption>
@@ -79,8 +79,8 @@ Design
 </td>
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
 Stratified 1 - level Cluster Sampling design (with replacement)<br>With
-(398) clusters.<br>survey::svydesign(ids = \~CPSUM, strata = \~CSTRATM,
-weights = \~PATWT, <br> data = namcs2019sv_df)
+(398) clusters.<br>survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM,
+weights = ~PATWT, <br> data = namcs2019sv_df)
 </td>
 </tr>
 </table>
@@ -89,7 +89,7 @@ weights = \~PATWT, <br> data = namcs2019sv_df)
 tab("AGER")
 ```
 
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-3">
+<table class="huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Patient age recode {NAMCS 2019 PUF}
 </caption>

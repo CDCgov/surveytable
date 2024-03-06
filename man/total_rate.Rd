@@ -29,10 +29,10 @@ total_rate(uspop2019$total)
 }
 \seealso{
 Other tables: 
+\code{\link{tab}()},
 \code{\link{tab_cross}()},
 \code{\link{tab_rate}()},
 \code{\link{tab_subset_rate}()},
-\code{\link{tab}()},
 \code{\link{total}()}
 }
 \concept{tables}

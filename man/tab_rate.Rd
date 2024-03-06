@@ -45,10 +45,10 @@ tab_rate("MDDO", uspop2019$total)
 }
 \seealso{
 Other tables: 
+\code{\link{tab}()},
 \code{\link{tab_cross}()},
 \code{\link{tab_subset_rate}()},
-\code{\link{tab}()},
-\code{\link{total_rate}()},
-\code{\link{total}()}
+\code{\link{total}()},
+\code{\link{total_rate}()}
 }
 \concept{tables}
