@@ -27,13 +27,13 @@ will work.
 \item \code{"nchs"}:
 \itemize{
 \item Round counts to the nearest 1,000 -- see \code{\link[=set_count_1k]{set_count_1k()}}.
-\item Identify low-precision estimates (\code{surveytable.check_present} option).
+\item Identify low-precision estimates (\code{surveytable.find_lpe} option).
 \item Percentage CI's: adjust Korn-Graubard CI's for the number of degrees of freedom, matching the SUDAAN calculation (\code{surveytable.adjust_svyciprop} option).
 }
 \item \verb{"general":}
 \itemize{
 \item Round counts to the nearest integer -- see \code{\link[=set_count_int]{set_count_int()}}.
-\item Do not look for low-precision estimates (\code{surveytable.check_present} option).
+\item Do not look for low-precision estimates (\code{surveytable.find_lpe} option).
 \item Percentage CI's: use standard Korn-Graubard CI's.
 }
 }

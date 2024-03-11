@@ -40,7 +40,9 @@ var_cross = function(newvr, vr, vrby) {
                              class(design$variables[,vrby])[1] ))
   x1 %<>% .fix_factor
   x2 %<>% .fix_factor
-  design$variables[,newvr] = forcats::fct_cross(x1, x2, sep = " : ", keep_empty = TRUE)
+  design$variables[,newvr] = interaction(x1, x2
+                              , drop = TRUE
+                              , sep = ": ")
   attr(design$variables[,newvr], "label") = paste0(
     "(", .getvarname(design, vr), ") x ("
     , .getvarname(design, vrby), ")")

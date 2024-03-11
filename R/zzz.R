@@ -23,13 +23,13 @@ env = new.env()
   options(
     surveytable.survey_label = ""
 
-    , surveytable.check_present = TRUE
+    , surveytable.find_lpe = TRUE
     , surveytable.present_restricted = ".present_restricted"
     , surveytable.present_count = ".present_count"
     , surveytable.present_prop = ".present_prop"
 
     , surveytable.tx_count = ".tx_count_1k"
-    , surveytable.names_count = c("Number (000)", "SE (000)", "LL (000)", "UL (000)")
+    , surveytable.names_count = c("n", "Number (000)", "SE (000)", "LL (000)", "UL (000)")
 
     , surveytable.tx_prct = ".tx_prct"
     , surveytable.names_prct = c("Percent", "SE", "LL", "UL")

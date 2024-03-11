@@ -20,7 +20,7 @@ set_count_1k = function() {
   # If making changes, update .onLoad() and set_survey()
   options(
     surveytable.tx_count = ".tx_count_1k"
-    , surveytable.names_count = c("Number (000)", "SE (000)", "LL (000)", "UL (000)")
+    , surveytable.names_count = c("n", "Number (000)", "SE (000)", "LL (000)", "UL (000)")
   )
   message(paste0("* Rounding counts to the nearest 1,000."
              , "\n* ?set_count_1k for other options."))
@@ -31,7 +31,7 @@ set_count_1k = function() {
 set_count_int = function() {
   options(
     surveytable.tx_count = ".tx_count_int"
-    , surveytable.names_count = c("Number", "SE", "LL", "UL")
+    , surveytable.names_count = c("n", "Number", "SE", "LL", "UL")
   )
   message(paste0("* Rounding counts to the nearest integer."
                  , "\n* ?set_count_int for other options."))

@@ -11,7 +11,12 @@
 		flags[bool] %<>% paste(f1)
 		has.flag %<>% c(f1)
 	}
-	list(flags = flags, has.flag = has.flag)
+	list(
+	  id = "NCHS presentation standards"
+	  , descriptions = c(R =
+      "R: If the data is confidential, suppress **all** estimates, SE's, CI's, etc.")
+	  , flags = flags
+	  , has.flag = has.flag)
 }
 
 # Table A https://www.cdc.gov/nchs/data/series/sr_02/sr02-200.pdf
@@ -36,12 +41,15 @@
     has.flag %<>% c(f1)
   }
 
-  list(flags = flags, has.flag = has.flag)
+  list(
+    id = "NCHS presentation standards"
+    , descriptions = c(Cx = "Cx: suppress count (and rate)"
+      , Cdf = "Cdf: review count (and rate) - degrees of freedom")
+    , flags = flags, has.flag = has.flag)
 }
 
 .present_count_3030 = function(mmcr
 	, th.n = 30, th.rse = 0.30) {
-#	stop("30 / 30 rule no longer used")
 	has.flag = c()
 	flags = rep("", nrow(mmcr))
 
@@ -62,7 +70,12 @@
 		has.flag %<>% c(f1)
 	}
 
-	list(flags = flags, has.flag = has.flag)
+	list(
+	  id = "30 / 30 rule"
+	  , descriptions = c(Cx = "Cx: suppress count (and rate)"
+      , Cr = "Cr: footnote count - RSE")
+	  , flags = flags
+	  , has.flag = has.flag)
 }
 
 .present_prop = function(ret) {
@@ -123,5 +136,12 @@
 		has.flag %<>% c(f1)
 	}
 
-	list(flags = flags, has.flag = has.flag)
+	list(
+	  id = "NCHS presentation standards"
+	  , descriptions = c(Px = "Px: suppress percent"
+             , Pc = "Pc: footnote percent - complement"
+             , Pdf = "Pdf: review percent - degrees of freedom"
+             , P0 = "P0: review percent - 0% or 100%")
+	  , flags = flags
+	  , has.flag = has.flag)
 }

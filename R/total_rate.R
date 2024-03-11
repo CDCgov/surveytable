@@ -21,7 +21,7 @@ total_rate = function(pop
   design = .load_survey()
 
   op_ = options(surveytable.tx_count = ".tx_count_none"
-                , surveytable.names_count = c("Number", "SE_count"
+                , surveytable.names_count = c("n", "Number", "SE_count"
                                               , "LL_count", "UL_count"))
   on.exit(options(op_))
   mp = .total(design)
@@ -29,18 +29,20 @@ total_rate = function(pop
   assert_that(nrow(mp) == 1L)
   m1 = mp
   m1$Population = pop / per
+  m1[,c("Rate", "SE", "LL", "UL")] = NULL
   m1[,c("Rate", "SE", "LL", "UL")] = m1[,c("Number", "SE_count"
       , "LL_count", "UL_count")] / m1$Population
   cc = if ("Flags" %in% names(m1)) {
-    c("Rate", "SE", "LL", "UL", "Flags")
+    c("n", "Rate", "SE", "LL", "UL", "Flags")
   } else {
-    c("Rate", "SE", "LL", "UL")
+    c("n", "Rate", "SE", "LL", "UL")
   }
   m1 = m1[,cc]
-  m1 = getOption("surveytable.tx_rate") %>% do.call(list(m1[, c("Rate", "SE", "LL", "UL")]))
+  cc = c("Rate", "SE", "LL", "UL")
+  m1[,cc] = getOption("surveytable.tx_rate") %>% do.call(list(m1[, cc]))
 
   attr(m1, "title") = paste("Total (rate per", per, "population)")
-  attr(m1, "num") = 1:4
+  attr(m1, "num") = 1:5
   attr(m1, "footer") = attr(mp, "footer")
 
   .write_out(m1, csv = csv)

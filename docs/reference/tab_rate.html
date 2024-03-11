@@ -132,34 +132,33 @@ level of <code>vr</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="co"># pop is a data frame</span></span></span>
 <span class="r-in"><span><span class="fu">tab_rate</span><span class="op">(</span><span class="st">"MSA"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">MSA</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Metropolitan Statistical Area Status of physician location (rate per</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 100 population) {NAMCS 2019 PUF}</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ┌────────────────────────────┬───────┬──────┬───────┬───────┐</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Level                      │  Rate │   SE │    LL │    UL │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├────────────────────────────┼───────┼──────┼───────┼───────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ MSA (Metropolitan          │ 351.2 │ 18.2 │ 317.2 │ 388.8 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Statistical Area)          │       │      │       │       │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├────────────────────────────┼───────┼──────┼───────┼───────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Non-MSA                    │ 136.7 │ 38.2 │  78.9 │ 236.8 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └────────────────────────────┴───────┴──────┴───────┴───────┘</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   (Checked presentation standards. Nothing to                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   report.)                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Metropolitan Statistical Area Status of physician location (rate per 100 population) {NAMCS 2019 PUF}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────────────────┬───────┬───────┬──────┬───────┬───────┐</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Level                 │     n │  Rate │   SE │    LL │    UL │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────────┼───────┼───────┼──────┼───────┼───────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ MSA (Metropolitan     │ 7,496 │ 351.2 │ 18.2 │ 317.2 │ 388.8 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Statistical Area)     │       │       │      │       │       │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────────┼───────┼───────┼──────┼───────┼───────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Non-MSA               │   754 │ 136.7 │ 38.2 │  78.9 │ 236.8 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> └───────────────────────┴───────┴───────┴──────┴───────┴───────┘</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   N = 8250. Checked NCHS presentation                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   standards. Nothing to report.                                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># pop is a single number</span></span></span>
 <span class="r-in"><span><span class="fu">tab_rate</span><span class="op">(</span><span class="st">"MDDO"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Rate based on the entire population.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Type of doctor (MD or DO) (rate per 100 population) {NAMCS 2019 PUF}</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ┌────────────────────────────┬───────┬────┬───────┬───────┐</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Level                      │  Rate │ SE │    LL │    UL │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├────────────────────────────┼───────┼────┼───────┼───────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ M.D. - Doctor of Medicine  │ 303.3 │ 15 │ 275.3 │ 334.1 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├────────────────────────────┼───────┼────┼───────┼───────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ D.O. - Doctor of           │  17.4 │  2 │  13.8 │  21.9 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Osteopathy                 │       │    │       │       │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └────────────────────────────┴───────┴────┴───────┴───────┘</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   (Checked presentation standards. Nothing to              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   report.)                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Type of doctor (MD or DO) (rate per 100 population) {NAMCS 2019 PUF}              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────┐</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Level                 │           n │        Rate │          SE │          LL │          UL │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ M.D. - Doctor of      │       7,498 │       303.3 │          15 │       275.3 │       334.1 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Medicine              │             │             │             │             │             │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ D.O. - Doctor of      │         752 │        17.4 │           2 │        13.8 │        21.9 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Osteopathy            │             │             │             │             │             │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> └───────────────────────┴─────────────┴─────────────┴─────────────┴─────────────┴─────────────┘</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   N = 8250. Checked NCHS presentation standards. Nothing to report.                            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>

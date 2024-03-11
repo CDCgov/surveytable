@@ -143,43 +143,41 @@ exactly match the levels of <code>vr</code>. <code>Subset</code> must exactly ma
 <span class="r-out co"><span class="r-pr">#&gt;</span> └───────────┴──────────────┴────────────────────────────────────────────────┘</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">tab_subset_rate</span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"SEX"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">`AGER x SEX`</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient age recode (Patient sex = Female) (rate per 100 population)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {NAMCS 2019 PUF}</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────────────┬─────────────┬─────────────┬─────────────┬─────────────┐</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Level             │        Rate │          SE │          LL │          UL │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Under 15 years    │       202.5 │        24.3 │       159.8 │       256.6 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 15-24 years       │       198.4 │        21.9 │       159.5 │       246.8 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 25-44 years       │       263.3 │        26.5 │       215.9 │       321   │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 45-64 years       │       414   │        37.7 │       346.2 │       495.1 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 65-74 years       │       720.3 │        66.4 │       600.8 │       863.6 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 75 years and over │       758.1 │        89.2 │       601.2 │       956   │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └───────────────────┴─────────────┴─────────────┴─────────────┴─────────────┘</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   (Checked presentation standards. Nothing to report.)                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Patient age recode (Patient sex = Female) (rate per 100 population) {NAMCS 2019 PUF}    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────┐</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Level             │           n │        Rate │          SE │          LL │          UL │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Under 15 years    │         434 │       202.5 │        24.3 │       159.8 │       256.6 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 15-24 years       │         346 │       198.4 │        21.9 │       159.5 │       246.8 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 25-44 years       │         923 │       263.3 │        26.5 │       215.9 │       321   │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 45-64 years       │       1,253 │       414   │        37.7 │       346.2 │       495.1 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 65-74 years       │         891 │       720.3 │        66.4 │       600.8 │       863.6 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 75 years and over │         762 │       758.1 │        89.2 │       601.2 │       956   │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> └───────────────────┴─────────────┴─────────────┴─────────────┴─────────────┴─────────────┘</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   N = 4609. Checked NCHS presentation standards. Nothing to report.                        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient age recode (Patient sex = Male) (rate per 100 population)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {NAMCS 2019 PUF}</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────────────┬─────────────┬─────────────┬─────────────┬─────────────┐</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Level             │        Rate │          SE │          LL │          UL │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Under 15 years    │       187.4 │        25   │       144.1 │       243.7 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 15-24 years       │       113.1 │        20.7 │        78.4 │       163   │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 25-44 years       │       133.4 │        17.2 │       103.4 │       172   │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 45-64 years       │       333.4 │        32.3 │       275.4 │       403.5 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 65-74 years       │       594.8 │        46.4 │       510.1 │       693.6 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 75 years and over │       801.2 │        73.2 │       669.1 │       959.5 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └───────────────────┴─────────────┴─────────────┴─────────────┴─────────────┘</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   (Checked presentation standards. Nothing to report.)                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Patient age recode (Patient sex = Male) (rate per 100 population) {NAMCS 2019 PUF}     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────┐</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Level             │           n │        Rate │          SE │          LL │          UL │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Under 15 years    │         453 │       187.4 │        25   │       144.1 │       243.7 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 15-24 years       │         196 │       113.1 │        20.7 │        78.4 │       163   │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 25-44 years       │         512 │       133.4 │        17.2 │       103.4 │       172   │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 45-64 years       │       1,030 │       333.4 │        32.3 │       275.4 │       403.5 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 65-74 years       │         770 │       594.8 │        46.4 │       510.1 │       693.6 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 75 years and over │         680 │       801.2 │        73.2 │       669.1 │       959.5 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> └───────────────────┴─────────────┴─────────────┴─────────────┴─────────────┴─────────────┘</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   N = 3641. Checked NCHS presentation standards. Nothing to report.                        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>

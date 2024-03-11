@@ -114,7 +114,6 @@ tab = function(...
 	if (nlv < 2) {
     assert_that(all(design$variables[,vr] == design$variables[1,vr]))
 	  mp = .total(design)
-	  assert_that(ncol(mp) %in% c(4L, 5L))
 	  fa = attr(mp, "footer")
 	  mp = cbind(
 	    data.frame(Level = design$variables[1,vr])
@@ -122,7 +121,7 @@ tab = function(...
 	  if (!is.null(fa)) {
 	    attr(mp, "footer") = fa
 	  }
-	  attr(mp, "num") = 2:5
+	  attr(mp, "num") = 2:6
 	  attr(mp, "title") = .getvarname(design, vr)
     return(.write_out(mp, csv = csv))
 	} else if (nlv > max_levels) {
@@ -142,10 +141,13 @@ tab = function(...
 	##
 	counts = svyby(frm, frm, design, unwtd.count)$counts
 	assert_that(length(counts) == nlv)
-	if (getOption("surveytable.check_present")) {
+	if (getOption("surveytable.find_lpe")) {
+	  assert_that(is.vector(counts), all(counts >= 1), is.numeric(counts)
+	              , all(counts == trunc(counts)))
 	  pro = getOption("surveytable.present_restricted") %>% do.call(list(counts))
-	} else {
-		pro = list(flags = rep("", length(counts)), has.flag = c())
+	  assert_that(is.list(pro)
+	              , setequal(names(pro), c("id", "descriptions", "flags", "has.flag"))
+	              , all(pro$has.flag %in% names(pro$descriptions)))
 	}
 
 	##
@@ -153,6 +155,7 @@ tab = function(...
 	mmcr = data.frame(x = as.numeric(sto)
 		, s = sqrt(diag(attr(sto, "var"))) )
 	mmcr$counts = counts
+	counts_sum = sum(counts)
 
 	# deff = attr(sto, "deff") %>% diag
 	# I am having trouble interpreting this deff.
@@ -175,14 +178,18 @@ tab = function(...
   mmcr$ll = exp(mmcr$lnx - mmcr$k)
   mmcr$ul = exp(mmcr$lnx + mmcr$k)
 
-	if (getOption("surveytable.check_present")) {
+	if (getOption("surveytable.find_lpe")) {
+	  assert_that(is.data.frame(mmcr), nrow(mmcr) >= 1
+	              , all(c("x", "s", "ll", "ul", "samp.size", "counts", "degf") %in% names(mmcr)))
 	  pco = getOption("surveytable.present_count") %>% do.call(list(mmcr))
-	} else {
-		pco = list(flags = rep("", nrow(mmcr)), has.flag = c())
+	  assert_that(is.list(pco)
+	              , setequal(names(pco), c("id", "descriptions", "flags", "has.flag"))
+	              , all(pco$has.flag %in% names(pco$descriptions)))
 	}
 
-  mmcr = mmcr[,c("x", "s", "ll", "ul")]
-	mmc = getOption("surveytable.tx_count") %>% do.call(list(mmcr))
+	mmc = getOption("surveytable.tx_count") %>% do.call(list(mmcr[,c("x", "s", "ll", "ul")]))
+	mmc$counts = mmcr$counts
+	mmc = mmc[,c("counts", "x", "s", "ll", "ul")]
 	names(mmc) = getOption("surveytable.names_count")
 
 	##
@@ -214,11 +221,13 @@ tab = function(...
 	}
 	ret$degf = df1
 
-	if (getOption("surveytable.check_present")) {
+	if (getOption("surveytable.find_lpe")) {
+	  assert_that(is.data.frame(ret), nrow(ret) >= 1
+    , all(c("Proportion", "SE", "LL", "UL", "n numerator", "n denominator") %in% names(ret)))
 	  ppo = getOption("surveytable.present_prop") %>% do.call(list(ret))
-	} else {
-		nlvs = design$variables[, vr] %>% nlevels
-		ppo = list(flags = rep("", nlvs), has.flag = c())
+	  assert_that(is.list(ppo)
+	              , setequal(names(ppo), c("id", "descriptions", "flags", "has.flag"))
+	              , all(ppo$has.flag %in% names(ppo$descriptions)))
 	}
 
 	mp2 = getOption("surveytable.tx_prct") %>% do.call(list(ret[,c("Proportion", "SE", "LL", "UL")]))
@@ -226,48 +235,69 @@ tab = function(...
 
 	##
 	assert_that(nrow(mmc) == nrow(mp2)
-    , nrow(mmc) == nrow(mmcr)
-		, nrow(mmc) == length(pro$flags)
-		, nrow(mmc) == length(pco$flags)
-		, nrow(mmc) == length(ppo$flags) )
-
+    , nrow(mmc) == nrow(mmcr))
 	mp = cbind(mmc, mp2)
-	flags = paste(pro$flags, pco$flags, ppo$flags) %>% trimws
-	if (any(nzchar(flags))) {
-		mp$Flags = flags
-	}
 
 	##
 	rownames(mp) = NULL
 	mp = cbind(data.frame(Level = lvs), mp)
 
-  attr(mp, "num") = 2:5
-  attr(mp, "title") = .getvarname(design, vr)
-	mp %<>% .add_flags( c(pro$has.flag, pco$has.flag, ppo$has.flag) )
+	attr(mp, "num") = 2:6
+	attr(mp, "title") = .getvarname(design, vr)
+	attr(mp, "footer") = paste0("N = ", counts_sum, ".")
+
+	if (getOption("surveytable.find_lpe")) {
+	  assert_that(nrow(mmc) == length(pro$flags)
+            , nrow(mmc) == length(pco$flags)
+            , nrow(mmc) == length(ppo$flags))
+	  flags = paste(pro$flags, pco$flags, ppo$flags) %>% trimws
+	  if (any(nzchar(flags))) {
+	    mp$Flags = flags
+	  }
+	  mp %<>% .add_flags( list(pro, pco, ppo) )
+	}
+
 	.write_out(mp, csv = csv)
 }
 
-.add_flags = function(df1, has.flag) {
-  if (!getOption("surveytable.check_present")) {
-    attr(df1, "footer") = NULL
-  } else if (is.null(has.flag)) {
-	  attr(df1, "footer") = "(Checked presentation standards. Nothing to report.)"
-	} else {
-		v1 = c()
-		for (ff in has.flag) {
-			v1 %<>% c(switch(ff
-				, R = "R: If the data is confidential, suppress *all* estimates, SE's, CI's, etc."
-				, Cx = "Cx: suppress count (and rate)"
-				, Cr = "Cr: footnote count - RSE" # .present_count_3030
-  			, Cdf = "Cdf: review count (and rate) - degrees of freedom"
-				, Px = "Px: suppress percent"
-				, Pc = "Pc: footnote percent - complement"
-				, Pdf = "Pdf: review percent - degrees of freedom"
-				, P0 = "P0: review percent - 0% or 100%"
-				, paste0(ff, ": unknown flag!")
-			))
-		}
-		attr(df1, "footer") = v1 %>% paste(collapse="; ")
-	}
+.add_flags = function(df1, lfo) {
+  if (!getOption("surveytable.find_lpe")) {
+    return(df1)
+  }
+
+  retR = list()
+  retNR = c()
+  for (fo in lfo) {
+    if (!is.null(fo$has.flag)) {
+      v1 = paste0(fo$descriptions[ fo$has.flag ], collapse = "; ")
+      if (is.null(retR[[ fo$id ]])) {
+        retR[[ fo$id ]] = v1
+      } else {
+        retR[[ fo$id ]] %<>% paste(v1, sep = "; ")
+      }
+    }
+    retNR %<>% c(fo$id)
+  }
+  retNR %<>% unique
+  retNR = retNR[which( !(retNR %in% names(retR)))]
+  assert_that(!(is.null(retR) && length(retNR) == 0))
+
+  ret = ""
+  if (!is.null(retR)) {
+    for (nn in names(retR)) {
+      v1 = paste0("Checked ", nn, ": ", retR[[nn]], ".")
+      ret %<>% paste(v1)
+    }
+  }
+  if (length(retNR) > 0) {
+    v1 = paste0("Checked ", paste(retNR, collapse = ", "), ". Nothing to report.")
+    ret %<>% paste(v1)
+  }
+
+  if (is.null(v1 <- attr(df1, "footer"))) {
+    attr(df1, "footer") = ret
+  } else {
+    attr(df1, "footer") = paste0(v1, ret)
+  }
   df1
 }

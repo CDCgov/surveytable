@@ -84,7 +84,7 @@ codebook = function(all = FALSE
   lret[[2]] = .write_out(ret, csv = csv)
 
   if (all) {
-    op_ = options(surveytable.check_present = FALSE)
+    op_ = options(surveytable.find_lpe = FALSE)
     on.exit(options(op_))
     for (ii in 1:ncol(design$variables)) {
       n1 = nn[ii]

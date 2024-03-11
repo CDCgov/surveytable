@@ -90,11 +90,11 @@ will work.</p>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p><code>opts</code>:</p><ul><li><p><code>"nchs"</code>:</p><ul><li><p>Round counts to the nearest 1,000 -- see <code><a href="set_count_1k.html">set_count_1k()</a></code>.</p></li>
-<li><p>Identify low-precision estimates (<code>surveytable.check_present</code> option).</p></li>
+<li><p>Identify low-precision estimates (<code>surveytable.find_lpe</code> option).</p></li>
 <li><p>Percentage CI's: adjust Korn-Graubard CI's for the number of degrees of freedom, matching the SUDAAN calculation (<code>surveytable.adjust_svyciprop</code> option).</p></li>
 </ul></li>
 <li><p><code>"general":</code></p><ul><li><p>Round counts to the nearest integer -- see <code><a href="set_count_1k.html">set_count_int()</a></code>.</p></li>
-<li><p>Do not look for low-precision estimates (<code>surveytable.check_present</code> option).</p></li>
+<li><p>Do not look for low-precision estimates (<code>surveytable.find_lpe</code> option).</p></li>
 <li><p>Percentage CI's: use standard Korn-Graubard CI's.</p></li>
 </ul></li>
 </ul><p>Optionally, the survey can have an attribute called <code>label</code>, which is the

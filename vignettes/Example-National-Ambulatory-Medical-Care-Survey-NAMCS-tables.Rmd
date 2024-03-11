@@ -232,7 +232,7 @@ suppressMessages( set_output(csv = tmp_file) )
 for (vr in c("AGER", "Age group", "SEX", "Age x Sex")) {
 	var_cross("tmp", "MAJOR", vr)
 	for (lvl in levels(surveytable:::env$survey$variables[,vr])) {
-		tab_subset("SPECCAT", "tmp", paste0("Preventive care : ", lvl))
+		tab_subset("SPECCAT", "tmp", paste0("Preventive care: ", lvl))
 	}
 }
 set_output(csv = "")
@@ -243,7 +243,7 @@ set_output(csv = "")
 * As before, the loop goes through the age, sex, and age / sex interaction variables, calling each of these variables `vr`. 
 * MAJOR and `vr` are crossed, with the result stored in a variable called `tmp`.
 * Next, the inner loop goes through all levels of `vr`, calling each of these levels `lvl`. 
-* The code tabulates `SPECCAT` (Type of specialty – Primary, Medical, Surgical) on a subset in which `tmp` (which is `MAJOR` crossed with `vr`) is restricted to “Preventive care:” followed by `lvl`, which is some level of `vr`, such as “Under 15 years” for `AGER`. 
+* The code tabulates `SPECCAT` (Type of specialty – Primary, Medical, Surgical) on a subset in which `tmp` (which is `MAJOR` crossed with `vr`) is restricted to `"Preventive care: "` followed by `lvl`, which is some level of `vr`, such as “Under 15 years” for `AGER`. 
 * Finally, CSV output is turned off. 
 
 If you run this code, all of the tables should be stored in the CSV file. To give you an idea of what the tables should look like, here is just one of the tables:
@@ -252,7 +252,7 @@ If you run this code, all of the tables should be stored in the CSV file. To giv
 vr = "AGER"
 var_cross("tmp", "MAJOR", vr)
 lvl = levels(surveytable:::env$survey$variables[,vr])[1]
-tab_subset("SPECCAT", "tmp", paste0("Preventive care : ", lvl))
+tab_subset("SPECCAT", "tmp", paste0("Preventive care: ", lvl))
 ```
 
 To match the percentage in the published table, see the "Primary care specialty" row. Be sure to check the presentation standards flags.

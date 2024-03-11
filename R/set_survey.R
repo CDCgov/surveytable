@@ -6,11 +6,11 @@
 #' `opts`:
 #' * `"nchs"`:
 #'    * Round counts to the nearest 1,000 -- see [set_count_1k()].
-#'    * Identify low-precision estimates (`surveytable.check_present` option).
+#'    * Identify low-precision estimates (`surveytable.find_lpe` option).
 #'    * Percentage CI's: adjust Korn-Graubard CI's for the number of degrees of freedom, matching the SUDAAN calculation (`surveytable.adjust_svyciprop` option).
 #' * `"general":`
 #'    * Round counts to the nearest integer -- see [set_count_int()].
-#'    * Do not look for low-precision estimates (`surveytable.check_present` option).
+#'    * Do not look for low-precision estimates (`surveytable.find_lpe` option).
 #'    * Percentage CI's: use standard Korn-Graubard CI's.
 #'
 #' Optionally, the survey can have an attribute called `label`, which is the
@@ -41,15 +41,15 @@ set_survey = function(design, opts = "NCHS"
   if (opts == "nchs") {
     options(
       surveytable.tx_count = ".tx_count_1k"
-      , surveytable.names_count = c("Number (000)", "SE (000)", "LL (000)", "UL (000)")
-      , surveytable.check_present = TRUE
+      , surveytable.names_count = c("n", "Number (000)", "SE (000)", "LL (000)", "UL (000)")
+      , surveytable.find_lpe = TRUE
       , surveytable.adjust_svyciprop = TRUE
     )
   } else if (opts == "general") {
     options(
       surveytable.tx_count = ".tx_count_int"
-      , surveytable.names_count = c("Number", "SE", "LL", "UL")
-      , surveytable.check_present = FALSE
+      , surveytable.names_count = c("n", "Number", "SE", "LL", "UL")
+      , surveytable.find_lpe = FALSE
       , surveytable.adjust_svyciprop = FALSE
     )
   } else {

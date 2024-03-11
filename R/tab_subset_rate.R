@@ -67,7 +67,7 @@ tab_subset_rate = function(vr, vrby
 
   pop$Population = pop$Population / per
   op_ = options(surveytable.tx_count = ".tx_count_none"
-                , surveytable.names_count = c("Number", "SE_count", "LL_count", "UL_count"))
+                , surveytable.names_count = c("n", "Number", "SE_count", "LL_count", "UL_count"))
   on.exit(options(op_))
 
   ret = list()
@@ -91,19 +91,20 @@ tab_subset_rate = function(vr, vrby
     }
     assert_that(isTRUE(all(m1$Population > 0 | is.na(m1$Population) ))
                 , msg = paste("Population values for each level of", vr, "must be positive."))
+    m1[,c("Rate", "SE", "LL", "UL")] = NULL
     m1[,c("Rate", "SE", "LL", "UL")] = m1[,c("Number", "SE_count"
         , "LL_count", "UL_count")] / m1$Population
     cc = if ("Flags" %in% names(m1)) {
-      c("Level", "Rate", "SE", "LL", "UL", "Flags")
+      c("Level", "n", "Rate", "SE", "LL", "UL", "Flags")
     } else {
-      c("Level", "Rate", "SE", "LL", "UL")
+      c("Level", "n", "Rate", "SE", "LL", "UL")
     }
     m1 = m1[,cc]
     cc = c("Rate", "SE", "LL", "UL")
     m1[,cc] = getOption("surveytable.tx_rate") %>% do.call(list(m1[,cc]))
 
     attr(m1, "title") = paste(.getvarname(d1, vr), "(rate per", per, "population)")
-    attr(m1, "num") = 2:5
+    attr(m1, "num") = 2:6
     attr(m1, "footer") = attr(tfo, "footer")
 
     ret[[ii]] = .write_out(m1, csv = csv)
