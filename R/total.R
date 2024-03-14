@@ -23,7 +23,7 @@ total = function(csv = getOption("surveytable.csv") ) {
   ##
   counts = nrow(design$variables)
   if (getOption("surveytable.find_lpe")) {
-    pro = getOption("surveytable.present_restricted") %>% do.call(list(counts))
+    pro = getOption("surveytable.lpe_n") %>% do.call(list(counts))
   } else {
     pro = list(flags = rep("", length(counts)), has.flag = c())
   }
@@ -51,7 +51,7 @@ total = function(csv = getOption("surveytable.csv") ) {
   mmcr$ul = exp(mmcr$lnx + mmcr$k)
 
   if (getOption("surveytable.find_lpe")) {
-    pco = getOption("surveytable.present_count") %>% do.call(list(mmcr))
+    pco = getOption("surveytable.lpe_counts") %>% do.call(list(mmcr))
   } else {
     pco = list(flags = rep("", nrow(mmcr)), has.flag = c())
   }

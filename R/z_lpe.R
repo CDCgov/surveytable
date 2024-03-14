@@ -1,4 +1,4 @@
-.present_restricted = function(counts, th.n = 5) {
+.lpe_n = function(counts, th.n = 5) {
 	has.flag = c()
 	flags = rep("", length(counts))
 
@@ -20,7 +20,7 @@
 }
 
 # Table A https://www.cdc.gov/nchs/data/series/sr_02/sr02-200.pdf
-.present_count = function(mmcr) {
+.lpe_counts = function(mmcr) {
   has.flag = c()
   flags = rep("", nrow(mmcr))
 
@@ -48,7 +48,7 @@
     , flags = flags, has.flag = has.flag)
 }
 
-.present_count_3030 = function(mmcr
+.lpe_counts_3030 = function(mmcr
 	, th.n = 30, th.rse = 0.30) {
 	has.flag = c()
 	flags = rep("", nrow(mmcr))
@@ -78,7 +78,7 @@
 	  , has.flag = has.flag)
 }
 
-.present_prop = function(ret) {
+.lpe_percents = function(ret) {
 	ret$`n effective` = with(ret, Proportion * (1 - Proportion) / (SE ^ 2))
 	ret$`CI width` = with(ret, UL - LL)
 

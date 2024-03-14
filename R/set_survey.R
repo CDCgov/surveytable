@@ -6,12 +6,12 @@
 #' `opts`:
 #' * `"nchs"`:
 #'    * Round counts to the nearest 1,000 -- see [set_count_1k()].
-#'    * Identify low-precision estimates (`surveytable.find_lpe` option).
-#'    * Percentage CI's: adjust Korn-Graubard CI's for the number of degrees of freedom, matching the SUDAAN calculation (`surveytable.adjust_svyciprop` option).
+#'    * Identify low-precision estimates (`surveytable.find_lpe` option is `TRUE`).
+#'    * Percentage CI's: adjust Korn-Graubard CI's for the number of degrees of freedom, matching the SUDAAN calculation (`surveytable.adjust_svyciprop` option is `TRUE`).
 #' * `"general":`
 #'    * Round counts to the nearest integer -- see [set_count_int()].
-#'    * Do not look for low-precision estimates (`surveytable.find_lpe` option).
-#'    * Percentage CI's: use standard Korn-Graubard CI's.
+#'    * Do not look for low-precision estimates (`surveytable.find_lpe` option is `FALSE`).
+#'    * Percentage CI's: use standard Korn-Graubard CI's (`surveytable.adjust_svyciprop` option is `FALSE`).
 #'
 #' Optionally, the survey can have an attribute called `label`, which is the
 #' long name of the survey.
@@ -24,6 +24,7 @@
 #' @param opts set certain options. See below.
 #' @param csv name of a CSV file
 #'
+#' @family options
 #' @return Info about the survey.
 #' @export
 #'

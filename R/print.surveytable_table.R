@@ -31,18 +31,27 @@ print.surveytable_table = function(x, ...) {
   }
 
   # See inside guess_knitr_output_format
-  not_screen = (requireNamespace("knitr", quietly = TRUE)
-                && requireNamespace("rmarkdown", quietly = TRUE)
-                && guess_knitr_output_format() != "")
+  fo = ""
+  if (requireNamespace("knitr", quietly = TRUE)
+      && requireNamespace("rmarkdown", quietly = TRUE)) {
+    fo = guess_knitr_output_format()
+  }
 
-  if (not_screen) {
-    hh %>% print_html
-  } else {
+  if (fo == "") {
     gow = getOption("width")
     op_ = options(width = 10)
     on.exit(options(op_))
-    hh %>% print_screen(colnames = FALSE, min_width = 0, max_width = max(gow * 1.5, 150, na.rm=TRUE))
+    hh %>% print_screen(colnames = FALSE, min_width = 0
+                        , max_width = max(gow * 1.5, 150, na.rm = TRUE))
     cat("\n")
+  } else if (fo == "latex") {
+    width(hh) = 0.8
+    wrap(hh) = TRUE
+    position(hh) = "left"
+    tabular_environment(hh) = "tabularx"
+    hh %>% print_latex(tabular_only = TRUE)
+  } else {
+    hh %>% print_html
   }
 
   invisible(x)

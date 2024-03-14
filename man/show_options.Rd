@@ -22,6 +22,7 @@ show_options()
 Other options: 
 \code{\link{set_count_1k}()},
 \code{\link{set_output}()},
+\code{\link{set_survey}()},
 \code{\link{surveytable-options}}
 }
 \concept{options}

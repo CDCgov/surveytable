@@ -24,9 +24,9 @@ env = new.env()
     surveytable.survey_label = ""
 
     , surveytable.find_lpe = TRUE
-    , surveytable.present_restricted = ".present_restricted"
-    , surveytable.present_count = ".present_count"
-    , surveytable.present_prop = ".present_prop"
+    , surveytable.lpe_n = ".lpe_n"
+    , surveytable.lpe_counts = ".lpe_counts"
+    , surveytable.lpe_percents = ".lpe_percents"
 
     , surveytable.tx_count = ".tx_count_1k"
     , surveytable.names_count = c("n", "Number (000)", "SE (000)", "LL (000)", "UL (000)")

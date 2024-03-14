@@ -5,7 +5,57 @@
 \alias{surveytable-options}
 \title{Package options}
 \description{
-Run \code{\link[=show_options]{show_options()}} to see available options.
+Run \code{\link[=show_options]{show_options()}} to see available options. Here is a description of some
+notable options.
+}
+\details{
+\strong{Low-precision estimates.}
+\itemize{
+\item \code{surveytable.find_lpe}: should the tabulation functions look for low-precision
+estimates? You can change this directly with \code{options()} or with the \code{opts} argument
+to \code{set_survey()}.
+\item \code{surveytable.lpe_n}, \code{surveytable.lpe_counts}, \code{surveytable.lpe_percents}: names
+of 3 functions.
+}
+
+The argument for \code{surveytable.lpe_n} is a vector of the number of observations
+for each level of the variable.
+
+The argument for \code{surveytable.lpe_counts} is a data frame with count-related estimates.
+Specifically, the data frame has the following variables:
+\itemize{
+\item \code{x}: point estimates of counts
+\item \code{s}: SE
+\item \code{ll}, \code{ul}: CI
+\item \code{samp.size}: effective sample size
+\item \code{counts}: actual sample size
+\item \code{degf}: degrees of freedom
+}
+
+The argument for \code{surveytable.lpe_percents} is a data frame with percent-related
+estimates. Specifically, the data frame has the following variables:
+\itemize{
+\item \code{Proportion}: point estimates of proportions (between \code{0} and \code{1})
+\item \code{SE}: SE
+\item \code{LL}, \code{UL}: CI
+\item \verb{n numerator}: the number of observations for which the variable is \code{TRUE}
+\item \verb{n denominator}: the total number of observations
+}
+
+Each of these functions must return a list with the following elements:
+\itemize{
+\item \code{id}: the name of the algorithm used, such as \code{"NCHS presentation standards"}
+\item \code{flags}: a vector. For each level of the variable, short codes indicating the presence of
+low-precision estimates.
+\item \code{has.flag}: a vector of short codes that are present in \code{flags}.
+\item \code{descriptions}: a named vector. The names must be the short codes, the values are
+the longer descriptions.
+}
+
+For example, if a variable has 3 levels, \code{flags} might be \code{c("", "A1 A2", "")}. This
+indicates that for the first and third level, nothing was found, whereas for the second
+level, two different things were found, indicated by short codes \code{A1} and \code{A2}. In
+this case, \code{has.flag = c("A1", "A2")}, \code{descriptions = c(A1 = "A1: something", A2 = "A2: something else")}.
 }
 \seealso{
 Useful links:
@@ -18,6 +68,7 @@ Useful links:
 Other options: 
 \code{\link{set_count_1k}()},
 \code{\link{set_output}()},
+\code{\link{set_survey}()},
 \code{\link{show_options}()}
 }
 \author{

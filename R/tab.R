@@ -144,7 +144,7 @@ tab = function(...
 	if (getOption("surveytable.find_lpe")) {
 	  assert_that(is.vector(counts), all(counts >= 1), is.numeric(counts)
 	              , all(counts == trunc(counts)))
-	  pro = getOption("surveytable.present_restricted") %>% do.call(list(counts))
+	  pro = getOption("surveytable.lpe_n") %>% do.call(list(counts))
 	  assert_that(is.list(pro)
 	              , setequal(names(pro), c("id", "descriptions", "flags", "has.flag"))
 	              , all(pro$has.flag %in% names(pro$descriptions)))
@@ -181,7 +181,7 @@ tab = function(...
 	if (getOption("surveytable.find_lpe")) {
 	  assert_that(is.data.frame(mmcr), nrow(mmcr) >= 1
 	              , all(c("x", "s", "ll", "ul", "samp.size", "counts", "degf") %in% names(mmcr)))
-	  pco = getOption("surveytable.present_count") %>% do.call(list(mmcr))
+	  pco = getOption("surveytable.lpe_counts") %>% do.call(list(mmcr))
 	  assert_that(is.list(pco)
 	              , setequal(names(pco), c("id", "descriptions", "flags", "has.flag"))
 	              , all(pco$has.flag %in% names(pco$descriptions)))
@@ -224,7 +224,7 @@ tab = function(...
 	if (getOption("surveytable.find_lpe")) {
 	  assert_that(is.data.frame(ret), nrow(ret) >= 1
     , all(c("Proportion", "SE", "LL", "UL", "n numerator", "n denominator") %in% names(ret)))
-	  ppo = getOption("surveytable.present_prop") %>% do.call(list(ret))
+	  ppo = getOption("surveytable.lpe_percents") %>% do.call(list(ret))
 	  assert_that(is.list(ppo)
 	              , setequal(names(ppo), c("id", "descriptions", "flags", "has.flag"))
 	              , all(ppo$has.flag %in% names(ppo$descriptions)))
