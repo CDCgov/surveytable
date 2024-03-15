@@ -18,7 +18,8 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The `surveytable` package provides short and understandable commands that generate tabulated, formatted, and rounded survey estimates. One useful function, which operates on categorical and logical variables, tabulates estimated counts and percentages with their standard errors and confidence intervals. Other functions list the variables in a survey, estimate the total population, tabulate survey subsets and variable interactions, tabulate numeric variables, tabulate rates, create or modify survey variables, perform hypothesis tests, and save the output. All of the tabulation functions check the National Center for Health Statistics (NCHS) presentation standards to flag low-precision estimates. If the `surveytable` code is called from an R Markdown notebook or a Quarto document, it generates HTML tables, which can be incorporated directly into documents. 
+The `surveytable` package provides short and understandable commands that generate tabulated, formatted, and rounded survey estimates. One useful function, which operates on categorical and logical variables, tabulates estimated counts and percentages with their standard errors and confidence intervals. Other functions estimate the total population, tabulate survey subsets and variable interactions, tabulate numeric variables, perform hypothesis tests, tabulate rates, modify survey variables, and save the output. All of the tabulation functions identify low-precision estimates using algorithms developed at the National Center for Health Statistics (NCHS). If the `surveytable` code is called from an R Markdown notebook, it automatically generates HTML or LaTeX tables, as appropriate. The package reduces the number of commands that users need to execute, which is especially helpful for users new to R or to programming.
+
 
 ## Installation
 

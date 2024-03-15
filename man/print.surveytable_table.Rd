@@ -5,12 +5,14 @@
 \alias{print.surveytable_list}
 \title{Print surveytable tables}
 \usage{
-\method{print}{surveytable_table}(x, ...)
+\method{print}{surveytable_table}(x, .output = NULL, ...)
 
 \method{print}{surveytable_list}(x, ...)
 }
 \arguments{
 \item{x}{an object of class \code{surveytable_table} or \code{surveytable_list}.}
+
+\item{.output}{output type. \code{NULL} = auto-detect.}
 
 \item{...}{ignored}
 }

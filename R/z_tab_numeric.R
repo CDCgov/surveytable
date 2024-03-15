@@ -11,8 +11,8 @@
             , msg = paste0(vr, ": must be numeric. Is "
              , class(design$variables[,vr])[1] ))
 
-  ret = data.frame(k
-           = 100 * sum(!is.na(design$variables[,vr])) / nrow(design$variables))
+  # convert to 0-100 scale below
+  ret = data.frame(k = sum(!is.na(design$variables[,vr])) / nrow(design$variables))
   names(ret) = "% known"
 
   frm = as.formula(paste0("~ `", vr, "`"))
@@ -26,5 +26,11 @@
   # Use c() or as.vector() instead.
   ret$SD = (svyvar(frm, design, na.rm = TRUE)
             %>% as.numeric %>% sqrt %>% suppressWarnings)
+
+  cc = c("Mean", "SEM", "SD")
+  ret[,cc] = getOption("surveytable.tx_numeric") %>% do.call(list(ret[,cc]))
+  cc = "% known"
+  ret[,cc] = getOption("surveytable.tx_prct") %>% do.call(list(ret[,cc]))
+
   ret
 }

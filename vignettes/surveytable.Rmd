@@ -421,33 +421,6 @@ tab("AGER", "Age group")
 
 Here, the `AGER` variable remains unchanged, while the `Age group` variable has fewer categories.
 
-**The `variables` data frame.** Recall that survey objects have an element called `variables`, which is a data frame that contains the survey variables.
-
-```{r}
-class(namcs2019sv$variables)
-```
-
-More advanced users can create or modify variables in the `variables` data frame directly. After they modify these variables, they must call `set_survey()` again. For example:
-
-```{r, results='asis'}
-namcs2019sv$variables$`Medicare and Medicaid` = ( 
-  namcs2019sv$variables$PAYMCARE & namcs2019sv$variables$PAYMCAID)
-set_survey(namcs2019sv)
-```
-
-```{r, results='asis'}
-tab("Medicare and Medicaid")
-```
-
-Note, however, that the `var_*()` functions do not modify the survey object specified in `set_survey()` directly. Rather, they modify variables inside the following data frame: `surveytable:::env$survey$variables`. If you use the `var_*()` functions and then need access to the modified / created variables, that's where you should look. For example:
-
-```{r}
-var_cross("newvar", "MAJOR", "AGER")
-# This should give NULL. The new variable does not exist here:
-namcs2019sv$variables$newvar
-# Rather, the new variable is here:
-str(surveytable:::env$survey$variables$newvar)
-```
 
 # Save the output
 

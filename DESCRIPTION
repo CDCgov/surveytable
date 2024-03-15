@@ -28,6 +28,7 @@ LazyDataCompression: bzip2
 Imports: 
     assertthat,
     huxtable,
+    kableExtra, 
     magrittr,
     survey
 Suggests: 

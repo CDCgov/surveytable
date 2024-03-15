@@ -1,7 +1,8 @@
 #' @import assertthat
 #' @import magrittr
 #' @import survey
-#' @import huxtable
+#' @importFrom huxtable guess_knitr_output_format hux set_all_borders caption caption<- number_format number_format<- fmt_pretty add_footnote print_screen print_html
+#' @importFrom kableExtra kbl kable_styling footnote column_spec
 #' @importFrom stats as.formula confint qt coef pt
 #' @importFrom utils write.table tail capture.output
 #' @keywords internal

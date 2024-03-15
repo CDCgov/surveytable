@@ -41,6 +41,8 @@ env = new.env()
     , surveytable.rate_per = 100
     , surveytable.tx_rate = ".tx_rate"
 
+    , surveytable.tx_numeric = ".tx_numeric"
+
     , surveytable.adjust_svyciprop = FALSE
     , surveytable.adjust_svyciprop.df_method = "NHIS"
 
@@ -56,4 +58,8 @@ env = new.env()
 
 .tx_rate = function(x) {
   round(x, 1)
+}
+
+.tx_numeric = function(x) {
+  signif(x, 3)
 }
