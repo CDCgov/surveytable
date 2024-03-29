@@ -12,7 +12,7 @@ variable within each of the subsets. Interact two variables and tabulate."><!-- 
     
     <a class="navbar-brand me-2" href="../index.html">surveytable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,6 +76,7 @@ variable within each of the subsets. Interact two variables and tabulate.</p>
 <span>  lvls <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  test <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  alpha <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>  p_adjust <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  drop_na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"surveytable.drop_na"</span><span class="op">)</span>,</span>
 <span>  max_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"surveytable.max_levels"</span><span class="op">)</span>,</span>
 <span>  csv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"surveytable.csv"</span><span class="op">)</span></span>
@@ -110,6 +111,10 @@ variable within each of the subsets. Interact two variables and tabulate.</p>
 
 <dt>alpha</dt>
 <dd><p>significance level for tests</p></dd>
+
+
+<dt>p_adjust</dt>
+<dd><p>adjust p-values for multiple comparisons?</p></dd>
 
 
 <dt>drop_na</dt>
@@ -299,12 +304,12 @@ performs t-tests for all possible pairs of levels of <code>vr</code> and <code>v
 <span class="r-out co"><span class="r-pr">#&gt;</span> └───────────────────┴─────────┴──────┴───────┴──────┘</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Association between Number of medications coded and Patient age recode {NAMCS 2019 PUF}</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ┌─────────────────┬─────────────────┐</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │         p-value │ Flag            │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────────┼─────────────────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │               0 │ *               │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └─────────────────┴─────────────────┘</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Wald test. *: p-value &lt;= 0.05      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ┌──────────────┬──────────────┐</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │      p-value │ Flag         │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├──────────────┼──────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │            0 │ *            │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> └──────────────┴──────────────┘</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Wald test. *: p &lt;= 0.05      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Comparison of Number of medications coded across all possible pairs of Patient age recode {NAMCS 2019 PUF}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ┌────────────────┬───────────────────┬─────────┬──────┐</span>
@@ -340,7 +345,7 @@ performs t-tests for all possible pairs of levels of <code>vr</code> and <code>v
 <span class="r-out co"><span class="r-pr">#&gt;</span> ├────────────────┼───────────────────┼─────────┼──────┤</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │ 65-74 years    │ 75 years and over │   0.002 │ *    │</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> └────────────────┴───────────────────┴─────────┴──────┘</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Design-based t-test. *: p-value &lt;= 0.05              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Design-based t-test. *: p &lt;= 0.05                    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>

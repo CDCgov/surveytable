@@ -1,5 +1,6 @@
-.test_factor = function(design, vr, drop_na, alpha, csv) {
-  assert_that(alpha > 0, alpha < 0.5)
+.test_factor = function(design, vr, drop_na, alpha, p_adjust, csv) {
+  assert_that(alpha > 0, alpha < 0.5
+              , p_adjust %in% c(TRUE, FALSE))
   if ( !(alpha %in% c(0.05, 0.01, 0.001)) ) {
     warning("Value of alpha is not typical: ", alpha)
   }
@@ -49,6 +50,13 @@
 
   # survey:::svyttest.default
   test_name = "Design-based t-test"
+  if (p_adjust) {
+    method = getOption("surveytable.p.adjust_method", default = "bonferroni")
+    rT$`p-adjusted` = p.adjust(rT$`p-value`
+      , method = method)
+    test_name %<>% paste0("; ", method, " adjustment")
+  }
+
   test_title = paste0("Comparison of all possible pairs of "
                       , .getvarname(design, vr) )
   .test_table(rT = rT

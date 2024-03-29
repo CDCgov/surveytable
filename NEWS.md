@@ -1,5 +1,7 @@
 # surveytable (development version)
 
+* Optionally adjust p-values for multiple comparisons (`p_adjust` argument)
+
 # surveytable 0.9.3
 
 * `codebook()`

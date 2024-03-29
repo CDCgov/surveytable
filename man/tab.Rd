@@ -8,6 +8,7 @@ tab(
   ...,
   test = FALSE,
   alpha = 0.05,
+  p_adjust = FALSE,
   drop_na = getOption("surveytable.drop_na"),
   max_levels = getOption("surveytable.max_levels"),
   csv = getOption("surveytable.csv")
@@ -19,6 +20,8 @@ tab(
 \item{test}{perform hypothesis tests?}
 
 \item{alpha}{significance level for tests}
+
+\item{p_adjust}{adjust p-values for multiple comparisons?}
 
 \item{drop_na}{drop missing values (\code{NA})? Categorical variables only.}
 

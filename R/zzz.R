@@ -47,6 +47,7 @@ env = new.env()
     , surveytable.adjust_svyciprop.df_method = "NHIS"
 
     , surveytable.svychisq_statistic = "F"
+    , surveytable.p.adjust_method = "bonferroni"
   )
   # No - creates a startup message which cannot be suppressed.
   # set_count_1k()

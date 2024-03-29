@@ -21,6 +21,7 @@
 #' @param lvls    (optional) only show these levels of `vrby`
 #' @param test    perform hypothesis tests?
 #' @param alpha   significance level for tests
+#' @param p_adjust adjust p-values for multiple comparisons?
 #' @param drop_na drop missing values (`NA`)? Categorical variables only.
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
 #' @param csv     name of a CSV file
@@ -46,7 +47,7 @@
 #' # Hypothesis testing
 #' tab_subset("NUMMED", "AGER", test = TRUE)
 tab_subset = function(vr, vrby, lvls = c()
-                , test = FALSE, alpha = 0.05
+                , test = FALSE, alpha = 0.05, p_adjust = FALSE
                 # , test_pairs = "depends"
                 , drop_na = getOption("surveytable.drop_na")
                 , max_levels = getOption("surveytable.max_levels")
@@ -54,6 +55,7 @@ tab_subset = function(vr, vrby, lvls = c()
               ) {
   assert_that(test %in% c(TRUE, FALSE)
               , alpha > 0, alpha < 0.5
+              , p_adjust %in% c(TRUE, FALSE)
               # , test_pairs %in% c("depends", "yes", "no")
               )
   design = .load_survey()
@@ -124,7 +126,8 @@ tab_subset = function(vr, vrby, lvls = c()
     # if (test && do_pairs) {
     if (test) {
       frm = as.formula(paste0("~ `", vr, "` + `", vrby, "`"))
-      fo = svychisq(frm, design, statistic = getOption("surveytable.svychisq_statistic"))
+      fo = svychisq(frm, design
+        , statistic = getOption("surveytable.svychisq_statistic", default = "F"))
       rT = data.frame(`p-value` = fo$p.value, check.names = FALSE)
       test_name = fo$method
       test_title = paste0("Association between "
@@ -157,6 +160,7 @@ tab_subset = function(vr, vrby, lvls = c()
                                                     , vr = vr
                                                     , drop_na = drop_na
                                                     , alpha = alpha
+                                                    , p_adjust = p_adjust
                                                     , csv = csv)
       }
 
@@ -174,6 +178,7 @@ tab_subset = function(vr, vrby, lvls = c()
                                                     , vr = vrby
                                                     , drop_na = drop_na
                                                     , alpha = alpha
+                                                    , p_adjust = p_adjust
                                                     , csv = csv)
       }
     }
@@ -238,6 +243,13 @@ tab_subset = function(vr, vrby, lvls = c()
         }
       }
       test_name = xx$method
+      if (p_adjust) {
+        method = getOption("surveytable.p.adjust_method", default = "bonferroni")
+        rT$`p-adjusted` = p.adjust(rT$`p-value`
+                                   , method = method)
+        test_name %<>% paste0("; ", method, " adjustment")
+      }
+
       test_title = paste0("Comparison of "
                           , .getvarname(design, vr)
                           , " across all possible pairs of ", .getvarname(design, vrby))

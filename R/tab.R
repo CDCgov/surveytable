@@ -21,6 +21,7 @@
 #' @param ...     names of variables (in quotes)
 #' @param test    perform hypothesis tests?
 #' @param alpha   significance level for tests
+#' @param p_adjust adjust p-values for multiple comparisons?
 #' @param drop_na drop missing values (`NA`)? Categorical variables only.
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
 #' @param csv     name of a CSV file
@@ -40,7 +41,7 @@
 #' # Hypothesis testing with categorical variables
 #' tab("AGER", test = TRUE)
 tab = function(...
-               , test = FALSE, alpha = 0.05
+               , test = FALSE, alpha = 0.05, p_adjust = FALSE
                , drop_na = getOption("surveytable.drop_na")
                , max_levels = getOption("surveytable.max_levels")
                , csv = getOption("surveytable.csv")
@@ -48,7 +49,8 @@ tab = function(...
 	ret = list()
 	if (...length() > 0) {
 	  assert_that(test %in% c(TRUE, FALSE)
-	              , alpha > 0, alpha < 0.5)
+	              , alpha > 0, alpha < 0.5
+	              , p_adjust %in% c(TRUE, FALSE))
 	  design = .load_survey()
 	  nm = names(design$variables)
 		for (ii in 1:...length()) {
@@ -69,6 +71,7 @@ tab = function(...
                                             , vr = vr
                                             , drop_na = drop_na
                                             , alpha = alpha
+                                            , p_adjust = p_adjust
                                             , csv = csv)
 			  }
 			} else if (is.numeric(design$variables[,vr])) {
