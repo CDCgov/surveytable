@@ -4,7 +4,7 @@
 \alias{var_case}
 \title{Convert factor to logical}
 \usage{
-var_case(newvr, vr, cases)
+var_case(newvr, vr, cases, retain_na = TRUE)
 }
 \arguments{
 \item{newvr}{name of the new logical variable to be created}
@@ -12,6 +12,8 @@ var_case(newvr, vr, cases)
 \item{vr}{factor variable}
 
 \item{cases}{one or more levels of \code{vr} that are converted to \code{TRUE}. All other levels are converted to \code{FALSE}.}
+
+\item{retain_na}{for the observations where \code{vr} is \code{NA}, should \code{newvr} be \code{NA} as well?}
 }
 \value{
 Survey object
@@ -21,12 +23,20 @@ Convert factor to logical
 }
 \examples{
 set_survey(namcs2019sv)
+
 var_case("Preventive care visits", "MAJOR", "Preventive care")
 tab("Preventive care visits")
+
 var_case("Surgery-related visits"
 , "MAJOR"
 , c("Pre-surgery", "Post-surgery"))
 tab("Surgery-related visits")
+
+var_case("Non-primary"
+, "SPECCAT.bad"
+, c("Surgical care specialty", "Medical care specialty"))
+tab("Non-primary")
+tab("Non-primary", drop_na = TRUE)
 }
 \seealso{
 Other variables: 
