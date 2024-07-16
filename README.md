@@ -81,7 +81,7 @@ set_survey(namcs2019sv)
 
 <table class="huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Survey info {namcs2019sv}
+Survey info {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -106,8 +106,8 @@ Design
 </td>
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
 Stratified 1 - level Cluster Sampling design (with replacement)<br>With
-(398) clusters.<br>namcs2019sv = survey::svydesign(ids = ~CPSUM, strata
-= ~CSTRATM, weights = ~PATWT, data = namcs2019sv_df)
+(398) clusters.<br>namcs2019sv = survey::svydesign(ids = ~ CPSUM, strata
+= ~ CSTRATM, weights = ~ PATWT<br> , data = namcs2019sv_df)
 </td>
 </tr>
 </table>
@@ -121,7 +121,7 @@ tab("AGER")
 
 <table class="huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Patient age recode {namcs2019sv}
+Patient age recode {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>

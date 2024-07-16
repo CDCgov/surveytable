@@ -232,11 +232,11 @@ name of the survey object is descriptive, or if the object has the
 attribute for <code>mysurvey</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">mysurvey</span>, <span class="st">"label"</span><span class="op">)</span> <span class="op">=</span> <span class="st">"NAMCS 2019 PUF"</span></span></code></pre></div>
-<p>The <code>mysurvey</code> object should now be identical to
+<p>The <code>mysurvey</code> object should now be the same as
 <code>namcs2019sv</code>. Let’s verify this:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">namcs2019sv</span>, <span class="va">mysurvey</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">namcs2019sv</span>, <span class="va">mysurvey</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>We have just successfully created a survey object from a data
 frame.</p>
 </div>
@@ -249,7 +249,7 @@ frame.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Survey info {namcs2019sv}
+Survey info {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -274,8 +274,8 @@ Design
 </td>
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
 Stratified 1 - level Cluster Sampling design (with replacement)<br>With
-(398) clusters.<br>namcs2019sv = survey::svydesign(ids = ~CPSUM, strata
-= ~CSTRATM, weights = ~PATWT, data = namcs2019sv_df)
+(398) clusters.<br>namcs2019sv = survey::svydesign(ids = ~ CPSUM, strata
+= ~ CSTRATM, weights = ~ PATWT<br> , data = namcs2019sv_df)
 </td>
 </tr>
 </table>
@@ -293,7 +293,7 @@ letters <code>age</code>, type:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/var_list.html">var_list</a></span><span class="op">(</span><span class="st">"age"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Variables beginning with ‘age’ {namcs2019sv}
+Variables beginning with ‘age’ {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -355,7 +355,7 @@ percentages, with their SEs and CIs. For example, to tabulate
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Patient age recode {namcs2019sv}
+Patient age recode {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -621,7 +621,7 @@ tabulate <code>PAYNOCHG</code>:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"PAYNOCHG"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Expected source of payment for visit: No Charge/Charity {namcs2019sv}
+Expected source of payment for visit: No Charge/Charity {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -758,7 +758,7 @@ this example:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"SPECCAT.bad"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Type of specialty (BAD - do not use) {namcs2019sv}
+Type of specialty (BAD - do not use) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -942,7 +942,7 @@ the <code>drop_na</code> argument:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"SPECCAT.bad"</span>, drop_na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Type of specialty (BAD - do not use) (knowns only) {namcs2019sv}
+Type of specialty (BAD - do not use) (knowns only) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -1096,7 +1096,7 @@ a single command:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"MDDO"</span>, <span class="st">"SPECCAT"</span>, <span class="st">"MSA"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Type of doctor (MD or DO) {namcs2019sv}
+Type of doctor (MD or DO) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -1212,7 +1212,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 </table>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Type of specialty (Primary, Medical, Surgical) {namcs2019sv}
+Type of specialty (Primary, Medical, Surgical) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -1360,7 +1360,8 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 </table>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Metropolitan Statistical Area Status of physician location {namcs2019sv}
+Metropolitan Statistical Area Status of physician location {NAMCS 2019
+PUF}
 </caption>
 <col>
 <col>
@@ -1483,7 +1484,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/total.html">total</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Total {namcs2019sv}
+Total {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -1540,7 +1541,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"SEX"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Patient age recode (Patient sex = Female) {namcs2019sv}
+Patient age recode (Patient sex = Female) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -1784,7 +1785,7 @@ N = 4609. Checked NCHS presentation standards. Nothing to report.
 </table>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Patient age recode (Patient sex = Male) {namcs2019sv}
+Patient age recode (Patient sex = Male) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -2039,7 +2040,7 @@ Thus, to create a table of the interaction of <code>AGER</code> and
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_cross</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"SEX"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-(Patient age recode) x (Patient sex) {namcs2019sv}
+(Patient age recode) x (Patient sex) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -2495,7 +2496,7 @@ numeric variable, type:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"NUMMED"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Number of medications coded {namcs2019sv}
+Number of medications coded {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -2541,7 +2542,7 @@ the standard deviation (SD).</p>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Number of medications coded (for different levels of Patient age recode)
-{namcs2019sv}
+{NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -2686,7 +2687,7 @@ addition, t-tests for all pairs of levels are performed as well.</p>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Patient age recode (Type of specialty (Primary, Medical, Surgical) =
-Primary care specialty) {namcs2019sv}
+Primary care specialty) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -2931,7 +2932,7 @@ N = 2993. Checked NCHS presentation standards. Nothing to report.
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Patient age recode (Type of specialty (Primary, Medical, Surgical) =
-Surgical care specialty) {namcs2019sv}
+Surgical care specialty) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -3176,7 +3177,7 @@ N = 3050. Checked NCHS presentation standards. Nothing to report.
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Patient age recode (Type of specialty (Primary, Medical, Surgical) =
-Medical care specialty) {namcs2019sv}
+Medical care specialty) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -3421,7 +3422,7 @@ N = 2207. Checked NCHS presentation standards. Nothing to report.
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Association between Patient age recode and Type of specialty (Primary,
-Medical, Surgical) {namcs2019sv}
+Medical, Surgical) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -3450,8 +3451,8 @@ Pearson’s X^2: Rao &amp; Scott adjustment. *: p &lt;= 0.05
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Comparison of all possible pairs of Patient age recode (Type of
-specialty (Primary, Medical, Surgical) = Primary care specialty)
-{namcs2019sv}
+specialty (Primary, Medical, Surgical) = Primary care specialty) {NAMCS
+2019 PUF}
 </caption>
 <col>
 <col>
@@ -3683,8 +3684,8 @@ Design-based t-test. *: p &lt;= 0.05
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Comparison of all possible pairs of Patient age recode (Type of
-specialty (Primary, Medical, Surgical) = Surgical care specialty)
-{namcs2019sv}
+specialty (Primary, Medical, Surgical) = Surgical care specialty) {NAMCS
+2019 PUF}
 </caption>
 <col>
 <col>
@@ -3920,8 +3921,8 @@ Design-based t-test. *: p &lt;= 0.05
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Comparison of all possible pairs of Patient age recode (Type of
-specialty (Primary, Medical, Surgical) = Medical care specialty)
-{namcs2019sv}
+specialty (Primary, Medical, Surgical) = Medical care specialty) {NAMCS
+2019 PUF}
 </caption>
 <col>
 <col>
@@ -4157,7 +4158,7 @@ Design-based t-test. *: p &lt;= 0.05
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Comparison of all possible pairs of Type of specialty (Primary, Medical,
-Surgical) (Patient age recode = Under 15 years) {namcs2019sv}
+Surgical) (Patient age recode = Under 15 years) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -4227,7 +4228,7 @@ Design-based t-test. *: p &lt;= 0.05
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Comparison of all possible pairs of Type of specialty (Primary, Medical,
-Surgical) (Patient age recode = 15-24 years) {namcs2019sv}
+Surgical) (Patient age recode = 15-24 years) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -4297,7 +4298,7 @@ Design-based t-test. *: p &lt;= 0.05
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Comparison of all possible pairs of Type of specialty (Primary, Medical,
-Surgical) (Patient age recode = 25-44 years) {namcs2019sv}
+Surgical) (Patient age recode = 25-44 years) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -4367,7 +4368,7 @@ Design-based t-test. *: p &lt;= 0.05
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Comparison of all possible pairs of Type of specialty (Primary, Medical,
-Surgical) (Patient age recode = 45-64 years) {namcs2019sv}
+Surgical) (Patient age recode = 45-64 years) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -4436,7 +4437,7 @@ Design-based t-test. *: p &lt;= 0.05
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Comparison of all possible pairs of Type of specialty (Primary, Medical,
-Surgical) (Patient age recode = 65-74 years) {namcs2019sv}
+Surgical) (Patient age recode = 65-74 years) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -4505,7 +4506,7 @@ Design-based t-test. *: p &lt;= 0.05
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Comparison of all possible pairs of Type of specialty (Primary, Medical,
-Surgical) (Patient age recode = 75 years and over) {namcs2019sv}
+Surgical) (Patient age recode = 75 years and over) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -4584,7 +4585,7 @@ specialty types.</p>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 MRI (Type of specialty (Primary, Medical, Surgical) = Primary care
-specialty) {namcs2019sv}
+specialty) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -4711,7 +4712,7 @@ rate).
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 MRI (Type of specialty (Primary, Medical, Surgical) = Surgical care
-specialty) {namcs2019sv}
+specialty) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -4828,7 +4829,7 @@ N = 3050. Checked NCHS presentation standards. Nothing to report.
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 MRI (Type of specialty (Primary, Medical, Surgical) = Medical care
-specialty) {namcs2019sv}
+specialty) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -4956,7 +4957,7 @@ rate); Px: suppress percent; Pc: footnote percent - complement.
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Association between MRI and Type of specialty (Primary, Medical,
-Surgical) {namcs2019sv}
+Surgical) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -4984,7 +4985,7 @@ Pearson’s X^2: Rao &amp; Scott adjustment. *: p &lt;= 0.05
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Comparison of all possible pairs of MRI (Type of specialty (Primary,
-Medical, Surgical) = Primary care specialty) {namcs2019sv}
+Medical, Surgical) = Primary care specialty) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -5027,7 +5028,7 @@ Design-based t-test. *: p &lt;= 0.05
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Comparison of all possible pairs of MRI (Type of specialty (Primary,
-Medical, Surgical) = Surgical care specialty) {namcs2019sv}
+Medical, Surgical) = Surgical care specialty) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -5070,7 +5071,7 @@ Design-based t-test. *: p &lt;= 0.05
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Comparison of all possible pairs of MRI (Type of specialty (Primary,
-Medical, Surgical) = Medical care specialty) {namcs2019sv}
+Medical, Surgical) = Medical care specialty) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -5113,7 +5114,7 @@ Design-based t-test. *: p &lt;= 0.05
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Comparison of all possible pairs of Type of specialty (Primary, Medical,
-Surgical) (MRI = FALSE) {namcs2019sv}
+Surgical) (MRI = FALSE) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -5183,7 +5184,7 @@ Design-based t-test. *: p &lt;= 0.05
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Comparison of all possible pairs of Type of specialty (Primary, Medical,
-Surgical) (MRI = TRUE) {namcs2019sv}
+Surgical) (MRI = TRUE) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -5270,7 +5271,7 @@ tabulate <code>MRI</code> without subsetting by
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Number of medications coded (for different levels of Patient age recode)
-{namcs2019sv}
+{NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -5400,7 +5401,7 @@ Under 15 years
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Association between Number of medications coded and Patient age recode
-{namcs2019sv}
+{NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -5429,7 +5430,7 @@ Wald test. *: p &lt;= 0.05
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Comparison of Number of medications coded across all possible pairs of
-Patient age recode {namcs2019sv}
+Patient age recode {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -5676,7 +5677,7 @@ and <code>SPECCAT</code>:</p>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Number of medications coded (for different levels of Type of specialty
-(Primary, Medical, Surgical)) {namcs2019sv}
+(Primary, Medical, Surgical)) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -5755,7 +5756,7 @@ Medical care specialty
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Association between Number of medications coded and Type of specialty
-(Primary, Medical, Surgical) {namcs2019sv}
+(Primary, Medical, Surgical) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -5783,7 +5784,7 @@ Wald test. *: p &lt;= 0.05
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Comparison of Number of medications coded across all possible pairs of
-Type of specialty (Primary, Medical, Surgical) {namcs2019sv}
+Type of specialty (Primary, Medical, Surgical) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -5868,7 +5869,7 @@ statistically similar or different, type:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"SPECCAT"</span>, test <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Type of specialty (Primary, Medical, Surgical) {namcs2019sv}
+Type of specialty (Primary, Medical, Surgical) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -6017,7 +6018,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Comparison of all possible pairs of Type of specialty (Primary, Medical,
-Surgical) {namcs2019sv}
+Surgical) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -6120,7 +6121,7 @@ figures for use in these examples.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/total_rate.html">total_rate</a></span><span class="op">(</span><span class="va">uspop2019</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Total (rate per 100 population) {namcs2019sv}
+Total (rate per 100 population) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -6188,7 +6189,7 @@ is obtained by typing:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">AGER</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Patient age recode (rate per 100 population) {namcs2019sv}
+Patient age recode (rate per 100 population) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -6366,7 +6367,7 @@ following format:</p>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Patient age recode (Patient sex = Female) (rate per 100 population)
-{namcs2019sv}
+{NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -6522,8 +6523,8 @@ N = 4609. Checked NCHS presentation standards. Nothing to report.
 </table>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Patient age recode (Patient sex = Male) (rate per 100 population)
-{namcs2019sv}
+Patient age recode (Patient sex = Male) (rate per 100 population) {NAMCS
+2019 PUF}
 </caption>
 <col>
 <col>
@@ -6689,7 +6690,7 @@ or to create new ones. This section describes how to do this.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"MAJOR"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Major reason for this visit {namcs2019sv}
+Major reason for this visit {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -6975,7 +6976,7 @@ visits, as follows:</p>
 <span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"Preventive care visits"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Preventive care visits {namcs2019sv}
+Preventive care visits {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -7105,7 +7106,7 @@ type:</p>
 <span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"Surgery-related visits"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Surgery-related visits {namcs2019sv}
+Surgery-related visits {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -7226,7 +7227,7 @@ levels <code>Unknown</code> and <code>Blank</code>, among others.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"PRIMCARE"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Are you the patient’s primary care provider? {namcs2019sv}
+Are you the patient’s primary care provider? {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -7425,7 +7426,7 @@ level, type:</p>
 <span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"PRIMCARE"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Are you the patient’s primary care provider? {namcs2019sv}
+Are you the patient’s primary care provider? {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -7577,7 +7578,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGE"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Patient age in years (raw - use caution) {namcs2019sv}
+Patient age in years (raw - use caution) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -7621,7 +7622,7 @@ type:</p>
 <span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"Age group"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Age group {namcs2019sv}
+Age group {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -7856,7 +7857,7 @@ variable, type:</p>
 <span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"Imaging services"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Imaging services {namcs2019sv}
+Imaging services {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -7990,7 +7991,7 @@ the copy, while the original remains unchanged. For example:</p>
 <span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"Age group"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Patient age recode {namcs2019sv}
+Patient age recode {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -8234,7 +8235,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 </table>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Age group {namcs2019sv}
+Age group {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -8431,7 +8432,7 @@ some tables, and then turn off sending output to the file:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"MDDO"</span>, <span class="st">"SPECCAT"</span>, <span class="st">"MSA"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Type of doctor (MD or DO) {namcs2019sv}
+Type of doctor (MD or DO) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -8547,7 +8548,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 </table>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Type of specialty (Primary, Medical, Surgical) {namcs2019sv}
+Type of specialty (Primary, Medical, Surgical) {NAMCS 2019 PUF}
 </caption>
 <col>
 <col>
@@ -8695,7 +8696,8 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 </table>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Metropolitan Statistical Area Status of physician location {namcs2019sv}
+Metropolitan Statistical Area Status of physician location {NAMCS 2019
+PUF}
 </caption>
 <col>
 <col>

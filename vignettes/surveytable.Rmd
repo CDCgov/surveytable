@@ -103,10 +103,10 @@ Tables produced by `surveytable` are clearer if either the name of the survey ob
 attr(mysurvey, "label") = "NAMCS 2019 PUF"
 ```
 
-The `mysurvey` object should now be identical to `namcs2019sv`. Let's verify this:
+The `mysurvey` object should now be the same as `namcs2019sv`. Let's verify this:
 
 ```{r}
-identical(namcs2019sv, mysurvey)
+all.equal(namcs2019sv, mysurvey)
 ```
 
 We have just successfully created a survey object from a data frame. 
