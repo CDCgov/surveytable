@@ -6,20 +6,41 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The `surveytable` package provides short and understandable commands
-that generate tabulated, formatted, and rounded survey estimates. One
-useful function, which operates on categorical and logical variables,
-tabulates estimated counts and percentages with their standard errors
-and confidence intervals. Other functions estimate the total population,
-tabulate survey subsets and variable interactions, tabulate numeric
-variables, perform hypothesis tests, tabulate rates, modify survey
-variables, and save the output. All of the tabulation functions identify
-low-precision estimates using algorithms developed at the National
-Center for Health Statistics (NCHS). If the `surveytable` code is called
-from an R Markdown notebook, it automatically generates HTML or LaTeX
-tables, as appropriate. The package reduces the number of commands that
-users need to execute, which is especially helpful for users new to R or
-to programming.
+`surveytable` is an R package for conveniently tabulating estimates from
+**complex surveys**.
+
+- If you deal with survey objects in R (created with
+  `survey::svydesign()`), then this package is for you.
+
+- Works with **complex surveys** (data systems that involve survey
+  design variables, like weights and strata).
+
+- Works with **unweighted** data as well.
+
+- The `surveytable` package provides short and understandable commands
+  that generate tabulated, formatted, and rounded survey estimates.
+
+- With `surveytable`, you can
+
+  - tabulate estimated counts and percentages, with their standard
+    errors and confidence intervals,
+  - estimate the total population,
+  - tabulate survey subsets and variable interactions,
+  - tabulate numeric variables,
+  - perform hypothesis tests,
+  - tabulate rates,
+  - modify survey variables, and
+  - save the output.
+
+- All of the tabulation functions identify low-precision estimates using
+  National Center for Health Statistics (NCHS) algorithms.
+
+- If the `surveytable` code is called from an R Markdown notebook or a
+  Quarto document, it automatically generates HTML or LaTeX tables, as
+  appropriate.
+
+- The package reduces the number of commands that users need to execute,
+  which is especially helpful for users new to R or to programming.
 
 ## Installation
 
@@ -29,7 +50,7 @@ Install from CRAN:
 install.packages("surveytable")
 ```
 
-or get a development version from GitHub:
+or get the development version from GitHub:
 
 ``` r
 install.packages(c("remotes", "git2r"))
@@ -45,9 +66,14 @@ Find the documentation for `surveytable` here:
 
 Here is a basic example, to get you started.
 
+1.  Load the package:
+
 ``` r
 library(surveytable)
 ```
+
+2.  Specify the survey that you wish you analyze. `surveytable` comes
+    with a survey called `namcs2019sv`, for use in examples.
 
 ``` r
 set_survey(namcs2019sv)
@@ -55,7 +81,7 @@ set_survey(namcs2019sv)
 
 <table class="huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Survey info {NAMCS 2019 PUF}
+Survey info {namcs2019sv}
 </caption>
 <col>
 <col>
@@ -80,11 +106,14 @@ Design
 </td>
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
 Stratified 1 - level Cluster Sampling design (with replacement)<br>With
-(398) clusters.<br>survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM,
-weights = ~PATWT, <br> data = namcs2019sv_df)
+(398) clusters.<br>namcs2019sv = survey::svydesign(ids = ~CPSUM, strata
+= ~CSTRATM, weights = ~PATWT, data = namcs2019sv_df)
 </td>
 </tr>
 </table>
+
+3.  Specify the variable to analyze. In NAMCS, `AGER` is the age
+    category variable:
 
 ``` r
 tab("AGER")
@@ -92,7 +121,7 @@ tab("AGER")
 
 <table class="huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Patient age recode {NAMCS 2019 PUF}
+Patient age recode {namcs2019sv}
 </caption>
 <col>
 <col>
@@ -334,6 +363,18 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 </td>
 </tr>
 </table>
+
+The table shows:
+
+- Descriptive variable name
+- Survey name
+- For each level of the variable:
+  - Number of observations
+  - Estimated count with its SE and 95% CI
+  - Estimated percentage with its SE and 95% CI
+- Sample size
+- Whether any low-precision estimates were found
+
 <!-- CDC standard text -->
 
 ## Public Domain Standard Notice

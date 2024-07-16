@@ -26,3 +26,13 @@
 #' United States as of July 1, 2019. Used for calculating rates. For usage
 #' examples, see the `*_rate` functions.
 "uspop2019"
+
+#' National Study of Long-Term Care Providers (NSLTCP) Residential Care Community (RCC) Services User (SU) 2018 Public Use File (PUF)
+#'
+#' A data system of RCC residents.
+#'
+#' @source
+#' * SAS data: <https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/NPALS/final2018rcc_su_puf.sas7bdat>
+#' * Documentation: <https://www.cdc.gov/nchs/npals/RCCresident-readme03152021vr.pdf>
+#' * Codebook: <https://www.cdc.gov/nchs/data/npals/final2018rcc_su_puf_codebook.pdf>
+"rccsu2018"

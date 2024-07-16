@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">surveytable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.4.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -118,21 +118,21 @@ level of <code>vr</code>.</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                         Survey info {NAMCS 2019 PUF}                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Survey info {namcs2019sv}                          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────┬──────────────┬────────────────────────────────────────────────┐</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │ Variables │ Observations │ Design                                         │</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────┼──────────────┼────────────────────────────────────────────────┤</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │        33 │        8,250 │ Stratified 1 - level Cluster Sampling design   │</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ (with replacement)                             │</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ With (398) clusters.                           │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ survey::svydesign(ids = ~CPSUM, strata =       │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ ~CSTRATM, weights = ~PATWT,                    │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ data = namcs2019sv_df)                         │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ namcs2019sv = survey::svydesign(ids = ~CPSUM,  │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ strata = ~CSTRATM, weights = ~PATWT, data =    │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ namcs2019sv_df)                                │</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> └───────────┴──────────────┴────────────────────────────────────────────────┘</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="co"># pop is a data frame</span></span></span>
 <span class="r-in"><span><span class="fu">tab_rate</span><span class="op">(</span><span class="st">"MSA"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">MSA</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Metropolitan Statistical Area Status of physician location (rate per 100 population) {NAMCS 2019 PUF}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Metropolitan Statistical Area Status of physician location (rate per 100 population) {namcs2019sv}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────────────────┬───────┬───────┬──────┬───────┬───────┐</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │ Level                 │     n │  Rate │   SE │    LL │    UL │</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────────┼───────┼───────┼──────┼───────┼───────┤</span>
@@ -148,7 +148,7 @@ level of <code>vr</code>.</p></dd>
 <span class="r-in"><span><span class="co"># pop is a single number</span></span></span>
 <span class="r-in"><span><span class="fu">tab_rate</span><span class="op">(</span><span class="st">"MDDO"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Rate based on the entire population.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Type of doctor (MD or DO) (rate per 100 population) {NAMCS 2019 PUF}              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Type of doctor (MD or DO) (rate per 100 population) {namcs2019sv}               </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────┐</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │ Level                 │           n │        Rate │          SE │          LL │          UL │</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤</span>

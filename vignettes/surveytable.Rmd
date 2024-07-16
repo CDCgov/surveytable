@@ -16,7 +16,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-The `surveytable` package provides short and understandable commands that generate tabulated, formatted, and rounded survey estimates.
+`surveytable` is an R package for conveniently tabulating estimates from **complex surveys**.
+
+* If you deal with survey objects in R (created with `survey::svydesign()`), then this package is for you.
+* Works with **complex surveys** (data systems that involve survey design variables, like weights and strata).
+* Works with **unweighted** data as well.
 
 # Preliminaries
 
@@ -426,9 +430,8 @@ Here, the `AGER` variable remains unchanged, while the `Age group` variable has 
 
 The `tab*` and `total*` functions have an argument called `csv` that specifies the name of a comma-separated values (CSV) file to save the output to. Alternatively, you can name the default CSV output file using the `set_output()` function. For example, the following directs `surveytable` to send all future output to a CSV file, create some tables, and then turn off sending output to the file:
 
-```{r}
-tmp_file = tempfile(fileext = ".csv")
-suppressMessages( set_output(csv = tmp_file) )
+```r
+set_output(csv = "output.csv")
 ```
 
 ```{r, results='asis'}
@@ -439,6 +442,6 @@ tab("MDDO", "SPECCAT", "MSA")
 set_output(csv = "")
 ```
 
-If the tabulation functions are called from within an R Markdown notebook, they produce HTML tables. This makes it easy to incorporate the output of the `surveytable` package directly into documents, presentations, “shiny” web apps, and other output types.
+If the tabulation functions are called from within an R Markdown notebook or a Quarto document, they produce HTML or LaTeX tables, as appropriate. This makes it easy to incorporate the output of the `surveytable` package directly into documents, presentations, "shiny" web apps, and other output types.
 
 Finally, the tabulation functions return the tables that they produce. More advanced analysts can use this functionality to integrate `surveytable` into other programming tasks.

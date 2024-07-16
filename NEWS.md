@@ -1,5 +1,7 @@
 # surveytable (development version)
 
+* `rccsu2018`
+
 # surveytable 0.9.4
 
 * Optionally adjust p-values for multiple comparisons (`p_adjust` argument)

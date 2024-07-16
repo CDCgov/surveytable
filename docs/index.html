@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">surveytable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.4.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,14 +74,36 @@
 </h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>The <code>surveytable</code> package provides short and understandable commands that generate tabulated, formatted, and rounded survey estimates. One useful function, which operates on categorical and logical variables, tabulates estimated counts and percentages with their standard errors and confidence intervals. Other functions estimate the total population, tabulate survey subsets and variable interactions, tabulate numeric variables, perform hypothesis tests, tabulate rates, modify survey variables, and save the output. All of the tabulation functions identify low-precision estimates using algorithms developed at the National Center for Health Statistics (NCHS). If the <code>surveytable</code> code is called from an R Markdown notebook, it automatically generates HTML or LaTeX tables, as appropriate. The package reduces the number of commands that users need to execute, which is especially helpful for users new to R or to programming.</p>
+<p><code>surveytable</code> is an R package for conveniently tabulating estimates from <strong>complex surveys</strong>.</p>
+<ul>
+<li><p>If you deal with survey objects in R (created with <code><a href="https://rdrr.io/pkg/survey/man/svydesign.html" class="external-link">survey::svydesign()</a></code>), then this package is for you.</p></li>
+<li><p>Works with <strong>complex surveys</strong> (data systems that involve survey design variables, like weights and strata).</p></li>
+<li><p>Works with <strong>unweighted</strong> data as well.</p></li>
+<li><p>The <code>surveytable</code> package provides short and understandable commands that generate tabulated, formatted, and rounded survey estimates.</p></li>
+<li>
+<p>With <code>surveytable</code>, you can</p>
+<ul>
+<li>tabulate estimated counts and percentages, with their standard errors and confidence intervals,</li>
+<li>estimate the total population,</li>
+<li>tabulate survey subsets and variable interactions,</li>
+<li>tabulate numeric variables,</li>
+<li>perform hypothesis tests,</li>
+<li>tabulate rates,</li>
+<li>modify survey variables, and</li>
+<li>save the output.</li>
+</ul>
+</li>
+<li><p>All of the tabulation functions identify low-precision estimates using National Center for Health Statistics (NCHS) algorithms.</p></li>
+<li><p>If the <code>surveytable</code> code is called from an R Markdown notebook or a Quarto document, it automatically generates HTML or LaTeX tables, as appropriate.</p></li>
+<li><p>The package reduces the number of commands that users need to execute, which is especially helpful for users new to R or to programming.</p></li>
+</ul>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>Install from CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"surveytable"</span><span class="op">)</span></span></code></pre></div>
-<p>or get a development version from GitHub:</p>
+<p>or get the development version from GitHub:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"remotes"</span>, <span class="st">"git2r"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"CDCgov/surveytable"</span>, upgrade <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span></span></code></pre></div>
@@ -95,13 +117,19 @@
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <p>Here is a basic example, to get you started.</p>
+<ol style="list-style-type: decimal">
+<li>Load the package:</li>
+</ol>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cdcgov.github.io/surveytable/">surveytable</a></span><span class="op">)</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Specify the survey that you wish you analyze. <code>surveytable</code> comes with a survey called <code>namcs2019sv</code>, for use in examples.</li>
+</ol>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Survey info {NAMCS 2019 PUF}
+Survey info {namcs2019sv}
 </caption>
 <col>
 <col>
@@ -125,15 +153,18 @@ Design
 8,250
 </td>
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-Stratified 1 - level Cluster Sampling design (with replacement)<br>With (398) clusters.<br>survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, <br> data = namcs2019sv_df)
+Stratified 1 - level Cluster Sampling design (with replacement)<br>With (398) clusters.<br>namcs2019sv = survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT, data = namcs2019sv_df)
 </td>
 </tr>
 </table>
+<ol start="3" style="list-style-type: decimal">
+<li>Specify the variable to analyze. In NAMCS, <code>AGER</code> is the age category variable:</li>
+</ol>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
-Patient age recode {NAMCS 2019 PUF}
+Patient age recode {namcs2019sv}
 </caption>
 <col>
 <col>
@@ -375,6 +406,20 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 </td>
 </tr>
 </table>
+<p>The table shows:</p>
+<ul>
+<li>Descriptive variable name</li>
+<li>Survey name</li>
+<li>For each level of the variable:
+<ul>
+<li>Number of observations</li>
+<li>Estimated count with its SE and 95% CI</li>
+<li>Estimated percentage with its SE and 95% CI</li>
+</ul>
+</li>
+<li>Sample size</li>
+<li>Whether any low-precision estimates were found</li>
+</ul>
 <!-- CDC standard text -->
 </div>
 <div class="section level2">
