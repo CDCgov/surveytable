@@ -30,6 +30,10 @@ notable options."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a>
+    <a class="dropdown-item" href="../articles/Example-Residential-Care-Community-Services-User-NSLTCP-RCC-SU-report.html">Example: Residential Care Community Services User (NSLTCP RCC SU) report</a>
+    <div class="dropdown-divider"></div>
+    <h6 class="dropdown-header" data-toc-skip>Advanced</h6>
+    <a class="dropdown-item" href="../articles/Advanced-topics.html">Advanced topics</a>
   </div>
 </li>
 <li class="nav-item">
@@ -64,7 +68,11 @@ notable options.</p>
 
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p><strong>Low-precision estimates.</strong></p><ul><li><p><code>surveytable.find_lpe</code>: should the tabulation functions look for low-precision
+    
+<div class="section">
+<h3 id="low-precision-estimates-">Low-precision estimates.<a class="anchor" aria-label="anchor" href="#low-precision-estimates-"></a></h3>
+
+<ul><li><p><code>surveytable.find_lpe</code>: should the tabulation functions look for low-precision
 estimates? You can change this directly with <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code> or with the <code>opts</code> argument
 to <code><a href="set_survey.html">set_survey()</a></code>.</p></li>
 <li><p><code>surveytable.lpe_n</code>, <code>surveytable.lpe_counts</code>, <code>surveytable.lpe_percents</code>: names
@@ -94,6 +102,8 @@ the longer descriptions.</p></li>
 indicates that for the first and third level, nothing was found, whereas for the second
 level, two different things were found, indicated by short codes <code>A1</code> and <code>A2</code>. In
 this case, <code>has.flag = c("A1", "A2")</code>, <code>descriptions = c(A1 = "A1: something", A2 = "A2: something else")</code>.</p>
+</div>
+
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

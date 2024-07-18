@@ -1,5 +1,7 @@
 #' Show package options
 #'
+#' See [surveytable-options] for a discussion of some of the options.
+#'
 #' @param sw  starting characters
 #'
 #' @return List of options and their values.

@@ -13,7 +13,7 @@ show_options(sw = "surveytable")
 List of options and their values.
 }
 \description{
-Show package options
+See \link{surveytable-options} for a discussion of some of the options.
 }
 \examples{
 show_options()

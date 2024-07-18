@@ -11,7 +11,7 @@ vrs = c("CPSUM", "CSTRATM", "PATWT" # survey design
         , "NUMMED" # numeric variable
         , "ANYIMAGE", "BONEDENS", "CATSCAN", "ECHOCARD", "OTHULTRA"
         , "MAMMO", "MRI", "XRAY", "OTHIMAGE" # imaging
-)  %>% unique
+) %>% unique
 
 namcs2019sv_df = namcs2019$variables[,vrs]
 
@@ -23,7 +23,7 @@ idx = sample.int(n = nr, size = round(0.2 * nr))
 namcs2019sv_df[idx, vr] = NA
 attr(namcs2019sv_df[,vr], "label") = "Type of specialty (BAD - do not use)"
 
-namcs2019sv = survey::svydesign(ids = ~ CPSUM, strata = ~ CSTRATM, weights = ~ PATWT
+namcs2019sv = survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM, weights = ~PATWT
   , data = namcs2019sv_df)
 attr(namcs2019sv, "label") = "NAMCS 2019 PUF"
 

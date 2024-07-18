@@ -1,0 +1,100 @@
+---
+title: "Advanced topics"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Advanced topics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE
+  # , comment = "#>"
+)
+```
+
+# Subsetting a survey
+
+Consider this example, in which we estimate the number of medications by age group:
+
+```{r, results='asis', message=FALSE}
+library(surveytable)
+set_survey(namcs2019sv)
+```
+
+```{r, results='asis'}
+tab_subset("NUMMED", "AGER")
+```
+
+What if we'd like to estimate the same thing, but only for the visits for which `NUMMED > 0`?
+
+One way to do this is to create another survey object for which `NUMMED > 0`, and then analyze this new survey object. 
+
+```{r, results='asis'}
+newsurvey = survey_subset(namcs2019sv, NUMMED > 0
+  , label = "NAMCS 2019 PUF: NUMMED 1+")
+set_survey(newsurvey)
+```
+
+Note that we called `set_survey()`, to let R know that we now want to analyze the new object `newsurvey`, not `namcs2019sv`. 
+
+Now, let's create the table:
+
+```{r, results='asis'}
+tab_subset("NUMMED", "AGER")
+```
+
+Be sure to check the table title to verify that you are tabulating the new survey object. 
+
+# Advanced variable editing and data flow
+
+## Advanced variable editing
+
+First, let's review what I call "advanced variable editing".
+
+* `surveytable` provides a number of functions to create or modify survey variables. 
+* Some examples include `var_collapse()` and `var_cut()`.
+* Occasionally, you might need to do advanced variable editing. Here's how:
+
+* Every survey object has an element called `variables`
+* This is a data frame where the survey's variables are located
+
+1. Create a new variable in the `variables` data frame (which is part of the survey object).
+2. Call `set_survey()` again. Any time you modify the `variables` data frame, call `set_survey()`.
+3. Tabulate the new variable.
+
+For an example of this, see `vignette("Example-Residential-Care-Community-Services-User-NSLTCP-RCC-SU-report")`.
+
+## Data flow
+
+The above explanation raises the question of why `set_survey()` must be called again, after `variables` is modified. Here is an explanation:
+
+The survey that you're analyzing actually exists in **three** separate places: 
+
+1. A file on your computer data storage that contains the survey object. For example, it could be an RDS file on your hard disk drive that contains the survey object named something like `mysurvey.rds`.
+2. The survey object in R's global environment, named something like `mysurvey`.
+3. A hidden copy of the survey object that's used by `surveytable`. **This is what `surveytable` analyzes**. 
+
+Why is there (3) that's different from (2), you might ask. That's due to an arcane issue with how R packages work -- both (2) and (3) are necessary. 
+
+Normally, **the information only flows forwards**, from (1) to (2) and from (2) to (3). 
+
+Forwards flow:
+
+* Going from (1) to (2): call `readRDS()`.
+* Going from (2) to (3): call `set_survey()`.
+
+Backwards flow:
+
+* Going from (3) to (2): package users typically do not need to do this. 
+* Going from (2) to (1): call `saveRDS()`. Normally, you probably don't want to do this. Normally, the survey file (`mysurvey.rds`) should probably not be changed. 
+
+The functions for modifying or creating variables that are part of the `surveytable` package (like `var_cut()` or `var_collapse()`) modify (3). Since (3) is what `surveytable` works with and tabulates, you can call `var_collapse()`, and then you can call `tab()`. You don't need to do anything extra in between. 
+
+If you are modifying the `variables` data frame directly, you are actually modifying (2). After you modify (2), you need to copy it over to (3), so that `surveytable` can use it. You do that by calling `set_survey()`. 
+
+Thus, any time you modify `variables` yourself, call `set_survey()`. You modify (2), then copy (2) -> (3) by calling `set_survey()`. 
+
+On the flip side, the changes that you make in (3) (using `surveytable` functions like `var_cut()` or `var_collapse()`) are not reflected in (2). If you make changes in (3), then call `set_survey()`, **those changes are lost**, because `set_survey()` copies (2) -> (3). If those changes were important, you can just rerun the code that created them. 
+

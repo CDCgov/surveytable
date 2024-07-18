@@ -1,0 +1,215 @@
+---
+title: "Example: Residential Care Community Services User (NSLTCP RCC SU) report"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Example: Residential Care Community Services User (NSLTCP RCC SU) report}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE
+  # , comment = "#>"
+)
+```
+
+This example uses the National Study of Long-Term Care Providers (NSLTCP) Residential Care Community (RCC) Services User (SU) 2018 Public Use File (PUF) to replicate the estimates from a report called [Residential Care Community Resident Characteristics: United States, 2018](https://www.cdc.gov/nchs/products/databriefs/db404.htm). "The survey used a sample of residential care community residents, obtained from a frame that was constructed from lists of licensed residential care communities acquired from the state licensing agencies in each of the 50 states and the District of Columbia."
+
+The RCC SU 2018 survey comes with the `surveytable` package, for use in examples, in an object called `rccsu2018`.
+
+# Begin
+
+Begin by loading the `surveytable` package. When you do, it will print a message explaining how to specify the survey that you'd like to analyze.  
+
+```{r, results=FALSE, message=FALSE, warning=FALSE}
+library(surveytable)
+```
+
+Now, specify the survey that you'd like to analyze.
+
+```{r, results='asis'}
+set_survey(rccsu2018)
+```
+
+Check the survey name, survey design variables, and the number of observations to verify that it all looks correct.
+
+# Figure 1
+
+This figure shows the percentage of residents by sex, race / ethnicity, and age group.
+
+**Sex.** 
+
+```{r, results='asis'}
+tab("sex")
+```
+
+**Race / ethnicity.**
+
+```{r, results='asis'}
+var_list("race")
+tab("raceeth2")
+```
+
+In the published figure, the Hispanic and Other categories have been merged into a single category called "Another race or ethnicity". We can do that using the `var_collapse()` function.
+
+```{r, results='asis'}
+var_collapse("raceeth2"
+             , "Another race or ethnicity"
+             , c("Hispanic", "Other"))
+tab("raceeth2")
+```
+
+**Age group.**
+
+```{r, results='asis'}
+var_list("age")
+```
+
+`age2` is a numeric variable. We need to create a categorical variable based on this numeric variable. This is done using the `var_cut()` function. 
+
+```{r, results='asis'}
+var_cut("Age", "age2"
+        , c(-Inf, 64, 74, 84, Inf)
+        , c("Under 65", "65-74", "75-84", "85 and over") )
+tab("Age")
+```
+
+# Figure 2
+
+This figure shows the percentage of residents with Medicaid, overall and by age group.
+
+```{r, results='asis'}
+tab("medicaid2")
+```
+
+As we can see, for some observations, the value of this variable is unknown (it's missing or `NA`). The above command calculates percentages based on all observations, including the ones with missing (`NA`) values. However, in the published figure, the percentages are based on the knowns only. To exclude the `NA`'s from the calculation, use the `drop_na` argument:
+
+```{r, results='asis'}
+tab("medicaid2", drop_na = TRUE)
+```
+
+Note that the table title alerts you to the fact that you are using known values only.
+
+By age group:
+
+```{r, results='asis'}
+tab_subset("medicaid2", "Age", drop_na = TRUE)
+```
+
+Note that according to the NCHS presentation criteria, some of the percentages should be suppressed.
+
+# Figure 4
+(Figure 3 is slightly more involved, so we'll do it next.)
+
+* This figure shows the percentage of residents who have one of a select set of chronic conditions. 
+* In addition, it shows the distribution of residents by the number of conditions. 
+
+Here's a table for high blood pressure. 
+
+```{r, results='asis'}
+tab("hbp")
+```
+
+Once again, unknown values (`NA`) are present, while the figure is based on knowns only. Therefore, we again will use the `drop_na` argument:
+
+```{r, results='asis'}
+tab("hbp", "alz", "depress", "arth", "diabetes", "heartdise", "osteo"
+    , "copd", "stroke", "cancer"
+    , drop_na = TRUE)
+```
+
+## Advanced variable editing
+
+* `surveytable` provides a number of functions to create or modify survey variables. 
+* We saw a couple of these above: `var_collapse()` and `var_cut()`.
+* Occasionally, you might need to do advanced variable editing. Here's how:
+
+* Every survey object has an element called `variables`
+* This is a data frame where the survey's variables are located
+  
+```{r}
+class(rccsu2018$variables)
+```
+
+1. Create a new variable in the `variables` data frame (which is part of the survey object).
+2. Call `set_survey()` again. Any time you modify the `variables` data frame, call `set_survey()`.
+3. Tabulate the new variable.
+
+We go through these steps to **count how many chronic conditions were present**.
+
+```{r, results='asis'}
+rccsu2018$variables$num_cc = 0
+for (vr in c("hbp", "alz", "depress", "arth", "diabetes", "heartdise", "osteo"
+             , "copd", "stroke", "cancer")) {
+  idx = which(rccsu2018$variables[,vr])
+  rccsu2018$variables$num_cc[idx] = rccsu2018$variables$num_cc[idx] + 1
+}
+set_survey(rccsu2018)
+```
+
+`num_cc` is a numeric variable with the number of chronic conditions. The published figure uses a categorical variable which is based on this numeric variable. Use `var_cut()`, which converts numeric variables to categorical (`factor`) variables.
+
+```{r, results='asis'}
+var_cut("Number of chronic conditions", "num_cc"
+        , c(-Inf, 0, 1, 3, 10, Inf)
+        , c("0", "1", "2-3", "4-10", "??"))
+tab("Number of chronic conditions")
+```
+
+# Figure 3
+
+* This figure shows the percentage of residents who need help with one of the activities of daily living (ADLs). 
+* In addition, it shows the distribution of residents by the number of ADLs with which they need help.
+
+Here's a table for `bathhlp` (help with bathing):
+
+```{r, results='asis'}
+tab("bathhlp")
+```
+
+This variable has multiple levels.
+
+* Several of these levels correspond to a resident needing help, 
+* One level (`"NEED NO ASSISTANCE"`) = does not need help
+* One level (`"MISSING"`) = unknown
+
+We want to show (resident needing help) as a percentage of knowns only (that is, excluding the unknowns). 
+
+To do this, convert the variable to having 2 levels (needs help / does not need help) plus `NA` (for unknown); then use the `drop_na` argument to base percentages on knowns only.
+
+```{r, results='asis'}
+for (vr in c("bathhlp", "walkhlp", "dreshlp", "transhlp", "toilhlp", "eathlp")) {
+  var_collapse(vr
+    , "Needs assistance"
+    , c("NEED HELP OR SUPERVISION FROM ANOTHER PERSON"
+      , "USE OF AN ASSISTIVE DEVICE"
+      , "BOTH"))
+  var_collapse(vr, NA, "MISSING")
+}
+
+tab("bathhlp", "walkhlp", "dreshlp", "transhlp", "toilhlp", "eathlp", drop_na = TRUE)
+```
+
+Now, go through the "advanced variable editing" steps -- very similar to Figure 4 -- to **count how many ADLs were present**. 
+
+```{r, results='asis'}
+rccsu2018$variables$num_adl = 0
+for (vr in c("bathhlp", "walkhlp", "dreshlp", "transhlp", "toilhlp", "eathlp")) {
+  idx = which(rccsu2018$variables[,vr] %in%
+    c("NEED HELP OR SUPERVISION FROM ANOTHER PERSON"
+      , "USE OF AN ASSISTIVE DEVICE"
+      , "BOTH"))
+  rccsu2018$variables$num_adl[idx] = rccsu2018$variables$num_adl[idx] + 1
+}
+set_survey(rccsu2018)
+```
+
+For generating the figure, create a categorical variable based on `num_adl`, which is numeric. 
+
+```{r, results='asis'}
+var_cut("Number of ADLs", "num_adl"
+        , c(-Inf, 0, 2, 6, Inf)
+        , c("0", "1-2", "3-6", "??"))
+tab("Number of ADLs")
+```

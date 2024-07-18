@@ -41,3 +41,14 @@ reference:
   - survey_subset
   - svyciprop_adjusted
   - print.surveytable_table
+
+articles:
+- title: Examples
+  navbar: ~
+  contents:
+  - Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables
+  - Example-Residential-Care-Community-Services-User-NSLTCP-RCC-SU-report
+- title: Advanced
+  navbar: Advanced
+  contents:
+  - Advanced-topics

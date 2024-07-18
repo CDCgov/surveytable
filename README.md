@@ -106,8 +106,8 @@ Design
 </td>
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
 Stratified 1 - level Cluster Sampling design (with replacement)<br>With
-(398) clusters.<br>namcs2019sv = survey::svydesign(ids = ~ CPSUM, strata
-= ~ CSTRATM, weights = ~ PATWT<br> , data = namcs2019sv_df)
+(398) clusters.<br>namcs2019sv = survey::svydesign(ids = ~CPSUM, strata
+= ~CSTRATM, weights = ~PATWT<br> , data = namcs2019sv_df)
 </td>
 </tr>
 </table>

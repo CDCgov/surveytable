@@ -14,10 +14,10 @@ NULL
 
 #' Package options
 #'
-#' Run [`show_options()`] to see available options. Here is a description of some
+#' Run [show_options()] to see available options. Here is a description of some
 #' notable options.
 #'
-#' **Low-precision estimates.**
+#' ## Low-precision estimates.
 #'
 #' * `surveytable.find_lpe`: should the tabulation functions look for low-precision
 #' estimates? You can change this directly with `options()` or with the `opts` argument

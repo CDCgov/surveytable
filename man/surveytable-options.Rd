@@ -9,7 +9,7 @@ Run \code{\link[=show_options]{show_options()}} to see available options. Here i
 notable options.
 }
 \details{
-\strong{Low-precision estimates.}
+\subsection{Low-precision estimates.}{
 \itemize{
 \item \code{surveytable.find_lpe}: should the tabulation functions look for low-precision
 estimates? You can change this directly with \code{options()} or with the \code{opts} argument
@@ -56,6 +56,7 @@ For example, if a variable has 3 levels, \code{flags} might be \code{c("", "A1 A
 indicates that for the first and third level, nothing was found, whereas for the second
 level, two different things were found, indicated by short codes \code{A1} and \code{A2}. In
 this case, \code{has.flag = c("A1", "A2")}, \code{descriptions = c(A1 = "A1: something", A2 = "A2: something else")}.
+}
 }
 \seealso{
 Useful links:
