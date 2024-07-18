@@ -498,8 +498,9 @@ necessary.</p>
 </ul>
 <p>Backwards flow:</p>
 <ul>
-<li>Going from (3) to (2): package users typically do not need to do
-this.</li>
+<li>Going from (3) to (2): you probably don’t need this, but see below.
+If you really need this, call
+<code>surveytable:::.load_survey()</code>.</li>
 <li>Going from (2) to (1): call <code><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS()</a></code>. Normally, you
 probably don’t want to do this. Normally, the survey file
 (<code>mysurvey.rds</code>) should probably not be changed.</li>
@@ -523,7 +524,8 @@ calling <code><a href="../reference/set_survey.html">set_survey()</a></code>.</p
 changes in (3), then call <code><a href="../reference/set_survey.html">set_survey()</a></code>, <strong>those
 changes are lost</strong>, because <code><a href="../reference/set_survey.html">set_survey()</a></code> copies (2)
 -&gt; (3). If those changes were important, you can just rerun the code
-that created them.</p>
+that created them. If you really need to go from (3) to (2), use
+<code>mysurvey = surveytable:::.load_survey()</code>.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

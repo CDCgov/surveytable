@@ -90,6 +90,10 @@ set_survey = function(design, opts = "NCHS"
         , " (survey.design or svyrep.design) or a data.frame for an unweighted survey."
         , " Is: ", class(design)[1] ))
 
+  # get rid of non-`data.frame` classes (like tbl_df, tbl), which cause problems for some reason
+  assert_that(is.data.frame(design$variables))
+  design$variables %<>% as.data.frame()
+
   if(inherits(design, "svyrep.design") && !isTRUE(attr(design, "prob_set"))) {
     assert_that(!("prob" %in% names(design))
       , msg = "prob already exists")

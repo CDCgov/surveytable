@@ -87,7 +87,7 @@ Forwards flow:
 
 Backwards flow:
 
-* Going from (3) to (2): package users typically do not need to do this. 
+* Going from (3) to (2): you probably don't need this, but see below. If you really need this, call `surveytable:::.load_survey()`.
 * Going from (2) to (1): call `saveRDS()`. Normally, you probably don't want to do this. Normally, the survey file (`mysurvey.rds`) should probably not be changed. 
 
 The functions for modifying or creating variables that are part of the `surveytable` package (like `var_cut()` or `var_collapse()`) modify (3). Since (3) is what `surveytable` works with and tabulates, you can call `var_collapse()`, and then you can call `tab()`. You don't need to do anything extra in between. 
@@ -96,5 +96,5 @@ If you are modifying the `variables` data frame directly, you are actually modif
 
 Thus, any time you modify `variables` yourself, call `set_survey()`. You modify (2), then copy (2) -> (3) by calling `set_survey()`. 
 
-On the flip side, the changes that you make in (3) (using `surveytable` functions like `var_cut()` or `var_collapse()`) are not reflected in (2). If you make changes in (3), then call `set_survey()`, **those changes are lost**, because `set_survey()` copies (2) -> (3). If those changes were important, you can just rerun the code that created them. 
+On the flip side, the changes that you make in (3) (using `surveytable` functions like `var_cut()` or `var_collapse()`) are not reflected in (2). If you make changes in (3), then call `set_survey()`, **those changes are lost**, because `set_survey()` copies (2) -> (3). If those changes were important, you can just rerun the code that created them. If you really need to go from (3) to (2), use `mysurvey = surveytable:::.load_survey()`.
 
