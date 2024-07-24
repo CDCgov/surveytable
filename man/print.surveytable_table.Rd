@@ -7,7 +7,7 @@
 \usage{
 \method{print}{surveytable_table}(x, .output = NULL, ...)
 
-\method{print}{surveytable_list}(x, ...)
+\method{print}{surveytable_list}(x, .output = NULL, ...)
 }
 \arguments{
 \item{x}{an object of class \code{surveytable_table} or \code{surveytable_list}.}

@@ -102,7 +102,14 @@ tab = function(...
 			class(design$variables[,vr])[1] ))
 	design$variables[,vr] %<>% droplevels
 	if (drop_na) {
+	  idx = which(is.na(levels(design$variables[,vr])))
+	  if (length(idx) > 0) {
+	    idx.ok = which( !(design$variables[,vr] %>% as.numeric %in% idx))
+      design = design[idx.ok,]
+      design$variables[,vr] %<>% droplevels
+	  }
 	  design = design[which(!is.na(design$variables[,vr])),]
+
 	  if(inherits(design, "svyrep.design")) {
 	    design$prob = 1 / design$pweights
 	  }

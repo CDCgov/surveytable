@@ -23,10 +23,13 @@ Create a new categorical variable based on a numeric variable.
 }
 \examples{
 set_survey(namcs2019sv)
+# In some data systems, variables might contain "special values". For example,
+# negative values might indicate unknowns (which should be coded as `NA`).
+# Though in this particular data, there are no unknowns.
 var_cut("Age group"
-, "AGE"
-, c(-Inf, 0, 4, 14, 64, Inf)
-, c("Under 1", "1-4", "5-14", "15-64", "65 and over"))
+  , "AGE"
+  , c(-Inf, -0.1, 0, 4, 14, 64, Inf)
+  , c(NA, "Under 1", "1-4", "5-14", "15-64", "65 and over"))
 tab("Age group")
 }
 \seealso{

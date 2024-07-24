@@ -382,9 +382,10 @@ tab("AGE")
 To create a new variable of age categories based on `AGE`, type:
 
 ```{r, results='asis'}
-var_cut("Age group", "AGE"
-        , c(-Inf, 0, 4, 14, 64, Inf)
-        , c("Under 1", "1-4", "5-14", "15-64", "65 and over") )
+var_cut("Age group"
+   , "AGE"
+   , c(-Inf, -0.1, 0, 4, 14, 64, Inf)
+   , c(NA, "Under 1", "1-4", "5-14", "15-64", "65 and over"))
 tab("Age group")
 ```
 
@@ -394,6 +395,8 @@ In the `var_cut()` command, specify the following information:
 * name of the existing numeric variable;
 * cut points -- note that the intervals are inclusive on the right; and  
 * category labels.
+
+Be cognizant of any "special values" that the numeric variable might have. In some data systems, negative values indicate unknowns, which should be coded as `NA`. That's what we do here -- any value between `-Inf` and `-0.1` gets coded as missing (`NA`). Though in this particular data, there are no unknowns and no "special values".
 
 **Check whether any variable is true.** For a series of logical variables, you can check whether any of them are `TRUE` using the `var_any()` command. 
 

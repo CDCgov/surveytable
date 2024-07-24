@@ -19,11 +19,14 @@ print.surveytable_table = function(x, .output = NULL, ...) {
 
   # See inside guess_knitr_output_format
   fo = ""
-  if (requireNamespace("knitr", quietly = TRUE)
-      && requireNamespace("rmarkdown", quietly = TRUE)) {
-    fo = guess_knitr_output_format()
+  if (!is.null(.output)) {
+    fo = .output
+  } else {
+    if (requireNamespace("knitr", quietly = TRUE)
+        && requireNamespace("rmarkdown", quietly = TRUE)) {
+      fo = guess_knitr_output_format()
+    }
   }
-  if (!is.null(.output)) fo = .output
 
   if (fo == "latex") {
     hh = df1 %>%
@@ -121,10 +124,10 @@ print.surveytable_table = function(x, .output = NULL, ...) {
 
 #' @rdname print.surveytable_table
 #' @export
-print.surveytable_list = function(x, ...) {
+print.surveytable_list = function(x, .output = NULL, ...) {
   if (length(x) > 0) {
     for (ii in 1:length(x)) {
-      print.surveytable_table(x[[ii]])
+      print.surveytable_table(x[[ii]], .output = .output)
     }
   }
   invisible(x)

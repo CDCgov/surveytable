@@ -43,9 +43,9 @@ var_cross = function(newvr, vr, vrby) {
   design$variables[,newvr] = interaction(x1, x2
                               , drop = TRUE
                               , sep = ": ")
-  attr(design$variables[,newvr], "label") = paste0(
-    "(", .getvarname(design, vr), ") x ("
-    , .getvarname(design, vrby), ")")
+  # attr(design$variables[,newvr], "label") = paste0(
+  #   "(", .getvarname(design, vr), ") x ("
+  #   , .getvarname(design, vrby), ")")
 
   env$survey = design
 }

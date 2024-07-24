@@ -7620,9 +7620,10 @@ SD
 <p>To create a new variable of age categories based on <code>AGE</code>,
 type:</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/var_cut.html">var_cut</a></span><span class="op">(</span><span class="st">"Age group"</span>, <span class="st">"AGE"</span></span>
-<span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fl">0</span>, <span class="fl">4</span>, <span class="fl">14</span>, <span class="fl">64</span>, <span class="cn">Inf</span><span class="op">)</span></span>
-<span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Under 1"</span>, <span class="st">"1-4"</span>, <span class="st">"5-14"</span>, <span class="st">"15-64"</span>, <span class="st">"65 and over"</span><span class="op">)</span> <span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/var_cut.html">var_cut</a></span><span class="op">(</span><span class="st">"Age group"</span></span>
+<span>   , <span class="st">"AGE"</span></span>
+<span>   , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="fl">0</span>, <span class="fl">4</span>, <span class="fl">14</span>, <span class="fl">64</span>, <span class="cn">Inf</span><span class="op">)</span></span>
+<span>   , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"Under 1"</span>, <span class="st">"1-4"</span>, <span class="st">"5-14"</span>, <span class="st">"15-64"</span>, <span class="st">"65 and over"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"Age group"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -7846,6 +7847,12 @@ and<br>
 </li>
 <li>category labels.</li>
 </ul>
+<p>Be cognizant of any “special values” that the numeric variable might
+have. In some data systems, negative values indicate unknowns, which
+should be coded as <code>NA</code>. That’s what we do here – any value
+between <code>-Inf</code> and <code>-0.1</code> gets coded as missing
+(<code>NA</code>). Though in this particular data, there are no unknowns
+and no “special values”.</p>
 <p><strong>Check whether any variable is true.</strong> For a series of
 logical variables, you can check whether any of them are
 <code>TRUE</code> using the <code><a href="../reference/var_any.html">var_any()</a></code> command.</p>
