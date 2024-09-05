@@ -54,7 +54,7 @@ Be sure to check the table title to verify that you are tabulating the new surve
 First, let's review what I call "advanced variable editing".
 
 * `surveytable` provides a number of functions to create or modify survey variables. 
-* Some examples include `var_collapse()` and `var_cut()`.
+* Some examples include [var_collapse()] and [var_cut()].
 * Occasionally, you might need to do advanced variable editing. Here's how:
 
 * Every survey object has an element called `variables`

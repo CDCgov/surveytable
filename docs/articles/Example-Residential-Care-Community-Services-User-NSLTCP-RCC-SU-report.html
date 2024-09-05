@@ -108,7 +108,8 @@ like to analyze.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cdcgov.github.io/surveytable/">surveytable</a></span><span class="op">)</span></span></code></pre></div>
 <p>Now, specify the survey that you’d like to analyze.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">rccsu2018</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">rccsu2018</span><span class="op">)</span></span>
+<span><span class="co">## * Mode: General.</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Survey info {RCC SU 2018 PUF}
@@ -143,6 +144,50 @@ d1)
 </table>
 <p>Check the survey name, survey design variables, and the number of
 observations to verify that it all looks correct.</p>
+<p>For this example, we do want to turn on certain NCHS-specific
+options, such as identifying low-precision estimates. If you do not care
+about identifying low-precision estimates, you can skip this command. To
+turn on the NCHS-specific options:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_survey.html">set_mode</a></span><span class="op">(</span><span class="st">"NCHS"</span><span class="op">)</span></span>
+<span><span class="co">## * Mode: NCHS.</span></span></code></pre></div>
+<p>Alternatively, you can combine these two commands into a single
+command, like so:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">rccsu2018</span>, mode <span class="op">=</span> <span class="st">"NCHS"</span><span class="op">)</span></span>
+<span><span class="co">## * Mode: NCHS.</span></span></code></pre></div>
+<table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
+<caption style="caption-side: top; text-align: center;">
+Survey info {RCC SU 2018 PUF}
+</caption>
+<col>
+<col>
+<col>
+<tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Variables
+</th>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Observations
+</th>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Design
+</th>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+81
+</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+904
+</td>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
+Stratified Independent Sampling design<br>svydesign(ids = ~1, strata =
+~pufstrata2 + su_facid, fpc = ~pufpopfac2, <br> weights = ~suwt, data =
+d1)
+</td>
+</tr>
+</table>
 </div>
 <div class="section level2">
 <h2 id="figure-1">Figure 1<a class="anchor" aria-label="anchor" href="#figure-1"></a>
@@ -150,7 +195,7 @@ observations to verify that it all looks correct.</p>
 <p>This figure shows the percentage of residents by sex, race /
 ethnicity, and age group.</p>
 <p><strong>Sex.</strong></p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"sex"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -269,7 +314,7 @@ N = 904. Checked NCHS presentation standards. Nothing to report.
 </tr>
 </table>
 <p><strong>Race / ethnicity.</strong></p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/var_list.html">var_list</a></span><span class="op">(</span><span class="st">"race"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -301,7 +346,7 @@ Resident’s race/ethnicity
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"raceeth2"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -500,7 +545,7 @@ rate).
 <p>In the published figure, the Hispanic and Other categories have been
 merged into a single category called “Another race or ethnicity”. We can
 do that using the <code><a href="../reference/var_collapse.html">var_collapse()</a></code> function.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/var_collapse.html">var_collapse</a></span><span class="op">(</span><span class="st">"raceeth2"</span></span>
 <span>             , <span class="st">"Another race or ethnicity"</span></span>
 <span>             , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Hispanic"</span>, <span class="st">"Other"</span><span class="op">)</span><span class="op">)</span></span>
@@ -654,7 +699,7 @@ N = 904. Checked NCHS presentation standards. Nothing to report.
 </tr>
 </table>
 <p><strong>Age group.</strong></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/var_list.html">var_list</a></span><span class="op">(</span><span class="st">"age"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -689,7 +734,7 @@ Resident’s age
 <p><code>age2</code> is a numeric variable. We need to create a
 categorical variable based on this numeric variable. This is done using
 the <code><a href="../reference/var_cut.html">var_cut()</a></code> function.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/var_cut.html">var_cut</a></span><span class="op">(</span><span class="st">"Age"</span>, <span class="st">"age2"</span></span>
 <span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fl">64</span>, <span class="fl">74</span>, <span class="fl">84</span>, <span class="cn">Inf</span><span class="op">)</span></span>
 <span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Under 65"</span>, <span class="st">"65-74"</span>, <span class="st">"75-84"</span>, <span class="st">"85 and over"</span><span class="op">)</span> <span class="op">)</span></span>
@@ -880,7 +925,7 @@ N = 904. Checked NCHS presentation standards. Nothing to report.
 </h2>
 <p>This figure shows the percentage of residents with Medicaid, overall
 and by age group.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"medicaid2"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -1037,7 +1082,7 @@ percentages based on all observations, including the ones with missing
 percentages are based on the knowns only. To exclude the
 <code>NA</code>’s from the calculation, use the <code>drop_na</code>
 argument:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"medicaid2"</span>, drop_na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -1158,7 +1203,7 @@ N = 817. Checked NCHS presentation standards. Nothing to report.
 <p>Note that the table title alerts you to the fact that you are using
 known values only.</p>
 <p>By age group:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"medicaid2"</span>, <span class="st">"Age"</span>, drop_na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -1662,7 +1707,7 @@ select set of chronic conditions.</li>
 conditions.</li>
 </ul>
 <p>Here’s a table for high blood pressure.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"hbp"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -1815,7 +1860,7 @@ N = 904. Checked NCHS presentation standards. Nothing to report.
 <p>Once again, unknown values (<code>NA</code>) are present, while the
 figure is based on knowns only. Therefore, we again will use the
 <code>drop_na</code> argument:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"hbp"</span>, <span class="st">"alz"</span>, <span class="st">"depress"</span>, <span class="st">"arth"</span>, <span class="st">"diabetes"</span>, <span class="st">"heartdise"</span>, <span class="st">"osteo"</span></span>
 <span>    , <span class="st">"copd"</span>, <span class="st">"stroke"</span>, <span class="st">"cancer"</span></span>
 <span>    , drop_na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
@@ -2996,7 +3041,7 @@ Here’s how:</p></li>
 <li><p>This is a data frame where the survey’s variables are
 located</p></li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">rccsu2018</span><span class="op">$</span><span class="va">variables</span><span class="op">)</span></span>
 <span><span class="co">## [1] "data.frame"</span></span></code></pre></div>
 <ol style="list-style-type: decimal">
@@ -3008,14 +3053,15 @@ located</p></li>
 </ol>
 <p>We go through these steps to <strong>count how many chronic
 conditions were present</strong>.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rccsu2018</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">num_cc</span> <span class="op">=</span> <span class="fl">0</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">vr</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hbp"</span>, <span class="st">"alz"</span>, <span class="st">"depress"</span>, <span class="st">"arth"</span>, <span class="st">"diabetes"</span>, <span class="st">"heartdise"</span>, <span class="st">"osteo"</span></span>
 <span>             , <span class="st">"copd"</span>, <span class="st">"stroke"</span>, <span class="st">"cancer"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">idx</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">rccsu2018</span><span class="op">$</span><span class="va">variables</span><span class="op">[</span>,<span class="va">vr</span><span class="op">]</span><span class="op">)</span></span>
 <span>  <span class="va">rccsu2018</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">num_cc</span><span class="op">[</span><span class="va">idx</span><span class="op">]</span> <span class="op">=</span> <span class="va">rccsu2018</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">num_cc</span><span class="op">[</span><span class="va">idx</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">rccsu2018</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">rccsu2018</span>, mode <span class="op">=</span> <span class="st">"NCHS"</span><span class="op">)</span></span>
+<span><span class="co">## * Mode: NCHS.</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Survey info {RCC SU 2018 PUF}
@@ -3053,7 +3099,7 @@ conditions. The published figure uses a categorical variable which is
 based on this numeric variable. Use <code><a href="../reference/var_cut.html">var_cut()</a></code>, which
 converts numeric variables to categorical (<code>factor</code>)
 variables.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/var_cut.html">var_cut</a></span><span class="op">(</span><span class="st">"Number of chronic conditions"</span>, <span class="st">"num_cc"</span></span>
 <span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">10</span>, <span class="cn">Inf</span><span class="op">)</span></span>
 <span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"0"</span>, <span class="st">"1"</span>, <span class="st">"2-3"</span>, <span class="st">"4-10"</span>, <span class="st">"??"</span><span class="op">)</span><span class="op">)</span></span>
@@ -3250,7 +3296,7 @@ of the activities of daily living (ADLs).</li>
 ADLs with which they need help.</li>
 </ul>
 <p>Here’s a table for <code>bathhlp</code> (help with bathing):</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"bathhlp"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -3492,7 +3538,7 @@ only (that is, excluding the unknowns).</p>
 <p>To do this, convert the variable to having 2 levels (needs help /
 does not need help) plus <code>NA</code> (for unknown); then use the
 <code>drop_na</code> argument to base percentages on knowns only.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">vr</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bathhlp"</span>, <span class="st">"walkhlp"</span>, <span class="st">"dreshlp"</span>, <span class="st">"transhlp"</span>, <span class="st">"toilhlp"</span>, <span class="st">"eathlp"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="../reference/var_collapse.html">var_collapse</a></span><span class="op">(</span><span class="va">vr</span></span>
 <span>    , <span class="st">"Needs assistance"</span></span>
@@ -4206,7 +4252,7 @@ N = 885. Checked NCHS presentation standards. Nothing to report.
 </table>
 <p>Now, go through the “advanced variable editing” steps – very similar
 to Figure 4 – to <strong>count how many ADLs were present</strong>.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rccsu2018</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">num_adl</span> <span class="op">=</span> <span class="fl">0</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">vr</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bathhlp"</span>, <span class="st">"walkhlp"</span>, <span class="st">"dreshlp"</span>, <span class="st">"transhlp"</span>, <span class="st">"toilhlp"</span>, <span class="st">"eathlp"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">idx</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">rccsu2018</span><span class="op">$</span><span class="va">variables</span><span class="op">[</span>,<span class="va">vr</span><span class="op">]</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span></span>
@@ -4215,7 +4261,8 @@ to Figure 4 – to <strong>count how many ADLs were present</strong>.</p>
 <span>      , <span class="st">"BOTH"</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="va">rccsu2018</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">num_adl</span><span class="op">[</span><span class="va">idx</span><span class="op">]</span> <span class="op">=</span> <span class="va">rccsu2018</span><span class="op">$</span><span class="va">variables</span><span class="op">$</span><span class="va">num_adl</span><span class="op">[</span><span class="va">idx</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">rccsu2018</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">rccsu2018</span>, mode <span class="op">=</span> <span class="st">"NCHS"</span><span class="op">)</span></span>
+<span><span class="co">## * Mode: NCHS.</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Survey info {RCC SU 2018 PUF}
@@ -4250,7 +4297,7 @@ d1)
 </table>
 <p>For generating the figure, create a categorical variable based on
 <code>num_adl</code>, which is numeric.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/var_cut.html">var_cut</a></span><span class="op">(</span><span class="st">"Number of ADLs"</span>, <span class="st">"num_adl"</span></span>
 <span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">6</span>, <span class="cn">Inf</span><span class="op">)</span></span>
 <span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"0"</span>, <span class="st">"1-2"</span>, <span class="st">"3-6"</span>, <span class="st">"??"</span><span class="op">)</span><span class="op">)</span></span>

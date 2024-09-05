@@ -121,6 +121,12 @@ set_survey(namcs2019sv)
 
 Check the survey label, survey design variables, and the number of observations to verify that it all looks correct.
 
+For this example, we do want to turn on certain NCHS-specific options, such as identifying low-precision estimates. If you do not care about identifying low-precision estimates, you can skip this command. To turn on the NCHS-specific options:
+
+```{r, results='asis'}
+set_mode("NCHS")
+```
+
 ## List variables
 
 The `var_list()` function lists the variables in the survey. To avoid unintentionally listing all the variables in a survey, which can be many, the starting characters of variable names are specified. For example, to list the variables that start with the letters `age`, type:

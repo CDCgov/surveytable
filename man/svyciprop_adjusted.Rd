@@ -30,17 +30,20 @@ svyciprop_adjusted(
 The point estimate of the proportion, with the confidence interval as an attribute.
 }
 \description{
-A version of \code{survey::svyciprop()} that adjusts for the degrees of freedom when \code{method = "beta"}.
+A version of \code{survey::svyciprop()} that adjusts for the degrees of freedom
+when \code{method = "beta"}.
 }
 \details{
 Written by Makram Talih in 2019.
 
 \code{df_method}: for \code{"default"}, \code{df = degf(design)}; for \code{"NHIS"}, \code{df = nrow(design) - 1}.
 
-To use this function in tabulations, call \code{\link[=set_survey]{set_survey()}} with the \code{opts = "NCHS"} argument,
-or type: \code{options(surveytable.adjust_svyciprop = TRUE)}.
+To use this function in tabulations, call \code{\link[=set_survey]{set_survey()}} or \code{\link[=set_mode]{set_mode()}} with the
+\code{mode = "NCHS"} argument, or type: \code{options(surveytable.adjust_svyciprop = TRUE)}.
 }
 \examples{
-set_survey(namcs2019sv, opts = "NCHS")
+set_survey(namcs2019sv)
+set_mode("NCHS")
 tab("AGER")
+set_mode("general")
 }

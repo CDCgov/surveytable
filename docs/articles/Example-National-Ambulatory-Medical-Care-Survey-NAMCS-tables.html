@@ -108,7 +108,8 @@ like to analyze. We are omitting that message here.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cdcgov.github.io/surveytable/">surveytable</a></span><span class="op">)</span></span></code></pre></div>
 <p>Now, specify the survey that you’d like to analyze.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span>
+<span><span class="co">## * Mode: General.</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Survey info {NAMCS 2019 PUF}
@@ -143,6 +144,13 @@ Stratified 1 - level Cluster Sampling design (with replacement)<br>With
 </table>
 <p>Check the survey name, survey design variables, and the number of
 observations to verify that it all looks correct.</p>
+<p>For this example, we do want to turn on certain NCHS-specific
+options, such as identifying low-precision estimates. If you do not care
+about identifying low-precision estimates, you can skip this command. To
+turn on the NCHS-specific options:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_survey.html">set_mode</a></span><span class="op">(</span><span class="st">"NCHS"</span><span class="op">)</span></span>
+<span><span class="co">## * Mode: NCHS.</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="table-1">Table 1<a class="anchor" aria-label="anchor" href="#table-1"></a>
@@ -155,7 +163,7 @@ and percentages by type of doctor, physician specialty, and metropolitan
 statistical area.</p>
 <p>The variables that are necessary for creating this table are already
 in the survey, making the commands very straightforward.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/total.html">total</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -206,7 +214,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"MDDO"</span>, <span class="st">"SPECCAT"</span>, <span class="st">"MSA"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -600,19 +608,19 @@ estimates. You would typically use a function such as
 into the correct format. The <code>surveytable</code> package comes with
 an object called <code>uspop2019</code> that contains several population
 estimates for use in these examples.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">uspop2019</span><span class="op">)</span></span>
 <span><span class="co">## [1] "list"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">uspop2019</span><span class="op">)</span></span>
 <span><span class="co">## [1] "total"       "MSA"         "AGER"        "Age group"   "SEX"        </span></span>
 <span><span class="co">## [6] "AGER x SEX"  "Age group 5"</span></span></code></pre></div>
 <p>Here is the overall population estimate:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">uspop2019</span><span class="op">$</span><span class="va">total</span></span>
 <span><span class="co">## [1] 323186697</span></span></code></pre></div>
 <p>Once we have the overall population estimate, the overall rate
 is:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/total_rate.html">total_rate</a></span><span class="op">(</span><span class="va">uspop2019</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -671,14 +679,14 @@ to be a constant rather than a random variable).</p>
 <p>For <code>MSA</code>, we can see the levels of the variables just by
 using the <code><a href="../reference/tab.html">tab()</a></code> command, just as we did above. Thus, to
 calculate rates, we need a data frame as follows:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">uspop2019</span><span class="op">$</span><span class="va">MSA</span></span>
 <span><span class="co">##                                 Level Population</span></span>
 <span><span class="co">## 1 MSA (Metropolitan Statistical Area)  277229518</span></span>
 <span><span class="co">## 2                             Non-MSA   45957179</span></span></code></pre></div>
 <p>Now that we have the appropriate population estimates, the rate
 is:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"MSA"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">MSA</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -759,7 +767,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 </table>
 <p>We can also calculate rates of a specific variable based on the
 entire population:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"MDDO"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span>
 <span><span class="co">## * Rate based on the entire population.</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
@@ -838,7 +846,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"SPECCAT"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span>
 <span><span class="co">## * Rate based on the entire population.</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
@@ -948,7 +956,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 </h3>
 <p>This table presents estimates for each age group, as well as for each
 age group by sex.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/var_list.html">var_list</a></span><span class="op">(</span><span class="st">"age"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -997,13 +1005,13 @@ categorical variable based on <code>AGE</code>. However, for this table,
 in addition to <code>AGER</code>, we need another age group variable,
 with different age categories. We create it using the
 <code>var_cut</code> function.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/var_cut.html">var_cut</a></span><span class="op">(</span><span class="st">"Age group"</span>, <span class="st">"AGE"</span></span>
 <span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fl">0</span>, <span class="fl">4</span>, <span class="fl">14</span>, <span class="fl">64</span>, <span class="cn">Inf</span><span class="op">)</span></span>
 <span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Under 1"</span>, <span class="st">"1-4"</span>, <span class="st">"5-14"</span>, <span class="st">"15-64"</span>, <span class="st">"65 and over"</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div>
 <p>Now that we’ve created the <code>Age group</code> variable, we can
 create the tables:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"Age group"</span>, <span class="st">"SEX"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -1577,7 +1585,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_cross</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"SEX"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -2019,7 +2027,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 <div class="section level3">
 <h3 id="rates-1">Rates<a class="anchor" aria-label="anchor" href="#rates-1"></a>
 </h3>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">AGER</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -2177,7 +2185,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"Age group"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">`Age group`</span><span class="op">)</span></span>
 <span><span class="co">## * Population for some levels not defined: 15-64</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
@@ -2316,7 +2324,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"SEX"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">SEX</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -2397,7 +2405,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 <p>To calculate the rates for one variable (<code>AGER</code>) by
 another variable (<code>SEX</code>), we need population estimates in the
 following format:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">uspop2019</span><span class="op">$</span><span class="va">`AGER x SEX`</span></span>
 <span><span class="co">##                Level Subset Population</span></span>
 <span><span class="co">## 1     Under 15 years Female   29604762</span></span>
@@ -2413,7 +2421,7 @@ following format:</p>
 <span><span class="co">## 11       65-74 years   Male   14586962</span></span>
 <span><span class="co">## 12 75 years and over   Male    9098236</span></span></code></pre></div>
 <p>Once we have these population estimates, the rates are:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset_rate.html">tab_subset_rate</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"SEX"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">`AGER x SEX`</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -2741,7 +2749,7 @@ logical (<code>TRUE</code> or <code>FALSE</code>), which simplifies the
 workflow. (The survey was imported into R using the
 <code>importsurvey</code> package, which automatically detects binary
 variables and imports them as logical variables.)</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#</span></span>
 <span><span class="fu"><a href="../reference/var_all.html">var_all</a></span><span class="op">(</span><span class="st">"Medicare and Medicaid"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PAYMCARE"</span>, <span class="st">"PAYMCAID"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -3978,11 +3986,11 @@ prior-visit status.</p>
 <p>In the table, the “Unknown” and “Blank” values are collapsed into a
 single value. We can collapse two or more levels of a factor into a
 single level using the <code>var_collapse</code> function.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/var_collapse.html">var_collapse</a></span><span class="op">(</span><span class="st">"PRIMCARE"</span>, <span class="st">"Unknown if PCP"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Unknown"</span>, <span class="st">"Blank"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/var_collapse.html">var_collapse</a></span><span class="op">(</span><span class="st">"REFER"</span>, <span class="st">"Unknown if referred"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Unknown"</span>, <span class="st">"Blank"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Now, for the table:</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"PRIMCARE"</span>, <span class="st">"REFER"</span>, <span class="st">"SENBEFOR"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -4431,7 +4439,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 <p>The percentages within each subset that is defined by
 <code>SENBEFOR</code> add up to 100% – for this reason, we want to use
 <code><a href="../reference/tab_subset.html">tab_subset()</a></code>, not <code><a href="../reference/tab_subset.html">tab_cross()</a></code>.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"PRIMCARE"</span>, <span class="st">"SENBEFOR"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -4743,7 +4751,7 @@ rate); Px: suppress percent.
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"REFER"</span>, <span class="st">"SENBEFOR"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -5117,7 +5125,7 @@ as for each age group by sex, but only for preventive care visits.</p>
 <p>Let’s create <code>Age group</code> from <code>AGE</code> and cross
 <code>AGER</code> and <code>SEX</code> to create a variable called
 <code>Age x Sex</code>:</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/var_cut.html">var_cut</a></span><span class="op">(</span><span class="st">"Age group"</span>, <span class="st">"AGE"</span></span>
 <span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="fl">0</span>, <span class="fl">4</span>, <span class="fl">14</span>, <span class="fl">64</span>, <span class="cn">Inf</span><span class="op">)</span></span>
 <span>        , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Under 1"</span>, <span class="st">"1-4"</span>, <span class="st">"5-14"</span>, <span class="st">"15-64"</span>, <span class="st">"65 and over"</span><span class="op">)</span> <span class="op">)</span></span>
@@ -5127,7 +5135,7 @@ as for each age group by sex, but only for preventive care visits.</p>
 <p>To see the possible values of <code>MAJOR</code> (Major reason for
 this visit), and to estimate the total count for preventive care
 visits:</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"MAJOR"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -5407,7 +5415,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 </table>
 <p>To create the tables of age, sex, and their interaction, and limit
 them to only the preventive care visits:</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"MAJOR"</span>, <span class="st">"Preventive care"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -5654,7 +5662,7 @@ N = 1568. Checked NCHS presentation standards. Nothing to report.
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"Age group"</span>, <span class="st">"MAJOR"</span>, <span class="st">"Preventive care"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -5869,7 +5877,7 @@ N = 1568. Checked NCHS presentation standards. Nothing to report.
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"SEX"</span>, <span class="st">"MAJOR"</span>, <span class="st">"Preventive care"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -5988,7 +5996,7 @@ N = 1568. Checked NCHS presentation standards. Nothing to report.
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"Age x Sex"</span>, <span class="st">"MAJOR"</span>, <span class="st">"Preventive care"</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
@@ -6430,7 +6438,7 @@ N = 1568. Checked NCHS presentation standards. Nothing to report.
 <p>As each of the above commands is similar, and differs only in the
 first variable that is passed to the <code><a href="../reference/tab_subset.html">tab_subset()</a></code> function,
 this code can be streamlined with a <code>for</code> loop:</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">vr</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"Age group"</span>, <span class="st">"SEX"</span>, <span class="st">"Age x Sex"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span> <span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="va">vr</span>, <span class="st">"MAJOR"</span>, <span class="st">"Preventive care"</span><span class="op">)</span> <span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
@@ -7457,7 +7465,7 @@ physicians.</p>
 <p>To calculate these percentages, a slightly more involved
 <code>for</code> loop is needed. Below is the code, followed by an
 explanation:</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tmp_file</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".csv"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span> <span class="fu"><a href="../reference/set_output.html">set_output</a></span><span class="op">(</span>csv <span class="op">=</span> <span class="va">tmp_file</span><span class="op">)</span> <span class="op">)</span></span>
 <span></span>
@@ -7501,7 +7509,7 @@ some level of <code>vr</code>, such as “Under 15 years” for
 <p>If you run this code, all of the tables should be stored in the CSV
 file. To give you an idea of what the tables should look like, here is
 just one of the tables:</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">vr</span> <span class="op">=</span> <span class="st">"AGER"</span></span>
 <span><span class="fu"><a href="../reference/var_cross.html">var_cross</a></span><span class="op">(</span><span class="st">"tmp"</span>, <span class="st">"MAJOR"</span>, <span class="va">vr</span><span class="op">)</span></span>
 <span><span class="co">## Warning in var_cross("tmp", "MAJOR", vr): tmp: overwriting a variable that</span></span>

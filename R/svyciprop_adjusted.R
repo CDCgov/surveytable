@@ -1,13 +1,14 @@
 #' Confidence intervals for proportions, adjusted for degrees of freedom
 #'
-#' A version of `survey::svyciprop()` that adjusts for the degrees of freedom when `method = "beta"`.
+#' A version of `survey::svyciprop()` that adjusts for the degrees of freedom
+#' when `method = "beta"`.
 #'
 #' Written by Makram Talih in 2019.
 #'
 #' `df_method`: for `"default"`, `df = degf(design)`; for `"NHIS"`, `df = nrow(design) - 1`.
 #'
-#' To use this function in tabulations, call [set_survey()] with the `opts = "NCHS"` argument,
-#' or type: `options(surveytable.adjust_svyciprop = TRUE)`.
+#' To use this function in tabulations, call [set_survey()] or [set_mode()] with the
+#' `mode = "NCHS"` argument, or type: `options(surveytable.adjust_svyciprop = TRUE)`.
 #'
 #' @param formula see `survey::svyciprop()`.
 #' @param design see `survey::svyciprop()`.
@@ -16,13 +17,14 @@
 #' @param df_method how `df` should be calculated: `"default"` or `"NHIS"`.
 #' @param ... see `survey::svyciprop()`.
 #'
-#'
 #' @return The point estimate of the proportion, with the confidence interval as an attribute.
 #' @export
 #'
 #' @examples
-#' set_survey(namcs2019sv, opts = "NCHS")
+#' set_survey(namcs2019sv)
+#' set_mode("NCHS")
 #' tab("AGER")
+#' set_mode("general")
 svyciprop_adjusted = function(formula
                     , design
                     , method = c("logit", "likelihood", "asin", "beta"

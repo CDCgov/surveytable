@@ -10,10 +10,21 @@ notable options.
 }
 \details{
 \subsection{Low-precision estimates.}{
+
+Optionally, all of the tabulation functions can identify low-precision estimates.
+To turn on this functionality, either set the \code{surveytable.find_lpe} option to \code{TRUE},
+or call \code{\link[=set_survey]{set_survey()}} or \code{\link[=set_mode]{set_mode()}} with the argument \code{mode = "NCHS"}.
+
+By default, low-precision estimates are identified using National Center for
+Health Statistics (NCHS) algorithms. However, this can be changed, as described
+below.
+
+Here is a description of the options related to the identification of low-precision
+estimates.
 \itemize{
 \item \code{surveytable.find_lpe}: should the tabulation functions look for low-precision
-estimates? You can change this directly with \code{options()} or with the \code{opts} argument
-to \code{set_survey()}.
+estimates? You can change this directly with \code{options()} or with the \code{mode} argument
+to \code{\link[=set_survey]{set_survey()}} or \code{\link[=set_mode]{set_mode()}}.
 \item \code{surveytable.lpe_n}, \code{surveytable.lpe_counts}, \code{surveytable.lpe_percents}: names
 of 3 functions.
 }

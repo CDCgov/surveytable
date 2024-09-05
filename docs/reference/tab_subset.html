@@ -157,6 +157,7 @@ performs t-tests for all possible pairs of levels of <code>vr</code> and <code>v
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * Mode: General.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         Survey info {NAMCS 2019 PUF}                         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────┬──────────────┬────────────────────────────────────────────────┐</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │ Variables │ Observations │ Design                                         │</span>
@@ -172,100 +173,97 @@ performs t-tests for all possible pairs of levels of <code>vr</code> and <code>v
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># For each SEX, tabulate AGER</span></span></span>
 <span class="r-in"><span><span class="fu">tab_subset</span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"SEX"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                      Patient age recode (Patient sex = Female) {NAMCS 2019 PUF}                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ┌─────────────┬───────┬─────────────┬──────────┬──────────┬──────────┬─────────┬─────┬──────┬──────┐</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Level       │     n │      Number │ SE (000) │ LL (000) │ UL (000) │ Percent │  SE │   LL │   UL │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │             │       │       (000) │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Under 15    │   434 │      59,958 │    7,206 │   47,318 │   75,974 │     9.9 │ 1.2 │  7.6 │ 12.6 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ years       │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 15-24 years │   346 │      41,128 │    4,532 │   33,066 │   51,156 │     6.8 │ 0.7 │  5.4 │  8.4 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 25-44 years │   923 │     113,708 │   11,461 │   93,256 │  138,646 │    18.8 │ 1.6 │ 15.8 │ 22.1 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 45-64 years │ 1,253 │     175,978 │   16,009 │  147,153 │  210,450 │    29.1 │ 1.7 │ 25.8 │ 32.6 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 65-74 years │   891 │     120,099 │   11,066 │  100,171 │  143,992 │    19.8 │ 1.5 │ 17   │ 22.9 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 75 years    │   762 │      94,173 │   11,085 │   74,682 │  118,751 │    15.6 │ 1.5 │ 12.8 │ 18.7 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ and over    │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └─────────────┴───────┴─────────────┴──────────┴──────────┴──────────┴─────────┴─────┴──────┴──────┘</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   N = 4609. Checked NCHS presentation standards. Nothing to report.                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Patient age recode (Patient sex = Female) {NAMCS 2019 PUF}                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ┌─────────────┬───────┬─────────────┬────────────┬─────────────┬─────────────┬─────────┬─────┬──────┬──────┐</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Level       │     n │      Number │         SE │          LL │          UL │ Percent │  SE │   LL │   UL │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Under 15    │   434 │  59,957,823 │  7,205,594 │  47,318,228 │  75,973,693 │     9.9 │ 1.2 │  7.6 │ 12.6 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ years       │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 15-24 years │   346 │  41,128,003 │  4,532,466 │  33,065,609 │  51,156,253 │     6.8 │ 0.7 │  5.4 │  8.4 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 25-44 years │   923 │ 113,708,461 │ 11,461,189 │  93,256,445 │ 138,645,797 │    18.8 │ 1.6 │ 15.8 │ 22.1 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 45-64 years │ 1,253 │ 175,978,133 │ 16,008,541 │ 147,152,826 │ 210,449,940 │    29.1 │ 1.7 │ 25.7 │ 32.6 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 65-74 years │   891 │ 120,099,493 │ 11,066,146 │ 100,171,315 │ 143,992,203 │    19.8 │ 1.5 │ 17   │ 22.9 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 75 years    │   762 │  94,173,155 │ 11,085,372 │  74,682,310 │ 118,750,789 │    15.6 │ 1.5 │ 12.8 │ 18.7 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ and over    │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> └─────────────┴───────┴─────────────┴────────────┴─────────────┴─────────────┴─────────┴─────┴──────┴──────┘</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   N = 4609.                                                                                                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                       Patient age recode (Patient sex = Male) {NAMCS 2019 PUF}                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ┌─────────────┬───────┬─────────────┬──────────┬──────────┬──────────┬─────────┬─────┬──────┬──────┐</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Level       │     n │      Number │ SE (000) │ LL (000) │ UL (000) │ Percent │  SE │   LL │   UL │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │             │       │       (000) │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Under 15    │   453 │      57,959 │    7,728 │   44,570 │   75,371 │    13.4 │ 1.7 │ 10.3 │ 17.1 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ years       │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 15-24 years │   196 │      23,728 │    4,344 │   16,457 │   34,210 │     5.5 │ 0.8 │  4   │  7.3 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 25-44 years │   512 │      56,562 │    7,277 │   43,861 │   72,942 │    13.1 │ 1.3 │ 10.7 │ 15.8 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 45-64 years │ 1,030 │     133,528 │   12,956 │  110,319 │  161,619 │    30.9 │ 1.6 │ 27.8 │ 34.3 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 65-74 years │   770 │      86,766 │    6,767 │   74,409 │  101,176 │    20.1 │ 1.5 │ 17.3 │ 23.1 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 75 years    │   680 │      72,896 │    6,661 │   60,872 │   87,296 │    16.9 │ 1.5 │ 14   │ 20.2 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ and over    │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └─────────────┴───────┴─────────────┴──────────┴──────────┴──────────┴─────────┴─────┴──────┴──────┘</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   N = 3641. Checked NCHS presentation standards. Nothing to report.                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Patient age recode (Patient sex = Male) {NAMCS 2019 PUF}                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ┌─────────────┬───────┬─────────────┬────────────┬─────────────┬─────────────┬─────────┬─────┬──────┬──────┐</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Level       │     n │      Number │         SE │          LL │          UL │ Percent │  SE │   LL │   UL │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Under 15    │   453 │  57,958,950 │  7,727,594 │  44,569,688 │  75,370,504 │    13.4 │ 1.7 │ 10.3 │ 17.1 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ years       │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 15-24 years │   196 │  23,727,695 │  4,343,932 │  16,457,071 │  34,210,431 │     5.5 │ 0.8 │  4   │  7.4 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 25-44 years │   512 │  56,562,143 │  7,276,983 │  43,860,836 │  72,941,520 │    13.1 │ 1.3 │ 10.7 │ 15.8 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 45-64 years │ 1,030 │ 133,527,822 │ 12,956,239 │ 110,319,199 │ 161,619,006 │    30.9 │ 1.6 │ 27.8 │ 34.3 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 65-74 years │   770 │  86,766,489 │  6,766,876 │  74,409,284 │ 101,175,865 │    20.1 │ 1.5 │ 17.3 │ 23.1 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 75 years    │   680 │  72,896,189 │  6,660,855 │  60,871,965 │  87,295,593 │    16.9 │ 1.5 │ 14   │ 20.2 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ and over    │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> └─────────────┴───────┴─────────────┴────────────┴─────────────┴─────────────┴─────────┴─────┴──────┴──────┘</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   N = 3641.                                                                                                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Same counts as tab_subset(), but different percentages.</span></span></span>
 <span class="r-in"><span><span class="fu">tab_cross</span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"SEX"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                        (Patient age recode) x (Patient sex) {NAMCS 2019 PUF}                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ┌─────────────┬───────┬─────────────┬──────────┬──────────┬──────────┬─────────┬─────┬──────┬──────┐</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Level       │     n │      Number │ SE (000) │ LL (000) │ UL (000) │ Percent │  SE │   LL │   UL │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │             │       │       (000) │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Under 15    │   434 │      59,958 │    7,206 │   47,318 │   75,974 │     5.8 │ 0.7 │  4.5 │  7.3 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ years:      │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Female      │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 15-24       │   346 │      41,128 │    4,532 │   33,066 │   51,156 │     4   │ 0.4 │  3.2 │  4.9 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ years:      │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Female      │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 25-44       │   923 │     113,708 │   11,461 │   93,256 │  138,646 │    11   │ 1   │  9   │ 13.2 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ years:      │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Female      │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 45-64       │ 1,253 │     175,978 │   16,009 │  147,153 │  210,450 │    17   │ 1.1 │ 14.9 │ 19.3 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ years:      │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Female      │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 65-74       │   891 │     120,099 │   11,066 │  100,171 │  143,992 │    11.6 │ 1   │  9.7 │ 13.7 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ years:      │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Female      │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 75 years    │   762 │      94,173 │   11,085 │   74,682 │  118,751 │     9.1 │ 0.9 │  7.3 │ 11.1 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ and over:   │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Female      │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Under 15    │   453 │      57,959 │    7,728 │   44,570 │   75,371 │     5.6 │ 0.7 │  4.3 │  7.2 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ years: Male │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 15-24       │   196 │      23,728 │    4,344 │   16,457 │   34,210 │     2.3 │ 0.4 │  1.6 │  3.2 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ years: Male │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 25-44       │   512 │      56,562 │    7,277 │   43,861 │   72,942 │     5.5 │ 0.6 │  4.3 │  6.8 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ years: Male │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 45-64       │ 1,030 │     133,528 │   12,956 │  110,319 │  161,619 │    12.9 │ 1   │ 10.9 │ 15.1 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ years: Male │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 65-74       │   770 │      86,766 │    6,767 │   74,409 │  101,176 │     8.4 │ 0.6 │  7.2 │  9.7 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ years: Male │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 75 years    │   680 │      72,896 │    6,661 │   60,872 │   87,296 │     7   │ 0.6 │  5.9 │  8.3 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ and over:   │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Male        │       │             │          │          │          │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └─────────────┴───────┴─────────────┴──────────┴──────────┴──────────┴─────────┴─────┴──────┴──────┘</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   N = 8250. Checked NCHS presentation standards. Nothing to report.                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            (Patient age recode) x (Patient sex) {NAMCS 2019 PUF}                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ┌─────────────┬───────┬─────────────┬────────────┬─────────────┬─────────────┬─────────┬─────┬──────┬──────┐</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Level       │     n │      Number │         SE │          LL │          UL │ Percent │  SE │   LL │   UL │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Under 15    │   434 │  59,957,823 │  7,205,594 │  47,318,228 │  75,973,693 │     5.8 │ 0.7 │  4.5 │  7.3 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ years:      │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Female      │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 15-24       │   346 │  41,128,003 │  4,532,466 │  33,065,609 │  51,156,253 │     4   │ 0.4 │  3.2 │  4.9 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ years:      │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Female      │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 25-44       │   923 │ 113,708,461 │ 11,461,189 │  93,256,445 │ 138,645,797 │    11   │ 1   │  9   │ 13.2 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ years:      │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Female      │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 45-64       │ 1,253 │ 175,978,133 │ 16,008,541 │ 147,152,826 │ 210,449,940 │    17   │ 1.1 │ 14.8 │ 19.3 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ years:      │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Female      │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 65-74       │   891 │ 120,099,493 │ 11,066,146 │ 100,171,315 │ 143,992,203 │    11.6 │ 1   │  9.7 │ 13.7 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ years:      │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Female      │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 75 years    │   762 │  94,173,155 │ 11,085,372 │  74,682,310 │ 118,750,789 │     9.1 │ 0.9 │  7.3 │ 11.1 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ and over:   │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Female      │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Under 15    │   453 │  57,958,950 │  7,727,594 │  44,569,688 │  75,370,504 │     5.6 │ 0.7 │  4.3 │  7.2 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ years: Male │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 15-24       │   196 │  23,727,695 │  4,343,932 │  16,457,071 │  34,210,431 │     2.3 │ 0.4 │  1.6 │  3.2 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ years: Male │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 25-44       │   512 │  56,562,143 │  7,276,983 │  43,860,836 │  72,941,520 │     5.5 │ 0.6 │  4.3 │  6.8 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ years: Male │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 45-64       │ 1,030 │ 133,527,822 │ 12,956,239 │ 110,319,199 │ 161,619,006 │    12.9 │ 1   │ 10.9 │ 15.1 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ years: Male │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 65-74       │   770 │  86,766,489 │  6,766,876 │  74,409,284 │ 101,175,865 │     8.4 │ 0.6 │  7.2 │  9.7 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ years: Male │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 75 years    │   680 │  72,896,189 │  6,660,855 │  60,871,965 │  87,295,593 │     7   │ 0.6 │  5.9 │  8.3 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ and over:   │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Male        │       │             │            │             │             │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> └─────────────┴───────┴─────────────┴────────────┴─────────────┴─────────────┴─────────┴─────┴──────┴──────┘</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   N = 8250.                                                                                                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Numeric variables</span></span></span>

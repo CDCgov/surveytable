@@ -1,6 +1,7 @@
 # surveytable (development version)
 
 * `rccsu2018`
+* `set_mode()`
 
 # surveytable 0.9.4
 

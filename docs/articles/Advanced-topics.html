@@ -266,7 +266,8 @@ for which <code>NUMMED &gt; 0</code>?</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">newsurvey</span> <span class="op">=</span> <span class="fu"><a href="../reference/survey_subset.html">survey_subset</a></span><span class="op">(</span><span class="va">namcs2019sv</span>, <span class="va">NUMMED</span> <span class="op">&gt;</span> <span class="fl">0</span></span>
 <span>  , label <span class="op">=</span> <span class="st">"NAMCS 2019 PUF: NUMMED 1+"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">newsurvey</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">newsurvey</span><span class="op">)</span></span>
+<span><span class="co">## * Mode: General.</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Survey info {NAMCS 2019 PUF: NUMMED 1+}
@@ -448,8 +449,7 @@ the new survey object.</p>
 <ul>
 <li><p><code>surveytable</code> provides a number of functions to create
 or modify survey variables.</p></li>
-<li><p>Some examples include <code><a href="../reference/var_collapse.html">var_collapse()</a></code> and
-<code><a href="../reference/var_cut.html">var_cut()</a></code>.</p></li>
+<li><p>Some examples include [var_collapse()] and [var_cut()].</p></li>
 <li><p>Occasionally, you might need to do advanced variable editing.
 Here’s how:</p></li>
 <li><p>Every survey object has an element called

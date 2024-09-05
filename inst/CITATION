@@ -1,0 +1,8 @@
+bibentry(
+  bibtype  = "Manual",
+  title    = "surveytable: Formatted Survey Estimates",
+  author   = "Alex Strashny",
+  year     = 2023,
+  url = "https://cdcgov.github.io/surveytable/",
+  doi      = "10.32614/CRAN.package.surveytable"
+)

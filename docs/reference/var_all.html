@@ -101,6 +101,7 @@ variables are true.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * Mode: General.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         Survey info {NAMCS 2019 PUF}                         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────┬──────────────┬────────────────────────────────────────────────┐</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │ Variables │ Observations │ Design                                         │</span>
@@ -115,17 +116,16 @@ variables are true.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">var_all</span><span class="op">(</span><span class="st">"Medicare and Medicaid"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PAYMCARE"</span>, <span class="st">"PAYMCAID"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="tab.html">tab</a></span><span class="op">(</span><span class="st">"Medicare and Medicaid"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                             Medicare and Medicaid {NAMCS 2019 PUF}                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────┬───────┬─────────────┬──────────┬──────────┬───────────┬─────────┬─────┬──────┬──────┐</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Level │     n │      Number │ SE (000) │ LL (000) │  UL (000) │ Percent │  SE │   LL │   UL │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │       │       │       (000) │          │          │           │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────┼───────┼─────────────┼──────────┼──────────┼───────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ FALSE │ 8,126 │   1,016,202 │   47,395 │  927,389 │ 1,113,520 │      98 │ 0.5 │ 96.9 │ 98.9 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────┼───────┼─────────────┼──────────┼──────────┼───────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ TRUE  │   124 │      20,282 │    5,177 │   12,120 │    33,941 │       2 │ 0.5 │  1.1 │  3.1 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └───────┴───────┴─────────────┴──────────┴──────────┴───────────┴─────────┴─────┴──────┴──────┘</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   N = 8250. Checked NCHS presentation standards. Nothing to                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   report.                                                                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                 Medicare and Medicaid {NAMCS 2019 PUF}                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────┬───────┬─────────────┬────────────┬─────────────┬─────────────┬─────────┬─────┬──────┬──────┐</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Level │     n │      Number │         SE │          LL │          UL │ Percent │  SE │   LL │   UL │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ FALSE │ 8,126 │ 1,016,202,0 │ 47,395,074 │ 927,388,977 │ 1,113,520,4 │      98 │ 0.5 │ 96.9 │ 98.9 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │       │       │          62 │            │             │          92 │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ TRUE  │   124 │  20,282,295 │  5,177,254 │  12,120,309 │  33,940,676 │       2 │ 0.5 │  1.1 │  3.1 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> └───────┴───────┴─────────────┴────────────┴─────────────┴─────────────┴─────────┴─────┴──────┴──────┘</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   N = 8250.                                                                                           </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>

@@ -34,6 +34,18 @@ set_survey(rccsu2018)
 
 Check the survey name, survey design variables, and the number of observations to verify that it all looks correct.
 
+For this example, we do want to turn on certain NCHS-specific options, such as identifying low-precision estimates. If you do not care about identifying low-precision estimates, you can skip this command. To turn on the NCHS-specific options:
+
+```{r, results='asis'}
+set_mode("NCHS")
+```
+
+Alternatively, you can combine these two commands into a single command, like so:
+
+```{r, results='asis'}
+set_survey(rccsu2018, mode = "NCHS")
+```
+
 # Figure 1
 
 This figure shows the percentage of residents by sex, race / ethnicity, and age group.
@@ -145,7 +157,7 @@ for (vr in c("hbp", "alz", "depress", "arth", "diabetes", "heartdise", "osteo"
   idx = which(rccsu2018$variables[,vr])
   rccsu2018$variables$num_cc[idx] = rccsu2018$variables$num_cc[idx] + 1
 }
-set_survey(rccsu2018)
+set_survey(rccsu2018, mode = "NCHS")
 ```
 
 `num_cc` is a numeric variable with the number of chronic conditions. The published figure uses a categorical variable which is based on this numeric variable. Use `var_cut()`, which converts numeric variables to categorical (`factor`) variables.
@@ -202,7 +214,7 @@ for (vr in c("bathhlp", "walkhlp", "dreshlp", "transhlp", "toilhlp", "eathlp")) 
       , "BOTH"))
   rccsu2018$variables$num_adl[idx] = rccsu2018$variables$num_adl[idx] + 1
 }
-set_survey(rccsu2018)
+set_survey(rccsu2018, mode = "NCHS")
 ```
 
 For generating the figure, create a categorical variable based on `num_adl`, which is numeric. 
