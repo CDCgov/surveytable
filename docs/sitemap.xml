@@ -34,6 +34,9 @@
     <loc>https://cdcgov.github.io/surveytable/reference/codebook.html</loc>
   </url>
   <url>
+    <loc>https://cdcgov.github.io/surveytable/reference/deprecated.html</loc>
+  </url>
+  <url>
     <loc>https://cdcgov.github.io/surveytable/reference/index.html</loc>
   </url>
   <url>
@@ -46,10 +49,7 @@
     <loc>https://cdcgov.github.io/surveytable/reference/rccsu2018.html</loc>
   </url>
   <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/set_count_1k.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/set_output.html</loc>
+    <loc>https://cdcgov.github.io/surveytable/reference/set_opts.html</loc>
   </url>
   <url>
     <loc>https://cdcgov.github.io/surveytable/reference/set_survey.html</loc>

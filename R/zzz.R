@@ -23,34 +23,35 @@ env = new.env()
   options(
     surveytable.survey_label = ""
 
-    , surveytable.find_lpe = TRUE
+    ## set_opts(mode = "general")
+    , surveytable.tx_count = ".tx_count_int"
+    , surveytable.names_count = c("n", "Number", "SE", "LL", "UL")
+    , surveytable.find_lpe = FALSE
+    , surveytable.adjust_svyciprop = FALSE
+
+    ## related
     , surveytable.lpe_n = ".lpe_n"
     , surveytable.lpe_counts = ".lpe_counts"
     , surveytable.lpe_percents = ".lpe_percents"
+    , surveytable.adjust_svyciprop.df_method = "NHIS"
 
-    , surveytable.tx_count = ".tx_count_1k"
-    , surveytable.names_count = c("n", "Number (000)", "SE (000)", "LL (000)", "UL (000)")
+    ## other set_opts()
+    , surveytable.drop_na = FALSE
+    , surveytable.max_levels = 20
+    , surveytable.csv = ""
 
+    ## other
     , surveytable.tx_prct = ".tx_prct"
     , surveytable.names_prct = c("Percent", "SE", "LL", "UL")
-
-    , surveytable.csv = ""
-    , surveytable.max_levels = 20
-    , surveytable.drop_na = FALSE
 
     , surveytable.rate_per = 100
     , surveytable.tx_rate = ".tx_rate"
 
     , surveytable.tx_numeric = ".tx_numeric"
 
-    , surveytable.adjust_svyciprop = FALSE
-    , surveytable.adjust_svyciprop.df_method = "NHIS"
-
     , surveytable.svychisq_statistic = "F"
     , surveytable.p.adjust_method = "bonferroni"
   )
-  # No - creates a startup message which cannot be suppressed.
-  # set_count_1k()
 }
 
 .tx_prct = function(x) {
@@ -63,4 +64,26 @@ env = new.env()
 
 .tx_numeric = function(x) {
   signif(x, 3)
+}
+
+.tx_count_1k = function(x) {
+  ## Huge UL -> Inf
+  x$rat = x$ul / x$x
+  idx = which(x$rat > 4e3)
+  x$ul[idx] = Inf
+  x$rat = NULL
+
+  round(x / 1e3)
+}
+.tx_count_int = function(x) {
+  ## Huge UL -> Inf
+  x$rat = x$ul / x$x
+  idx = which(x$rat > 4e3)
+  x$ul[idx] = Inf
+  x$rat = NULL
+
+  round(x)
+}
+.tx_count_none = function(x) {
+  x
 }

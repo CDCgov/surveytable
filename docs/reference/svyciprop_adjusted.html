@@ -113,14 +113,13 @@ when <code>method = "beta"</code>.</p>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Written by Makram Talih in 2019.</p>
 <p><code>df_method</code>: for <code>"default"</code>, <code>df = degf(design)</code>; for <code>"NHIS"</code>, <code>df = nrow(design) - 1</code>.</p>
-<p>To use this function in tabulations, call <code><a href="set_survey.html">set_survey()</a></code> or <code><a href="set_survey.html">set_mode()</a></code> with the
+<p>To use this function in tabulations, call <code><a href="set_survey.html">set_survey()</a></code> or <code><a href="set_opts.html">set_opts()</a></code> with the
 <code>mode = "NCHS"</code> argument, or type: <code>options(surveytable.adjust_svyciprop = TRUE)</code>.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> * Mode: General.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         Survey info {NAMCS 2019 PUF}                         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────┬──────────────┬────────────────────────────────────────────────┐</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │ Variables │ Observations │ Design                                         │</span>
@@ -133,7 +132,7 @@ when <code>method = "beta"</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ , data = namcs2019sv_df)                       │</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> └───────────┴──────────────┴────────────────────────────────────────────────┘</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu"><a href="set_survey.html">set_mode</a></span><span class="op">(</span><span class="st">"NCHS"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="set_opts.html">set_opts</a></span><span class="op">(</span>mode <span class="op">=</span> <span class="st">"NCHS"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Mode: NCHS.</span>
 <span class="r-in"><span><span class="fu"><a href="tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                 Patient age recode {NAMCS 2019 PUF}                                 </span>
@@ -157,7 +156,7 @@ when <code>method = "beta"</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> └─────────────┴───────┴─────────────┴──────────┴──────────┴──────────┴─────────┴─────┴──────┴──────┘</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   N = 8250. Checked NCHS presentation standards. Nothing to report.                                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu"><a href="set_survey.html">set_mode</a></span><span class="op">(</span><span class="st">"general"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="set_opts.html">set_opts</a></span><span class="op">(</span>mode <span class="op">=</span> <span class="st">"general"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Mode: General.</span>
 </code></pre></div>
     </div>

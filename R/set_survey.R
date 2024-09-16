@@ -8,39 +8,25 @@
 #' long name of the survey. Optionally, each variable in the survey can have an
 #' attribute called `label`, which is the variable's long name.
 #'
-#' If you are not sure what the `mode` should be, leave it as `"default"`. Here is
-#' what `mode` does:
-#'
-#' * `"general"` or `"default"`:
-#'    * Round counts to the nearest integer -- see [set_count_int()].
-#'    * Do not look for low-precision estimates.
-#'    * Percentage CI's: use standard Korn-Graubard CI's.
-#'
-#' * `"nchs"`:
-#'    * Round counts to the nearest 1,000 -- see [set_count_1k()].
-#'    * Identify low-precision estimates.
-#'    * Percentage CI's: adjust Korn-Graubard CI's for the number of degrees of freedom, matching the SUDAAN calculation.
-#'
 #' @param design either a survey object (created with [survey::svydesign()] or
 #' [survey::svrepdesign()]); or, for an unweighted survey, a `data.frame`.
-#' @param mode set certain options. See below.
 #' @param csv name of a CSV file
+#' @param ... arguments to [set_opts()].
 #'
 #' @family options
-#' @return `set_survey`: info about the survey. `set_mode`: nothing.
-#' @order 1
+#' @return info about the survey
 #' @export
 #'
 #' @examples
 #' set_survey(namcs2019sv)
-#' set_mode("general")
-set_survey = function(design, mode = "default", csv = getOption("surveytable.csv")) {
+#' set_survey(namcs2019sv, mode = "general")
+set_survey = function(design, csv = getOption("surveytable.csv"), ...) {
   # In case there's an error below and we don't set a new survey,
   # don't retain the previous survey either.
   env$survey = NULL
   options(surveytable.survey_label = "")
 
-  set_mode(mode = mode)
+  set_opts(...)
 
   if (is.string(design)) {
     label_default = design
@@ -108,7 +94,6 @@ set_survey = function(design, mode = "default", csv = getOption("surveytable.csv
   attr(out, "num") = c(1,2)
   .write_out(out, csv = csv)
 }
-
 
 .load_survey = function() {
   design = env$survey

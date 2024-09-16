@@ -7,7 +7,7 @@
 #'
 #' `df_method`: for `"default"`, `df = degf(design)`; for `"NHIS"`, `df = nrow(design) - 1`.
 #'
-#' To use this function in tabulations, call [set_survey()] or [set_mode()] with the
+#' To use this function in tabulations, call [set_survey()] or [set_opts()] with the
 #' `mode = "NCHS"` argument, or type: `options(surveytable.adjust_svyciprop = TRUE)`.
 #'
 #' @param formula see `survey::svyciprop()`.
@@ -22,9 +22,9 @@
 #'
 #' @examples
 #' set_survey(namcs2019sv)
-#' set_mode("NCHS")
+#' set_opts(mode = "NCHS")
 #' tab("AGER")
-#' set_mode("general")
+#' set_opts(mode = "general")
 svyciprop_adjusted = function(formula
                     , design
                     , method = c("logit", "likelihood", "asin", "beta"

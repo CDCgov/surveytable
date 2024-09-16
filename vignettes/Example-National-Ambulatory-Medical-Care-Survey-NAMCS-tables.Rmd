@@ -37,7 +37,7 @@ Check the survey name, survey design variables, and the number of observations t
 For this example, we do want to turn on certain NCHS-specific options, such as identifying low-precision estimates. If you do not care about identifying low-precision estimates, you can skip this command. To turn on the NCHS-specific options:
 
 ```{r, results='asis'}
-set_mode("NCHS")
+set_opts(mode = "NCHS")
 ```
 
 # Table 1
@@ -231,17 +231,18 @@ In addition, for each age-sex category, the published table shows the percentage
 
 To calculate these percentages, a slightly more involved `for` loop is needed. Below is the code, followed by an explanation:
 
-```{r}
-tmp_file = tempfile(fileext = ".csv")
-suppressMessages( set_output(csv = tmp_file) )
+```r
+set_opts(csv = "output.csv")
+```
 
+```{r}
 for (vr in c("AGER", "Age group", "SEX", "Age x Sex")) {
 	var_cross("tmp", "MAJOR", vr)
 	for (lvl in levels(surveytable:::env$survey$variables[,vr])) {
 		tab_subset("SPECCAT", "tmp", paste0("Preventive care: ", lvl))
 	}
 }
-set_output(csv = "")
+set_opts(csv = "")
 ```
 
 * Since `tab_subset()` is called from within a `for` loop, if we wanted to print to the screen, we would need to use `print( tab_subset(*) )`. Since we don't want to print to the screen, a call to `print()` is omitted.

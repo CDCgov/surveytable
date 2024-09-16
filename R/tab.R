@@ -141,7 +141,7 @@ tab = function(...
           , ": categorical variable with too many levels: "
           , nlv, ", but ", max_levels
           , " allowed. Try increasing the max_levels argument or "
-          , "see ?set_output"
+          , "see ?set_opts"
           )
 	  return(invisible(NULL))
 	}

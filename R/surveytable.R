@@ -20,8 +20,8 @@ NULL
 #' ## Low-precision estimates.
 #'
 #' Optionally, all of the tabulation functions can identify low-precision estimates.
-#' To turn on this functionality, either set the `surveytable.find_lpe` option to `TRUE`,
-#' or call [set_survey()] or [set_mode()] with the argument `mode = "NCHS"`.
+#' Turn on this functionality using any of the following: [set_opts](lpe = TRUE),
+#' [set_opts](mode = "nchs"), [set_survey](*, mode = "nchs"), or `options(surveytable.find_lpe = TRUE)`.
 #'
 #' By default, low-precision estimates are identified using National Center for
 #' Health Statistics (NCHS) algorithms. However, this can be changed, as described
@@ -31,8 +31,8 @@ NULL
 #' estimates.
 #'
 #' * `surveytable.find_lpe`: should the tabulation functions look for low-precision
-#' estimates? You can change this directly with `options()` or with the `mode` argument
-#' to [set_survey()] or [set_mode()].
+#' estimates? You can change this directly with `options()` or with either [set_opts()]
+#' or [set_survey()].
 #' * `surveytable.lpe_n`, `surveytable.lpe_counts`, `surveytable.lpe_percents`: names
 #' of 3 functions.
 #'

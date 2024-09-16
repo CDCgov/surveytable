@@ -1,7 +1,7 @@
 # surveytable (development version)
 
-* `rccsu2018`
-* `set_mode()`
+* Another public use data file for use in examples: `rccsu2018`.
+* `set_opts()` replaces several other functions for setting options.
 
 # surveytable 0.9.4
 

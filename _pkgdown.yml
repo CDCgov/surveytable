@@ -5,7 +5,6 @@ reference:
 - title: "Begin"
   contents:
   - set_survey
-  - set_count_1k
   - var_list
 - title: "Counts, percentages, and means"
   contents:
@@ -34,7 +33,7 @@ reference:
   - rccsu2018
 - title: "Other"
   contents:
-  - set_output
+  - set_opts
   - show_options
   - surveytable-options
   - codebook

@@ -108,8 +108,7 @@ like to analyze.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cdcgov.github.io/surveytable/">surveytable</a></span><span class="op">)</span></span></code></pre></div>
 <p>Now, specify the survey that you’d like to analyze.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">rccsu2018</span><span class="op">)</span></span>
-<span><span class="co">## * Mode: General.</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">rccsu2018</span><span class="op">)</span></span></code></pre></div>
 <table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <caption style="caption-side: top; text-align: center;">
 Survey info {RCC SU 2018 PUF}
@@ -149,7 +148,7 @@ options, such as identifying low-precision estimates. If you do not care
 about identifying low-precision estimates, you can skip this command. To
 turn on the NCHS-specific options:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_survey.html">set_mode</a></span><span class="op">(</span><span class="st">"NCHS"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>mode <span class="op">=</span> <span class="st">"NCHS"</span><span class="op">)</span></span>
 <span><span class="co">## * Mode: NCHS.</span></span></code></pre></div>
 <p>Alternatively, you can combine these two commands into a single
 command, like so:</p>

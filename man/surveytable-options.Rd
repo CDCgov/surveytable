@@ -12,8 +12,8 @@ notable options.
 \subsection{Low-precision estimates.}{
 
 Optionally, all of the tabulation functions can identify low-precision estimates.
-To turn on this functionality, either set the \code{surveytable.find_lpe} option to \code{TRUE},
-or call \code{\link[=set_survey]{set_survey()}} or \code{\link[=set_mode]{set_mode()}} with the argument \code{mode = "NCHS"}.
+Turn on this functionality using any of the following: \link{set_opts}(lpe = TRUE),
+\link{set_opts}(mode = "nchs"), \link{set_survey}(*, mode = "nchs"), or \code{options(surveytable.find_lpe = TRUE)}.
 
 By default, low-precision estimates are identified using National Center for
 Health Statistics (NCHS) algorithms. However, this can be changed, as described
@@ -23,8 +23,8 @@ Here is a description of the options related to the identification of low-precis
 estimates.
 \itemize{
 \item \code{surveytable.find_lpe}: should the tabulation functions look for low-precision
-estimates? You can change this directly with \code{options()} or with the \code{mode} argument
-to \code{\link[=set_survey]{set_survey()}} or \code{\link[=set_mode]{set_mode()}}.
+estimates? You can change this directly with \code{options()} or with either \code{\link[=set_opts]{set_opts()}}
+or \code{\link[=set_survey]{set_survey()}}.
 \item \code{surveytable.lpe_n}, \code{surveytable.lpe_counts}, \code{surveytable.lpe_percents}: names
 of 3 functions.
 }
@@ -78,8 +78,7 @@ Useful links:
 
 
 Other options: 
-\code{\link{set_count_1k}()},
-\code{\link{set_output}()},
+\code{\link{set_opts}()},
 \code{\link{set_survey}()},
 \code{\link{show_options}()}
 }

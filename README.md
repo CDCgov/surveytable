@@ -78,7 +78,6 @@ library(surveytable)
 
 ``` r
 set_survey(namcs2019sv)
-#> * Mode: General.
 ```
 
 <table class="huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">

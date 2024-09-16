@@ -74,15 +74,15 @@ notable options.</p>
 
 
 <p>Optionally, all of the tabulation functions can identify low-precision estimates.
-To turn on this functionality, either set the <code>surveytable.find_lpe</code> option to <code>TRUE</code>,
-or call <code><a href="set_survey.html">set_survey()</a></code> or <code><a href="set_survey.html">set_mode()</a></code> with the argument <code>mode = "NCHS"</code>.</p>
+Turn on this functionality using any of the following: <a href="set_opts.html">set_opts</a>(lpe = TRUE),
+<a href="set_opts.html">set_opts</a>(mode = "nchs"), <a href="set_survey.html">set_survey</a>(*, mode = "nchs"), or <code>options(surveytable.find_lpe = TRUE)</code>.</p>
 <p>By default, low-precision estimates are identified using National Center for
 Health Statistics (NCHS) algorithms. However, this can be changed, as described
 below.</p>
 <p>Here is a description of the options related to the identification of low-precision
 estimates.</p><ul><li><p><code>surveytable.find_lpe</code>: should the tabulation functions look for low-precision
-estimates? You can change this directly with <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code> or with the <code>mode</code> argument
-to <code><a href="set_survey.html">set_survey()</a></code> or <code><a href="set_survey.html">set_mode()</a></code>.</p></li>
+estimates? You can change this directly with <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code> or with either <code><a href="set_opts.html">set_opts()</a></code>
+or <code><a href="set_survey.html">set_survey()</a></code>.</p></li>
 <li><p><code>surveytable.lpe_n</code>, <code>surveytable.lpe_counts</code>, <code>surveytable.lpe_percents</code>: names
 of 3 functions.</p></li>
 </ul><p>The argument for <code>surveytable.lpe_n</code> is a vector of the number of observations
@@ -118,8 +118,7 @@ this case, <code>has.flag = c("A1", "A2")</code>, <code>descriptions = c(A1 = "A
     <div class="dont-index"><p>Useful links:</p><ul><li><p><a href="https://cdcgov.github.io/surveytable/">https://cdcgov.github.io/surveytable/</a></p></li>
 <li><p><a href="https://github.com/CDCgov/surveytable" class="external-link">https://github.com/CDCgov/surveytable</a></p></li>
 </ul><p>Other options: 
-<code><a href="set_count_1k.html">set_count_1k</a>()</code>,
-<code><a href="set_output.html">set_output</a>()</code>,
+<code><a href="set_opts.html">set_opts</a>()</code>,
 <code><a href="set_survey.html">set_survey</a>()</code>,
 <code><a href="show_options.html">show_options</a>()</code></p></div>
     </div>

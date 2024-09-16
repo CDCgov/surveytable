@@ -124,7 +124,7 @@ Check the survey label, survey design variables, and the number of observations 
 For this example, we do want to turn on certain NCHS-specific options, such as identifying low-precision estimates. If you do not care about identifying low-precision estimates, you can skip this command. To turn on the NCHS-specific options:
 
 ```{r, results='asis'}
-set_mode("NCHS")
+set_opts(mode = "NCHS")
 ```
 
 ## List variables
@@ -158,15 +158,20 @@ For each level of the variable, the table shows:
 * the estimated count, its standard error, and its 95% confidence interval; and 
 * the estimated percentage, its standard error, and its 95% confidence interval.
 
-**NCHS presentation standards.** The `tab()` function also applies the National Center for Health Statistics (NCHS) presentation standards for counts and percentages, and flags estimates if, according to the standards, they should be suppressed, footnoted, or reviewed by an analyst. The CIs that are displayed are the ones that are used by the NCHS presentation standards. Specifically, for counts, the tables show the log Student's t 95% CI, with adaptations for complex surveys; for percentages, they show the 95% Korn and Graubard CI.
+**Low-precision estimates.** Optionally, the `tab()` function, as well as the other tabulation functions that are discussed below, can automatically identify low-precision estimates using algorithms developed at NCHS. For counts, rates, and percentages, the functions flag estimates if, according to the algorithms, they should not be presented, should be reviewed by a clearance official, or should be presented with a footnote. If no estimates are flagged by the checks, the table has a footnote that indicates this. If the checks do identify an estimate, that is denoted in an additional column and in the table footnote.
 
-One does not need to do anything extra to perform presentation standards checking -- it is performed automatically. For example, let's tabulate `PAYNOCHG`: 
+Turn on this functionality using any of the following: `set_opts(lpe = TRUE)`,
+`set_opts(mode = "nchs")`, `set_survey(*, mode = "nchs")`, or `options(surveytable.find_lpe = TRUE)`.
+
+As an example, let's tabulate `PAYNOCHG`: 
 
 ```{r, results='asis'}
 tab("PAYNOCHG")
 ```
 
-This table tells us that, according to the NCHS presentation standards, the estimated number of visits in which there was no charge for the visit should be suppressed due to low precision. However, the lack of a percentage flag indicates that the estimated percentage of such visits can be shown. 
+This table tells us that the estimated number of visits in which there was no charge for the visit has low precision. Intuitively, we can see that the CI for this count estimate is very wide, indicating high uncertainty. 
+
+The CIs that are displayed are the ones that are used by the NCHS presentation standards. Specifically, for counts, the tables show the log Student's t 95% CI, with adaptations for complex surveys; for percentages, they show the 95% Korn and Graubard CI.
 
 **Drop missing values.** Some variables might contain missing values (`NA`). Consider the following variable, which is not part of the actual survey, but was constructed specifically for this example:
 
@@ -437,18 +442,15 @@ Here, the `AGER` variable remains unchanged, while the `Age group` variable has 
 
 # Save the output
 
-The `tab*` and `total*` functions have an argument called `csv` that specifies the name of a comma-separated values (CSV) file to save the output to. Alternatively, you can name the default CSV output file using the `set_output()` function. For example, the following directs `surveytable` to send all future output to a CSV file, create some tables, and then turn off sending output to the file:
+The `tab*` and `total*` functions have an argument called `csv` that specifies the name of a comma-separated values (CSV) file to save the output to. Alternatively, you can name the default CSV output file using the `set_opts()` function. For example, the following directs `surveytable` to send all future output to a CSV file, create some tables, and then turn off sending output to the file:
 
 ```r
-set_output(csv = "output.csv")
+set_opts(csv = "output.csv")
 ```
 
 ```{r, results='asis'}
-tab("MDDO", "SPECCAT", "MSA")
-```
-
-```{r}
-set_output(csv = "")
+tab("MDDO")
+set_opts(csv = "")
 ```
 
 If the tabulation functions are called from within an R Markdown notebook or a Quarto document, they produce HTML or LaTeX tables, as appropriate. This makes it easy to incorporate the output of the `surveytable` package directly into documents, presentations, "shiny" web apps, and other output types.

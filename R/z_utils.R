@@ -21,3 +21,11 @@
   assert_that(noNA(xx), noNA(levels(xx)))
   xx
 }
+
+.mymatch = function(arg, table) {
+  assert_that(is.string(arg), nzchar(arg))
+  table %<>% tolower
+  idx = arg %>% tolower %>% pmatch(table)
+  assert_that(noNA(idx), msg = paste("Unknown value:", arg))
+  table[idx]
+}

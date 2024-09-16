@@ -37,7 +37,7 @@ Check the survey name, survey design variables, and the number of observations t
 For this example, we do want to turn on certain NCHS-specific options, such as identifying low-precision estimates. If you do not care about identifying low-precision estimates, you can skip this command. To turn on the NCHS-specific options:
 
 ```{r, results='asis'}
-set_mode("NCHS")
+set_opts(mode = "NCHS")
 ```
 
 Alternatively, you can combine these two commands into a single command, like so:
