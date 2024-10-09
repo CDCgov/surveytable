@@ -1,7 +1,5 @@
 #' Deprecated functions
 #'
-#' `r lifecycle::badge("deprecated")`
-#'
 #' Use [set_opts()] instead of any of the following: `set_mode()`, `set_count_1k()`,
 #' `set_count_int()`, `set_output()`.
 #'

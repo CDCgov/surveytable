@@ -17,9 +17,6 @@ set_count_int()
 set_output(drop_na = NULL, max_levels = NULL, csv = NULL)
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
-}
-\details{
 Use \code{\link[=set_opts]{set_opts()}} instead of any of the following: \code{set_mode()}, \code{set_count_1k()},
 \code{set_count_int()}, \code{set_output()}.
 }

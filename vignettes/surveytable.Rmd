@@ -65,7 +65,7 @@ Variables in `namcs2019sv_df` are already stored correctly. Thus,
 * `AGE` (patient's age in years) is a `numeric` variable.
 
 ```{r, results=FALSE, message=FALSE, warning=FALSE}
-library("surveytable")
+library(surveytable)
 ```
 
 ```{r}
@@ -116,6 +116,7 @@ We have just successfully created a survey object from a data frame.
 First, specify the survey object that you'd like to analyze.
 
 ```{r, results='asis'}
+library(surveytable)
 set_survey(namcs2019sv)
 ```
 
