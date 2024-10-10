@@ -20,9 +20,9 @@ Selected variables from NAMCS 2019 come with the `surveytable` package, for use 
 
 # Begin
 
-Begin by loading the `surveytable` package. When you do, it will print a message explaining how to specify the survey that you'd like to analyze. We are omitting that message here. 
+Begin by loading the `surveytable` package.  
 
-```{r, results=FALSE, message=FALSE, warning=FALSE}
+```{r}
 library(surveytable)
 ```
 

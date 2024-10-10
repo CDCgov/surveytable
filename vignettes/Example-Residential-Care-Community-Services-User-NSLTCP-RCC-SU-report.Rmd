@@ -20,9 +20,9 @@ The RCC SU 2018 survey comes with the `surveytable` package, for use in examples
 
 # Begin
 
-Begin by loading the `surveytable` package. When you do, it will print a message explaining how to specify the survey that you'd like to analyze.  
+Begin by loading the `surveytable` package.  
 
-```{r, results=FALSE, message=FALSE, warning=FALSE}
+```{r}
 library(surveytable)
 ```
 
