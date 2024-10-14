@@ -1,0 +1,40 @@
+.as_object_gt = function(df1, destination = NULL, ...) {
+  assert_package("as_object", "gt")
+
+  ## Non-unique names fix
+  nn0 = names(df1)
+  nn1 = nn0 %>% make.names(unique = TRUE)
+  names(df1) = nn1
+
+  hh = gt::opt_stylize(gt::gt(df1))
+  hh = gt::cols_label_with(hh, fn = function(v1) {
+    idx = which(nn1 == v1)
+    assert_that(length(idx) == 1)
+    nn0[idx]
+  })
+
+  if (!is.null(txt <- attr(df1, "title"))) {
+    hh = gt::tab_header(hh, title = txt)
+  }
+  if (!is.null(nc <- attr(df1, "num"))) {
+    hh = gt::fmt_integer(hh, columns = nc)
+  }
+  if (!is.null(txt <- attr(df1, "footer"))) {
+    hh = gt::tab_footnote(hh, footnote = txt, placement = "left")
+  }
+  hh
+}
+
+.print_gt = function(hh, destination = NULL, ...) {
+  assert_package("print", "gt")
+  dest = .get_destination(destination = destination)
+  assert_that(dest != "latex",
+              msg = "Have not implemented LaTeX printing with gt yet. Try set_opts(output = 'kableExtra')")
+  assert_that(dest %in% c("", "html"))
+
+  if (dest == "") {
+    print(hh)
+  } else if (dest == "html") {
+    print(gt::as_raw_html(hh))
+  }
+}

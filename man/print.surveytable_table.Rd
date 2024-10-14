@@ -3,24 +3,45 @@
 \name{print.surveytable_table}
 \alias{print.surveytable_table}
 \alias{print.surveytable_list}
+\alias{as_object}
 \title{Print surveytable tables}
 \usage{
-\method{print}{surveytable_table}(x, .output = NULL, ...)
+\method{print}{surveytable_table}(x, ...)
 
-\method{print}{surveytable_list}(x, .output = NULL, ...)
+\method{print}{surveytable_list}(x, ...)
+
+as_object(x, ...)
 }
 \arguments{
 \item{x}{an object of class \code{surveytable_table} or \code{surveytable_list}.}
 
-\item{.output}{output type. \code{NULL} = auto-detect.}
-
-\item{...}{ignored}
+\item{...}{passed to helper functions.}
 }
 \value{
-\code{x} invisibly.
+\verb{print.*} returns \code{x} invisibly.
+
+\code{as_object()} returns an object (or a list of objects) of whatever package
+is being used for printing (such as \code{huxtable}).
 }
 \description{
-Print surveytable tables
+If a tabulation function is called from the top level, it should print out
+its table(s) on its own. If that tabulation function is called not from the
+top level, such as from within a loop or another function, you need to call
+\code{print()} explicitly. For example:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{set_survey(namcs2019sv)
+for (vr in c("AGER", "SEX")) \{
+  print( tab_subset(vr, "MAJOR", "Preventive care") )
+\}
+}\if{html}{\out{</div>}}
+}
+\details{
+The package used to produce the tables can be changed. See \code{\link[=set_opts]{set_opts()}} for
+details. By default, \code{huxtable} is used.
+
+\code{as_object()} returns an object (or a list of objects) of whatever package
+is being used for printing (such as \code{huxtable}). This is useful for further
+customizing the tables before finally printing them.
 }
 \examples{
 set_survey(namcs2019sv)

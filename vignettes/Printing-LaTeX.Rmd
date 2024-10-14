@@ -1,0 +1,95 @@
+---
+title: "Printing (LaTeX)"
+output: pdf_document
+vignette: >
+  %\VignetteIndexEntry{Printing (LaTeX)}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+pkgdown:
+  as_is: true
+  extension: pdf
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Basic printing
+
+If a tabulation function is called from the top level, it should print out its table(s) on its own. 
+
+As usual, first, let's start up the package and pick a survey to analyze:
+
+```r
+library(surveytable)
+set_survey(namcs2019sv)
+```
+
+```{r, results='asis', echo=FALSE, message=FALSE}
+library(surveytable)
+set_opts(output = "kableExtra")
+set_survey(namcs2019sv)
+```
+
+Now, when a tabulation function is called from the top level, it prints. You don't need to do anything extra.
+
+```{r, results='asis'}
+tab("AGER")
+```
+
+If that tabulation function is called not from the top level, such as from within a loop or another function, you need to call `print()` explicitly for it to print. For example:
+
+```{r, results='asis'}
+for (vr in c("AGER", "SEX")) {
+  print( tab_subset(vr, "MAJOR", "Preventive care") )
+}
+```
+
+# Create HTML or LaTeX tables
+
+To create HTML or LaTeX tables from an R Markdown notebook or a Quarto document, add the `results='asis'` argument to your code chunk, like so:
+
+<!-- https://yihui.org/knitr/faq/ --> 
+
+````{verbatim}
+```{r, results='asis'}
+tab("AGER")
+```
+````
+
+The above should produce the following:
+
+```{r, results='asis', echo=FALSE}
+tab("AGER")
+```
+
+# Print using various printing packages
+
+You can change the package that `surveytable` uses for printing. `surveytable` comes with code for using one of these packages: `huxtable` (default), `gt`, and `kableExtra`. In addition, you can supply custom code to use another printing package.
+
+Changing the printing package has a couple of uses:
+
+* Use `as_object()` to generate an object from your favorite printing package, further edit this object using that printing package, and then finally print it, so the table looks exactly the way you want it to look.
+* Print to destinations other than the screen, such as HTML or LaTeX.
+
+## `kableExtra`
+
+By default, `surveytable` prints using `huxtable`. However, at this point, we have only implemented LaTeX printing with `kableExtra`. This is the reason that, in a LaTeX document, you do need to switch to `kableExtra` output:
+
+```{r}
+set_opts(output = "kableExtra")
+```
+
+Once you do that, produce LaTeX tables like so:
+
+````{verbatim}
+```{r, results='asis'}
+tab("AGER")
+```
+````
+```{r, results='asis', echo=FALSE}
+tab("AGER")
+```

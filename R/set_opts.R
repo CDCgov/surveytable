@@ -1,8 +1,9 @@
 #' Set certain options
 #'
-#' `set_opts()` sets certain options. `show_opts()` shows the options that have
-#' been set. More advanced users can also use [options()] and [show_options()] for
-#' more detailed control.
+#' `set_opts()` sets certain options. To view these options, use `show_opts()`.
+#' For more advanced control and detailed customization, experienced users can
+#' also employ [options()] and [show_options()] (refer to [surveytable-options]
+#' for further information).
 #'
 #' If you are not setting a particular option, leave it as `NULL`.
 #'
@@ -24,7 +25,9 @@
 #' @param lpe identify low-precision estimates?
 #' @param drop_na drop missing values (`NA`)? Categorical variables only.
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
-#' @param csv     name of a CSV file or `""` to turn off CSV output
+#' @param csv     name of a CSV file or `""` to turn off CSV output.
+#' @param output package to use for printing. One of `"huxtable"` (default), `"gt"`, or `"kableExtra"`.
+#' Be sure that this package is installed.
 #'
 #' @return (Nothing.)
 #' @family options
@@ -43,8 +46,11 @@ set_opts = function(
     mode = NULL
     , count = NULL
     , lpe = NULL
-    , drop_na = NULL, max_levels = NULL, csv = NULL) {
-  # If making changes, update .onLoad()
+    , drop_na = NULL, max_levels = NULL, csv = NULL
+    , output = NULL
+    ) {
+
+  #### !!! If making changes, update .onLoad()
 
   ## Mode has to go ahead of the other options
   if (!is.null(mode)) {
@@ -118,6 +124,13 @@ set_opts = function(
     options(surveytable.csv = csv)
   }
 
+  if (!is.null(output)) {
+    output %<>% .mymatch(c("huxtable", "gt", "kableExtra"))
+    message(glue("* Printing with {output}."))
+    options(surveytable.output_object = glue(".as_object_{output}")
+      , surveytable.output_print = glue(".print_{output}"))
+  }
+
   invisible(NULL)
 }
 
@@ -174,6 +187,14 @@ show_opts = function() {
   } else {
     message("* CSV output has been turned off.")
   }
+
+  xx = getOption("surveytable.output_print")
+  assert_that(is.string(xx), nzchar(xx))
+  switch(xx
+         , ".print_huxtable" = "* Printing with huxtable."
+         , ".print_gt" = "* Printing with gt."
+         , ".print_kableextra" = "* Printing with kableExtra."
+         , glue("Printing with a custom function: {xx}")) %>% message
 
   invisible(NULL)
 }

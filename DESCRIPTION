@@ -27,12 +27,14 @@ LazyData: true
 LazyDataCompression: bzip2
 Imports: 
     assertthat,
-    huxtable,
-    kableExtra,
-    lifecycle,
     magrittr,
-    survey
+    glue, 
+    survey, 
+    huxtable,
+    lifecycle
 Suggests: 
+    kableExtra,
+    gt, 
     knitr, 
     rmarkdown
 VignetteBuilder: knitr
