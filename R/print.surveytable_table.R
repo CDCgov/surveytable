@@ -1,10 +1,38 @@
 #' Print surveytable tables
 #'
-#' @param x an object of class `surveytable_table` or `surveytable_list`.
-#' @param .output output type. `NULL` = auto-detect.
-#' @param ... ignored
+#' @description
 #'
-#' @return `x` invisibly.
+#' If a tabulation function is called from the top level, it should print out
+#' its table(s) on its own. If that tabulation function is called not from the
+#' top level, such as from within a loop or another function, you need to call
+#' `print()` explicitly. For example:
+#'
+#' ```
+#' set_survey(namcs2019sv)
+#' for (vr in c("AGER", "SEX")) {
+#'   print( tab_subset(vr, "MAJOR", "Preventive care") )
+#' }
+#' ```
+#'
+#' @details
+#'
+#' The package used to produce the tables can be changed. See [set_opts()] for
+#' details. By default, `huxtable` is used.
+#'
+#' `as_object()` returns an object (or a list of objects) of whatever package
+#' is being used for printing (such as `huxtable`). This is useful for further
+#' customizing the tables before finally printing them.
+#'
+#' @param x an object of class `surveytable_table` or `surveytable_list`.
+#' @param ... passed to helper functions.
+#'
+#' @return
+#' `print.*` returns `x` invisibly.
+#'
+#' `as_object()` returns an object (or a list of objects) of whatever package
+#' is being used for printing (such as `huxtable`).
+#'
+#' @order 1
 #' @export
 #'
 #' @examples
@@ -13,122 +41,41 @@
 #' print(table1)
 #' table_many = tab("MDDO", "SPECCAT", "MSA")
 #' print(table_many)
-print.surveytable_table = function(x, .output = NULL, ...) {
-  df1 = x
-  class(df1) = "data.frame"
-
-  # See inside guess_knitr_output_format
-  fo = ""
-  if (!is.null(.output)) {
-    fo = .output
-  } else {
-    if (requireNamespace("knitr", quietly = TRUE)
-        && requireNamespace("rmarkdown", quietly = TRUE)) {
-      fo = guess_knitr_output_format()
-    }
-  }
-
-  if (fo == "latex") {
-    hh = df1 %>%
-      kbl(booktabs = TRUE
-        , format = "latex"
-        , caption = attr(df1, "title") %>% .latex_escape
-        , label = NA
-        , digits = Inf
-        , row.names = FALSE
-        , format.args = list(big.mark = ",")
-        ) %>%
-      kable_styling(latex_options = c("striped"
-        , "HOLD_position"
-        , "scale_down"
-        )
-        , position = "left"
-        )
-    if (!is.null(ccs <- df1 %>% .calc_column_spec)) {
-      hh %<>% column_spec(
-        column = ccs$column
-        , width = ccs$width
-      )
-    }
-    if (!is.null(txt <- attr(df1, "footer"))) {
-      hh %<>% footnote(general = txt %>% .latex_escape
-                       , general_title = "")
-    }
-    hh %>% print
-
-    return( invisible(x) )
-  }
-
-  hh = df1 %>% hux %>% set_all_borders
-  if (!is.null(txt <- attr(df1, "title"))) {
-    # caption(hh) = paste(strwrap(txt), collapse = "\n")
-    caption(hh) = txt
-  }
-  if (!is.null(nc <- attr(df1, "num"))) {
-    number_format(hh)[-1,nc] = fmt_pretty()
-  }
-  if (!is.null(txt <- attr(df1, "footer"))) {
-    hh %<>% add_footnote(txt)
-  }
-
-  if (fo == "") {
-    gow = getOption("width")
-    op_ = options(width = 10)
-    on.exit(options(op_))
-    hh %>% print_screen(colnames = FALSE, min_width = 0
-                        , max_width = max(gow * 1.5, 150, na.rm = TRUE))
-    cat("\n")
-  } else {
-    hh %>% print_html
-  }
-
+print.surveytable_table = function(x, ...) {
+  obj = as_object(x, ...)
+  getOption("surveytable.output_print") %>% do.call( list(obj, ...) )
   invisible(x)
 }
-
-.latex_escape = function(xx) {
-  if (is.null(xx) || !is.character(xx)) return(xx)
-
-  # https://tex.stackexchange.com/questions/34580/escape-character-in-latex
-
-  # must come first:
-  xx = gsub("\\", "\\textbackslash", xx, fixed = TRUE)
-
-  for (cc in c("&", "%", "$", "#", "_", "{", "}")) {
-    rep = paste0("\\", cc)
-    xx = gsub(cc, rep, xx, fixed = TRUE)
-  }
-  xx = gsub("~", "\\textasciitilde", xx, fixed = TRUE)
-  xx = gsub("^", "\\textasciicircum", xx, fixed = TRUE)
-
-  xx
-}
-
-.calc_column_spec = function(df1) {
-  n.nch = df1 %>% names %>% nchar
-  c.nch = df1 %>% sapply(function(x) x %>% nchar %>% max(na.rm = TRUE) )
-  nch = pmax(n.nch, c.nch, na.rm = TRUE)
-  idx = which(nch > 15)
-
-  lidx = length(idx)
-  if (lidx > 0 && lidx <= 11) {
-    n1 = nch[idx]
-    if (sum(n1) > 50) {
-      n1 = round(50 * n1 / sum(n1)) %>% pmax(10)
-    }
-    ww = paste0(n1, "ex")
-    return( list(column = idx, width = ww) )
-  }
-  return(NULL)
-}
-
 
 #' @rdname print.surveytable_table
+#' @order 2
 #' @export
-print.surveytable_list = function(x, .output = NULL, ...) {
-  if (length(x) > 0) {
-    for (ii in 1:length(x)) {
-      print.surveytable_table(x[[ii]], .output = .output)
+print.surveytable_list = function(x, ...) {
+  obj = as_object(x, ...)
+  if (length(obj) > 0) {
+    for (ii in 1:length(obj)) {
+      getOption("surveytable.output_print") %>% do.call( list(obj[[ii]], ...) )
     }
   }
   invisible(x)
+}
+
+#' @rdname print.surveytable_table
+#' @order 3
+#' @export
+as_object = function(x, ...) {
+  assert_that(inherits(x, "surveytable_table") || inherits(x, "surveytable_list"))
+
+  if (inherits(x, "surveytable_table")) {
+    ret = getOption("surveytable.output_object") %>% do.call( list(x, ...) )
+    return(ret)
+  } else {
+    ret = list()
+    if (length(x) > 0) {
+      for (ii in 1:length(x)) {
+        ret[[ii]] = getOption("surveytable.output_object") %>% do.call( list(x[[ii]], ...) )
+      }
+    }
+    return(ret)
+  }
 }

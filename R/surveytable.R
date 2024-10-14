@@ -1,8 +1,7 @@
 #' @import assertthat
 #' @import magrittr
+#' @import glue
 #' @import survey
-#' @importFrom huxtable guess_knitr_output_format hux set_all_borders caption caption<- number_format number_format<- fmt_pretty add_footnote print_screen print_html
-#' @importFrom kableExtra kbl kable_styling footnote column_spec
 #' @importFrom stats as.formula confint qt coef pt p.adjust
 #' @importFrom utils write.table tail capture.output
 #' @keywords internal
@@ -14,10 +13,41 @@ NULL
 
 #' Package options
 #'
-#' Run [show_options()] to see available options. Here is a description of some
-#' notable options.
+#' This article is for more advanced users. Typical users, see [set_opts()]
+#' and [show_opts()] to set and show certain options.
 #'
-#' ## Low-precision estimates.
+#' To view all available options, use [show_options()]. Below is a description
+#' of some noteworthy options.
+#'
+#' ## Printing using various printing packages
+#'
+#' The tabulation functions return objects of class `surveytable_table` (for a single
+#' table) or `surveytable_list` (for multiple tables, which is just a list of `surveytable_table`
+#' objects). A `surveytable_table` object is just a `data.frame` with the following
+#' attributes: `title`, `footer`, and `num`, which is the index of columns that
+#' should be formatted as a number.
+#'
+#' Naturally, these objects can be printed using a variety of packages. `surveytable`
+#' ships with the ability to use `huxtable`, `gt`, or `kableExtra`. See the `output`
+#' argument of [set_opts()].
+#'
+#' You can supply custom code to use another printing package or to use one of these
+#' printing packages, but in a different way. The two relevant options are `surveytable.output_object`
+#' and `surveytable.output_print`.
+#'
+#' `surveytable.output_object` is the name of a function with the following arguments:
+#' `x` and `...`, where `x` is a `surveytable_table` object. This function returns
+#' an object from a printing package, for example, it returns a `gt` object. Be sure
+#' that this package is installed.
+#'
+#' `surveytable.output_print` is the name of a function with the following arguments:
+#' `x` and `...`, where `x` is an object returned by the `surveytable.output_object`
+#' function. The `surveytable.output_print` function prints this object.
+#'
+#' For an example of how this works, see the internal functions `surveytable:::.as_object_huxtable`
+#' and `surveytable:::.print_huxtable`.
+#'
+#' ## Low-precision estimates
 #'
 #' Optionally, all of the tabulation functions can identify low-precision estimates.
 #' Turn on this functionality using any of the following: [set_opts](lpe = TRUE),

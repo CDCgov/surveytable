@@ -5,11 +5,42 @@
 \alias{surveytable-options}
 \title{Package options}
 \description{
-Run \code{\link[=show_options]{show_options()}} to see available options. Here is a description of some
-notable options.
+This article is for more advanced users. Typical users, see \code{\link[=set_opts]{set_opts()}}
+and \code{\link[=show_opts]{show_opts()}} to set and show certain options.
 }
 \details{
-\subsection{Low-precision estimates.}{
+To view all available options, use \code{\link[=show_options]{show_options()}}. Below is a description
+of some noteworthy options.
+\subsection{Printing using various printing packages}{
+
+The tabulation functions return objects of class \code{surveytable_table} (for a single
+table) or \code{surveytable_list} (for multiple tables, which is just a list of \code{surveytable_table}
+objects). A \code{surveytable_table} object is just a \code{data.frame} with the following
+attributes: \code{title}, \code{footer}, and \code{num}, which is the index of columns that
+should be formatted as a number.
+
+Naturally, these objects can be printed using a variety of packages. \code{surveytable}
+ships with the ability to use \code{huxtable}, \code{gt}, or \code{kableExtra}. See the \code{output}
+argument of \code{\link[=set_opts]{set_opts()}}.
+
+You can supply custom code to use another printing package or to use one of these
+printing packages, but in a different way. The two relevant options are \code{surveytable.output_object}
+and \code{surveytable.output_print}.
+
+\code{surveytable.output_object} is the name of a function with the following arguments:
+\code{x} and \code{...}, where \code{x} is a \code{surveytable_table} object. This function returns
+an object from a printing package, for example, it returns a \code{gt} object. Be sure
+that this package is installed.
+
+\code{surveytable.output_print} is the name of a function with the following arguments:
+\code{x} and \code{...}, where \code{x} is an object returned by the \code{surveytable.output_object}
+function. The \code{surveytable.output_print} function prints this object.
+
+For an example of how this works, see the internal functions \code{surveytable:::.as_object_huxtable}
+and \code{surveytable:::.print_huxtable}.
+}
+
+\subsection{Low-precision estimates}{
 
 Optionally, all of the tabulation functions can identify low-precision estimates.
 Turn on this functionality using any of the following: \link{set_opts}(lpe = TRUE),

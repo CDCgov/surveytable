@@ -1,5 +1,10 @@
 # surveytable (development version)
 
+* Ability to customize how the tables are printed.
+  * `output` argument to `set_opts()`
+  * New function: `as_object()`
+  * More details in `surveytable-options`
+
 # surveytable 0.9.5
 
 * Another public use data file for use in examples: `rccsu2018`.

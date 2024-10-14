@@ -11,7 +11,8 @@ set_opts(
   lpe = NULL,
   drop_na = NULL,
   max_levels = NULL,
-  csv = NULL
+  csv = NULL,
+  output = NULL
 )
 
 show_opts()
@@ -27,15 +28,19 @@ show_opts()
 
 \item{max_levels}{a categorical variable can have at most this many levels. Used to avoid printing huge tables.}
 
-\item{csv}{name of a CSV file or \code{""} to turn off CSV output}
+\item{csv}{name of a CSV file or \code{""} to turn off CSV output.}
+
+\item{output}{package to use for printing. One of \code{"huxtable"} (default), \code{"gt"}, or \code{"kableExtra"}.
+Be sure that this package is installed.}
 }
 \value{
 (Nothing.)
 }
 \description{
-\code{set_opts()} sets certain options. \code{show_opts()} shows the options that have
-been set. More advanced users can also use \code{\link[=options]{options()}} and \code{\link[=show_options]{show_options()}} for
-more detailed control.
+\code{set_opts()} sets certain options. To view these options, use \code{show_opts()}.
+For more advanced control and detailed customization, experienced users can
+also employ \code{\link[=options]{options()}} and \code{\link[=show_options]{show_options()}} (refer to \link{surveytable-options}
+for further information).
 }
 \details{
 If you are not setting a particular option, leave it as \code{NULL}.
