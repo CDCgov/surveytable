@@ -1006,19 +1006,19 @@ N = 8250.
 </table>
 </div>
 <div class="section level2">
-<h2 id="print-using-various-printing-packages">Print using various printing packages<a class="anchor" aria-label="anchor" href="#print-using-various-printing-packages"></a>
+<h2 id="print-using-various-table-making-packages">Print using various table-making packages<a class="anchor" aria-label="anchor" href="#print-using-various-table-making-packages"></a>
 </h2>
 <p>You can change the package that <code>surveytable</code> uses for
 printing. <code>surveytable</code> comes with code for using one of
 these packages: <code>huxtable</code> (default), <code>gt</code>, and
 <code>kableExtra</code>. In addition, you can supply custom code to use
-another printing package.</p>
-<p>Changing the printing package has a couple of uses:</p>
+another table-making package.</p>
+<p>Changing the table-making package has a couple of uses:</p>
 <ul>
 <li>Use <code><a href="../reference/print.surveytable_table.html">as_object()</a></code> to generate an object from your
-favorite printing package, further edit this object using that printing
-package, and then finally print it, so the table looks exactly the way
-you want it to look.</li>
+favorite table-making package, further edit this object using that
+table-making package, and then finally print it, so the table looks
+exactly the way you want it to look.</li>
 <li>Print to destinations other than the screen, such as HTML or
 LaTeX.</li>
 </ul>
@@ -2512,6 +2512,601 @@ Under 15 years
 </td>
 </tr></tfoot>
 </table>
+</div>
+</div>
+<div class="section level2">
+<h2 id="advanced-printing">Advanced printing<a class="anchor" aria-label="anchor" href="#advanced-printing"></a>
+</h2>
+<div class="section level3">
+<h3 id="the-proper-approach">The proper approach<a class="anchor" aria-label="anchor" href="#the-proper-approach"></a>
+</h3>
+<p>Advanced users can add functionality to use <strong>any</strong>
+table-making package that they want. For more information, see
+<code><a href="../reference/surveytable-options.html">help("surveytable-options")</a></code>.</p>
+</div>
+<div class="section level3">
+<h3 id="the-quick-and-dirty-approach">The “quick-and-dirty” approach<a class="anchor" aria-label="anchor" href="#the-quick-and-dirty-approach"></a>
+</h3>
+<p>The tabulation functions return either:</p>
+<ul>
+<li>for a single table, a data frame, with certain attributes set;
+or</li>
+<li>for more than one table, a list of such data frames.</li>
+</ul>
+<p>You can convert a single table to a <code>data.frame</code> with
+<code><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame()</a></code>, like so:</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;               Level    n    Number       SE        LL        UL Percent  SE</span></span>
+<span><span class="co">#&gt; 1    Under 15 years  887 117916772 14097315  93228928 149142177    11.4 1.3</span></span>
+<span><span class="co">#&gt; 2       15-24 years  542  64855698  7018359  52386950  80292164     6.3 0.6</span></span>
+<span><span class="co">#&gt; 3       25-44 years 1435 170270604 13965978 144924545 200049472    16.4 1.1</span></span>
+<span><span class="co">#&gt; 4       45-64 years 2283 309505956 23289827 266994092 358786727    29.9 1.4</span></span>
+<span><span class="co">#&gt; 5       65-74 years 1661 206865982 14365993 180480708 237108637    20.0 1.2</span></span>
+<span><span class="co">#&gt; 6 75 years and over 1442 167069344 15179082 139746193 199734713    16.1 1.3</span></span>
+<span><span class="co">#&gt;     LL   UL</span></span>
+<span><span class="co">#&gt; 1  8.9 14.2</span></span>
+<span><span class="co">#&gt; 2  5.1  7.5</span></span>
+<span><span class="co">#&gt; 3 14.3 18.8</span></span>
+<span><span class="co">#&gt; 4 27.2 32.6</span></span>
+<span><span class="co">#&gt; 5 17.6 22.5</span></span>
+<span><span class="co">#&gt; 6 13.7 18.8</span></span></code></pre></div>
+<p>Alternatively, you can pass this data frame to your favorite
+table-making package. This example passes it to <code>gt</code>:</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>count <span class="op">=</span> <span class="st">"1k"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; * Rounding counts to the nearest thousand.</span></span>
+<span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div id="ulbfdpbcyv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ulbfdpbcyv table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ulbfdpbcyv thead, #ulbfdpbcyv tbody, #ulbfdpbcyv tfoot, #ulbfdpbcyv tr, #ulbfdpbcyv td, #ulbfdpbcyv th {
+  border-style: none;
+}
+
+#ulbfdpbcyv p {
+  margin: 0;
+  padding: 0;
+}
+
+#ulbfdpbcyv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ulbfdpbcyv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ulbfdpbcyv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ulbfdpbcyv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ulbfdpbcyv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ulbfdpbcyv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ulbfdpbcyv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ulbfdpbcyv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ulbfdpbcyv .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ulbfdpbcyv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ulbfdpbcyv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ulbfdpbcyv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ulbfdpbcyv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ulbfdpbcyv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ulbfdpbcyv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ulbfdpbcyv .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ulbfdpbcyv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ulbfdpbcyv .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ulbfdpbcyv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ulbfdpbcyv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ulbfdpbcyv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ulbfdpbcyv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ulbfdpbcyv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ulbfdpbcyv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ulbfdpbcyv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ulbfdpbcyv .gt_left {
+  text-align: left;
+}
+
+#ulbfdpbcyv .gt_center {
+  text-align: center;
+}
+
+#ulbfdpbcyv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ulbfdpbcyv .gt_font_normal {
+  font-weight: normal;
+}
+
+#ulbfdpbcyv .gt_font_bold {
+  font-weight: bold;
+}
+
+#ulbfdpbcyv .gt_font_italic {
+  font-style: italic;
+}
+
+#ulbfdpbcyv .gt_super {
+  font-size: 65%;
+}
+
+#ulbfdpbcyv .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ulbfdpbcyv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ulbfdpbcyv .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ulbfdpbcyv .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ulbfdpbcyv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ulbfdpbcyv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ulbfdpbcyv .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ulbfdpbcyv .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ulbfdpbcyv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Level">Level</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Number-(000)">Number (000)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE-(000)">SE (000)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="LL-(000)">LL (000)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="UL-(000)">UL (000)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Percent">Percent</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="LL">LL</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="UL">UL</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="Level" class="gt_row gt_left">Under 15 years</td>
+<td headers="n" class="gt_row gt_right">887</td>
+<td headers="Number (000)" class="gt_row gt_right">117917</td>
+<td headers="SE (000)" class="gt_row gt_right">14097</td>
+<td headers="LL (000)" class="gt_row gt_right">93229</td>
+<td headers="UL (000)" class="gt_row gt_right">149142</td>
+<td headers="Percent" class="gt_row gt_right">11.4</td>
+<td headers="SE" class="gt_row gt_right">1.3</td>
+<td headers="LL" class="gt_row gt_right">8.9</td>
+<td headers="UL" class="gt_row gt_right">14.2</td>
+</tr>
+<tr>
+<td headers="Level" class="gt_row gt_left">15-24 years</td>
+<td headers="n" class="gt_row gt_right">542</td>
+<td headers="Number (000)" class="gt_row gt_right">64856</td>
+<td headers="SE (000)" class="gt_row gt_right">7018</td>
+<td headers="LL (000)" class="gt_row gt_right">52387</td>
+<td headers="UL (000)" class="gt_row gt_right">80292</td>
+<td headers="Percent" class="gt_row gt_right">6.3</td>
+<td headers="SE" class="gt_row gt_right">0.6</td>
+<td headers="LL" class="gt_row gt_right">5.1</td>
+<td headers="UL" class="gt_row gt_right">7.5</td>
+</tr>
+<tr>
+<td headers="Level" class="gt_row gt_left">25-44 years</td>
+<td headers="n" class="gt_row gt_right">1435</td>
+<td headers="Number (000)" class="gt_row gt_right">170271</td>
+<td headers="SE (000)" class="gt_row gt_right">13966</td>
+<td headers="LL (000)" class="gt_row gt_right">144925</td>
+<td headers="UL (000)" class="gt_row gt_right">200049</td>
+<td headers="Percent" class="gt_row gt_right">16.4</td>
+<td headers="SE" class="gt_row gt_right">1.1</td>
+<td headers="LL" class="gt_row gt_right">14.3</td>
+<td headers="UL" class="gt_row gt_right">18.8</td>
+</tr>
+<tr>
+<td headers="Level" class="gt_row gt_left">45-64 years</td>
+<td headers="n" class="gt_row gt_right">2283</td>
+<td headers="Number (000)" class="gt_row gt_right">309506</td>
+<td headers="SE (000)" class="gt_row gt_right">23290</td>
+<td headers="LL (000)" class="gt_row gt_right">266994</td>
+<td headers="UL (000)" class="gt_row gt_right">358787</td>
+<td headers="Percent" class="gt_row gt_right">29.9</td>
+<td headers="SE" class="gt_row gt_right">1.4</td>
+<td headers="LL" class="gt_row gt_right">27.2</td>
+<td headers="UL" class="gt_row gt_right">32.6</td>
+</tr>
+<tr>
+<td headers="Level" class="gt_row gt_left">65-74 years</td>
+<td headers="n" class="gt_row gt_right">1661</td>
+<td headers="Number (000)" class="gt_row gt_right">206866</td>
+<td headers="SE (000)" class="gt_row gt_right">14366</td>
+<td headers="LL (000)" class="gt_row gt_right">180481</td>
+<td headers="UL (000)" class="gt_row gt_right">237109</td>
+<td headers="Percent" class="gt_row gt_right">20.0</td>
+<td headers="SE" class="gt_row gt_right">1.2</td>
+<td headers="LL" class="gt_row gt_right">17.6</td>
+<td headers="UL" class="gt_row gt_right">22.5</td>
+</tr>
+<tr>
+<td headers="Level" class="gt_row gt_left">75 years and over</td>
+<td headers="n" class="gt_row gt_right">1442</td>
+<td headers="Number (000)" class="gt_row gt_right">167069</td>
+<td headers="SE (000)" class="gt_row gt_right">15179</td>
+<td headers="LL (000)" class="gt_row gt_right">139746</td>
+<td headers="UL (000)" class="gt_row gt_right">199735</td>
+<td headers="Percent" class="gt_row gt_right">16.1</td>
+<td headers="SE" class="gt_row gt_right">1.3</td>
+<td headers="LL" class="gt_row gt_right">13.7</td>
+<td headers="UL" class="gt_row gt_right">18.8</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The reason that this is the “quick-and-dirty” approach is that the
+output it creates is not as nice as conventional tables, described
+above. The output does not have table title (which has important
+information about the variable and the survey), table footer (which has
+important information about sample size and low-precision estimates),
+and it does not format the estimates. Nevertheless, there could be
+situations in which this approach is helpful, such as</p>
+<ul>
+<li>extracting an exact value from a table using
+<code><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame()</a></code>; or</li>
+<li>quickly using your favorite table-making package.</li>
+</ul>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

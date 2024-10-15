@@ -3,7 +3,7 @@
 * Ability to customize how the tables are printed.
   * `output` argument to `set_opts()`
   * New function: `as_object()`
-  * More details in `surveytable-options`
+  * More details in `help("surveytable-options")`
 
 # surveytable 0.9.5
 

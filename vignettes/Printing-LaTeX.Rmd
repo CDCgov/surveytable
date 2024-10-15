@@ -66,13 +66,13 @@ The above should produce the following:
 tab("AGER")
 ```
 
-# Print using various printing packages
+# Print using various table-making packages
 
-You can change the package that `surveytable` uses for printing. `surveytable` comes with code for using one of these packages: `huxtable` (default), `gt`, and `kableExtra`. In addition, you can supply custom code to use another printing package.
+You can change the package that `surveytable` uses for printing. `surveytable` comes with code for using one of these packages: `huxtable` (default), `gt`, and `kableExtra`. In addition, you can supply custom code to use another table-making package.
 
-Changing the printing package has a couple of uses:
+Changing the table-making package has a couple of uses:
 
-* Use `as_object()` to generate an object from your favorite printing package, further edit this object using that printing package, and then finally print it, so the table looks exactly the way you want it to look.
+* Use `as_object()` to generate an object from your favorite table-making package, further edit this object using that table-making package, and then finally print it, so the table looks exactly the way you want it to look.
 * Print to destinations other than the screen, such as HTML or LaTeX.
 
 ## `kableExtra`
@@ -93,3 +93,37 @@ tab("AGER")
 ```{r, results='asis', echo=FALSE}
 tab("AGER")
 ```
+
+# Advanced printing
+
+## The proper approach
+
+Advanced users can add functionality to use **any** table-making package that they want. For more information, see `help("surveytable-options")`.
+
+## The "quick-and-dirty" approach
+
+The tabulation functions return either:
+
+* for a single table, a data frame, with certain attributes set; or
+* for more than one table, a list of such data frames. 
+
+You can convert a single table to a `data.frame` with `as.data.frame()`, like so:
+
+```{r}
+tab("AGER") |> as.data.frame()
+```
+
+Alternatively, you can pass this data frame to your favorite table-making package. This example passes it to `gt`:
+
+```{r}
+set_opts(count = "1k")
+tab("AGER") |> gt::gt()
+```
+
+(Because of how LaTeX works, the table is likely not here, but elsewhere on the page.)
+
+The reason that this is the "quick-and-dirty" approach is that the output it creates is not as nice as conventional tables, described above. The output does not have table title (which has important information about the variable and the survey), table footer (which has important information about sample size and low-precision estimates), and it does not format the estimates. Nevertheless, there could be situations in which this approach is helpful, such as 
+
+* extracting an exact value from a table using `as.data.frame()`; or 
+* quickly using your favorite table-making package.
+
