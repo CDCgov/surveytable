@@ -1,4 +1,4 @@
-.as_object_gt = function(df1, destination = NULL, ...) {
+.as_object_gt = function(df1, ...) {
   assert_package("as_object", "gt")
 
   ## Non-unique names fix

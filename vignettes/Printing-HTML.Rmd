@@ -41,7 +41,7 @@ for (vr in c("AGER", "SEX")) {
 
 # Create HTML or LaTeX tables
 
-To create HTML or LaTeX tables from an R Markdown notebook or a Quarto document, add the `results='asis'` argument to your code chunk, like so:
+To create HTML or LaTeX tables from an R Markdown notebook or a Quarto document, add the `results='asis'` argument to the code chunk, like so:
 
 <!-- https://yihui.org/knitr/faq/ --> 
 
@@ -51,15 +51,13 @@ tab("AGER")
 ```
 ````
 
-The above should produce the following:
-
 ```{r, results='asis', echo=FALSE}
 tab("AGER")
 ```
 
 # Print using various table-making packages
 
-You can change the package that `surveytable` uses for printing. `surveytable` comes with code for using one of these packages: `huxtable` (default), `gt`, and `kableExtra`. In addition, you can supply custom code to use another table-making package.
+You can change the package that `surveytable` uses for printing. `surveytable` comes with code for using one of these packages: `huxtable` (default), `gt`, and `kableExtra`. There is also the option to automatically select one of these packages depending on whether the output is to the screen (`huxtable`), HTML (`gt`), or LaTeX (`kableExtra`). In addition, you can supply custom code to use another table-making package.
 
 Changing the table-making package has a couple of uses:
 
@@ -74,28 +72,22 @@ By default, `surveytable` prints using `huxtable`. If you've changed this, you c
 set_opts(output = "huxtable")
 ```
 
-This is what printing to the screen looks like. (To make the table slightly narrower, to make sure that it fits on the page, we temporarily round counts to the nearest thousand.)
+This is what printing to the screen looks like.
 
 ```r
-set_opts(count = "1k")
 tab("AGER")
-set_opts(count = "int")
 ```
 ```{r, echo=FALSE}
-set_opts(count = "1k")
 print(tab("AGER"), destination = "")
-set_opts(count = "int")
 ```
 
-To create HTML or LaTeX tables from an R Markdown notebook or a Quarto document, add the `results='asis'` argument to your code chunk, like so:
+To create HTML or LaTeX tables from an R Markdown notebook or a Quarto document, add the `results='asis'` argument to the code chunk, like so:
 
 ````{verbatim}
 ```{r, results='asis'}
 tab("AGER")
 ```
 ````
-
-This should produce the following:
 
 ```{r, results='asis', echo=FALSE}
 tab("AGER")
@@ -124,8 +116,6 @@ tab("AGER")
 ```
 ````
 
-This should produce the following:
-
 ```{r, results='asis', echo=FALSE}
 tab("AGER")
 ```
@@ -147,7 +137,34 @@ tab("AGER")
 ```
 ````
 
-This should produce the following:
+```{r, results='asis', echo=FALSE}
+tab("AGER")
+```
+
+## `auto`
+
+This option automatically selects one of the above packages depending on whether the output is to the screen (`huxtable`), HTML (`gt`), or LaTeX (`kableExtra`).
+
+```{r}
+set_opts(output = "auto")
+```
+
+Screen output (this should use `huxtable`):
+
+```r
+tab("AGER")
+```
+```{r, echo=FALSE}
+print(tab("AGER"), destination = "")
+```
+
+HTML output (this should use `gt`):
+
+````{verbatim}
+```{r, results='asis'}
+tab("AGER")
+```
+````
 
 ```{r, results='asis', echo=FALSE}
 tab("AGER")

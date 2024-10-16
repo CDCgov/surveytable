@@ -50,7 +50,7 @@ for (vr in c("AGER", "SEX")) {
 
 # Create HTML or LaTeX tables
 
-To create HTML or LaTeX tables from an R Markdown notebook or a Quarto document, add the `results='asis'` argument to your code chunk, like so:
+To create HTML or LaTeX tables from an R Markdown notebook or a Quarto document, add the `results='asis'` argument to the code chunk, like so:
 
 <!-- https://yihui.org/knitr/faq/ --> 
 
@@ -60,15 +60,13 @@ tab("AGER")
 ```
 ````
 
-The above should produce the following:
-
 ```{r, results='asis', echo=FALSE}
 tab("AGER")
 ```
 
 # Print using various table-making packages
 
-You can change the package that `surveytable` uses for printing. `surveytable` comes with code for using one of these packages: `huxtable` (default), `gt`, and `kableExtra`. In addition, you can supply custom code to use another table-making package.
+You can change the package that `surveytable` uses for printing. `surveytable` comes with code for using one of these packages: `huxtable` (default), `gt`, and `kableExtra`. There is also the option to automatically select one of these packages depending on whether the output is to the screen (`huxtable`), HTML (`gt`), or LaTeX (`kableExtra`). In addition, you can supply custom code to use another table-making package.
 
 Changing the table-making package has a couple of uses:
 
@@ -90,6 +88,26 @@ Once you do that, produce LaTeX tables like so:
 tab("AGER")
 ```
 ````
+```{r, results='asis', echo=FALSE}
+tab("AGER")
+```
+
+## `auto`
+
+This option automatically selects one of the above packages depending on whether the output is to the screen (`huxtable`), HTML (`gt`), or LaTeX (`kableExtra`).
+
+```{r}
+set_opts(output = "auto")
+```
+
+LaTeX output (this should use `kableExtra`):
+
+````{verbatim}
+```{r, results='asis'}
+tab("AGER")
+```
+````
+
 ```{r, results='asis', echo=FALSE}
 tab("AGER")
 ```

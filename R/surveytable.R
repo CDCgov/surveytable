@@ -19,7 +19,7 @@ NULL
 #' To view all available options, use [show_options()]. Below is a description
 #' of some noteworthy options.
 #'
-#' ## Printing using various printing packages
+#' ## Printing using various table-making packages
 #'
 #' The tabulation functions return objects of class `surveytable_table` (for a single
 #' table) or `surveytable_list` (for multiple tables, which is just a list of `surveytable_table`
@@ -31,13 +31,13 @@ NULL
 #' ships with the ability to use `huxtable`, `gt`, or `kableExtra`. See the `output`
 #' argument of [set_opts()].
 #'
-#' You can supply custom code to use another printing package or to use one of these
-#' printing packages, but in a different way. The two relevant options are `surveytable.output_object`
+#' You can supply custom code to use another table-making package or to use one of these
+#' table-making packages, but in a different way. The two relevant options are `surveytable.output_object`
 #' and `surveytable.output_print`.
 #'
 #' `surveytable.output_object` is the name of a function with the following arguments:
 #' `x` and `...`, where `x` is a `surveytable_table` object. This function returns
-#' an object from a printing package, for example, it returns a `gt` object. Be sure
+#' an object from a table-making package, for example, it returns a `gt` object. Be sure
 #' that this package is installed.
 #'
 #' `surveytable.output_print` is the name of a function with the following arguments:

@@ -54,14 +54,13 @@ Be sure to check the table title to verify that you are tabulating the new surve
 First, let's review what I call "advanced variable editing".
 
 * `surveytable` provides a number of functions to create or modify survey variables. 
-* Some examples include [var_collapse()] and [var_cut()].
+* Some examples include `var_collapse()` and `var_cut()`.
 * Occasionally, you might need to do advanced variable editing. Here's how:
 
-* Every survey object has an element called `variables`
-* This is a data frame where the survey's variables are located
+Keep in mind that every survey object has an element called `variables`. This is a data frame where the survey's variables are located. 
 
 1. Create a new variable in the `variables` data frame (which is part of the survey object).
-2. Call `set_survey()` again. Any time you modify the `variables` data frame, call `set_survey()`.
+2. Call `set_survey()` again. **Any time** you modify the `variables` data frame, call `set_survey()`.
 3. Tabulate the new variable.
 
 For an example of this, see `vignette("Example-Residential-Care-Community-Services-User-NSLTCP-RCC-SU-report")`.
@@ -78,7 +77,7 @@ The survey that you're analyzing actually exists in **three** separate places:
 
 Why is there (3) that's different from (2), you might ask. That's due to an arcane issue with how R packages work -- both (2) and (3) are necessary. 
 
-Normally, **the information only flows forwards**, from (1) to (2) and from (2) to (3). 
+Normally, **information only flows forwards**, from (1) to (2) and from (2) to (3). 
 
 Forwards flow:
 
@@ -87,12 +86,12 @@ Forwards flow:
 
 Backwards flow:
 
-* Going from (3) to (2): you probably don't need this, but see below. If you really need this, call `surveytable:::.load_survey()`.
+* Going from (3) to (2): you probably don't need this, but see below. If you really need this, use `surveytable:::.load_survey()`.
 * Going from (2) to (1): call `saveRDS()`. Normally, you probably don't want to do this. Normally, the survey file (`mysurvey.rds`) should probably not be changed. 
 
-The functions for modifying or creating variables that are part of the `surveytable` package (like `var_cut()` or `var_collapse()`) modify (3). Since (3) is what `surveytable` works with and tabulates, you can call `var_collapse()`, and then you can call `tab()`. You don't need to do anything extra in between. 
+The functions for modifying or creating variables that are part of the `surveytable` package (like `var_cut()` or `var_collapse()`) modify (3). Since (3) is what `surveytable` works with and tabulates, you can use `var_collapse()`, and then immediately use `tab()`. You don't need to do anything extra in between. 
 
-If you are modifying the `variables` data frame directly, you are actually modifying (2). After you modify (2), you need to copy it over to (3), so that `surveytable` can use it. You do that by calling `set_survey()`. 
+If you are modifying the `variables` data frame directly, you are modifying (2). After you modify (2), you need to copy it over to (3), so that `surveytable` can use it. You do that by calling `set_survey()`. 
 
 Thus, any time you modify `variables` yourself, call `set_survey()`. You modify (2), then copy (2) -> (3) by calling `set_survey()`. 
 

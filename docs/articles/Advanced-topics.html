@@ -448,21 +448,23 @@ the new survey object.</p>
 </h3>
 <p>First, let’s review what I call “advanced variable editing”.</p>
 <ul>
-<li><p><code>surveytable</code> provides a number of functions to create
-or modify survey variables.</p></li>
-<li><p>Some examples include [var_collapse()] and [var_cut()].</p></li>
-<li><p>Occasionally, you might need to do advanced variable editing.
-Here’s how:</p></li>
-<li><p>Every survey object has an element called
-<code>variables</code></p></li>
-<li><p>This is a data frame where the survey’s variables are
-located</p></li>
+<li>
+<code>surveytable</code> provides a number of functions to create or
+modify survey variables.</li>
+<li>Some examples include <code><a href="../reference/var_collapse.html">var_collapse()</a></code> and
+<code><a href="../reference/var_cut.html">var_cut()</a></code>.</li>
+<li>Occasionally, you might need to do advanced variable editing. Here’s
+how:</li>
 </ul>
+<p>Keep in mind that every survey object has an element called
+<code>variables</code>. This is a data frame where the survey’s
+variables are located.</p>
 <ol style="list-style-type: decimal">
 <li>Create a new variable in the <code>variables</code> data frame
 (which is part of the survey object).</li>
-<li>Call <code><a href="../reference/set_survey.html">set_survey()</a></code> again. Any time you modify the
-<code>variables</code> data frame, call <code><a href="../reference/set_survey.html">set_survey()</a></code>.</li>
+<li>Call <code><a href="../reference/set_survey.html">set_survey()</a></code> again. <strong>Any time</strong> you
+modify the <code>variables</code> data frame, call
+<code><a href="../reference/set_survey.html">set_survey()</a></code>.</li>
 <li>Tabulate the new variable.</li>
 </ol>
 <p>For an example of this, see
@@ -490,8 +492,8 @@ analyzes</strong>.</li>
 <p>Why is there (3) that’s different from (2), you might ask. That’s due
 to an arcane issue with how R packages work – both (2) and (3) are
 necessary.</p>
-<p>Normally, <strong>the information only flows forwards</strong>, from
-(1) to (2) and from (2) to (3).</p>
+<p>Normally, <strong>information only flows forwards</strong>, from (1)
+to (2) and from (2) to (3).</p>
 <p>Forwards flow:</p>
 <ul>
 <li>Going from (1) to (2): call <code><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS()</a></code>.</li>
@@ -500,7 +502,7 @@ necessary.</p>
 <p>Backwards flow:</p>
 <ul>
 <li>Going from (3) to (2): you probably don’t need this, but see below.
-If you really need this, call
+If you really need this, use
 <code>surveytable:::.load_survey()</code>.</li>
 <li>Going from (2) to (1): call <code><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS()</a></code>. Normally, you
 probably don’t want to do this. Normally, the survey file
@@ -509,13 +511,13 @@ probably don’t want to do this. Normally, the survey file
 <p>The functions for modifying or creating variables that are part of
 the <code>surveytable</code> package (like <code><a href="../reference/var_cut.html">var_cut()</a></code> or
 <code><a href="../reference/var_collapse.html">var_collapse()</a></code>) modify (3). Since (3) is what
-<code>surveytable</code> works with and tabulates, you can call
-<code><a href="../reference/var_collapse.html">var_collapse()</a></code>, and then you can call <code><a href="../reference/tab.html">tab()</a></code>.
-You don’t need to do anything extra in between.</p>
+<code>surveytable</code> works with and tabulates, you can use
+<code><a href="../reference/var_collapse.html">var_collapse()</a></code>, and then immediately use
+<code><a href="../reference/tab.html">tab()</a></code>. You don’t need to do anything extra in between.</p>
 <p>If you are modifying the <code>variables</code> data frame directly,
-you are actually modifying (2). After you modify (2), you need to copy
-it over to (3), so that <code>surveytable</code> can use it. You do that
-by calling <code><a href="../reference/set_survey.html">set_survey()</a></code>.</p>
+you are modifying (2). After you modify (2), you need to copy it over to
+(3), so that <code>surveytable</code> can use it. You do that by calling
+<code><a href="../reference/set_survey.html">set_survey()</a></code>.</p>
 <p>Thus, any time you modify <code>variables</code> yourself, call
 <code><a href="../reference/set_survey.html">set_survey()</a></code>. You modify (2), then copy (2) -&gt; (3) by
 calling <code><a href="../reference/set_survey.html">set_survey()</a></code>.</p>

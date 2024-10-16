@@ -11,7 +11,7 @@ and \code{\link[=show_opts]{show_opts()}} to set and show certain options.
 \details{
 To view all available options, use \code{\link[=show_options]{show_options()}}. Below is a description
 of some noteworthy options.
-\subsection{Printing using various printing packages}{
+\subsection{Printing using various table-making packages}{
 
 The tabulation functions return objects of class \code{surveytable_table} (for a single
 table) or \code{surveytable_list} (for multiple tables, which is just a list of \code{surveytable_table}
@@ -23,13 +23,13 @@ Naturally, these objects can be printed using a variety of packages. \code{surve
 ships with the ability to use \code{huxtable}, \code{gt}, or \code{kableExtra}. See the \code{output}
 argument of \code{\link[=set_opts]{set_opts()}}.
 
-You can supply custom code to use another printing package or to use one of these
-printing packages, but in a different way. The two relevant options are \code{surveytable.output_object}
+You can supply custom code to use another table-making package or to use one of these
+table-making packages, but in a different way. The two relevant options are \code{surveytable.output_object}
 and \code{surveytable.output_print}.
 
 \code{surveytable.output_object} is the name of a function with the following arguments:
 \code{x} and \code{...}, where \code{x} is a \code{surveytable_table} object. This function returns
-an object from a printing package, for example, it returns a \code{gt} object. Be sure
+an object from a table-making package, for example, it returns a \code{gt} object. Be sure
 that this package is installed.
 
 \code{surveytable.output_print} is the name of a function with the following arguments:

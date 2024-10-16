@@ -72,7 +72,7 @@ and <code><a href="set_opts.html">show_opts()</a></code> to set and show certain
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>To view all available options, use <code><a href="show_options.html">show_options()</a></code>. Below is a description
 of some noteworthy options.</p><div class="section">
-<h3 id="printing-using-various-printing-packages">Printing using various printing packages<a class="anchor" aria-label="anchor" href="#printing-using-various-printing-packages"></a></h3>
+<h3 id="printing-using-various-table-making-packages">Printing using various table-making packages<a class="anchor" aria-label="anchor" href="#printing-using-various-table-making-packages"></a></h3>
 
 
 <p>The tabulation functions return objects of class <code>surveytable_table</code> (for a single
@@ -83,12 +83,12 @@ should be formatted as a number.</p>
 <p>Naturally, these objects can be printed using a variety of packages. <code>surveytable</code>
 ships with the ability to use <code>huxtable</code>, <code>gt</code>, or <code>kableExtra</code>. See the <code>output</code>
 argument of <code><a href="set_opts.html">set_opts()</a></code>.</p>
-<p>You can supply custom code to use another printing package or to use one of these
-printing packages, but in a different way. The two relevant options are <code>surveytable.output_object</code>
+<p>You can supply custom code to use another table-making package or to use one of these
+table-making packages, but in a different way. The two relevant options are <code>surveytable.output_object</code>
 and <code>surveytable.output_print</code>.</p>
 <p><code>surveytable.output_object</code> is the name of a function with the following arguments:
 <code>x</code> and <code>...</code>, where <code>x</code> is a <code>surveytable_table</code> object. This function returns
-an object from a printing package, for example, it returns a <code>gt</code> object. Be sure
+an object from a table-making package, for example, it returns a <code>gt</code> object. Be sure
 that this package is installed.</p>
 <p><code>surveytable.output_print</code> is the name of a function with the following arguments:
 <code>x</code> and <code>...</code>, where <code>x</code> is an object returned by the <code>surveytable.output_object</code>

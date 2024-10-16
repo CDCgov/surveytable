@@ -31,7 +31,8 @@ show_opts()
 \item{csv}{name of a CSV file or \code{""} to turn off CSV output.}
 
 \item{output}{package to use for printing. One of \code{"huxtable"} (default), \code{"gt"}, or \code{"kableExtra"}.
-Be sure that this package is installed.}
+Be sure that this package is installed. \code{"auto"} = automatically select \code{huxtable} for screen,
+\code{gt} for HTML, or \code{kableExtra} for LaTeX.}
 }
 \value{
 (Nothing.)
