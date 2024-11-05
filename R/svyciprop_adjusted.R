@@ -7,8 +7,10 @@
 #'
 #' `df_method`: for `"default"`, `df = degf(design)`; for `"NHIS"`, `df = nrow(design) - 1`.
 #'
-#' To use this function in tabulations, call [set_survey()] or [set_opts()] with the
+#' To use this adjustment in `surveytable` tabulations, call [set_survey()] or [set_opts()] with the
 #' `mode = "NCHS"` argument, or type: `options(surveytable.adjust_svyciprop = TRUE)`.
+#' NHIS users, be sure to set the `surveytable.adjust_svyciprop.df_method` option to
+#' `"NHIS"`.
 #'
 #' @param formula see `survey::svyciprop()`.
 #' @param design see `survey::svyciprop()`.

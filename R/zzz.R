@@ -14,7 +14,7 @@ env = new.env()
     , surveytable.lpe_n = ".lpe_n"
     , surveytable.lpe_counts = ".lpe_counts"
     , surveytable.lpe_percents = ".lpe_percents"
-    , surveytable.adjust_svyciprop.df_method = "NHIS"
+    , surveytable.adjust_svyciprop.df_method = "default"
 
     ## other set_opts()
     , surveytable.drop_na = FALSE

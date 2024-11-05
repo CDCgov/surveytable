@@ -35,7 +35,7 @@ when method = "beta".'><!-- mathjax --><script src="https://cdnjs.cloudflare.com
     <h6 class="dropdown-header" data-toc-skip>Advanced</h6>
     <a class="dropdown-item" href="../articles/Advanced-topics.html">Advanced topics</a>
     <a class="dropdown-item" href="../articles/Printing-HTML.html">Printing (HTML)</a>
-    <a class="dropdown-item" href="../articles/Printing-LaTeX.pdf">Printing (LaTeX) (PDF)</a>
+    <a class="dropdown-item" href="../articles/Printing-PDF.pdf">Printing (PDF) (PDF)</a>
   </div>
 </li>
 <li class="nav-item">
@@ -115,8 +115,10 @@ when <code>method = "beta"</code>.</p>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Written by Makram Talih in 2019.</p>
 <p><code>df_method</code>: for <code>"default"</code>, <code>df = degf(design)</code>; for <code>"NHIS"</code>, <code>df = nrow(design) - 1</code>.</p>
-<p>To use this function in tabulations, call <code><a href="set_survey.html">set_survey()</a></code> or <code><a href="set_opts.html">set_opts()</a></code> with the
-<code>mode = "NCHS"</code> argument, or type: <code>options(surveytable.adjust_svyciprop = TRUE)</code>.</p>
+<p>To use this adjustment in <code>surveytable</code> tabulations, call <code><a href="set_survey.html">set_survey()</a></code> or <code><a href="set_opts.html">set_opts()</a></code> with the
+<code>mode = "NCHS"</code> argument, or type: <code>options(surveytable.adjust_svyciprop = TRUE)</code>.
+NHIS users, be sure to set the <code>surveytable.adjust_svyciprop.df_method</code> option to
+<code>"NHIS"</code>.</p>
     </div>
 
     <div class="section level2">

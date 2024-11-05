@@ -1,10 +1,13 @@
 ---
-title: "Printing (HTML)"
-output: rmarkdown::html_vignette
+title: "Printing (PDF)"
+output: pdf_document
 vignette: >
-  %\VignetteIndexEntry{Printing (HTML)}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Printing (PDF)}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+pkgdown:
+  as_is: true
+  extension: pdf
 ---
 
 ```{r, include = FALSE}
@@ -20,8 +23,14 @@ If a tabulation function is called from the top level, it should print out its t
 
 As usual, first, let's start up the package and pick a survey to analyze:
 
-```{r, results='asis'}
+```r
 library(surveytable)
+set_survey(namcs2019sv)
+```
+
+```{r, results='asis', echo=FALSE, message=FALSE}
+library(surveytable)
+set_opts(output = "kableExtra")
 set_survey(namcs2019sv)
 ```
 
@@ -49,7 +58,7 @@ Using a Quarto document, you can create tables in many different formats, such a
 ---
 title: "My tables"
 author: "Me"
-format: html
+format: pdf
 ---
 
 # Welcome 
@@ -58,7 +67,7 @@ As usual, first, let's start up the package and pick a survey to analyze:
 
 ```{r, results='asis'}
 library(surveytable)
-set_survey(namcs2019sv)
+set_survey(namcs2019sv, output = 'auto')
 ```
 
 # Tables
@@ -70,7 +79,8 @@ tab("AGER")
 ```
 ````
 
-Note the `format` setting, which specifies that this document will create HTML tables. Also note that you do have to add the `results='asis'` argument to the code chunks that print tables. 
+Note the `format` setting, which specifies that this document will create PDF tables. Also note that you do have to add the `results='asis'` argument to the code chunks that print tables. 
+
 
 # Print using various table-making packages
 
@@ -81,79 +91,21 @@ Changing the table-making package has a couple of uses:
 * Use `as_object()` to generate an object from your favorite table-making package, customize this object, and then finally print it, so the table looks exactly the way you want it to look.
 * Print to destinations other than the screen, such as HTML or PDF.
 
-## `huxtable`
-
-By default, `surveytable` prints using `huxtable`. If you've changed this, you can always go back with: 
-
-```{r}
-set_opts(output = "huxtable")
-```
-
-This is what printing to the screen looks like.
-
-```r
-tab("AGER")
-```
-```{r, echo=FALSE}
-print(tab("AGER"), destination = "")
-```
-
-To create HTML tables from an R Markdown notebook or a Quarto document, add the `results='asis'` argument to the code chunk, like so:
-
-````{verbatim}
-```{r, results='asis'}
-tab("AGER")
-```
-````
-
-```{r, results='asis', echo=FALSE}
-tab("AGER")
-```
-
-## `gt`
-
-```{r}
-set_opts(output = "gt")
-```
-
-With `gt`, printing to the screen and to HTML look the same. Here is what printing to the screen looks like:
-
-```r
-tab("AGER")
-```
-```{r, results='asis', echo=FALSE}
-print(tab("AGER"), destination = "")
-```
-
-Here is HTML:
-
-````{verbatim}
-```{r, results='asis'}
-tab("AGER")
-```
-````
-
-```{r, results='asis', echo=FALSE}
-tab("AGER")
-```
-
-
 ## `kableExtra`
+
+By default, `surveytable` prints using `huxtable`. However, at this point, we have only implemented PDF printing with `kableExtra`. This is the reason that, in a PDF document, you do need to switch to `kableExtra` output:
 
 ```{r}
 set_opts(output = "kableExtra")
 ```
 
-We have not implemented screen printing with `kableExtra` yet. Try one of the other packages.
-
-Here is HTML:
+Once you do that, produce PDF tables like so:
 
 ````{verbatim}
 ```{r, results='asis'}
 tab("AGER")
 ```
 ````
-
 ```{r, results='asis', echo=FALSE}
 tab("AGER")
 ```
@@ -166,16 +118,7 @@ This option automatically selects one of the above packages depending on whether
 set_opts(output = "auto")
 ```
 
-Screen output (this should use `huxtable`):
-
-```r
-tab("AGER")
-```
-```{r, echo=FALSE}
-print(tab("AGER"), destination = "")
-```
-
-HTML output (this should use `gt`):
+PDF output (this should use `kableExtra`):
 
 ````{verbatim}
 ```{r, results='asis'}
@@ -212,6 +155,8 @@ Alternatively, you can pass this data frame to your favorite table-making packag
 set_opts(count = "1k")
 tab("AGER") |> gt::gt()
 ```
+
+(Because of how LaTeX works, the table is likely not here, but elsewhere on the page.)
 
 The reason that this is the "quick-and-dirty" approach is that the output it creates is not as nice as conventional tables, described above. The output does not have table title (which has important information about the variable and the survey), table footer (which has important information about sample size and low-precision estimates), and it does not format the estimates. Nevertheless, there could be situations in which this approach is helpful, such as 
 

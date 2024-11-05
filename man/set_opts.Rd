@@ -59,7 +59,8 @@ If you are not setting a particular option, leave it as \code{NULL}.
 \item Round counts to the nearest 1,000 -- same as \code{count = "1k"}.
 \item Identify low-precision estimates -- same as \code{lpe = TRUE}.
 \item Percentage CI's: adjust Korn-Graubard CI's for the number of degrees of
-freedom, matching the SUDAAN calculation.
+freedom, matching the SUDAAN calculation. NHIS users, be sure to also type
+\code{options(surveytable.adjust_svyciprop.df_method = "NHIS")}.
 }
 }
 }

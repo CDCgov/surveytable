@@ -18,7 +18,8 @@
 #'    * Round counts to the nearest 1,000 -- same as `count = "1k"`.
 #'    * Identify low-precision estimates -- same as `lpe = TRUE`.
 #'    * Percentage CI's: adjust Korn-Graubard CI's for the number of degrees of
-#'    freedom, matching the SUDAAN calculation.
+#'    freedom, matching the SUDAAN calculation. NHIS users, be sure to also type
+#'    `options(surveytable.adjust_svyciprop.df_method = "NHIS")`.
 #'
 #' @param mode `"general"` or `"NCHS"`. See below for details.
 #' @param count round counts to the nearest: integer (`"int"`) or one thousand (`"1k"`)
