@@ -454,6 +454,6 @@ tab("MDDO")
 set_opts(csv = "")
 ```
 
-If the tabulation functions are called from within an R Markdown notebook or a Quarto document, they produce HTML or LaTeX tables, as appropriate. This makes it easy to incorporate the output of the `surveytable` package directly into documents, presentations, "shiny" web apps, and other output types.
+If the tabulation functions are called from within an R Markdown notebook or a Quarto document, they produce HTML or PDF tables, as appropriate. This makes it easy to incorporate the output of the `surveytable` package directly into documents, presentations, "shiny" web apps, and other output types. See `vignette("Printing-HTML")` for details.
 
 Finally, the tabulation functions return the tables that they produce. More advanced analysts can use this functionality to integrate `surveytable` into other programming tasks.

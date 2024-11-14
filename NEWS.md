@@ -22,7 +22,7 @@
   * Allows an unweighted survey as a `data.frame`.
   * Can set certain options using an argument.
 * Tabulation functions show the number of observations.
-* LaTeX printing.
+* PDF / LaTeX printing.
 
 # surveytable 0.9.2
 

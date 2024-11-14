@@ -27,9 +27,9 @@
 #' @param drop_na drop missing values (`NA`)? Categorical variables only.
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
 #' @param csv     name of a CSV file or `""` to turn off CSV output.
-#' @param output package to use for printing. One of `"huxtable"` (default), `"gt"`, or `"kableExtra"`.
-#' Be sure that this package is installed. `"auto"` = automatically select `huxtable` for screen,
-#' `gt` for HTML, or `kableExtra` for LaTeX.
+#' @param output package to use for printing. One of `"huxtable"`, `"gt"`, or `"kableExtra"`.
+#' For the last two, be sure that this package is installed. `"auto"` (default) = automatically
+#' select `huxtable` for screen, `gt` for HTML, or `kableExtra` for PDF (LaTeX).
 #'
 #' @return (Nothing.)
 #' @family options
@@ -129,7 +129,7 @@ set_opts = function(
   if (!is.null(output)) {
     output %<>% .mymatch(c("huxtable", "gt", "kableExtra", "auto"))
     if (output == "auto") {
-      message("* Printing with huxtable for screen, gt for HTML, or kableExtra for LaTeX.")
+      message("* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF.")
     } else {
       message(glue("* Printing with {output}."))
     }
@@ -200,7 +200,7 @@ show_opts = function() {
          , ".print_huxtable" = "* Printing with huxtable."
          , ".print_gt" = "* Printing with gt."
          , ".print_kableextra" = "* Printing with kableExtra."
-         , ".print_auto" = "* Printing with huxtable for screen, gt for HTML, or kableExtra for LaTeX."
+         , ".print_auto" = "* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF."
          , glue("Printing with a custom function: {xx}")) %>% message
   invisible(NULL)
 }

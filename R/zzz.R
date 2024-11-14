@@ -20,8 +20,8 @@ env = new.env()
     , surveytable.drop_na = FALSE
     , surveytable.max_levels = 20
     , surveytable.csv = ""
-    , surveytable.output_object = ".as_object_huxtable"
-    , surveytable.output_print = ".print_huxtable"
+    , surveytable.output_object = ".as_object_auto"
+    , surveytable.output_print = ".print_auto"
 
     ## other
     , surveytable.tx_prct = ".tx_prct"
