@@ -54,7 +54,7 @@ tab_rate = function(vr, pop
                 , msg = paste0(vr, ": must be factor or logical. Is "
                              , class(design$variables[,vr])[1] ))
 
-  op_ = options(surveytable.tx_count = ".tx_count_none"
+  op_ = options(surveytable.tx_count = ".tx_none"
                   , surveytable.names_count = c("n", "Number", "SE_count"
                     , "LL_count", "UL_count"))
   on.exit(options(op_))

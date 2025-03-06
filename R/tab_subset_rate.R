@@ -66,7 +66,7 @@ tab_subset_rate = function(vr, vrby
               , msg = paste("Population for some levels of", vrby, "has not been specified."))
 
   pop$Population = pop$Population / per
-  op_ = options(surveytable.tx_count = ".tx_count_none"
+  op_ = options(surveytable.tx_count = ".tx_none"
                 , surveytable.names_count = c("n", "Number", "SE_count", "LL_count", "UL_count"))
   on.exit(options(op_))
 

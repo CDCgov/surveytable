@@ -19,6 +19,30 @@ NULL
 #' To view all available options, use [show_options()]. Below is a description
 #' of some noteworthy options.
 #'
+#' ## Changing the number of decimal places or significant digits
+#'
+#' By default, all estimates are rounded in a certain way. The user can change how the
+#' rounding is performed.
+#'
+#' The following options are the names of functions that control rounding:
+#' `surveytable.tx_count` (for estimates of counts), `surveytable.tx_prct` (for estimates
+#' of percentages), `surveytable.tx_rate` (for estimates of rates), and
+#' `surveytable.tx_numeric` (for estimates of numeric variables). To turn off all
+#' rounding, set each one of these options to `".tx_none"`.
+#'
+#' Each function takes one argument, a `data.frame` with the following columns:
+#' `x` (point estimates), `s` (standard errors), `ll` and `ul` (CI's).
+#' Each function outputs a `data.frame` with the same column names. For examples of
+#' how this works, see the internal functions `surveytable:::.tx_count_int` (counts,
+#' rounded to the nearest integer), `surveytable:::.tx_count_1k` (counts, rounded
+#' to the nearest one thousand), `surveytable:::.tx_prct` (percentages), `surveytable:::.tx_rate`
+#' (rates), and `surveytable:::.tx_numeric` (numeric variables).
+#'
+#' You can set the above options to your own custom functions. You might also want
+#' to adjust the following options, which are the names of
+#' columns in the printed tables: `surveytable.names_count` (by default, this
+#' changes when rounding counts to the nearest one thousand) and `surveytable.names_prct`.
+#'
 #' ## Printing using various table-making packages
 #'
 #' The tabulation functions return objects of class `surveytable_table` (for a single

@@ -20,7 +20,7 @@ total_rate = function(pop
   }
   design = .load_survey()
 
-  op_ = options(surveytable.tx_count = ".tx_count_none"
+  op_ = options(surveytable.tx_count = ".tx_none"
                 , surveytable.names_count = c("n", "Number", "SE_count"
                                               , "LL_count", "UL_count"))
   on.exit(options(op_))

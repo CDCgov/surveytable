@@ -11,6 +11,31 @@ and \code{\link[=show_opts]{show_opts()}} to set and show certain options.
 \details{
 To view all available options, use \code{\link[=show_options]{show_options()}}. Below is a description
 of some noteworthy options.
+\subsection{Changing the number of decimal places or significant digits}{
+
+By default, all estimates are rounded in a certain way. The user can change how the
+rounding is performed.
+
+The following options are the names of functions that control rounding:
+\code{surveytable.tx_count} (for estimates of counts), \code{surveytable.tx_prct} (for estimates
+of percentages), \code{surveytable.tx_rate} (for estimates of rates), and
+\code{surveytable.tx_numeric} (for estimates of numeric variables). To turn off all
+rounding, set each one of these options to \code{".tx_none"}.
+
+Each function takes one argument, a \code{data.frame} with the following columns:
+\code{x} (point estimates), \code{s} (standard errors), \code{ll} and \code{ul} (CI's).
+Each function outputs a \code{data.frame} with the same column names. For examples of
+how this works, see the internal functions \code{surveytable:::.tx_count_int} (counts,
+rounded to the nearest integer), \code{surveytable:::.tx_count_1k} (counts, rounded
+to the nearest one thousand), \code{surveytable:::.tx_prct} (percentages), \code{surveytable:::.tx_rate}
+(rates), and \code{surveytable:::.tx_numeric} (numeric variables).
+
+You can set the above options to your own custom functions. You might also want
+to adjust the following options, which are the names of
+columns in the printed tables: \code{surveytable.names_count} (by default, this
+changes when rounding counts to the nearest one thousand) and \code{surveytable.names_prct}.
+}
+
 \subsection{Printing using various table-making packages}{
 
 The tabulation functions return objects of class \code{surveytable_table} (for a single

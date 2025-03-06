@@ -149,7 +149,7 @@ show_opts = function() {
   switch(tx_count
          , ".tx_count_int" = "* Rounding counts to the nearest integer."
          , ".tx_count_1k" = "* Rounding counts to the nearest thousand."
-         , ".tx_count_none" = "* Not rounding counts."
+         , ".tx_none" = "* Not rounding counts."
          , " * Count rounding function: " %>% paste0(tx_count)
          ) %>% message
 

@@ -67,6 +67,6 @@ env = new.env()
 
   round(x)
 }
-.tx_count_none = function(x) {
+.tx_none = function(x) {
   x
 }

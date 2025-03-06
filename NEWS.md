@@ -4,6 +4,8 @@
   * `output` argument to `set_opts()`
   * New function: `as_object()`
   * More details in `help("surveytable-options")`
+* Ability to customize rounding.
+  * More details in `help("surveytable-options")`
 
 # surveytable 0.9.5
 
