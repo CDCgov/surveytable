@@ -9,7 +9,7 @@ An object of class \code{survey.design2} (inherits from \code{survey.design}) wi
 }
 \source{
 \itemize{
-\item SAS data: \url{https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/NPALS/final2018rcc_su_puf.sas7bdat}
+\item SAS data: \url{https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/NPALS/}
 \item Documentation: \url{https://www.cdc.gov/nchs/npals/RCCresident-readme03152021vr.pdf}
 \item Codebook: \url{https://www.cdc.gov/nchs/data/npals/final2018rcc_su_puf_codebook.pdf}
 }
