@@ -72,6 +72,30 @@ and <code><a href="set_opts.html">show_opts()</a></code> to set and show certain
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>To view all available options, use <code><a href="show_options.html">show_options()</a></code>. Below is a description
 of some noteworthy options.</p><div class="section">
+<h3 id="changing-the-number-of-decimal-places-or-significant-digits">Changing the number of decimal places or significant digits<a class="anchor" aria-label="anchor" href="#changing-the-number-of-decimal-places-or-significant-digits"></a></h3>
+
+
+<p>By default, all estimates are rounded in a certain way. The user can change how the
+rounding is performed.</p>
+<p>The following options are the names of functions that control rounding:
+<code>surveytable.tx_count</code> (for estimates of counts), <code>surveytable.tx_prct</code> (for estimates
+of percentages), <code>surveytable.tx_rate</code> (for estimates of rates), and
+<code>surveytable.tx_numeric</code> (for estimates of numeric variables). To turn off all
+rounding, set each one of these options to <code>".tx_none"</code>.</p>
+<p>Each function takes one argument, a <code>data.frame</code> with the following columns:
+<code>x</code> (point estimates), <code>s</code> (standard errors), <code>ll</code> and <code>ul</code> (CI's).
+Each function outputs a <code>data.frame</code> with the same column names. For examples of
+how this works, see the internal functions <code>surveytable:::.tx_count_int</code> (counts,
+rounded to the nearest integer), <code>surveytable:::.tx_count_1k</code> (counts, rounded
+to the nearest one thousand), <code>surveytable:::.tx_prct</code> (percentages), <code>surveytable:::.tx_rate</code>
+(rates), and <code>surveytable:::.tx_numeric</code> (numeric variables).</p>
+<p>You can set the above options to your own custom functions. You might also want
+to adjust the following options, which are the names of
+columns in the printed tables: <code>surveytable.names_count</code> (by default, this
+changes when rounding counts to the nearest one thousand) and <code>surveytable.names_prct</code>.</p>
+</div>
+
+<div class="section">
 <h3 id="printing-using-various-table-making-packages">Printing using various table-making packages<a class="anchor" aria-label="anchor" href="#printing-using-various-table-making-packages"></a></h3>
 
 
@@ -152,7 +176,7 @@ this case, <code>has.flag = c("A1", "A2")</code>, <code>descriptions = c(A1 = "A
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
-    <p><strong>Maintainer</strong>: Alex Strashny <a href="mailto:AStrashny@cdc.gov">AStrashny@cdc.gov</a> (<a href="https://orcid.org/0000-0002-6408-7745" class="external-link">ORCID</a>)</p>
+    <p><strong>Maintainer</strong>: Alex Strashny <a href="mailto:alex.strashny@gmail.com">alex.strashny@gmail.com</a> (<a href="https://orcid.org/0000-0002-6408-7745" class="external-link">ORCID</a>)</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

@@ -139,7 +139,7 @@ Other options:
 \code{\link{show_options}()}
 }
 \author{
-\strong{Maintainer}: Alex Strashny \email{AStrashny@cdc.gov} (\href{https://orcid.org/0000-0002-6408-7745}{ORCID})
+\strong{Maintainer}: Alex Strashny \email{alex.strashny@gmail.com} (\href{https://orcid.org/0000-0002-6408-7745}{ORCID})
 
 }
 \concept{options}

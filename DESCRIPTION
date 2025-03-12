@@ -5,7 +5,7 @@ Authors@R:
     person(given = "Alex"
         , family = "Strashny"
         , role = c("aut", "cre")
-        , email = "AStrashny@cdc.gov"
+        , email = "alex.strashny@gmail.com"
         , comment = c(ORCID = "0000-0002-6408-7745")
         )
 Description: Short and understandable commands that generate tabulated, 

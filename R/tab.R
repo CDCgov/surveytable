@@ -223,6 +223,12 @@ tab = function(...
 		names(ci) = c("LL", "UL")
 		if (is.na(ci$LL)) ci$LL = 0
 		if (is.na(ci$UL)) ci$UL = 1
+
+		# If SE = 0, n > 0, then LL = UL = 0.5
+		if (ret1$SE == 0) {
+		  ci$LL = ci$UL = ret1$Proportion
+		}
+		assert_that(ret1$SE >= 0, ci$LL <= ret1$Proportion, ci$UL >= ret1$Proportion)
 		ret1 %<>% cbind(ci)
 
 		ret1$`n numerator` = sum(design$variables$.tmp)
