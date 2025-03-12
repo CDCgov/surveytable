@@ -1,4 +1,4 @@
-# surveytable (development version)
+# surveytable 0.9.6
 
 * Ability to customize how the tables are printed.
   * `output` argument to `set_opts()`
