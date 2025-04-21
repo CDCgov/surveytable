@@ -30,8 +30,8 @@ total = function(csv = getOption("surveytable.csv") ) {
 
   ##
   sto = svytotal(~Total, design) # , deff = "replace")
-  mmcr = data.frame(x = as.numeric(sto)
-              , s = sqrt(diag(attr(sto, "var"))) )
+  mmcr = data.frame(x = sto %>% as.numeric()
+                    , s = sto %>% SE() %>% as.numeric())
   mmcr$counts = counts
   counts_sum = sum(counts)
 

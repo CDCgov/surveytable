@@ -162,12 +162,12 @@ tab = function(...
 
 	##
 	sto = svytotal(frm, design) # , deff = "replace")
-	mmcr = data.frame(x = as.numeric(sto)
-		, s = sqrt(diag(attr(sto, "var"))) )
+	mmcr = data.frame(x = sto %>% as.numeric()
+	                  , s = sto %>% SE() %>% as.numeric())
 	mmcr$counts = counts
 	counts_sum = sum(counts)
 
-	# deff = attr(sto, "deff") %>% diag
+	# deff = attr(sto, "deff") %>% diag (CAREFUL with diag() usage if scalar)
 	# I am having trouble interpreting this deff.
 	# In some situations, results are unusual.
 	# total(), tab("AGER"), tab("PAYNOCHG")
