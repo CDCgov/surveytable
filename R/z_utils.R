@@ -45,3 +45,7 @@ assert_package = function (fun, package, version = NULL)
                       "type:\n", "install.packages(\"{package}\")"))
   }
 }
+
+o2s = function(obj) {
+  glue_collapse(class(obj), sep = ", ")
+}

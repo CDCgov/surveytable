@@ -7,8 +7,8 @@
 set_survey(design, csv = getOption("surveytable.csv"), ...)
 }
 \arguments{
-\item{design}{either a survey object (created with \code{\link[survey:svydesign]{survey::svydesign()}} or
-\code{\link[survey:svrepdesign]{survey::svrepdesign()}}); or, for an unweighted survey, a \code{data.frame}.}
+\item{design}{a survey object, created with \code{\link[survey:svydesign]{survey::svydesign()}} or
+\code{\link[survey:svrepdesign]{survey::svrepdesign()}}. For an unweighted survey, a \code{data.frame} or similar.}
 
 \item{csv}{name of a CSV file}
 

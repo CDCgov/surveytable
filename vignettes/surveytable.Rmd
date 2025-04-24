@@ -321,7 +321,7 @@ total_rate(uspop2019$total)
 
 To calculate the rates for a particular variable, we need to provide a data frame with a column called `Level` that matches the levels of the variable in the survey, and a column called `Population` that gives the size of the population for that level.
 
-For example, for `AGER`, this data frame as follows:
+For example, for `AGER`, this data frame is as follows:
 
 ```{r}
 uspop2019$AGER
