@@ -1,6 +1,6 @@
 Package: surveytable
 Title: Formatted Survey Estimates
-Version: 0.9.6.9000
+Version: 0.9.7
 Authors@R: 
     person(given = "Alex"
         , family = "Strashny"
