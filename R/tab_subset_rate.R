@@ -62,8 +62,18 @@ tab_subset_rate = function(vr, vrby
     assert_that(all(lvls %in% lvl0))
     lvl0 = lvls
   }
+  if (drop_na) {
+    idx = which(lvl0 == "<N/A>")
+    if (length(idx) > 0) {
+      lvl0 = lvl0[-idx]
+    }
+  }
+  if (!all(lvl0 %in% pop$Subset)) {
+    lvl0 %<>% intersect(pop$Subset)
+    warning(glue("Population for some levels of {vrby} has not been specified."))
+  }
   assert_that(all(lvl0 %in% pop$Subset)
-              , msg = paste("Population for some levels of", vrby, "has not been specified."))
+              , msg = glue("Population for some levels of {vrby} has not been specified."))
 
   pop$Population = pop$Population / per
   op_ = options(surveytable.tx_count = ".tx_none"

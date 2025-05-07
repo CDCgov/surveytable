@@ -34,6 +34,8 @@ env = new.env()
 
     , surveytable.svychisq_statistic = "F"
     , surveytable.p.adjust_method = "bonferroni"
+    , surveytable.tx_pval = ".tx_pval"
+    , surveytable.show_test_statistic = FALSE
   )
 }
 
@@ -58,6 +60,7 @@ env = new.env()
 
   round(x / 1e3)
 }
+
 .tx_count_int = function(x) {
   ## Huge UL -> Inf
   x$rat = x$ul / x$x
@@ -67,6 +70,11 @@ env = new.env()
 
   round(x)
 }
+
+.tx_pval = function(x) {
+  round(x, 3)
+}
+
 .tx_none = function(x) {
   x
 }

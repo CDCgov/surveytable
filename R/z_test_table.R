@@ -2,6 +2,11 @@
   assert_that("p-value" %in% names(rT))
   bool.adj = ("p-adjusted" %in% names(rT))
 
+  if (!getOption("surveytable.show_test_statistic")) {
+    rT$`Test statistic` = NULL
+    rT$`Degrees of freedom` = NULL
+  }
+
   rT$Flag = ""
   idx = if (bool.adj) {
     which(rT$`p-adjusted` <= alpha)
@@ -10,9 +15,9 @@
   }
   rT$Flag[idx] = "*"
 
-  rT$`p-value` %<>% round(3)
+  rT$`p-value` = getOption("surveytable.tx_pval") %>% do.call(list(rT$`p-value`))
   if (bool.adj) {
-    rT$`p-adjusted` %<>% round(3)
+    rT$`p-adjusted` = getOption("surveytable.tx_pval") %>% do.call(list(rT$`p-adjusted`))
   }
 
   attr(rT, "title") = test_title

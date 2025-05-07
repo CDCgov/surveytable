@@ -43,7 +43,9 @@
       d1$variables$tmp[d1$variables[,vr] == lvlB] = 1
       sgo = svyglm(tmp ~ 1, d1)
       # survey:::svyttest.default
-      r1$`p-value` = 2 * pt(-abs( (coef(sgo) - 0.5) / SE(sgo)), df = sgo$df.residual)
+      r1$`Test statistic` = (coef(sgo) - 0.5) / SE(sgo)
+      r1$`Degrees of freedom` = sgo$df.residual
+      r1$`p-value` = 2 * pt(-abs( r1$`Test statistic` ), df = r1$`Degrees of freedom`)
       rT %<>% rbind(r1)
     }
   }
