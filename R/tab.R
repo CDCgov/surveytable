@@ -1,6 +1,6 @@
 #' Tabulate variables
 #'
-#' Tabulate categorical (factor), logical, or numeric variables.
+#' Tabulate categorical (factor or character), logical, or numeric variables.
 #'
 #' For categorical and logical variables, presents the
 #' estimated counts, their standard errors (SEs) and confidence
@@ -56,7 +56,7 @@ tab = function(...
 		for (ii in 1:...length()) {
 			vr = ...elt(ii)
 			if (!(vr %in% nm)) {
-			  warning(vr, ": variable not in the data.")
+			  warning(glue("{vr}: variable not in the data."))
 			  next
 			}
 			if (is.logical(design$variables[,vr])
@@ -79,8 +79,8 @@ tab = function(...
                       , vr = vr
                       , csv = csv)
 			} else {
-        warning(vr, ": must be logical, factor, or numeric. Is "
-                , class(design$variables[,vr]))
+        warning(glue("{vr}: must be logical, categorical (factor or character),",
+          " or numeric. Is {o2s(design$variables[,vr])}"))
 			}
 		}
 	}
@@ -137,12 +137,8 @@ tab = function(...
 	} else if (nlv > max_levels) {
 	  # don't use assert_that
 	  # if multiple tables are being produced, want to go to the next table
-	  warning(vr
-          , ": categorical variable with too many levels: "
-          , nlv, ", but ", max_levels
-          , " allowed. Try increasing the max_levels argument or "
-          , "see ?set_opts"
-          )
+	  warning(glue("{vr}: categorical variable with too many levels: {nlv}, but {max_levels}"
+	               , " allowed. Try increasing the max_levels argument or see ?set_opts"))
 	  return(invisible(NULL))
 	}
 

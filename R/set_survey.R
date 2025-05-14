@@ -1,7 +1,7 @@
 #' Specify the survey to analyze
 #'
 #' You must specify a survey before the other functions, such as [tab()],
-#' will work. To convert a `data.frame` to a survey object, see [survey::svydesign()]
+#' will work. To convert a `data.frame` or similar to a survey object, see [survey::svydesign()]
 #' or [survey::svrepdesign()].
 #'
 #' Optionally, the survey can have an attribute called `label`, which is the
@@ -64,6 +64,18 @@ set_survey = function(design, csv = getOption("surveytable.csv"), ...) {
   design$variables %<>% as.data.frame()
   # assert_that(is.data.frame(design$variables))
 
+  idx = which(sapply(design$variables, is.character))
+  if (length(idx) > 0) {
+    max_levels = getOption("surveytable.max_levels")
+    for (ii in idx) {
+      if ( (design$variables[,ii] %>% unique %>% length) <= max_levels ) {
+        lbl = attr(design$variables[,ii], "label")
+        design$variables[,ii] %<>% as.factor()
+        attr(design$variables[,ii], "label") = lbl
+      }
+    }
+  }
+
   if(inherits(design, "svyrep.design")) {
     assert_that(!("prob" %in% names(design)), msg = "prob already exists")
     design$prob = 1 / design$pweights
@@ -82,9 +94,6 @@ set_survey = function(design, csv = getOption("surveytable.csv"), ...) {
   }
   assert_that( all(design$prob > 0), all(design$prob < Inf) )
 
-  options(surveytable.survey_label = attr(design, "label"))
-  env$survey = design
-
   out = data.frame(
     Variables = ncol(design$variables)
     , Observations = nrow(design$variables)
@@ -93,6 +102,10 @@ set_survey = function(design, csv = getOption("surveytable.csv"), ...) {
   )
   attr(out, "title") = "Survey info"
   attr(out, "num") = c(1,2)
+
+  options(surveytable.survey_label = attr(design, "label"))
+  env$survey = design
+
   .write_out(out, csv = csv)
 }
 

@@ -19,7 +19,7 @@ info about the survey
 }
 \description{
 You must specify a survey before the other functions, such as \code{\link[=tab]{tab()}},
-will work. To convert a \code{data.frame} to a survey object, see \code{\link[survey:svydesign]{survey::svydesign()}}
+will work. To convert a \code{data.frame} or similar to a survey object, see \code{\link[survey:svydesign]{survey::svydesign()}}
 or \code{\link[survey:svrepdesign]{survey::svrepdesign()}}.
 }
 \details{

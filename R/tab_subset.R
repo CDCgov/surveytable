@@ -93,8 +93,8 @@ tab_subset = function(vr, vrby, lvls = c()
     design$variables[,vrby] %<>% factor
   }
   assert_that(is.factor(design$variables[,vrby])
-        , msg = paste0(vrby, ": must be either factor or logical. Is "
-             , class(design$variables[,vrby])[1] ))
+        , msg = glue("{vrby}: must be either categorical (factor or character) or logical.",
+                     " Is {o2s(design$variables[,vrby])}"))
   design$variables[,vrby] %<>% droplevels %>% .fix_factor
   attr(design$variables[,vrby], "label") = lbl
 

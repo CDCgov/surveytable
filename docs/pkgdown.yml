@@ -8,7 +8,8 @@ articles:
   Printing-HTML: Printing-HTML.html
   Printing-PDF: Printing-PDF.pdf
   surveytable: surveytable.html
-last_built: 2025-05-07T13:35Z
+  use-cases: use-cases.html
+last_built: 2025-05-14T14:01Z
 urls:
   reference: https://cdcgov.github.io/surveytable/reference
   article: https://cdcgov.github.io/surveytable/articles

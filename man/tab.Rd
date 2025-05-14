@@ -33,7 +33,7 @@ tab(
 A list of tables or a single table.
 }
 \description{
-Tabulate categorical (factor), logical, or numeric variables.
+Tabulate categorical (factor or character), logical, or numeric variables.
 }
 \details{
 For categorical and logical variables, presents the

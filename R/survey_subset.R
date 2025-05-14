@@ -13,8 +13,7 @@
 #' tab("AGER")
 survey_subset = function(design, subset, label) {
   assert_that(inherits(design, c("survey.design", "svyrep.design"))
-    , msg = paste0("Must be a survey.design or svyrep.design. Is "
-    , class(design)[1] ))
+    , msg = glue("Must be a survey.design or svyrep.design. Is: {o2s(design)}."))
 
   vls = lapply(design$variables, FUN = function(x) attr(x, "label"))
   nm = names(vls)

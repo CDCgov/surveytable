@@ -30,8 +30,7 @@ Imports:
     magrittr,
     glue, 
     survey, 
-    huxtable,
-    lifecycle
+    huxtable
 Suggests: 
     kableExtra,
     gt, 

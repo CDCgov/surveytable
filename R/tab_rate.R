@@ -31,7 +31,7 @@ tab_rate = function(vr, pop
   ) {
 
   assert_that(is.data.frame(pop) || is.number(pop)
-    , msg = paste0("pop must be either a data frame or a number. Is ", class(pop)[1]))
+    , msg = glue("pop must be either a data frame or a number. Is {o2s(pop)}."))
   pop_df = is.data.frame(pop)
   if (pop_df) {
     assert_that( all(names(pop) == c("Level", "Population"))
@@ -91,7 +91,7 @@ tab_rate = function(vr, pop
   cc = c("Rate", "SE", "LL", "UL")
   m1[,cc] = getOption("surveytable.tx_rate") %>% do.call(list(m1[,cc]))
 
-  attr(m1, "title") = paste(.getvarname(design, vr), "(rate per", per, "population)")
+  attr(m1, "title") = glue("{.getvarname(env$survey, vr)} (rate per {per} population)")
   attr(m1, "num") = 2:6
   attr(m1, "footer") = attr(tfo, "footer")
 

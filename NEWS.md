@@ -2,6 +2,8 @@
 
 * Optionally, show the test statistic, control rounding of the p-value.
 * Improved handling of missing values and the `drop_na` argument in `tab_subset()` and `tab_subset_rate()`.
+* Improved handling of `character` variables.
+* Improved handling of Spark-based (`sparklyr`) survey objects.
 
 # surveytable 0.9.7
 
