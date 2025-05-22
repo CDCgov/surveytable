@@ -1,11 +1,12 @@
 fname = "use-cases.Rmd"
 
-file.remove(file.path("vignettes", fname))
-knitr::knit(input = file.path("vignettes-raw", fname)
-            , output = file.path("vignettes", fname))
+f.in = file.path("vignettes-raw", fname)
+f.out = file.path("vignettes", fname)
+
+unlink(f.out)
+knitr::knit(input = f.in, output = f.out)
+file.edit(f.out)
 
 # Spark cleanup
 Sys.sleep(3)
-unlink(file.path("vignettes-raw", "derby.log"))
-unlink(file.path("vignettes-raw", "logs")
-      , recursive = TRUE, force = TRUE)
+source("vignettes-raw/1-spark-cleanup.R")

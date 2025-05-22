@@ -1,4 +1,4 @@
-# surveytable (development version)
+# surveytable 0.9.8
 
 * Optionally, show the test statistic, control rounding of the p-value.
 * Improved handling of missing values and the `drop_na` argument in `tab_subset()` and `tab_subset_rate()`.

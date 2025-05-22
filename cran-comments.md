@@ -1,10 +1,10 @@
 ## R CMD check results
 
-0 errors ✔ | 0 warnings ✔ | 3 notes ✖
+0 errors ✔ | 0 warnings ✔ | 2 notes ✖
 
-Duration: 2m 16.3s
+Duration: 2m 16.6s
 
-❯ checking CRAN incoming feasibility ... [24s] NOTE
+❯ checking CRAN incoming feasibility ... [21s] NOTE
   Maintainer: 'Alex Strashny <alex.strashny@gmail.com>'
   
   Found the following (possibly) invalid DOIs:
@@ -26,7 +26,6 @@ Duration: 2m 16.3s
       Message: libcurl error code 35:
       	schannel: next InitializeSecurityContext failed: CRYPT_E_NO_REVOCATION_CHECK (0x80092012) - The revocation function was unable to check revocation for the certificate.
       	
-      	
 * These are valid DOIs. 
 * DOI: 10.15620/cdc:124368
   * https://stacks.cdc.gov/view/cdc/124368
@@ -34,10 +33,6 @@ Duration: 2m 16.3s
   * https://www.jstatsoft.org/article/view/v009i08
 * DOI: 10.32614/CRAN.package.surveytable
 	* https://cran.r-project.org/package=surveytable
-
-
-❯ checking for future file timestamps ... NOTE
-  unable to verify current time
 
 ❯ checking sizes of PDF files under 'inst/doc' ... NOTE
   Unable to find GhostScript executable to run checks on size reduction

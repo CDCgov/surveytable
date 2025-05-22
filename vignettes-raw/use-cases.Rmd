@@ -16,18 +16,17 @@ knitr::opts_chunk$set(
 )
 ```
 
-The `surveytable` package can be used with different types of data. Here are 
-some examples. 
+The `surveytable` package can be used with different types of data. Here are some examples. 
 
 # Unweighted data
 
-Unweighted data is stored in a `data.frame` or a similar object. One example of such
-a similar object is a tibble (`tbl`), from the `tibble` package. These objects do not 
-contain information about survey design variables. Thus, `surveytable` treats these
-objects as unweighted data, with each observation having a weight of `1`. 
+Unweighted data is stored in a `data.frame` or a similar object. One example of such a similar object is a tibble (`tbl`), which can be produced by the `tibble` package. `data.frame`s and similar objects do not contain information about survey design variables. Thus, `surveytable` treats these objects as unweighted data, with each observation having a weight of `1`. 
 
-Below, we first create a tibble with unweighted data, and then tabulate the 
-`SPECCAT` (physician specialty) variable.
+The example below illustrates how to use `surveytable` with unweighted data. We 
+
+* create a tibble with unweighted data; 
+* tell `surveytable` to work with this object; and
+* tabulate the `SPECCAT` (physician specialty) variable from these data.
 
 ```{r, results='asis'}
 library(surveytable)
@@ -41,7 +40,7 @@ tab("SPECCAT")
 
 # Complex survey
 
-A survey object, in addition to containing the survey data, contains information
+A complex survey is defined by its data as well as its survey design variables. In R, a complex survey is stored in a survey object. This object, in addition to containing the survey data, also contains information
 about the survey design variables. These include variables that specify such things as:
 
 * cluster ID’s, also known as primary sampling units (PSU’s);
@@ -50,11 +49,13 @@ about the survey design variables. These include variables that specify such thi
 * finite population correction; and 
 * sampling weights.
 
-You can convert a `data.frame` or a similar object to a survey object using the 
-`survey::svydesign()` command. Before using this command, you should consult the documentation
-for the survey that you are analyzing to find out what the survey design variables are.
+You can convert a `data.frame` or a similar object to a survey object using the `survey::svydesign()` command. Before using this command, you should consult the documentation for the survey that you are analyzing to find out what the survey design variables are.
 
-Below, we first create a survey object, and then tabulate the `SPECCAT` variable.
+The example below illustrates how to use `surveytable` with a complex survey. We 
+
+* create a survey object; 
+* tell `surveytable` to work with this object; and
+* tabulate the `SPECCAT` variable from the survey.
 
 ```{r, results='asis'}
 library(surveytable)
@@ -68,14 +69,20 @@ set_survey(mysurvey)
 tab("SPECCAT")
 ```
 
-# Complex survey using data stored in Spark
+# Spark-based complex survey
 
-Especially if you are dealing with big data, that data might be stored in a database, 
-such as Spark. 
+Especially if you are working with big data, that data might be stored in a database, such as Apache Spark. `mysurvey` can work with a survey whose data lives in a database.
 
-Below, we put some data into a Spark dataset, create a survey object using this Spark dataset, 
-and then tabulate the `SPECCAT` variable. Note that, for this example, we are using a 
-`"local"` Spark connection -- how you connect to Spark depends on your setup.
+The example below illustrates how to use `surveytable` with a Spark-based complex survey. We 
+
+* connect to Spark;
+* copy some data into a Spark DataFrame; 
+* create a Spark-based survey object; 
+* tell `surveytable` to work with this object; 
+* tabulate the `SPECCAT` variable from the survey; and finally
+* disconnect from Spark.
+
+Note that, for this example, we are using a `"local"` Spark connection -- how you connect to Spark depends on your setup.
 
 ```{r, results='asis'}
 library(surveytable)
@@ -90,20 +97,24 @@ mysurvey = survey::svydesign(ids = ~CPSUM, strata = ~CSTRATM
 
 set_survey(mysurvey)
 tab("SPECCAT")
+```
 
+```{r}
 spark_disconnect_all()
 ```
 
 # Complex survey with replicate weights
 
-Some surveys, instead of survey design variables, specify replicate weights. This
-can be done, for example, for privacy reasons.
+Some surveys, instead of specifying survey design variables, specify replicate weights. They might do this, for example, for privacy reasons.
 
-You can convert a `data.frame` or a similar object to a survey object that uses 
-replicate weights using the `survey::svrepdesign()` command.
+You can convert a `data.frame` or a similar object to a survey object that uses replicate weights using the `survey::svrepdesign()` command.
 
-Below, we first create a survey object using fake replicate and sampling weights, 
-and then tabulate the `SPECCAT` variable.
+The example below illustrates how to use `surveytable` with a complex survey that uses replicate weights. We 
+
+* create fake replicate and sampling weights, for use in this example; 
+* create a replicate weights-based survey object; 
+* tell `surveytable` to work with this object; and
+* tabulate the `SPECCAT` variable from the survey.
 
 ```{r, results='asis'}
 library(surveytable)

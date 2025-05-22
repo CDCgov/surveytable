@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">surveytable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.7.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.8</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -97,12 +97,19 @@ of data. Here are some examples.</p>
 </h2>
 <p>Unweighted data is stored in a <code>data.frame</code> or a similar
 object. One example of such a similar object is a tibble
-(<code>tbl</code>), from the <code>tibble</code> package. These objects
-do not contain information about survey design variables. Thus,
+(<code>tbl</code>), which can be produced by the <code>tibble</code>
+package. <code>data.frame</code>s and similar objects do not contain
+information about survey design variables. Thus,
 <code>surveytable</code> treats these objects as unweighted data, with
 each observation having a weight of <code>1</code>.</p>
-<p>Below, we first create a tibble with unweighted data, and then
-tabulate the <code>SPECCAT</code> (physician specialty) variable.</p>
+<p>The example below illustrates how to use <code>surveytable</code>
+with unweighted data. We</p>
+<ul>
+<li>create a tibble with unweighted data;</li>
+<li>tell <code>surveytable</code> to work with this object; and</li>
+<li>tabulate the <code>SPECCAT</code> (physician specialty) variable
+from these data.</li>
+</ul>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cdcgov.github.io/surveytable/">surveytable</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/" class="external-link">tibble</a></span><span class="op">)</span></span>
@@ -111,7 +118,7 @@ tabulate the <code>SPECCAT</code> (physician specialty) variable.</p>
 <span></span>
 <span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">mytbl</span><span class="op">)</span></span>
 <span><span class="co">#&gt; * mytbl: the survey is unweighted.</span></span></code></pre></div>
-<div id="rhjeizowqq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="htboskcbiv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
 <tr class="gt_heading" style="border-style: none; background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF" align="center">
@@ -147,7 +154,7 @@ Independent Sampling design (with replacement) survey::svydesign(ids =
 </div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"SPECCAT"</span><span class="op">)</span></span></code></pre></div>
-<div id="ylhilhnima" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ppworzgtqz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
 <tr class="gt_heading" style="border-style: none; background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF" align="center">
@@ -297,7 +304,9 @@ N = 8250.
 <div class="section level2">
 <h2 id="complex-survey">Complex survey<a class="anchor" aria-label="anchor" href="#complex-survey"></a>
 </h2>
-<p>A survey object, in addition to containing the survey data, contains
+<p>A complex survey is defined by its data as well as its survey design
+variables. In R, a complex survey is stored in a survey object. This
+object, in addition to containing the survey data, also contains
 information about the survey design variables. These include variables
 that specify such things as:</p>
 <ul>
@@ -312,8 +321,13 @@ survey object using the <code><a href="https://rdrr.io/pkg/survey/man/svydesign.
 using this command, you should consult the documentation for the survey
 that you are analyzing to find out what the survey design variables
 are.</p>
-<p>Below, we first create a survey object, and then tabulate the
-<code>SPECCAT</code> variable.</p>
+<p>The example below illustrates how to use <code>surveytable</code>
+with a complex survey. We</p>
+<ul>
+<li>create a survey object;</li>
+<li>tell <code>surveytable</code> to work with this object; and</li>
+<li>tabulate the <code>SPECCAT</code> variable from the survey.</li>
+</ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cdcgov.github.io/surveytable/">surveytable</a></span><span class="op">)</span></span>
 <span></span>
@@ -323,7 +337,7 @@ are.</p>
 <span>  , data <span class="op">=</span> <span class="va">namcs2019sv_df</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">mysurvey</span><span class="op">)</span></span></code></pre></div>
-<div id="blmukgeylm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="kousukryoj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
 <tr class="gt_heading" style="border-style: none; background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF" align="center">
@@ -360,7 +374,7 @@ weights = ~PATWT, data = namcs2019sv_df)
 </div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"SPECCAT"</span><span class="op">)</span></span></code></pre></div>
-<div id="cpceuuqopj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="pqopwslclf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
 <tr class="gt_heading" style="border-style: none; background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF" align="center">
@@ -508,15 +522,24 @@ N = 8250.
 </div>
 </div>
 <div class="section level2">
-<h2 id="complex-survey-using-data-stored-in-spark">Complex survey using data stored in Spark<a class="anchor" aria-label="anchor" href="#complex-survey-using-data-stored-in-spark"></a>
+<h2 id="spark-based-complex-survey">Spark-based complex survey<a class="anchor" aria-label="anchor" href="#spark-based-complex-survey"></a>
 </h2>
-<p>Especially if you are dealing with big data, that data might be
-stored in a database, such as Spark.</p>
-<p>Below, we put some data into a Spark dataset, create a survey object
-using this Spark dataset, and then tabulate the <code>SPECCAT</code>
-variable. Note that, for this example, we are using a
-<code>"local"</code> Spark connection – how you connect to Spark depends
-on your setup.</p>
+<p>Especially if you are working with big data, that data might be
+stored in a database, such as Apache Spark. <code>mysurvey</code> can
+work with a survey whose data lives in a database.</p>
+<p>The example below illustrates how to use <code>surveytable</code>
+with a Spark-based complex survey. We</p>
+<ul>
+<li>connect to Spark;</li>
+<li>copy some data into a Spark DataFrame;</li>
+<li>create a Spark-based survey object;</li>
+<li>tell <code>surveytable</code> to work with this object;</li>
+<li>tabulate the <code>SPECCAT</code> variable from the survey; and
+finally</li>
+<li>disconnect from Spark.</li>
+</ul>
+<p>Note that, for this example, we are using a <code>"local"</code>
+Spark connection – how you connect to Spark depends on your setup.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cdcgov.github.io/surveytable/">surveytable</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://spark.posit.co/" class="external-link">sparklyr</a></span><span class="op">)</span></span>
@@ -533,7 +556,7 @@ on your setup.</p>
 <span>                             , weights <span class="op">=</span> <span class="op">~</span><span class="va">PATWT</span>, data <span class="op">=</span> <span class="va">mysparkdf</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">mysurvey</span><span class="op">)</span></span></code></pre></div>
-<div id="ymkmoqrogm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="fejsdtkbic" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
 <tr class="gt_heading" style="border-style: none; background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF" align="center">
@@ -570,7 +593,7 @@ weights = ~PATWT, data = mysparkdf)
 </div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"SPECCAT"</span><span class="op">)</span></span></code></pre></div>
-<div id="zjxzyovqbv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ubwnvhsaam" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
 <tr class="gt_heading" style="border-style: none; background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF" align="center">
@@ -717,21 +740,27 @@ N = 8250.
 </table>
 </div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/sparklyr/man/spark-connections.html" class="external-link">spark_disconnect_all</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>[1] 1</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/sparklyr/man/spark-connections.html" class="external-link">spark_disconnect_all</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="complex-survey-with-replicate-weights">Complex survey with replicate weights<a class="anchor" aria-label="anchor" href="#complex-survey-with-replicate-weights"></a>
 </h2>
-<p>Some surveys, instead of survey design variables, specify replicate
-weights. This can be done, for example, for privacy reasons.</p>
+<p>Some surveys, instead of specifying survey design variables, specify
+replicate weights. They might do this, for example, for privacy
+reasons.</p>
 <p>You can convert a <code>data.frame</code> or a similar object to a
 survey object that uses replicate weights using the
 <code><a href="https://rdrr.io/pkg/survey/man/svrepdesign.html" class="external-link">survey::svrepdesign()</a></code> command.</p>
-<p>Below, we first create a survey object using fake replicate and
-sampling weights, and then tabulate the <code>SPECCAT</code>
-variable.</p>
+<p>The example below illustrates how to use <code>surveytable</code>
+with a complex survey that uses replicate weights. We</p>
+<ul>
+<li>create fake replicate and sampling weights, for use in this
+example;</li>
+<li>create a replicate weights-based survey object;</li>
+<li>tell <code>surveytable</code> to work with this object; and</li>
+<li>tabulate the <code>SPECCAT</code> variable from the survey.</li>
+</ul>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cdcgov.github.io/surveytable/">surveytable</a></span><span class="op">)</span></span>
 <span></span>
