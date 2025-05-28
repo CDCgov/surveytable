@@ -17,8 +17,8 @@
 .print_huxtable = function(hh, destination = NULL, ...) {
   assert_package("print", "huxtable")
   dest = .get_destination(destination = destination)
-  assert_that(dest != "latex",
-              msg = "Have not implemented LaTeX printing with huxtable yet. Try set_opts(output = 'kableExtra')")
+  assert_that(dest != "latex"
+              , msg = "Have not implemented LaTeX printing with huxtable yet. Try set_opts(output = 'kableExtra')")
   assert_that(dest %in% c("", "html"))
 
   if (dest == "") {

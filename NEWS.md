@@ -1,5 +1,7 @@
 # surveytable (development version)
 
+* `set_opts(output = "raw")`: unformatted / raw output. This is useful for getting lots of significant digits.
+
 # surveytable 0.9.8
 
 * Optionally, show the test statistic, control rounding of the p-value.

@@ -56,7 +56,10 @@ total = function(csv = getOption("surveytable.csv") ) {
     pco = list(flags = rep("", nrow(mmcr)), has.flag = c())
   }
 
-  mmc = getOption("surveytable.tx_count") %>% do.call(list(mmcr[,c("x", "s", "ll", "ul")]))
+  mmc = mmcr[,c("x", "s", "ll", "ul")]
+  if (getOption("surveytable.do_tx")) {
+    mmc = getOption("surveytable.tx_count") %>% do.call(list(mmc))
+  }
   mmc$counts = mmcr$counts
   mmc = mmc[,c("counts", "x", "s", "ll", "ul")]
   names(mmc) = getOption("surveytable.names_count")

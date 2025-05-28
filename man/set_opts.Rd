@@ -30,9 +30,8 @@ show_opts()
 
 \item{csv}{name of a CSV file or \code{""} to turn off CSV output.}
 
-\item{output}{package to use for printing. One of \code{"huxtable"}, \code{"gt"}, or \code{"kableExtra"}.
-For the last two, be sure that this package is installed. \code{"auto"} (default) = automatically
-select \code{huxtable} for screen, \code{gt} for HTML, or \code{kableExtra} for PDF (LaTeX).}
+\item{output}{how the output is printed. \code{"auto"} (default); \code{"huxtable"}, \code{"gt"}, or
+\code{"kableExtra"}; or \code{"raw"}.}
 }
 \value{
 (Nothing.)
@@ -62,6 +61,15 @@ If you are not setting a particular option, leave it as \code{NULL}.
 freedom, matching the SUDAAN calculation. NHIS users, be sure to also type
 \code{options(surveytable.adjust_svyciprop.df_method = "NHIS")}.
 }
+}
+
+\code{output} determines how the output is printed.
+\itemize{
+\item \code{"auto"} (default): automatically select the printing method, depending on the
+destination (such as screen, HTML, or PDF / LaTeX).
+\item \code{"huxtable"}, \code{"gt"}, or \code{"kableExtra"}: use this package for printing. Be sure
+that this package is installed.
+\item \code{"raw"}: unformatted / raw output. This is useful for getting lots of significant digits.
 }
 }
 \examples{

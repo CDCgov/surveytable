@@ -16,7 +16,7 @@ for further information)."><!-- mathjax --><script src="https://cdnjs.cloudflare
     
     <a class="navbar-brand me-2" href="../index.html">surveytable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.8</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.8.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -116,9 +116,8 @@ for further information).</p>
 
 
 <dt>output</dt>
-<dd><p>package to use for printing. One of <code>"huxtable"</code>, <code>"gt"</code>, or <code>"kableExtra"</code>.
-For the last two, be sure that this package is installed. <code>"auto"</code> (default) = automatically
-select <code>huxtable</code> for screen, <code>gt</code> for HTML, or <code>kableExtra</code> for PDF (LaTeX).</p></dd>
+<dd><p>how the output is printed. <code>"auto"</code> (default); <code>"huxtable"</code>, <code>"gt"</code>, or
+<code>"kableExtra"</code>; or <code>"raw"</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -140,6 +139,11 @@ select <code>huxtable</code> for screen, <code>gt</code> for HTML, or <code>kabl
 freedom, matching the SUDAAN calculation. NHIS users, be sure to also type
 <code>options(surveytable.adjust_svyciprop.df_method = "NHIS")</code>.</p></li>
 </ul></li>
+</ul><p><code>output</code> determines how the output is printed.</p><ul><li><p><code>"auto"</code> (default): automatically select the printing method, depending on the
+destination (such as screen, HTML, or PDF / LaTeX).</p></li>
+<li><p><code>"huxtable"</code>, <code>"gt"</code>, or <code>"kableExtra"</code>: use this package for printing. Be sure
+that this package is installed.</p></li>
+<li><p><code>"raw"</code>: unformatted / raw output. This is useful for getting lots of significant digits.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

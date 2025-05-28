@@ -15,9 +15,11 @@
   }
   rT$Flag[idx] = "*"
 
-  rT$`p-value` = getOption("surveytable.tx_pval") %>% do.call(list(rT$`p-value`))
-  if (bool.adj) {
-    rT$`p-adjusted` = getOption("surveytable.tx_pval") %>% do.call(list(rT$`p-adjusted`))
+  if (getOption("surveytable.do_tx")) {
+    rT$`p-value` = getOption("surveytable.tx_pval") %>% do.call(list(rT$`p-value`))
+    if (bool.adj) {
+      rT$`p-adjusted` = getOption("surveytable.tx_pval") %>% do.call(list(rT$`p-adjusted`))
+    }
   }
 
   attr(rT, "title") = test_title

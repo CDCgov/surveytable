@@ -17,6 +17,7 @@ env = new.env()
     , surveytable.adjust_svyciprop.df_method = "default"
 
     ## other set_opts()
+    , surveytable.do_tx = TRUE
     , surveytable.drop_na = FALSE
     , surveytable.max_levels = 20
     , surveytable.csv = ""
