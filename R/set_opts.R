@@ -1,7 +1,7 @@
 #' Set certain options
 #'
 #' `set_opts()` sets certain options. To view these options, use `show_opts()`.
-#' For more advanced control and detailed customization, experienced users can
+#' For more advanced control and detailed customization, advanced users can
 #' also employ [options()] and [show_options()] (refer to [surveytable-options]
 #' for further information).
 #'
@@ -23,12 +23,13 @@
 #'
 #' `output` determines how the output is printed.
 #'
-#' * `"auto"` (default): automatically select the printing method, depending on the
+#' * `"auto"` (default): automatically select the table-making package, depending on the
 #' destination (such as screen, HTML, or PDF / LaTeX).
-#' * `"huxtable"`, `"gt"`, or `"kableExtra"`: use this package for printing. Be sure
+#' * `"huxtable"`, `"gt"`, or `"kableExtra"`: use this table-making package. Be sure
 #' that this package is installed.
 #' * `"raw"`: unformatted / raw output. This is useful for getting lots of significant digits.
 #'
+#' @param reset reset all options to their default values?
 #' @param mode `"general"` or `"NCHS"`. See below for details.
 #' @param count round counts to the nearest: integer (`"int"`) or one thousand (`"1k"`)
 #' @param lpe identify low-precision estimates?
@@ -52,7 +53,8 @@
 #'
 #' show_opts()
 set_opts = function(
-    mode = NULL
+    reset = NULL
+    , mode = NULL
     , count = NULL
     , lpe = NULL
     , drop_na = NULL, max_levels = NULL, csv = NULL
@@ -61,19 +63,29 @@ set_opts = function(
 
   #### !!! If making changes, update .onLoad()
 
+  ## Reset has to go ahead of the other options
+  if (!is.null(reset)) {
+    assert_that(is.flag(reset), reset %in% c(TRUE, FALSE))
+    if (reset) {
+      message("* Resetting all options to their default values.")
+      env$survey = NULL
+      .onLoad()
+    }
+  }
+
   ## Mode has to go ahead of the other options
   if (!is.null(mode)) {
     mode %<>% .mymatch(c("nchs", "general"))
     if (mode == "nchs") {
       message("* Mode: NCHS.")
-      options(surveytable.do_tx = TRUE
+      options(surveytable.not_raw = TRUE
         , surveytable.tx_count = ".tx_count_1k"
         , surveytable.names_count = c("n", "Number (000)", "SE (000)", "LL (000)", "UL (000)")
         , surveytable.find_lpe = TRUE
         , surveytable.adjust_svyciprop = TRUE)
     } else if (mode == "general") {
       message("* Mode: General.")
-      options(surveytable.do_tx = TRUE
+      options(surveytable.not_raw = TRUE
         , surveytable.tx_count = ".tx_count_int"
         , surveytable.names_count = c("n", "Number", "SE", "LL", "UL")
         , surveytable.find_lpe = FALSE
@@ -85,12 +97,12 @@ set_opts = function(
     count %<>% .mymatch(c("int", "1k"))
     if (count == "int") {
       message("* Rounding counts to the nearest integer.")
-      options(surveytable.do_tx = TRUE
+      options(surveytable.not_raw = TRUE
         , surveytable.tx_count = ".tx_count_int"
         , surveytable.names_count = c("n", "Number", "SE", "LL", "UL"))
     } else if (count == "1k") {
       message("* Rounding counts to the nearest thousand.")
-      options(surveytable.do_tx = TRUE
+      options(surveytable.not_raw = TRUE
         , surveytable.tx_count = ".tx_count_1k"
         , surveytable.names_count = c("n", "Number (000)", "SE (000)", "LL (000)", "UL (000)"))
     }
@@ -142,7 +154,7 @@ set_opts = function(
     if (output == "auto") {
       message("* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF.")
     } else if (output == "raw") {
-      options(surveytable.do_tx = FALSE
+      options(surveytable.not_raw = FALSE
               , surveytable.names_count = c("n", "Number", "SE", "LL", "UL"))
       message(glue("* Generating unformatted / raw output."))
     } else {
@@ -159,7 +171,7 @@ set_opts = function(
 #' @export
 show_opts = function() {
 
-  do_tx = getOption("surveytable.do_tx")
+  do_tx = getOption("surveytable.not_raw")
   assert_that(do_tx %in% c(TRUE, FALSE))
   if (do_tx == FALSE) {
     message("* Not rounding.")

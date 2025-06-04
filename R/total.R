@@ -57,7 +57,7 @@ total = function(csv = getOption("surveytable.csv") ) {
   }
 
   mmc = mmcr[,c("x", "s", "ll", "ul")]
-  if (getOption("surveytable.do_tx")) {
+  if (getOption("surveytable.not_raw")) {
     mmc = getOption("surveytable.tx_count") %>% do.call(list(mmc))
   }
   mmc$counts = mmcr$counts

@@ -27,7 +27,7 @@
   ret$SD = (svyvar(frm, design, na.rm = TRUE)
             %>% as.numeric %>% sqrt %>% suppressWarnings)
 
-  if (getOption("surveytable.do_tx")) {
+  if (getOption("surveytable.not_raw")) {
     cc = c("Mean", "SEM", "SD")
     ret[,cc] = getOption("surveytable.tx_numeric") %>% do.call(list(ret[,cc]))
     cc = "% known"

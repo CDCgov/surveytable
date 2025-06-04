@@ -71,7 +71,7 @@ tab("SPECCAT")
 
 # Spark-based complex survey
 
-Especially if you are working with big data, that data might be stored in a database, such as Apache Spark. `mysurvey` can work with a survey whose data lives in a database.
+Especially if you are working with big data, that data might be stored in a database, such as Apache Spark. `surveytable` can work with a survey whose data lives in a database.
 
 The example below illustrates how to use `surveytable` with a Spark-based complex survey. We 
 

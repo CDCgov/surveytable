@@ -130,6 +130,23 @@ tab("AGER")
 tab("AGER")
 ```
 
+# Generate unformatted output
+
+Some analysts might wish to compare the output from `surveytable` to the output from other statistical software, such as SAS / SUDAAN. In this situation, `set_opts(output = "raw")` might be useful. This command tells `surveytable` to print unformatted and unrounded tables. In addition, when performing hypothesis testing, this option prints the test statistic and the degrees of freedom, not just the p-value. 
+
+```{r}
+set_opts(output = "raw")
+```
+```r
+tab("AGER")
+```
+```{r, echo=FALSE}
+print(tab("AGER"), destination = "")
+```
+```{r}
+set_opts(output = "auto")
+```
+
 # Advanced printing
 
 ## The proper approach

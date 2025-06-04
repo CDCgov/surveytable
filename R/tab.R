@@ -194,7 +194,7 @@ tab = function(...
 	}
 
   mmc = mmcr[,c("x", "s", "ll", "ul")]
-  if (getOption("surveytable.do_tx")) {
+  if (getOption("surveytable.not_raw")) {
     mmc = getOption("surveytable.tx_count") %>% do.call(list(mmc))
   }
 	mmc$counts = mmcr$counts
@@ -246,7 +246,7 @@ tab = function(...
 	}
 
 	mp2 = ret[,c("Proportion", "SE", "LL", "UL")]
-	if (getOption("surveytable.do_tx")) {
+	if (getOption("surveytable.not_raw")) {
 	  mp2 = getOption("surveytable.tx_prct") %>% do.call(list(mp2))
 	}
 	names(mp2) = getOption("surveytable.names_prct")

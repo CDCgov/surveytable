@@ -49,8 +49,8 @@ articles:
   - Example-Residential-Care-Community-Services-User-NSLTCP-RCC-SU-report
   - use-cases
 - title: Advanced
-  navbar: Advanced
+  navbar: ~
   contents:
-  - Advanced-topics
+  - Tips-tricks
   - Printing-HTML
   - Printing-PDF

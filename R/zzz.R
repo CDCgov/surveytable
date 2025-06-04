@@ -17,7 +17,7 @@ env = new.env()
     , surveytable.adjust_svyciprop.df_method = "default"
 
     ## other set_opts()
-    , surveytable.do_tx = TRUE
+    , surveytable.not_raw = TRUE
     , surveytable.drop_na = FALSE
     , surveytable.max_levels = 20
     , surveytable.csv = ""
@@ -36,7 +36,7 @@ env = new.env()
     , surveytable.svychisq_statistic = "F"
     , surveytable.p.adjust_method = "bonferroni"
     , surveytable.tx_pval = ".tx_pval"
-    , surveytable.show_test_statistic = FALSE
+    # , surveytable.show_test_statistic = FALSE
   )
 }
 

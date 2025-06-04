@@ -1,10 +1,12 @@
 ---
-title: "Advanced topics"
+title: "Tips and tricks"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Advanced topics}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Tips and tricks}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r, include = FALSE}
@@ -14,7 +16,26 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Subsetting a survey
+# Reset the options
+
+Depending on your coding style, you might be changing options in multiple locations in your code. In these situations, `set_opts(reset = TRUE)` might be useful. This command resets all `surveytable` options to their default values. 
+
+# Verify the results
+
+Some analysts might wish to compare the output from `surveytable` to the output from other statistical software, such as SAS / SUDAAN. In this situation, `set_opts(output = "raw")` might be useful. This command tells `surveytable` to print unformatted and unrounded tables. In addition, when performing hypothesis testing, this option prints the test statistic and the degrees of freedom, not just the p-value. 
+
+```{r, results='asis', message=FALSE}
+library(surveytable)
+set_survey(namcs2019sv)
+```
+```{r}
+set_opts(output = "raw")
+tab("SPECCAT", test = TRUE)
+set_opts(reset = TRUE)
+```
+
+
+# Subset a survey
 
 Consider this example, in which we estimate the number of medications by age group:
 
