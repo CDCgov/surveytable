@@ -1,22 +1,32 @@
-#' Confidence intervals for proportions, adjusted for degrees of freedom
+#' Korn and Graubard confidence intervals for proportions, adjusted for degrees of freedom
 #'
-#' A version of `survey::svyciprop()` that adjusts for the degrees of freedom
-#' when `method = "beta"`.
+#' A version of `survey::svyciprop( method = "beta" )` that adjusts for the degrees of freedom.
 #'
-#' Written by Makram Talih in 2019.
+#' `adj` specifies the adjustment to the Korn and Graubard confidence intervals.
 #'
-#' `df_method`: for `"default"`, `df = degf(design)`; for `"NHIS"`, `df = nrow(design) - 1`.
+#' * `"none"`: No adjustment is performed. Produce standard Korn and Graubard confidence intervals,
+#' same as `survey::svyciprop( method = "beta" )`.
 #'
-#' To use this adjustment in `surveytable` tabulations, call [set_survey()] or [set_opts()] with the
-#' `mode = "NCHS"` argument, or type: `options(surveytable.adjust_svyciprop = TRUE)`.
-#' NHIS users, be sure to set the `surveytable.adjust_svyciprop.df_method` option to
-#' `"NHIS"`.
+#' * `"NCHS"`: Adjustment that might be required by some (though not all) NCHS data systems. With
+#' this adjustment, the degrees of freedom is set to `degf(design)`. Consult the documentation
+#' for the data system that you are analyzing to determine if this is the appropriate
+#' adjustment.
+#'
+#' * `"NHIS"`: Adjustment that might be required by NHIS. With
+#' this adjustment, the degrees of freedom is set to `nrow(design) - 1`. Consult the documentation
+#' for the data system that you are analyzing to determine if this is the appropriate
+#' adjustment.
+#'
+#' To use these adjustments in `surveytable` tabulations, call [set_survey()] or [set_opts()] with the
+#' appropriate `mode` or `adj` argument.
+#'
+#' Originally written by Makram Talih in 2019.
 #'
 #' @param formula see `survey::svyciprop()`.
 #' @param design see `survey::svyciprop()`.
-#' @param method see `survey::svyciprop()`.
 #' @param level see `survey::svyciprop()`.
-#' @param df_method how `df` should be calculated: `"default"` or `"NHIS"`.
+#' @param adj adjustment to the Korn and Graubard confidence intervals:`"none"` (default),
+#' `"NCHS"`, or `"NHIS"`.
 #' @param ... see `survey::svyciprop()`.
 #'
 #' @return The point estimate of the proportion, with the confidence interval as an attribute.
@@ -24,26 +34,28 @@
 #'
 #' @examples
 #' set_survey(namcs2019sv)
-#' set_opts(mode = "NCHS")
+#' set_opts(adj = "NCHS")
 #' tab("AGER")
-#' set_opts(mode = "general")
+#' set_opts(adj = "none")
 svyciprop_adjusted = function(formula
                     , design
-                    , method = c("logit", "likelihood", "asin", "beta"
-                                 , "mean", "xlogit")
                     , level = 0.95
-                    , df_method
+                    , adj = "none"
                     , ...) {
-  assert_that(df_method %in% c("default", "NHIS"))
-  df = switch(df_method,
-              default = degf(design),
-              NHIS = nrow(design) - 1
-  )
+  adj %<>% .mymatch(c("none", "nchs", "nhis"))
 
-  method = match.arg(method)
-  if (method != "beta") {
-    return( svyciprop(formula, design, method, level, df, ...) )
+  if (adj == "none") {
+    return(
+      svyciprop(formula = formula, design = design, method = "beta"
+                , level = level, ...)
+    )
   }
+
+  df = switch(adj,
+              nchs = degf(design),
+              nhis = nrow(design) - 1
+              , stop("??")
+  )
 
   m = eval(bquote(svymean(~as.numeric(.(formula[[2]])), design, ...)))
   rval = coef(m)[1]

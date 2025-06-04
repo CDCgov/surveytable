@@ -6,7 +6,9 @@
 \title{Set certain options}
 \usage{
 set_opts(
+  reset = NULL,
   mode = NULL,
+  adj = NULL,
   count = NULL,
   lpe = NULL,
   drop_na = NULL,
@@ -18,7 +20,12 @@ set_opts(
 show_opts()
 }
 \arguments{
+\item{reset}{reset all options to their default values?}
+
 \item{mode}{\code{"general"} or \code{"NCHS"}. See below for details.}
+
+\item{adj}{adjustment to the Korn and Graubard confidence intervals for proportions. See
+\code{svyciprop_adjusted()} for details.}
 
 \item{count}{round counts to the nearest: integer (\code{"int"}) or one thousand (\code{"1k"})}
 
@@ -38,7 +45,7 @@ show_opts()
 }
 \description{
 \code{set_opts()} sets certain options. To view these options, use \code{show_opts()}.
-For more advanced control and detailed customization, experienced users can
+For more advanced control and detailed customization, experienced  users can
 also employ \code{\link[=options]{options()}} and \code{\link[=show_options]{show_options()}} (refer to \link{surveytable-options}
 for further information).
 }
@@ -51,23 +58,27 @@ If you are not setting a particular option, leave it as \code{NULL}.
 \itemize{
 \item Round counts to the nearest integer -- same as \code{count = "int"}.
 \item Do not look for low-precision estimates -- same as \code{lpe = FALSE}.
-\item Percentage CI's: use standard Korn-Graubard CI's.
+\item Percentage CI's: use standard Korn-Graubard CI's -- same as \code{adj = "none"}.
 }
 \item \code{"nchs"}:
 \itemize{
 \item Round counts to the nearest 1,000 -- same as \code{count = "1k"}.
 \item Identify low-precision estimates -- same as \code{lpe = TRUE}.
 \item Percentage CI's: adjust Korn-Graubard CI's for the number of degrees of
-freedom, matching the SUDAAN calculation. NHIS users, be sure to also type
-\code{options(surveytable.adjust_svyciprop.df_method = "NHIS")}.
+freedom, matching the SUDAAN calculation -- same as \code{adj = "nchs"}. This
+is appropriate for some, but not all, NCHS data systems. For some NCHS
+data systems, such as NHIS, you might need to set \code{adj} to one of the other values.
 }
 }
 
+\code{adj} specifies the adjustment to the Korn and Graubard confidence intervals for
+proportions. See \code{svyciprop_adjusted()} for details.
+
 \code{output} determines how the output is printed.
 \itemize{
-\item \code{"auto"} (default): automatically select the printing method, depending on the
+\item \code{"auto"} (default): automatically select the table-making package, depending on the
 destination (such as screen, HTML, or PDF / LaTeX).
-\item \code{"huxtable"}, \code{"gt"}, or \code{"kableExtra"}: use this package for printing. Be sure
+\item \code{"huxtable"}, \code{"gt"}, or \code{"kableExtra"}: use this table-making package. Be sure
 that this package is installed.
 \item \code{"raw"}: unformatted / raw output. This is useful for getting lots of significant digits.
 }

@@ -28,9 +28,14 @@ Some analysts might wish to compare the output from `surveytable` to the output 
 library(surveytable)
 set_survey(namcs2019sv)
 ```
-```{r}
+```r
 set_opts(output = "raw")
 tab("SPECCAT", test = TRUE)
+set_opts(reset = TRUE)
+```
+```{r, echo=FALSE}
+set_opts(output = "raw")
+print( tab("SPECCAT", test = TRUE), destination = "")
 set_opts(reset = TRUE)
 ```
 

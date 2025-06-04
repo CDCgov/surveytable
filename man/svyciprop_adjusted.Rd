@@ -2,27 +2,19 @@
 % Please edit documentation in R/svyciprop_adjusted.R
 \name{svyciprop_adjusted}
 \alias{svyciprop_adjusted}
-\title{Confidence intervals for proportions, adjusted for degrees of freedom}
+\title{Korn and Graubard confidence intervals for proportions, adjusted for degrees of freedom}
 \usage{
-svyciprop_adjusted(
-  formula,
-  design,
-  method = c("logit", "likelihood", "asin", "beta", "mean", "xlogit"),
-  level = 0.95,
-  df_method,
-  ...
-)
+svyciprop_adjusted(formula, design, level = 0.95, adj = "none", ...)
 }
 \arguments{
 \item{formula}{see \code{survey::svyciprop()}.}
 
 \item{design}{see \code{survey::svyciprop()}.}
 
-\item{method}{see \code{survey::svyciprop()}.}
-
 \item{level}{see \code{survey::svyciprop()}.}
 
-\item{df_method}{how \code{df} should be calculated: \code{"default"} or \code{"NHIS"}.}
+\item{adj}{adjustment to the Korn and Graubard confidence intervals:\code{"none"} (default),
+\code{"NCHS"}, or \code{"NHIS"}.}
 
 \item{...}{see \code{survey::svyciprop()}.}
 }
@@ -30,22 +22,31 @@ svyciprop_adjusted(
 The point estimate of the proportion, with the confidence interval as an attribute.
 }
 \description{
-A version of \code{survey::svyciprop()} that adjusts for the degrees of freedom
-when \code{method = "beta"}.
+A version of \code{survey::svyciprop( method = "beta" )} that adjusts for the degrees of freedom.
 }
 \details{
-Written by Makram Talih in 2019.
+\code{adj} specifies the adjustment to the Korn and Graubard confidence intervals.
+\itemize{
+\item \code{"none"}: No adjustment is performed. Produce standard Korn and Graubard confidence intervals,
+same as \code{survey::svyciprop( method = "beta" )}.
+\item \code{"NCHS"}: Adjustment that might be required by some (though not all) NCHS data systems. With
+this adjustment, the degrees of freedom is set to \code{degf(design)}. Consult the documentation
+for the data system that you are analyzing to determine if this is the appropriate
+adjustment.
+\item \code{"NHIS"}: Adjustment that might be required by NHIS. With
+this adjustment, the degrees of freedom is set to \code{nrow(design) - 1}. Consult the documentation
+for the data system that you are analyzing to determine if this is the appropriate
+adjustment.
+}
 
-\code{df_method}: for \code{"default"}, \code{df = degf(design)}; for \code{"NHIS"}, \code{df = nrow(design) - 1}.
+To use these adjustments in \code{surveytable} tabulations, call \code{\link[=set_survey]{set_survey()}} or \code{\link[=set_opts]{set_opts()}} with the
+appropriate \code{mode} or \code{adj} argument.
 
-To use this adjustment in \code{surveytable} tabulations, call \code{\link[=set_survey]{set_survey()}} or \code{\link[=set_opts]{set_opts()}} with the
-\code{mode = "NCHS"} argument, or type: \code{options(surveytable.adjust_svyciprop = TRUE)}.
-NHIS users, be sure to set the \code{surveytable.adjust_svyciprop.df_method} option to
-\code{"NHIS"}.
+Originally written by Makram Talih in 2019.
 }
 \examples{
 set_survey(namcs2019sv)
-set_opts(mode = "NCHS")
+set_opts(adj = "NCHS")
 tab("AGER")
-set_opts(mode = "general")
+set_opts(adj = "none")
 }

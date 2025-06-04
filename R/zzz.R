@@ -8,13 +8,12 @@ env = new.env()
     , surveytable.tx_count = ".tx_count_int"
     , surveytable.names_count = c("n", "Number", "SE", "LL", "UL")
     , surveytable.find_lpe = FALSE
-    , surveytable.adjust_svyciprop = FALSE
+    , surveytable.svyciprop_adj = "none"
 
     ## related
     , surveytable.lpe_n = ".lpe_n"
     , surveytable.lpe_counts = ".lpe_counts"
     , surveytable.lpe_percents = ".lpe_percents"
-    , surveytable.adjust_svyciprop.df_method = "default"
 
     ## other set_opts()
     , surveytable.not_raw = TRUE

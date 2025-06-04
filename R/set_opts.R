@@ -1,7 +1,7 @@
 #' Set certain options
 #'
 #' `set_opts()` sets certain options. To view these options, use `show_opts()`.
-#' For more advanced control and detailed customization, advanced users can
+#' For more advanced control and detailed customization, experienced  users can
 #' also employ [options()] and [show_options()] (refer to [surveytable-options]
 #' for further information).
 #'
@@ -12,14 +12,18 @@
 #' * `"general"`:
 #'    * Round counts to the nearest integer -- same as `count = "int"`.
 #'    * Do not look for low-precision estimates -- same as `lpe = FALSE`.
-#'    * Percentage CI's: use standard Korn-Graubard CI's.
+#'    * Percentage CI's: use standard Korn-Graubard CI's -- same as `adj = "none"`.
 #'
 #' * `"nchs"`:
 #'    * Round counts to the nearest 1,000 -- same as `count = "1k"`.
 #'    * Identify low-precision estimates -- same as `lpe = TRUE`.
 #'    * Percentage CI's: adjust Korn-Graubard CI's for the number of degrees of
-#'    freedom, matching the SUDAAN calculation. NHIS users, be sure to also type
-#'    `options(surveytable.adjust_svyciprop.df_method = "NHIS")`.
+#'    freedom, matching the SUDAAN calculation -- same as `adj = "nchs"`. This
+#'    is appropriate for some, but not all, NCHS data systems. For some NCHS
+#'    data systems, such as NHIS, you might need to set `adj` to one of the other values.
+#'
+#' `adj` specifies the adjustment to the Korn and Graubard confidence intervals for
+#' proportions. See `svyciprop_adjusted()` for details.
 #'
 #' `output` determines how the output is printed.
 #'
@@ -31,6 +35,8 @@
 #'
 #' @param reset reset all options to their default values?
 #' @param mode `"general"` or `"NCHS"`. See below for details.
+#' @param adj adjustment to the Korn and Graubard confidence intervals for proportions. See
+#' `svyciprop_adjusted()` for details.
 #' @param count round counts to the nearest: integer (`"int"`) or one thousand (`"1k"`)
 #' @param lpe identify low-precision estimates?
 #' @param drop_na drop missing values (`NA`)? Categorical variables only.
@@ -55,6 +61,7 @@
 set_opts = function(
     reset = NULL
     , mode = NULL
+    , adj = NULL
     , count = NULL
     , lpe = NULL
     , drop_na = NULL, max_levels = NULL, csv = NULL
@@ -79,18 +86,32 @@ set_opts = function(
     if (mode == "nchs") {
       message("* Mode: NCHS.")
       options(surveytable.not_raw = TRUE
+        , surveytable.svyciprop_adj = "nchs"
         , surveytable.tx_count = ".tx_count_1k"
         , surveytable.names_count = c("n", "Number (000)", "SE (000)", "LL (000)", "UL (000)")
-        , surveytable.find_lpe = TRUE
-        , surveytable.adjust_svyciprop = TRUE)
+        , surveytable.find_lpe = TRUE)
     } else if (mode == "general") {
       message("* Mode: General.")
       options(surveytable.not_raw = TRUE
+        , surveytable.svyciprop_adj = "none"
         , surveytable.tx_count = ".tx_count_int"
         , surveytable.names_count = c("n", "Number", "SE", "LL", "UL")
-        , surveytable.find_lpe = FALSE
-        , surveytable.adjust_svyciprop = FALSE)
+        , surveytable.find_lpe = FALSE)
     }
+  }
+
+  if (!is.null(adj)) {
+    adj %<>% .mymatch(c("none", "nchs", "nhis"))
+    if (adj == "none") {
+      message("* Standard Korn and Graubard confidence intervals for proportions.")
+    } else if (adj == "nchs") {
+      message("* Korn and Graubard confidence intervals for proportions with an adjustment that might be required by some (though not all) NCHS data systems.")
+    } else if (adj == "nhis") {
+      message("* Korn and Graubard confidence intervals for proportions with an adjustment that might be required by NHIS.")
+    } else {
+      stop("??")
+    }
+    options(surveytable.svyciprop_adj = adj)
   }
 
   if (!is.null(count)) {
@@ -171,6 +192,18 @@ set_opts = function(
 #' @export
 show_opts = function() {
 
+  adj = getOption("surveytable.svyciprop_adj")
+  assert_that(adj %in% c("none", "nchs", "nhis"))
+  if (adj == "none") {
+    message("* Standard Korn and Graubard confidence intervals.")
+  } else if (adj == "nchs") {
+    message("* Korn and Graubard confidence intervals with an adjustment that might be required by some (though not all) NCHS data systems.")
+  } else if (adj == "nhis") {
+    message("* Korn and Graubard confidence intervals with an adjustment that might be required by NHIS.")
+  } else {
+    stop("??")
+  }
+
   do_tx = getOption("surveytable.not_raw")
   assert_that(do_tx %in% c(TRUE, FALSE))
   if (do_tx == FALSE) {
@@ -192,14 +225,6 @@ show_opts = function() {
     message("* Identifying low-precision estimates.")
   } else {
     message("* Not identifying low-precision estimates.")
-  }
-
-  xx = getOption("surveytable.adjust_svyciprop")
-  assert_that(is.flag(xx), xx %in% c(TRUE, FALSE))
-  if (xx) {
-    message("* Using adjusted Korn-Graubard CI's.")
-  } else {
-    message("* Using standard Korn-Graubard CI's.")
   }
 
   drop_na = getOption("surveytable.drop_na")

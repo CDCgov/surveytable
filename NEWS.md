@@ -1,6 +1,7 @@
 # surveytable (development version)
 
 * `set_opts(output = "raw")`: unformatted / raw output. This is useful for getting lots of significant digits.
+* Simplified confidence interval for proportions adjustment: `svyciprop_adjusted()`.
 
 # surveytable 0.9.8
 

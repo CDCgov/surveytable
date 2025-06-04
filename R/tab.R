@@ -209,12 +209,8 @@ tab = function(...
 		design$variables$.tmp = NULL
 		design$variables$.tmp = (design$variables[,vr] == lv)
 		# Korn and Graubard, 1998
-		xp = if ( getOption("surveytable.adjust_svyciprop") ) {
-		  svyciprop_adjusted(~ .tmp, design, method="beta", level = 0.95
-		      , df_method = getOption("surveytable.adjust_svyciprop.df_method"))
-		} else {
-		  svyciprop(~ .tmp, design, method="beta", level = 0.95)
-		}
+		xp = svyciprop_adjusted(formula = ~ .tmp, design = design, level = 0.95
+		                        , adj = getOption("surveytable.svyciprop_adj"))
 		ret1 = data.frame(Proportion = xp %>% as.numeric
 		                  , SE = attr(xp, "var") %>% as.numeric %>% sqrt)
 
