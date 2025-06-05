@@ -2,14 +2,14 @@ pandoc: 3.1.1
 pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
-  Advanced-topics: Advanced-topics.html
   Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables: Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html
   Example-Residential-Care-Community-Services-User-NSLTCP-RCC-SU-report: Example-Residential-Care-Community-Services-User-NSLTCP-RCC-SU-report.html
   Printing-HTML: Printing-HTML.html
   Printing-PDF: Printing-PDF.pdf
   surveytable: surveytable.html
+  Tips-tricks: Tips-tricks.html
   use-cases: use-cases.html
-last_built: 2025-05-28T21:17Z
+last_built: 2025-06-05T20:20Z
 urls:
   reference: https://cdcgov.github.io/surveytable/reference
   article: https://cdcgov.github.io/surveytable/articles

@@ -30,9 +30,7 @@
     <a class="dropdown-item" href="../articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a>
     <a class="dropdown-item" href="../articles/Example-Residential-Care-Community-Services-User-NSLTCP-RCC-SU-report.html">Example: Residential Care Community Services User (NSLTCP RCC SU) report</a>
     <a class="dropdown-item" href="../articles/use-cases.html">Use cases</a>
-    <div class="dropdown-divider"></div>
-    <h6 class="dropdown-header" data-toc-skip>Advanced</h6>
-    <a class="dropdown-item" href="../articles/Advanced-topics.html">Advanced topics</a>
+    <a class="dropdown-item" href="../articles/Tips-tricks.html">Tips and tricks</a>
     <a class="dropdown-item" href="../articles/Printing-HTML.html">Printing (HTML)</a>
     <a class="dropdown-item" href="../articles/Printing-PDF.pdf">Printing (PDF) (PDF)</a>
   </div>
@@ -93,17 +91,8 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">show_options</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $surveytable.adjust_svyciprop</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $surveytable.adjust_svyciprop.df_method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "default"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $surveytable.csv</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] ""</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $surveytable.do_tx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $surveytable.drop_na</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
@@ -129,6 +118,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $surveytable.names_prct</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Percent" "SE"      "LL"      "UL"     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $surveytable.not_raw</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $surveytable.output_object</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] ".as_object_auto"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -141,14 +133,14 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $surveytable.rate_per</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 100</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $surveytable.show_test_statistic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $surveytable.survey_label</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "NAMCS 2019 PUF"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $surveytable.svychisq_statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "F"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $surveytable.svyciprop_adj</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "none"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $surveytable.tx_count</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] ".tx_count_int"</span>

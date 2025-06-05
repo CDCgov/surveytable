@@ -4,7 +4,7 @@
 #'
 #' `adj` specifies the adjustment to the Korn and Graubard confidence intervals.
 #'
-#' * `"none"`: No adjustment is performed. Produce standard Korn and Graubard confidence intervals,
+#' * `"none"`: No adjustment is performed. Produces standard Korn and Graubard confidence intervals,
 #' same as `survey::svyciprop( method = "beta" )`.
 #'
 #' * `"NCHS"`: Adjustment that might be required by some (though not all) NCHS data systems. With
@@ -12,8 +12,8 @@
 #' for the data system that you are analyzing to determine if this is the appropriate
 #' adjustment.
 #'
-#' * `"NHIS"`: Adjustment that might be required by NHIS. With
-#' this adjustment, the degrees of freedom is set to `nrow(design) - 1`. Consult the documentation
+#' * `"NHIS"`: Adjustment that might be required by NHIS. With this adjustment, the degrees
+#' of freedom is set to `nrow(design) - 1`. Consult the documentation
 #' for the data system that you are analyzing to determine if this is the appropriate
 #' adjustment.
 #'
@@ -25,7 +25,7 @@
 #' @param formula see `survey::svyciprop()`.
 #' @param design see `survey::svyciprop()`.
 #' @param level see `survey::svyciprop()`.
-#' @param adj adjustment to the Korn and Graubard confidence intervals:`"none"` (default),
+#' @param adj adjustment to the Korn and Graubard confidence intervals: `"none"` (default),
 #' `"NCHS"`, or `"NHIS"`.
 #' @param ... see `survey::svyciprop()`.
 #'
@@ -43,6 +43,9 @@ svyciprop_adjusted = function(formula
                     , adj = "none"
                     , ...) {
   adj %<>% .mymatch(c("none", "nchs", "nhis"))
+  if ( !(level %in% c(0.95, 0.9, 0.99)) ) {
+    warning("Value of level is not typical: ", level)
+  }
 
   if (adj == "none") {
     return(

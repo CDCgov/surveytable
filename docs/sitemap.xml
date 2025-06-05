@@ -4,9 +4,6 @@
     <loc>https://cdcgov.github.io/surveytable/404.html</loc>
   </url>
   <url>
-    <loc>https://cdcgov.github.io/surveytable/articles/Advanced-topics.html</loc>
-  </url>
-  <url>
     <loc>https://cdcgov.github.io/surveytable/articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html</loc>
   </url>
   <url>
@@ -20,6 +17,9 @@
   </url>
   <url>
     <loc>https://cdcgov.github.io/surveytable/articles/surveytable.html</loc>
+  </url>
+  <url>
+    <loc>https://cdcgov.github.io/surveytable/articles/Tips-tricks.html</loc>
   </url>
   <url>
     <loc>https://cdcgov.github.io/surveytable/articles/use-cases.html</loc>

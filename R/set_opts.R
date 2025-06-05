@@ -103,7 +103,7 @@ set_opts = function(
   if (!is.null(adj)) {
     adj %<>% .mymatch(c("none", "nchs", "nhis"))
     if (adj == "none") {
-      message("* Standard Korn and Graubard confidence intervals for proportions.")
+      message("* Korn and Graubard confidence intervals for proportions.")
     } else if (adj == "nchs") {
       message("* Korn and Graubard confidence intervals for proportions with an adjustment that might be required by some (though not all) NCHS data systems.")
     } else if (adj == "nhis") {
@@ -195,11 +195,11 @@ show_opts = function() {
   adj = getOption("surveytable.svyciprop_adj")
   assert_that(adj %in% c("none", "nchs", "nhis"))
   if (adj == "none") {
-    message("* Standard Korn and Graubard confidence intervals.")
+    message("* Korn and Graubard confidence intervals for proportions.")
   } else if (adj == "nchs") {
-    message("* Korn and Graubard confidence intervals with an adjustment that might be required by some (though not all) NCHS data systems.")
+    message("* Korn and Graubard confidence intervals for proportions with an adjustment that might be required by some (though not all) NCHS data systems.")
   } else if (adj == "nhis") {
-    message("* Korn and Graubard confidence intervals with an adjustment that might be required by NHIS.")
+    message("* Korn and Graubard confidence intervals for proportions with an adjustment that might be required by NHIS.")
   } else {
     stop("??")
   }

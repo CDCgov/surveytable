@@ -12,9 +12,13 @@
 #' set_survey(children)
 #' tab("AGER")
 survey_subset = function(design, subset, label) {
+  # See set_survey()
   assert_that(inherits(design, c("survey.design", "svyrep.design"))
-    , msg = glue("Must be a survey.design or svyrep.design. Is: {o2s(design)}."))
+              , msg = glue("Must be a survey object (survey.design or svyrep.design). Is: {o2s(design)}."))
+  # get rid of non-`data.frame` classes (like tbl_df), which cause problems
+  design$variables %<>% as.data.frame()
 
+  ##
   vls = lapply(design$variables, FUN = function(x) attr(x, "label"))
   nm = names(vls)
   assert_that(all(nm == names(design$variables)))

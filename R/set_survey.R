@@ -60,7 +60,7 @@ set_survey = function(design, csv = getOption("surveytable.csv"), ...) {
                            , " (survey.design or svyrep.design). Or, for an unweighted survey,"
                            , " a data.frame or similar. Is: {o2s(design)}."))
 
-  # get rid of non-`data.frame` classes (like tbl_df), which cause problems for some reason
+  # get rid of non-`data.frame` classes (like tbl_df), which cause problems
   design$variables %<>% as.data.frame()
   # assert_that(is.data.frame(design$variables))
 

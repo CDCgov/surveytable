@@ -13,7 +13,7 @@ svyciprop_adjusted(formula, design, level = 0.95, adj = "none", ...)
 
 \item{level}{see \code{survey::svyciprop()}.}
 
-\item{adj}{adjustment to the Korn and Graubard confidence intervals:\code{"none"} (default),
+\item{adj}{adjustment to the Korn and Graubard confidence intervals: \code{"none"} (default),
 \code{"NCHS"}, or \code{"NHIS"}.}
 
 \item{...}{see \code{survey::svyciprop()}.}
@@ -27,14 +27,14 @@ A version of \code{survey::svyciprop( method = "beta" )} that adjusts for the de
 \details{
 \code{adj} specifies the adjustment to the Korn and Graubard confidence intervals.
 \itemize{
-\item \code{"none"}: No adjustment is performed. Produce standard Korn and Graubard confidence intervals,
+\item \code{"none"}: No adjustment is performed. Produces standard Korn and Graubard confidence intervals,
 same as \code{survey::svyciprop( method = "beta" )}.
 \item \code{"NCHS"}: Adjustment that might be required by some (though not all) NCHS data systems. With
 this adjustment, the degrees of freedom is set to \code{degf(design)}. Consult the documentation
 for the data system that you are analyzing to determine if this is the appropriate
 adjustment.
-\item \code{"NHIS"}: Adjustment that might be required by NHIS. With
-this adjustment, the degrees of freedom is set to \code{nrow(design) - 1}. Consult the documentation
+\item \code{"NHIS"}: Adjustment that might be required by NHIS. With this adjustment, the degrees
+of freedom is set to \code{nrow(design) - 1}. Consult the documentation
 for the data system that you are analyzing to determine if this is the appropriate
 adjustment.
 }
