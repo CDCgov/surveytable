@@ -111,9 +111,7 @@ tab_subset_rate = function(vr, vrby
     }
     m1 = m1[,cc]
     cc = c("Rate", "SE", "LL", "UL")
-    if (getOption("surveytable.not_raw")) {
-      m1[,cc] = getOption("surveytable.tx_rate") %>% do.call(list(m1[,cc]))
-    }
+    m1[,cc] = getOption("surveytable.tx_rate") %>% do.call(list(m1[,cc]))
 
     attr(m1, "title") = paste(.getvarname(d1, vr), "(rate per", per, "population)")
     attr(m1, "num") = 2:6

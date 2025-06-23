@@ -7,6 +7,7 @@ env = new.env()
     ## set_opts(mode = "general")
     , surveytable.tx_count = ".tx_count_int"
     , surveytable.names_count = c("n", "Number", "SE", "LL", "UL")
+    , surveytable.names_count_raw = c("n", "Number", "SE", "LL", "UL")
     , surveytable.find_lpe = FALSE
     , surveytable.svyciprop_adj = "none"
 
@@ -16,7 +17,7 @@ env = new.env()
     , surveytable.lpe_percents = ".lpe_percents"
 
     ## other set_opts()
-    , surveytable.not_raw = TRUE
+    , surveytable.raw = FALSE
     , surveytable.drop_na = FALSE
     , surveytable.max_levels = 20
     , surveytable.csv = ""
@@ -35,23 +36,37 @@ env = new.env()
     , surveytable.svychisq_statistic = "F"
     , surveytable.p.adjust_method = "bonferroni"
     , surveytable.tx_pval = ".tx_pval"
-    # , surveytable.show_test_statistic = FALSE
+    , surveytable.tx_test_stat = ".tx_test_stat"
+    , surveytable.tx_df = ".tx_df"
   )
 }
 
+.get_names_count = function() {
+  if (getOption("surveytable.raw")) {
+    getOption("surveytable.names_count_raw")
+  } else {
+    getOption("surveytable.names_count")
+  }
+}
+
 .tx_prct = function(x) {
+  if (getOption("surveytable.raw")) return(x * 100)
   round(x * 100, 1)
 }
 
 .tx_rate = function(x) {
+  if (getOption("surveytable.raw")) return(x)
   round(x, 1)
 }
 
 .tx_numeric = function(x) {
+  if (getOption("surveytable.raw")) return(x)
   signif(x, 3)
 }
 
 .tx_count_1k = function(x) {
+  if (getOption("surveytable.raw")) return(x)
+
   ## Huge UL -> Inf
   x$rat = x$ul / x$x
   idx = which(x$rat > 4e3)
@@ -62,6 +77,8 @@ env = new.env()
 }
 
 .tx_count_int = function(x) {
+  if (getOption("surveytable.raw")) return(x)
+
   ## Huge UL -> Inf
   x$rat = x$ul / x$x
   idx = which(x$rat > 4e3)
@@ -72,7 +89,21 @@ env = new.env()
 }
 
 .tx_pval = function(x) {
+  if (getOption("surveytable.raw")) return(x)
+
   round(x, 3)
+}
+
+.tx_test_stat = function(x) {
+  if (getOption("surveytable.raw")) return(x)
+
+  round(x, 2)
+}
+
+.tx_df = function(x) {
+  if (getOption("surveytable.raw")) return(x)
+
+  round(x, 1)
 }
 
 .tx_none = function(x) {

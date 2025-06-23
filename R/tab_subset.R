@@ -135,7 +135,8 @@ tab_subset = function(vr, vrby, lvls = c()
       fo = svychisq(frm, design
         , statistic = getOption("surveytable.svychisq_statistic", default = "F"))
       rT = data.frame(`Test statistic` = fo$statistic
-        , `Degrees of freedom` = glue_collapse(fo$parameter, sep = ", ")
+        , `Degrees of freedom 1` = fo$parameter[1]
+        , `Degrees of freedom 2` = fo$parameter[2]
         , `p-value` = fo$p.value
         , check.names = FALSE)
       test_name = fo$method
@@ -211,7 +212,8 @@ tab_subset = function(vr, vrby, lvls = c()
       model1 = svyglm(frm, design)
       fo = regTermTest(model1, vrby, method = "Wald")
       rT = data.frame(`Test statistic` = fo$Ftest
-        , `Degrees of freedom` = glue_collapse(c(fo$df, fo$ddf), sep = ", ")
+        , `Degrees of freedom 1` = fo$df
+        , `Degrees of freedom 2` = fo$ddf
         , `p-value` = fo$p, check.names = FALSE)
       # survey:::print.regTermTest
       test_name = "Wald test"

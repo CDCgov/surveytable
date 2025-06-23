@@ -194,12 +194,10 @@ tab = function(...
 	}
 
   mmc = mmcr[,c("x", "s", "ll", "ul")]
-  if (getOption("surveytable.not_raw")) {
-    mmc = getOption("surveytable.tx_count") %>% do.call(list(mmc))
-  }
+  mmc = getOption("surveytable.tx_count") %>% do.call(list(mmc))
 	mmc$counts = mmcr$counts
 	mmc = mmc[,c("counts", "x", "s", "ll", "ul")]
-	names(mmc) = getOption("surveytable.names_count")
+	names(mmc) = .get_names_count()
 
 	##
 	lvs = design$variables[,vr] %>% levels
@@ -242,9 +240,7 @@ tab = function(...
 	}
 
 	mp2 = ret[,c("Proportion", "SE", "LL", "UL")]
-	if (getOption("surveytable.not_raw")) {
-	  mp2 = getOption("surveytable.tx_prct") %>% do.call(list(mp2))
-	}
+	mp2 = getOption("surveytable.tx_prct") %>% do.call(list(mp2))
 	names(mp2) = getOption("surveytable.names_prct")
 
 	##

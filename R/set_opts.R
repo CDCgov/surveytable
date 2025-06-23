@@ -1,6 +1,6 @@
 #' Set certain options
 #'
-#' `set_opts()` sets certain options. To view these options, use `show_opts()`.
+#' `set_opts()` sets certain package options. To view these options, use `show_opts()`.
 #' For more advanced control and detailed customization, experienced  users can
 #' also employ [options()] and [show_options()] (refer to [surveytable-options]
 #' for further information).
@@ -37,13 +37,14 @@
 #' @param mode `"general"` or `"NCHS"`. See below for details.
 #' @param adj adjustment to the Korn and Graubard confidence intervals for proportions. See
 #' `svyciprop_adjusted()` for details.
-#' @param count round counts to the nearest: integer (`"int"`) or one thousand (`"1k"`)
+#' @param output how the output is printed: `"auto"` (default); `"huxtable"`, `"gt"`, or
+#' `"kableExtra"`; or `"raw"`.
+#' @param count round counts to the nearest integer (`"int"`) or one thousand (`"1k"`).
 #' @param lpe identify low-precision estimates?
 #' @param drop_na drop missing values (`NA`)? Categorical variables only.
-#' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
-#' @param csv     name of a CSV file or `""` to turn off CSV output.
-#' @param output how the output is printed. `"auto"` (default); `"huxtable"`, `"gt"`, or
-#' `"kableExtra"`; or `"raw"`.
+#' @param max_levels a categorical variable can have at most this many levels.
+#' Used to avoid printing huge tables.
+#' @param csv name of a CSV file or `""` to turn off CSV output.
 #'
 #' @return (Nothing.)
 #' @family options
@@ -62,13 +63,15 @@ set_opts = function(
     reset = NULL
     , mode = NULL
     , adj = NULL
+    , output = NULL
     , count = NULL
     , lpe = NULL
-    , drop_na = NULL, max_levels = NULL, csv = NULL
-    , output = NULL
+    , drop_na = NULL
+    , max_levels = NULL
+    , csv = NULL
     ) {
 
-  #### !!! If making changes, update .onLoad()
+  #### !!! If making changes, update .onLoad(), show_opts()
 
   ## Reset has to go ahead of the other options
   if (!is.null(reset)) {
@@ -85,15 +88,13 @@ set_opts = function(
     mode %<>% .mymatch(c("nchs", "general"))
     if (mode == "nchs") {
       message("* Mode: NCHS.")
-      options(surveytable.not_raw = TRUE
-        , surveytable.svyciprop_adj = "nchs"
+      options(surveytable.svyciprop_adj = "nchs"
         , surveytable.tx_count = ".tx_count_1k"
         , surveytable.names_count = c("n", "Number (000)", "SE (000)", "LL (000)", "UL (000)")
         , surveytable.find_lpe = TRUE)
     } else if (mode == "general") {
       message("* Mode: General.")
-      options(surveytable.not_raw = TRUE
-        , surveytable.svyciprop_adj = "none"
+      options(surveytable.svyciprop_adj = "none"
         , surveytable.tx_count = ".tx_count_int"
         , surveytable.names_count = c("n", "Number", "SE", "LL", "UL")
         , surveytable.find_lpe = FALSE)
@@ -108,24 +109,39 @@ set_opts = function(
       message("* Korn and Graubard confidence intervals for proportions with an adjustment that might be required by some (though not all) NCHS data systems.")
     } else if (adj == "nhis") {
       message("* Korn and Graubard confidence intervals for proportions with an adjustment that might be required by NHIS.")
-    } else {
-      stop("??")
     }
     options(surveytable.svyciprop_adj = adj)
   }
 
+  if (!is.null(output)) {
+    output %<>% .mymatch(c("huxtable", "gt", "kableExtra", "auto", "raw"))
+    options(surveytable.raw = FALSE)
+    if (output == "auto") {
+      message("* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF.")
+    } else if (output == "raw") {
+      options(surveytable.raw = TRUE)
+      message("* Generating unformatted / raw output.")
+    } else {
+      message(glue("* Printing with {output}."))
+    }
+    options(surveytable.output_object = glue(".as_object_{output}")
+            , surveytable.output_print = glue(".print_{output}"))
+  }
+
   if (!is.null(count)) {
-    count %<>% .mymatch(c("int", "1k"))
-    if (count == "int") {
-      message("* Rounding counts to the nearest integer.")
-      options(surveytable.not_raw = TRUE
-        , surveytable.tx_count = ".tx_count_int"
-        , surveytable.names_count = c("n", "Number", "SE", "LL", "UL"))
-    } else if (count == "1k") {
-      message("* Rounding counts to the nearest thousand.")
-      options(surveytable.not_raw = TRUE
-        , surveytable.tx_count = ".tx_count_1k"
-        , surveytable.names_count = c("n", "Number (000)", "SE (000)", "LL (000)", "UL (000)"))
+    if (getOption("surveytable.raw")) {
+      message("* To perform rounding, first turn off raw output.")
+    } else {
+      count %<>% .mymatch(c("int", "1k"))
+      if (count == "int") {
+        message("* Rounding counts to the nearest integer.")
+        options(surveytable.tx_count = ".tx_count_int"
+                , surveytable.names_count = c("n", "Number", "SE", "LL", "UL"))
+      } else if (count == "1k") {
+        message("* Rounding counts to the nearest thousand.")
+        options(surveytable.tx_count = ".tx_count_1k"
+                , surveytable.names_count = c("n", "Number (000)", "SE (000)", "LL (000)", "UL (000)"))
+      }
     }
   }
 
@@ -170,96 +186,5 @@ set_opts = function(
     options(surveytable.csv = csv)
   }
 
-  if (!is.null(output)) {
-    output %<>% .mymatch(c("huxtable", "gt", "kableExtra", "auto", "raw"))
-    if (output == "auto") {
-      message("* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF.")
-    } else if (output == "raw") {
-      options(surveytable.not_raw = FALSE
-              , surveytable.names_count = c("n", "Number", "SE", "LL", "UL"))
-      message(glue("* Generating unformatted / raw output."))
-    } else {
-      message(glue("* Printing with {output}."))
-    }
-    options(surveytable.output_object = glue(".as_object_{output}")
-      , surveytable.output_print = glue(".print_{output}"))
-  }
-
-  invisible(NULL)
-}
-
-#' @rdname set_opts
-#' @export
-show_opts = function() {
-
-  adj = getOption("surveytable.svyciprop_adj")
-  assert_that(adj %in% c("none", "nchs", "nhis"))
-  if (adj == "none") {
-    message("* Korn and Graubard confidence intervals for proportions.")
-  } else if (adj == "nchs") {
-    message("* Korn and Graubard confidence intervals for proportions with an adjustment that might be required by some (though not all) NCHS data systems.")
-  } else if (adj == "nhis") {
-    message("* Korn and Graubard confidence intervals for proportions with an adjustment that might be required by NHIS.")
-  } else {
-    stop("??")
-  }
-
-  do_tx = getOption("surveytable.not_raw")
-  assert_that(do_tx %in% c(TRUE, FALSE))
-  if (do_tx == FALSE) {
-    message("* Not rounding.")
-  } else {
-    tx_count = getOption("surveytable.tx_count")
-    assert_that(is.string(tx_count), nzchar(tx_count))
-    switch(tx_count
-           , ".tx_count_int" = "* Rounding counts to the nearest integer."
-           , ".tx_count_1k" = "* Rounding counts to the nearest thousand."
-           , ".tx_none" = "* Not rounding counts."
-           , " * Count rounding function: " %>% paste0(tx_count)
-    ) %>% message
-  }
-
-  lpe = getOption("surveytable.find_lpe")
-  assert_that(is.flag(lpe), lpe %in% c(TRUE, FALSE))
-  if (lpe) {
-    message("* Identifying low-precision estimates.")
-  } else {
-    message("* Not identifying low-precision estimates.")
-  }
-
-  drop_na = getOption("surveytable.drop_na")
-  assert_that(is.flag(drop_na), drop_na %in% c(TRUE, FALSE))
-  if (drop_na) {
-    message("* Dropping missing values. Showing knowns only.")
-  } else {
-    message("* Retaining missing values.")
-  }
-
-  max_levels = getOption("surveytable.max_levels")
-  assert_that(is.count(max_levels))
-  message(paste0("* Maximum number of levels is: ", max_levels))
-
-  csv = getOption("surveytable.csv")
-  assert_that(is.string(csv)
-              , msg = "CSV file name must be a character string.")
-  if (nzchar(csv)) {
-    message(paste0("* Sending CSV output to: ", csv))
-    if (file.exists(csv)) {
-      message("* (File already exists. Output will be appended to the end of the file.)")
-    }
-    message("* To turn off CSV output: set_opts(csv = '')")
-  } else {
-    message("* CSV output has been turned off.")
-  }
-
-  xx = getOption("surveytable.output_print")
-  assert_that(is.string(xx), nzchar(xx))
-  switch(xx
-         , ".print_huxtable" = "* Printing with huxtable."
-         , ".print_gt" = "* Printing with gt."
-         , ".print_kableextra" = "* Printing with kableExtra."
-         , ".print_auto" = "* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF."
-         , ".print_raw" = "* Generating unformatted / raw output."
-         , glue("Printing with a custom function: {xx}")) %>% message
   invisible(NULL)
 }
