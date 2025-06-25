@@ -3,6 +3,9 @@
 * `set_opts(output = "raw")`: unformatted / raw output. This is useful for getting lots of significant digits.
 * Simplified confidence interval for proportions adjustment: `adj` argument to `set_opts()` and `svyciprop_adjusted()`.
 * Show the test statistic for all tests.
+* Conditional independence test: `tab_subset()` with argument `test` set to the 
+value of interest. 
+* Confidence intervals for numeric variables. 
 
 # surveytable 0.9.8
 

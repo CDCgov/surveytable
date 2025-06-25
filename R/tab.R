@@ -2,27 +2,37 @@
 #'
 #' Tabulate categorical (factor or character), logical, or numeric variables.
 #'
-#' For categorical and logical variables, presents the
-#' estimated counts, their standard errors (SEs) and confidence
-#' intervals (CIs), percentages, and their SEs and CIs. Checks
-#' the presentation guidelines for counts and percentages and flags
-#' estimates if, according to the guidelines,
-#' they should be suppressed, footnoted, or reviewed by an analyst.
+#' For categorical and logical variables, for each category, this function presents the following:
 #'
-#' For numeric variables, presents the percentage of observations with
-#' known values, the mean of known values, the standard error of the mean (SEM), and
-#' the standard deviation (SD).
+#' * the number of observations (`n`);
+#' * the estimated count (`Number`), with its standard error (`SE`) and confidence
+#' interval (`LL` and `UL`); and
+#' * the estimated percentage (`Percent`), with its standard error (`SE`) and confidence
+#' interval (`LL` and `UL`).
 #'
-#' CIs are calculated at the 95% confidence level. CIs for
+#' Optionally, this function identifies low-precision estimates and flags
+#' them if, according to the guidelines (such as the NCHS presentation standards), they should
+#' be suppressed, footnoted, or reviewed by an analyst. To enable this functionality,
+#' see `set_opts()` with arguments `lpe = TRUE` or `mode = "NCHS"`.
+#'
+#' For numeric variables, this function presents the following:
+#'
+#' * percentage of observations with known values (`% known`);
+#' * the mean of known values (`Mean`), with its standard error (`SEM`) and confidence
+#' interval (`LL` and `UL`); and
+#' * the standard deviation (`SD`).
+#'
+#' Confidence intervals (CIs) are calculated at the 95% confidence level. CIs for
 #' count estimates are the log Student's t CIs, with adaptations
 #' for complex surveys. CIs for percentage estimates are
-#' the Korn and Graubard CIs.
+#' the Korn and Graubard CIs, with optional adjustments. See `set_opts()` argument
+#' `adj`. CIs for estimates of means are the Wald CIs.
 #'
 #' @param ...     names of variables (in quotes)
 #' @param test    perform hypothesis tests?
 #' @param alpha   significance level for tests
 #' @param p_adjust adjust p-values for multiple comparisons?
-#' @param drop_na drop missing values (`NA`)? Categorical variables only.
+#' @param drop_na drop missing values (`NA`)? Categorical or logical variables only.
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
 #' @param csv     name of a CSV file
 #'

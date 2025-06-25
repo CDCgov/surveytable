@@ -3,23 +3,29 @@
 #' Create subsets of the survey using one variable, and tabulate another
 #' variable within each of the subsets. Interact two variables and tabulate.
 #'
-#' `tab_subset` creates subsets using the levels of `vrby`, and tabulates
+#' `tab_subset()` creates subsets using the levels of `vrby`, and tabulates
 #' `vr` in each subset. Optionally, only use the `lvls` levels of `vrby`.
-#' `vr` can be categorical (factor), logical, or numeric.
+#' `vr` can be categorical (factor or character), logical, or numeric.
 #'
-#' `tab_cross` crosses or interacts `vr` and `vrby` and tabulates the new
-#' variable. Tables created using `tab_subset` and `tab_cross` have the same
-#' counts but different percentages. With `tab_subset`, percentages within each
-#' subset add up to 100%. With `tab_cross`, percentages across the entire
-#' population add up to 100%. Also see [`var_cross()`].
+#' `tab_cross()` crosses or interacts `vr` and `vrby` and tabulates the new
+#' variable. Tables created using `tab_subset()` and `tab_cross()` have the same
+#' counts but different percentages. With `tab_subset()`, percentages within each
+#' subset add up to 100%. With `tab_cross()`, percentages across the entire
+#' population add up to 100%. Also see `var_cross()`.
 #'
 #' `test = TRUE` performs a test of association between the two variables. Also
-#' performs t-tests for all possible pairs of levels of `vr` and `vrby`.
+#' performs t-tests for all pairs of levels of `vr` and `vrby`.
+#'
+#' `test = "{LEVEL}"`, where `{LEVEL}` is a level of `vr`, performs a
+#' **conditional independence test** to compare the proportion of
+#' `vr = "{LEVEL}"` for different values of `vrby`.
 #'
 #' @param vr      variable to tabulate
 #' @param vrby    use this variable to subset the survey
 #' @param lvls    (optional) only show these levels of `vrby`
-#' @param test    perform hypothesis tests?
+#' @param test    if `TRUE`, performs a test of association and t-tests for all
+#' pairs of levels of `vr` and `vrby`. If `test` is the name of a level of `vr`,
+#' performs a conditional independence test for that level.
 #' @param alpha   significance level for tests
 #' @param p_adjust adjust p-values for multiple comparisons?
 #' @param drop_na drop missing values (`NA`)? Categorical variables only.
@@ -53,10 +59,8 @@ tab_subset = function(vr, vrby, lvls = c()
                 , max_levels = getOption("surveytable.max_levels")
                 , csv = getOption("surveytable.csv")
               ) {
-  assert_that(test %in% c(TRUE, FALSE)
-              , alpha > 0, alpha < 0.5
+  assert_that(alpha > 0, alpha < 0.5
               , p_adjust %in% c(TRUE, FALSE)
-              # , test_pairs %in% c("depends", "yes", "no")
               )
   design = .load_survey()
   nm = names(design$variables)
@@ -87,6 +91,15 @@ tab_subset = function(vr, vrby, lvls = c()
 
     attr(design$variables[,vr], "label") = lbl
   }
+  assert_that(test %in% c(TRUE, FALSE) | test %in% levels(design$variables[,vr]))
+  type_test = if (test %in% levels(design$variables[,vr])) {
+    "cit"
+  } else if (test == TRUE) {
+    "assoc"
+  } else if (test == FALSE) {
+    "none"
+  }
+
 
   lbl = attr(design$variables[,vrby], "label")
   if (is.logical(design$variables[,vrby])) {
@@ -111,7 +124,46 @@ tab_subset = function(vr, vrby, lvls = c()
   }
 
   ret = list()
-  if (is.logical(design$variables[,vr]) || is.factor(design$variables[,vr])) {
+  if (is.factor(design$variables[,vr]) && type_test == "cit") {
+    r1 = NULL
+    l.num = list()
+    c.footer = c()
+    for (ii in lvl0) {
+      d1 = design[which(design$variables[,vrby] == ii),]
+      if(inherits(d1, "svyrep.design")) {
+        d1$prob = 1 / d1$pweights
+      }
+      fo = .tab_factor(design = d1
+                  , vr = vr
+                  , drop_na = drop_na
+                  , max_levels = max_levels
+                  , csv = csv)
+      l.num[[ length(l.num) + 1 ]] = attr(fo, "num")
+      c.footer %<>% c(attr(fo, "footer"))
+
+      idx = which(fo$Level == test)
+      assert_that(length(idx) == 1)
+      fo1 = fo[idx,]
+      fo1$Level = ii
+      r1 %<>% .rbind_dc(fo1)
+    }
+    attr(r1, "title") = glue("{.getvarname(design, vr)} = '{test}' "
+                             , "(for different levels of {.getvarname(design, vrby)})")
+    for (kk in 1:length(l.num)) assert_that(all(l.num[[kk]] == l.num[[1]]))
+    attr(r1, "num") = l.num[[1]]
+    ## What to do with footer?
+    attr(r1, "footer") = ""
+    ret[[ "table - conditional independence" ]] = r1
+
+    # Test
+    design$variables$.tmp = as.numeric(design$variables[,vr] == test)
+    ret[[ "test - conditional independence" ]] = .test_numeric(
+      design = design, vr = ".tmp", vrby = vrby, lvl0 = lvl0, alpha = alpha
+      , p_adjust = p_adjust, csv = csv
+      , test_title = glue("Conditional independence test of {.getvarname(design, vr)} = '{test}' "
+                          , "across all pairs of {.getvarname(design, vrby)}")
+    )
+  } else if (is.factor(design$variables[,vr]) && type_test != "cit") {
     for (ii in lvl0) {
       d1 = design[which(design$variables[,vrby] == ii),]
       if(inherits(d1, "svyrep.design")) {
@@ -129,8 +181,7 @@ tab_subset = function(vr, vrby, lvls = c()
                         , csv = csv)
     }
 
-    # if (test && do_pairs) {
-    if (test) {
+    if (type_test == "assoc") {
       frm = as.formula(paste0("~ `", vr, "` + `", vrby, "`"))
       fo = svychisq(frm, design
         , statistic = getOption("surveytable.svychisq_statistic", default = "F"))
@@ -234,43 +285,12 @@ tab_subset = function(vr, vrby, lvls = c()
              , csv = csv)
     # }
     # if (test && do_pairs) {
-      nlvl = length(lvl0)
-      assert_that(nlvl >= 2L
-        , msg = paste0("For ", vrby, ", at least 2 levels must be selected. "
-        , "Has: ", nlvl))
-      if ( !(alpha %in% c(0.05, 0.01, 0.001)) ) {
-        warning("Value of alpha is not typical: ", alpha)
-      }
-      frm = as.formula(paste0("`", vr, "` ~ `", vrby, "`"))
-
-      rT = NULL
-      for (ii in 1:(nlvl-1)) {
-        for (jj in (ii+1):nlvl) {
-          lvlA = lvl0[ii]
-          lvlB = lvl0[jj]
-          d1 = design[which(design$variables[,vrby] %in% c(lvlA, lvlB)),]
-          r1 = data.frame(`Level 1` = lvlA, `Level 2` = lvlB, check.names = FALSE)
-          xx = svyttest(frm, d1)
-          r1$`Test statistic` = xx$statistic
-          r1$`Degrees of freedom` = xx$parameter
-          r1$`p-value` = xx$p.value
-          rT %<>% rbind(r1)
-        }
-      }
-      test_name = xx$method
-      if (p_adjust) {
-        method = getOption("surveytable.p.adjust_method", default = "bonferroni")
-        rT$`p-adjusted` = p.adjust(rT$`p-value`
-                                   , method = method)
-        test_name %<>% paste0("; ", method, " adjustment")
-      }
-
-      test_title = paste0("Comparison of "
-                          , .getvarname(design, vr)
-                          , " across all possible pairs of ", .getvarname(design, vrby))
-      ret[[ test_name ]] = .test_table(rT = rT
-                            , test_name = test_name, test_title = test_title
-                            , alpha = alpha, csv = csv)
+      ret[[ "t-test" ]] = .test_numeric(
+        design = design, vr = vr, vrby = vrby, lvl0 = lvl0, alpha = alpha
+        , p_adjust = p_adjust, csv = csv
+        , test_title = glue("Comparison of {.getvarname(design, vr)} across all possible "
+                            , "pairs of {.getvarname(design, vrby)}")
+      )
     }
   } else {
     stop("How did we get here?")

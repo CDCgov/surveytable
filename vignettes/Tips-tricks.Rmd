@@ -16,6 +16,18 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Conditional independence test
+
+Suppose you want to test the equality of proportions of a specific variable across all levels of another variable. For example, suppose you are interested in visits by patients aged 65-74 years (`AGER` value of `"65-74 years"`). You'd like to test the proportion of these visits for different values of physician specialty (`SPECCAT`). 
+
+To perform this test, use the `tab_subset()` function, with argument `test` set to the level of interest, in this case, `"65-74 years"`. Thus, in this case, the analysis is as follows:
+
+```{r, results='asis', message=FALSE}
+library(surveytable)
+set_survey(namcs2019sv)
+tab_subset("AGER", "SPECCAT", test = "65-74 years")
+```
+
 # Reset the options
 
 Depending on your coding style, you might be changing options in multiple locations in your code. In these situations, `set_opts(reset = TRUE)` might be useful. This command resets all `surveytable` options to their default values. 

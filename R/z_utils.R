@@ -49,3 +49,21 @@ assert_package = function (fun, package, version = NULL)
 o2s = function(obj) {
   glue_collapse(class(obj), sep = ", ")
 }
+
+# rbind with different columns
+.rbind_dc = function(df1, df2) {
+  if (is.null(df1)) {
+    return(df2)
+  }
+  at2 = setdiff( names(df1), names(df2) )
+  at1 = setdiff( names(df2), names(df1) )
+  if (length(at2) > 0) {
+    df2[,at2] = ""
+  }
+  if (length(at1) > 0) {
+    df1[,at1] = ""
+  }
+  fo = rbind(df1, df2)
+  rownames(fo) = NULL
+  fo
+}

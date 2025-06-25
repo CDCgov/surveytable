@@ -1,123 +1,43 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/404.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/articles/Example-Residential-Care-Community-Services-User-NSLTCP-RCC-SU-report.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/articles/Printing-HTML.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/articles/surveytable.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/articles/Tips-tricks.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/articles/use-cases.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/index.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/codebook.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/namcs2019sv.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/print.surveytable_table.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/rccsu2018.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/set_opts.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/set_survey.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/show_options.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/surveytable-options.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/surveytable-package.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/survey_subset.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/svyciprop_adjusted.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/tab.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/tab_rate.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/tab_subset.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/tab_subset_rate.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/total.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/total_rate.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/uspop2019.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/var_all.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/var_any.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/var_case.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/var_collapse.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/var_copy.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/var_cross.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/var_cut.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/var_list.html</loc>
-  </url>
-  <url>
-    <loc>https://cdcgov.github.io/surveytable/reference/var_not.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://cdcgov.github.io/surveytable/404.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/articles/Example-Residential-Care-Community-Services-User-NSLTCP-RCC-SU-report.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/articles/index.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/articles/Printing-HTML.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/articles/surveytable.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/articles/Tips-tricks.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/articles/use-cases.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/authors.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/index.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/LICENSE.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/news/index.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/codebook.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/index.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/namcs2019sv.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/print.surveytable_table.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/rccsu2018.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/set_opts.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/set_survey.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/show_options.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/surveytable-options.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/surveytable-package.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/survey_subset.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/svyciprop_adjusted.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/tab.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/tab_rate.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/tab_subset.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/tab_subset_rate.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/total.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/total_rate.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/uspop2019.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/var_all.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/var_any.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/var_case.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/var_collapse.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/var_copy.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/var_cross.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/var_cut.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/var_list.html</loc></url>
+<url><loc>https://cdcgov.github.io/surveytable/reference/var_not.html</loc></url>
 </urlset>
+

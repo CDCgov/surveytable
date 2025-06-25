@@ -23,7 +23,7 @@ tab(
 
 \item{p_adjust}{adjust p-values for multiple comparisons?}
 
-\item{drop_na}{drop missing values (\code{NA})? Categorical variables only.}
+\item{drop_na}{drop missing values (\code{NA})? Categorical or logical variables only.}
 
 \item{max_levels}{a categorical variable can have at most this many levels. Used to avoid printing huge tables.}
 
@@ -36,21 +36,33 @@ A list of tables or a single table.
 Tabulate categorical (factor or character), logical, or numeric variables.
 }
 \details{
-For categorical and logical variables, presents the
-estimated counts, their standard errors (SEs) and confidence
-intervals (CIs), percentages, and their SEs and CIs. Checks
-the presentation guidelines for counts and percentages and flags
-estimates if, according to the guidelines,
-they should be suppressed, footnoted, or reviewed by an analyst.
+For categorical and logical variables, for each category, this function presents the following:
+\itemize{
+\item the number of observations (\code{n});
+\item the estimated count (\code{Number}), with its standard error (\code{SE}) and confidence
+interval (\code{LL} and \code{UL}); and
+\item the estimated percentage (\code{Percent}), with its standard error (\code{SE}) and confidence
+interval (\code{LL} and \code{UL}).
+}
 
-For numeric variables, presents the percentage of observations with
-known values, the mean of known values, the standard error of the mean (SEM), and
-the standard deviation (SD).
+Optionally, this function identifies low-precision estimates and flags
+them if, according to the guidelines (such as the NCHS presentation standards), they should
+be suppressed, footnoted, or reviewed by an analyst. To enable this functionality,
+see \code{set_opts()} with arguments \code{lpe = TRUE} or \code{mode = "NCHS"}.
 
-CIs are calculated at the 95\% confidence level. CIs for
+For numeric variables, this function presents the following:
+\itemize{
+\item percentage of observations with known values (\verb{\% known});
+\item the mean of known values (\code{Mean}), with its standard error (\code{SEM}) and confidence
+interval (\code{LL} and \code{UL}); and
+\item the standard deviation (\code{SD}).
+}
+
+Confidence intervals (CIs) are calculated at the 95\% confidence level. CIs for
 count estimates are the log Student's t CIs, with adaptations
 for complex surveys. CIs for percentage estimates are
-the Korn and Graubard CIs.
+the Korn and Graubard CIs, with optional adjustments. See \code{set_opts()} argument
+\code{adj}. CIs for estimates of means are the Wald CIs.
 }
 \examples{
 set_survey(namcs2019sv)

@@ -59,7 +59,7 @@
     test_name %<>% paste0("; ", method, " adjustment")
   }
 
-  test_title = paste0("Comparison of all possible pairs of "
+  test_title = paste0("Comparison of all pairs of "
                       , .getvarname(design, vr) )
   .test_table(rT = rT
               , test_name = test_name, test_title = test_title, alpha = alpha

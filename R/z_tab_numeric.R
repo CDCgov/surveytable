@@ -19,6 +19,7 @@
   smo = svymean(frm, design, na.rm = TRUE)
   ret$Mean = smo %>% as.numeric
   ret$SEM = smo %>% attr("var") %>% sqrt %>% as.numeric
+  ret[,c("LL", "UL")] = ret$Mean + c(-1, 1) * qnorm(.975) * ret$SEM
 
   # Warning messages:
   #   1: In thetas - meantheta :
@@ -27,7 +28,7 @@
   ret$SD = (svyvar(frm, design, na.rm = TRUE)
             %>% as.numeric %>% sqrt %>% suppressWarnings)
 
-  cc = c("Mean", "SEM", "SD")
+  cc = c("Mean", "SEM", "LL", "UL", "SD")
   ret[,cc] = getOption("surveytable.tx_numeric") %>% do.call(list(ret[,cc]))
   cc = "% known"
   ret[,cc] = getOption("surveytable.tx_prct") %>% do.call(list(ret[,cc]))

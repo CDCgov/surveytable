@@ -2,7 +2,7 @@
 #' @import magrittr
 #' @import glue
 #' @import survey
-#' @importFrom stats as.formula confint qt coef pt p.adjust
+#' @importFrom stats as.formula confint qt coef pt p.adjust qnorm
 #' @importFrom utils write.table tail capture.output
 #' @keywords internal
 "_PACKAGE"

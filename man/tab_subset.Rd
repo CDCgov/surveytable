@@ -35,7 +35,9 @@ tab_subset(
 
 \item{lvls}{(optional) only show these levels of \code{vrby}}
 
-\item{test}{perform hypothesis tests?}
+\item{test}{if \code{TRUE}, performs a test of association and t-tests for all
+pairs of levels of \code{vr} and \code{vrby}. If \code{test} is the name of a level of \code{vr},
+performs a conditional independence test for that level.}
 
 \item{alpha}{significance level for tests}
 
@@ -51,18 +53,22 @@ Create subsets of the survey using one variable, and tabulate another
 variable within each of the subsets. Interact two variables and tabulate.
 }
 \details{
-\code{tab_subset} creates subsets using the levels of \code{vrby}, and tabulates
+\code{tab_subset()} creates subsets using the levels of \code{vrby}, and tabulates
 \code{vr} in each subset. Optionally, only use the \code{lvls} levels of \code{vrby}.
-\code{vr} can be categorical (factor), logical, or numeric.
+\code{vr} can be categorical (factor or character), logical, or numeric.
 
-\code{tab_cross} crosses or interacts \code{vr} and \code{vrby} and tabulates the new
-variable. Tables created using \code{tab_subset} and \code{tab_cross} have the same
-counts but different percentages. With \code{tab_subset}, percentages within each
-subset add up to 100\%. With \code{tab_cross}, percentages across the entire
-population add up to 100\%. Also see \code{\link[=var_cross]{var_cross()}}.
+\code{tab_cross()} crosses or interacts \code{vr} and \code{vrby} and tabulates the new
+variable. Tables created using \code{tab_subset()} and \code{tab_cross()} have the same
+counts but different percentages. With \code{tab_subset()}, percentages within each
+subset add up to 100\%. With \code{tab_cross()}, percentages across the entire
+population add up to 100\%. Also see \code{var_cross()}.
 
 \code{test = TRUE} performs a test of association between the two variables. Also
-performs t-tests for all possible pairs of levels of \code{vr} and \code{vrby}.
+performs t-tests for all pairs of levels of \code{vr} and \code{vrby}.
+
+\code{test = "{LEVEL}"}, where \code{{LEVEL}} is a level of \code{vr}, performs a
+\strong{conditional independence test} to compare the proportion of
+\code{vr = "{LEVEL}"} for different values of \code{vrby}.
 }
 \examples{
 set_survey(namcs2019sv)
