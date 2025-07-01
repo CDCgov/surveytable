@@ -71,7 +71,7 @@ set_opts = function(
     , csv = NULL
     ) {
 
-  #### !!! If making changes, update .onLoad(), show_opts()
+  #### !!! If making changes, update: .onLoad(), set_opts(), show_opts(), .check_options()
 
   ## Reset has to go ahead of the other options
   if (!is.null(reset)) {
@@ -186,5 +186,6 @@ set_opts = function(
     options(surveytable.csv = csv)
   }
 
+  .check_options()
   invisible(NULL)
 }

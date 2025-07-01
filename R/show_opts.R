@@ -1,6 +1,9 @@
 #' @rdname set_opts
 #' @export
 show_opts = function() {
+
+  #### !!! If making changes, update: .onLoad(), set_opts(), show_opts(), .check_options()
+
   # Reset
   # Mode
 
@@ -22,7 +25,7 @@ show_opts = function() {
          , ".print_kableextra" = "* Printing with kableExtra."
          , ".print_auto" = "* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF."
          , ".print_raw" = "* Generating unformatted / raw output."
-         , glue("Printing with a custom function: {xx}")) %>% message
+         , glue("* Printing with a custom function: {xx}")) %>% message
 
   if (getOption("surveytable.raw")) {
     message("* To perform rounding, first turn off raw output.")
@@ -69,5 +72,6 @@ show_opts = function() {
     message("* CSV output has been turned off.")
   }
 
+  .check_options()
   invisible(NULL)
 }

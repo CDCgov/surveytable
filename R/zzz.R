@@ -1,6 +1,9 @@
 env = new.env()
 
 .onLoad = function(libname, pkgname) {
+
+  #### !!! If making changes, update: .onLoad(), set_opts(), show_opts(), .check_options()
+
   options(
     surveytable.survey_label = ""
 

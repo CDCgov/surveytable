@@ -106,6 +106,7 @@ set_survey = function(design, csv = getOption("surveytable.csv"), ...) {
   options(surveytable.survey_label = attr(design, "label"))
   env$survey = design
 
+  .check_options()
   .write_out(out, csv = csv)
 }
 
