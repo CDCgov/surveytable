@@ -22,6 +22,8 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a></li>
     <li><a class="dropdown-item" href="../articles/Example-Residential-Care-Community-Services-User-NSLTCP-RCC-SU-report.html">Example: Residential Care Community Services User (NSLTCP RCC SU) report</a></li>
     <li><a class="dropdown-item" href="../articles/use-cases.html">Use cases</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Advanced</h6></li>
     <li><a class="dropdown-item" href="../articles/Tips-tricks.html">Tips and tricks</a></li>
     <li><a class="dropdown-item" href="../articles/Printing-HTML.html">Printing (HTML)</a></li>
     <li><a class="dropdown-item" href="../articles/Printing-PDF.pdf">Printing (PDF) (PDF)</a></li>
@@ -50,6 +52,7 @@
 <li>Show the test statistic for all tests.</li>
 <li>Conditional independence test: <code><a href="../reference/tab_subset.html">tab_subset()</a></code> with argument <code>test</code> set to the value of interest.</li>
 <li>Confidence intervals for numeric variables.</li>
+<li>Excel tables and charts! <code>set_opts( output = "excel" )</code> and <code><a href="../reference/save_excel.html">save_excel()</a></code> to generate an Excel workbook, which consists of one or more spreadsheets.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.9.8" id="surveytable-098">surveytable 0.9.8<a class="anchor" aria-label="anchor" href="#surveytable-098"></a></h2><p class="text-muted">CRAN release: 2025-05-22</p>
@@ -67,8 +70,6 @@
 <ul><li>Ability to customize how the tables are printed.
 <ul><li>
 <code>output</code> argument to <code><a href="../reference/set_opts.html">set_opts()</a></code>
-</li>
-<li>New function: <code><a href="../reference/print.surveytable_table.html">as_object()</a></code>
 </li>
 <li>More details in <code><a href="../reference/surveytable-options.html">help("surveytable-options")</a></code>
 </li>

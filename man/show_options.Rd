@@ -20,7 +20,6 @@ show_options()
 }
 \seealso{
 Other options: 
-\code{\link{set_opts}()},
 \code{\link{set_survey}()},
 \code{\link{surveytable-options}}
 }

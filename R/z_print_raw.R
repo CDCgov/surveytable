@@ -1,4 +1,21 @@
-.as_object_raw = function(df1, ...) {
+.print_raw = function(df1, destination = NULL, ...) {
+  ##
+  if (inherits(df1, "surveytable_list")) {
+    if (length(df1) > 0) {
+      for (ii in 1:length(df1)) {
+        Recall(df1 = df1[[ii]], destination = destination, ...)
+      }
+    }
+    return(invisible(NULL))
+  }
+
+  ##
+  assert_that(inherits(df1, "surveytable_table"))
+  dest = .get_destination(destination = destination)
+  assert_that(dest == ""
+              , msg = "Have only implemented raw printing to the screen.")
+
+  ##
   hh = c()
   if (!is.null(txt <- attr(df1, "title"))) {
     hh %<>% c(txt)
@@ -7,14 +24,8 @@
   if (!is.null(txt <- attr(df1, "footer"))) {
     hh %<>% c(txt)
   }
-  hh %<>% c("\n")
-  hh %>% paste(collapse = "\n")
-}
+  hh %<>% c("\n") %>% paste(collapse = "\n")
 
-.print_raw = function(hh, destination = NULL, ...) {
-  dest = .get_destination(destination = destination)
-  assert_that(dest == ""
-              , msg = "Have only implemented raw printing to the screen.")
-
+  ##
   cat(hh)
 }

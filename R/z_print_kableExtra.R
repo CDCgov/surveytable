@@ -1,18 +1,31 @@
-.as_object_kableextra = function(df1, destination = NULL, ...) {
-  assert_package("as_object", "kableExtra")
+.print_kableextra = function(df1, destination = NULL, ...) {
+  ##
+  if (inherits(df1, "surveytable_list")) {
+    if (length(df1) > 0) {
+      for (ii in 1:length(df1)) {
+        Recall(df1 = df1[[ii]], destination = destination, ...)
+      }
+    }
+    return(invisible(NULL))
+  }
+
+  ##
+  assert_package("print", "kableExtra")
+  assert_that(inherits(df1, "surveytable_table"))
   dest = .get_destination(destination = destination)
   assert_that(dest != "",
               msg = "Have not implemented screen printing with kableExtra yet. Try set_opts(output = 'huxtable')")
   assert_that(dest %in% c("html", "latex"))
 
+  ##
   if (dest == "html") {
     hh = df1 %>% kableExtra::kbl(format = "html"
-                      , caption = attr(df1, "title")
-                      , table.attr = 'style = "caption-side: top;"'
-                      , label = NA
-                      , digits = Inf
-                      , row.names = FALSE
-                      , format.args = list(big.mark = ",")) %>%
+                                 , caption = attr(df1, "title")
+                                 , table.attr = 'style = "caption-side: top;"'
+                                 , label = NA
+                                 , digits = Inf
+                                 , row.names = FALSE
+                                 , format.args = list(big.mark = ",")) %>%
       kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed")
                                 , full_width = FALSE, position = "left")
     if (!is.null(txt <- attr(df1, "footer"))) {
@@ -20,12 +33,12 @@
     }
   } else if (dest == "latex") {
     hh = df1 %>% kableExtra::kbl(booktabs = TRUE
-                      , format = "latex"
-                      , caption = attr(df1, "title") %>% .latex_escape
-                      , label = NA
-                      , digits = Inf
-                      , row.names = FALSE
-                      , format.args = list(big.mark = ",")) %>%
+                                 , format = "latex"
+                                 , caption = attr(df1, "title") %>% .latex_escape
+                                 , label = NA
+                                 , digits = Inf
+                                 , row.names = FALSE
+                                 , format.args = list(big.mark = ",")) %>%
       kableExtra::kable_styling(latex_options = c("striped", "HOLD_position", "scale_down")
                                 , full_width = FALSE, position = "left")
     if (!is.null(ccs <- df1 %>% .kableExtra_column_spec)) {
@@ -34,12 +47,11 @@
     if (!is.null(txt <- attr(df1, "footer"))) {
       hh %<>% kableExtra::footnote(general = txt %>% .latex_escape, general_title = "")
     }
+  } else {
+    stop("?")
   }
-  hh
-}
 
-.print_kableextra = function(hh, ...) {
-  assert_package("print", "kableExtra")
+  ##
   print(hh)
 }
 

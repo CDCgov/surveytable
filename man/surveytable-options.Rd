@@ -5,8 +5,8 @@
 \alias{surveytable-options}
 \title{Package options}
 \description{
-This article is for more advanced users. Typical users, see \code{\link[=set_opts]{set_opts()}}
-and \code{\link[=show_opts]{show_opts()}} to set and show certain options.
+This article describes certain package options and is intended for more advanced
+users. Typical users should see \code{\link[=set_opts]{set_opts()}} and \code{\link[=show_opts]{show_opts()}} to set and show certain options.
 }
 \details{
 To view all available options, use \code{\link[=show_options]{show_options()}}. Below is a description
@@ -49,20 +49,10 @@ ships with the ability to use \code{huxtable}, \code{gt}, or \code{kableExtra}. 
 argument of \code{\link[=set_opts]{set_opts()}}.
 
 You can supply custom code to use another table-making package or to use one of these
-table-making packages, but in a different way. The two relevant options are \code{surveytable.output_object}
-and \code{surveytable.output_print}.
-
-\code{surveytable.output_object} is the name of a function with the following arguments:
-\code{x} and \code{...}, where \code{x} is a \code{surveytable_table} object. This function returns
-an object from a table-making package, for example, it returns a \code{gt} object. Be sure
-that this package is installed.
-
-\code{surveytable.output_print} is the name of a function with the following arguments:
-\code{x} and \code{...}, where \code{x} is an object returned by the \code{surveytable.output_object}
-function. The \code{surveytable.output_print} function prints this object.
-
-For an example of how this works, see the internal functions \code{surveytable:::.as_object_huxtable}
-and \code{surveytable:::.print_huxtable}.
+table-making packages, but in a different way. The \code{surveytable.print} option
+is the name of a function with the following arguments: \code{x} and \code{...}, where \code{x} is
+either a \code{surveytable_table} or a \code{surveytable_list} object. The function prints this
+object. For an example of this, see the internal function \code{surveytable:::.print_huxtable()}.
 }
 
 \subsection{Low-precision estimates}{
@@ -134,7 +124,6 @@ Useful links:
 
 
 Other options: 
-\code{\link{set_opts}()},
 \code{\link{set_survey}()},
 \code{\link{show_options}()}
 }

@@ -17,7 +17,7 @@ show_opts = function() {
     message("* Korn and Graubard confidence intervals for proportions with an adjustment that might be required by NHIS.")
   }
 
-  xx = getOption("surveytable.output_print")
+  xx = getOption("surveytable.print")
   assert_that(is.string(xx), nzchar(xx))
   switch(xx
          , ".print_huxtable" = "* Printing with huxtable."
@@ -25,6 +25,7 @@ show_opts = function() {
          , ".print_kableextra" = "* Printing with kableExtra."
          , ".print_auto" = "* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF."
          , ".print_raw" = "* Generating unformatted / raw output."
+         , ".print_excel" = "* Printing tables and charts to an Excel workbook."
          , glue("* Printing with a custom function: {xx}")) %>% message
 
   if (getOption("surveytable.raw")) {

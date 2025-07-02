@@ -32,13 +32,15 @@
 #' * `"huxtable"`, `"gt"`, or `"kableExtra"`: use this table-making package. Be sure
 #' that this package is installed.
 #' * `"raw"`: unformatted / raw output. This is useful for getting lots of significant digits.
+#' * `"Excel"`: print tables and charts to an Excel workbook. Be sure to install these
+#' packages first: `openxlsx2` and `mschart`. Also see `save_excel()`.
 #'
 #' @param reset reset all options to their default values?
 #' @param mode `"general"` or `"NCHS"`. See below for details.
 #' @param adj adjustment to the Korn and Graubard confidence intervals for proportions. See
 #' `svyciprop_adjusted()` for details.
 #' @param output how the output is printed: `"auto"` (default); `"huxtable"`, `"gt"`, or
-#' `"kableExtra"`; or `"raw"`.
+#' `"kableExtra"`; `"raw"`; or `"Excel"`.
 #' @param count round counts to the nearest integer (`"int"`) or one thousand (`"1k"`).
 #' @param lpe identify low-precision estimates?
 #' @param drop_na drop missing values (`NA`)? Categorical variables only.
@@ -47,7 +49,7 @@
 #' @param csv name of a CSV file or `""` to turn off CSV output.
 #'
 #' @return (Nothing.)
-#' @family options
+#' @family options, print
 #' @export
 #'
 #' @examples
@@ -114,18 +116,19 @@ set_opts = function(
   }
 
   if (!is.null(output)) {
-    output %<>% .mymatch(c("huxtable", "gt", "kableExtra", "auto", "raw"))
+    output %<>% .mymatch(c("huxtable", "gt", "kableExtra", "auto", "raw", "excel"))
     options(surveytable.raw = FALSE)
     if (output == "auto") {
       message("* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF.")
     } else if (output == "raw") {
       options(surveytable.raw = TRUE)
       message("* Generating unformatted / raw output.")
+    } else if (output == "excel") {
+      message("* Printing tables and charts to an Excel workbook.")
     } else {
       message(glue("* Printing with {output}."))
     }
-    options(surveytable.output_object = glue(".as_object_{output}")
-            , surveytable.output_print = glue(".print_{output}"))
+    options(surveytable.print = glue(".print_{output}"))
   }
 
   if (!is.null(count)) {

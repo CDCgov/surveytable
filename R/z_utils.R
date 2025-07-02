@@ -74,13 +74,13 @@ o2s = function(obj) {
   c_need = c("surveytable.csv", "surveytable.drop_na", "surveytable.find_lpe",
              "surveytable.lpe_counts", "surveytable.lpe_n", "surveytable.lpe_percents",
              "surveytable.max_levels", "surveytable.names_count", "surveytable.names_count_raw",
-             "surveytable.names_prct", "surveytable.output_object", "surveytable.output_print",
+             "surveytable.names_prct", "surveytable.print",
              "surveytable.p.adjust_method", "surveytable.rate_per", "surveytable.raw",
              "surveytable.survey_label", "surveytable.svychisq_statistic",
              "surveytable.svyciprop_adj", "surveytable.tx_count", "surveytable.tx_df",
              "surveytable.tx_numeric", "surveytable.tx_prct", "surveytable.tx_pval",
              "surveytable.tx_rate", "surveytable.tx_test_stat")
-  c_have = show_options() |> names()
+  c_have = show_options() %>% names()
 
   d_nh = setdiff(c_need, c_have)
   if (length(d_nh) > 0) {

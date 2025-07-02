@@ -38,6 +38,8 @@ for (vr in c("AGER", "SEX")) {
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a></li>
     <li><a class="dropdown-item" href="../articles/Example-Residential-Care-Community-Services-User-NSLTCP-RCC-SU-report.html">Example: Residential Care Community Services User (NSLTCP RCC SU) report</a></li>
     <li><a class="dropdown-item" href="../articles/use-cases.html">Use cases</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Advanced</h6></li>
     <li><a class="dropdown-item" href="../articles/Tips-tricks.html">Tips and tricks</a></li>
     <li><a class="dropdown-item" href="../articles/Printing-HTML.html">Printing (HTML)</a></li>
     <li><a class="dropdown-item" href="../articles/Printing-PDF.pdf">Printing (PDF) (PDF)</a></li>
@@ -76,9 +78,7 @@ top level, such as from within a loop or another function, you need to call
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'surveytable_list'</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">as_object</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -95,17 +95,17 @@ top level, such as from within a loop or another function, you need to call
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>print.*</code> returns <code>x</code> invisibly.</p>
-<p><code>as_object()</code> returns an object (or a list of objects) of whatever package
-is being used for printing (such as <code>huxtable</code>).</p>
+    <p>Returns <code>x</code> invisibly.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The package used to produce the tables can be changed. See <code><a href="set_opts.html">set_opts()</a></code> for
-details. By default, <code>huxtable</code> is used.</p>
-<p><code>as_object()</code> returns an object (or a list of objects) of whatever package
-is being used for printing (such as <code>huxtable</code>). This is useful for further
-customizing the tables before finally printing them.</p>
+    <p>The package used to produce the tables can be changed – see the <code>output</code> argument
+of <code><a href="set_opts.html">set_opts()</a></code> for details. By default, the table-making package <code>huxtable</code> is used.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other print:
+<code><a href="save_excel.html">save_excel</a>()</code></p></div>
     </div>
 
     <div class="section level2">

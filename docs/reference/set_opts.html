@@ -28,6 +28,8 @@ for further information)."></head><body>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/Example-National-Ambulatory-Medical-Care-Survey-NAMCS-tables.html">Example: National Ambulatory Medical Care Survey (NAMCS) tables</a></li>
     <li><a class="dropdown-item" href="../articles/Example-Residential-Care-Community-Services-User-NSLTCP-RCC-SU-report.html">Example: Residential Care Community Services User (NSLTCP RCC SU) report</a></li>
     <li><a class="dropdown-item" href="../articles/use-cases.html">Use cases</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Advanced</h6></li>
     <li><a class="dropdown-item" href="../articles/Tips-tricks.html">Tips and tricks</a></li>
     <li><a class="dropdown-item" href="../articles/Printing-HTML.html">Printing (HTML)</a></li>
     <li><a class="dropdown-item" href="../articles/Printing-PDF.pdf">Printing (PDF) (PDF)</a></li>
@@ -92,7 +94,7 @@ for further information).</p>
 
 <dt id="arg-output">output<a class="anchor" aria-label="anchor" href="#arg-output"></a></dt>
 <dd><p>how the output is printed: <code>"auto"</code> (default); <code>"huxtable"</code>, <code>"gt"</code>, or
-<code>"kableExtra"</code>; or <code>"raw"</code>.</p></dd>
+<code>"kableExtra"</code>; <code>"raw"</code>; or <code>"Excel"</code>.</p></dd>
 
 
 <dt id="arg-count">count<a class="anchor" aria-label="anchor" href="#arg-count"></a></dt>
@@ -141,14 +143,9 @@ destination (such as screen, HTML, or PDF / LaTeX).</p></li>
 <li><p><code>"huxtable"</code>, <code>"gt"</code>, or <code>"kableExtra"</code>: use this table-making package. Be sure
 that this package is installed.</p></li>
 <li><p><code>"raw"</code>: unformatted / raw output. This is useful for getting lots of significant digits.</p></li>
+<li><p><code>"Excel"</code>: print tables and charts to an Excel workbook. Be sure to install these
+packages first: <code>openxlsx2</code> and <code>mschart</code>. Also see <code><a href="save_excel.html">save_excel()</a></code>.</p></li>
 </ul></div>
-    <div class="section level2">
-    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p>Other options:
-<code><a href="set_survey.html">set_survey</a>()</code>,
-<code><a href="show_options.html">show_options</a>()</code>,
-<code><a href="surveytable-options.html">surveytable-options</a></code></p></div>
-    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>

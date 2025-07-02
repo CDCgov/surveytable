@@ -32,6 +32,10 @@ reference:
   - namcs2019sv
   - uspop2019
   - rccsu2018
+- title: "Printing"
+  contents:
+  - print.surveytable_table
+  - save_excel
 - title: "Other"
   contents:
   - codebook
@@ -39,7 +43,6 @@ reference:
   - surveytable-options
   - survey_subset
   - svyciprop_adjusted
-  - print.surveytable_table
 
 articles:
 - title: Examples
@@ -49,7 +52,7 @@ articles:
   - Example-Residential-Care-Community-Services-User-NSLTCP-RCC-SU-report
   - use-cases
 - title: Advanced
-  navbar: ~
+  navbar: Advanced
   contents:
   - Tips-tricks
   - Printing-HTML

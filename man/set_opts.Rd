@@ -28,7 +28,7 @@ show_opts()
 \code{svyciprop_adjusted()} for details.}
 
 \item{output}{how the output is printed: \code{"auto"} (default); \code{"huxtable"}, \code{"gt"}, or
-\code{"kableExtra"}; or \code{"raw"}.}
+\code{"kableExtra"}; \code{"raw"}; or \code{"Excel"}.}
 
 \item{count}{round counts to the nearest integer (\code{"int"}) or one thousand (\code{"1k"}).}
 
@@ -82,6 +82,8 @@ destination (such as screen, HTML, or PDF / LaTeX).
 \item \code{"huxtable"}, \code{"gt"}, or \code{"kableExtra"}: use this table-making package. Be sure
 that this package is installed.
 \item \code{"raw"}: unformatted / raw output. This is useful for getting lots of significant digits.
+\item \code{"Excel"}: print tables and charts to an Excel workbook. Be sure to install these
+packages first: \code{openxlsx2} and \code{mschart}. Also see \code{save_excel()}.
 }
 }
 \examples{
@@ -94,10 +96,4 @@ set_opts(csv = "") # Turn off CSV output
 
 show_opts()
 }
-\seealso{
-Other options: 
-\code{\link{set_survey}()},
-\code{\link{show_options}()},
-\code{\link{surveytable-options}}
-}
-\concept{options}
+\concept{options, print}

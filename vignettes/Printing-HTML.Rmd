@@ -3,8 +3,10 @@ title: "Printing (HTML)"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Printing (HTML)}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r, include = FALSE}
@@ -72,14 +74,47 @@ tab("AGER")
 
 Note the `format` setting, which specifies that this document will create HTML tables. Also note that you do have to add the `results='asis'` argument to the code chunks that print tables. 
 
+# Save tables and charts to an Excel workbook
+
+To save tables and charts to an Excel file, initiate Excel printing with `set_opts( output = "Excel" )`. Then, use the various tabulation functions to "print" / generate the tables and charts. Finally, call `save_excel()` to save all of these tables and charts to a single Excel file, which consists of one or more spreadsheets, one for each table or chart.
+
+Initiate Excel printing:
+
+```{r}
+set_opts(output = "excel")
+```
+
+Generate some tables:
+
+```{r, results='asis'}
+total()
+tab("AGER")
+```
+
+Save the tables to a workbook:
+
+```r
+save_excel(file = "my_workbook.xlsx")
+```
+
+```{r, echo=FALSE}
+save_excel(file = "my_workbook.xlsx", .temp = TRUE)
+```
+
+Before using Excel printing, be sure to install these packages: `openxlsx2` and `mschart`. Finally, to turn off Excel printing, just switch to another output method:
+
+```{r}
+set_opts(output = "auto")
+```
+
 # Print using various table-making packages
 
 Use the `output` argument of `set_opts()` to select a table-making package. By default (`output = "auto"`), `surveytable` automatically selects a package depending on whether the output is to the screen (`huxtable`), HTML (`gt`), or PDF (`kableExtra`). You can also explicitly select one of these packages.
 
 Changing the table-making package has a couple of uses:
 
-* Use `as_object()` to generate an object from your favorite table-making package, customize this object, and then finally print it, so the table looks exactly the way you want it to look.
-* Print to destinations other than the screen, HTML, or PDF.
+* It allows you to generate tables in the way that you prefer.
+* It allows you to print those tables to a variety of destinations, including the screen, HTML files, or PDF files.
 
 ## `huxtable`
 

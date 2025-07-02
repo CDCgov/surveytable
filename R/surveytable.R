@@ -3,7 +3,7 @@
 #' @import glue
 #' @import survey
 #' @importFrom stats as.formula confint qt coef pt p.adjust qnorm
-#' @importFrom utils write.table tail capture.output
+#' @importFrom utils write.table tail capture.output packageVersion
 #' @keywords internal
 "_PACKAGE"
 
@@ -13,8 +13,8 @@ NULL
 
 #' Package options
 #'
-#' This article is for more advanced users. Typical users, see [set_opts()]
-#' and [show_opts()] to set and show certain options.
+#' This article describes certain package options and is intended for more advanced
+#' users. Typical users should see [set_opts()] and [show_opts()] to set and show certain options.
 #'
 #' To view all available options, use [show_options()]. Below is a description
 #' of some noteworthy options.
@@ -56,20 +56,10 @@ NULL
 #' argument of [set_opts()].
 #'
 #' You can supply custom code to use another table-making package or to use one of these
-#' table-making packages, but in a different way. The two relevant options are `surveytable.output_object`
-#' and `surveytable.output_print`.
-#'
-#' `surveytable.output_object` is the name of a function with the following arguments:
-#' `x` and `...`, where `x` is a `surveytable_table` object. This function returns
-#' an object from a table-making package, for example, it returns a `gt` object. Be sure
-#' that this package is installed.
-#'
-#' `surveytable.output_print` is the name of a function with the following arguments:
-#' `x` and `...`, where `x` is an object returned by the `surveytable.output_object`
-#' function. The `surveytable.output_print` function prints this object.
-#'
-#' For an example of how this works, see the internal functions `surveytable:::.as_object_huxtable`
-#' and `surveytable:::.print_huxtable`.
+#' table-making packages, but in a different way. The `surveytable.print` option
+#' is the name of a function with the following arguments: `x` and `...`, where `x` is
+#' either a `surveytable_table` or a `surveytable_list` object. The function prints this
+#' object. For an example of this, see the internal function `surveytable:::.print_huxtable()`.
 #'
 #' ## Low-precision estimates
 #'

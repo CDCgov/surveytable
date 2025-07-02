@@ -1,6 +1,23 @@
-.as_object_gt = function(df1, ...) {
-  assert_package("as_object", "gt")
+.print_gt = function(df1, destination = NULL, ...) {
+  ##
+  if (inherits(df1, "surveytable_list")) {
+    if (length(df1) > 0) {
+      for (ii in 1:length(df1)) {
+        Recall(df1 = df1[[ii]], destination = destination, ...)
+      }
+    }
+    return(invisible(NULL))
+  }
 
+  ##
+  assert_package("print", "gt")
+  assert_that(inherits(df1, "surveytable_table"))
+  dest = .get_destination(destination = destination)
+  assert_that(dest != "latex",
+              msg = "Have not implemented LaTeX printing with gt yet. Try set_opts(output = 'kableExtra')")
+  assert_that(dest %in% c("", "html"))
+
+  ##
   ## Non-unique names fix
   nn0 = names(df1)
   nn1 = nn0 %>% make.names(unique = TRUE)
@@ -22,19 +39,13 @@
   if (!is.null(txt <- attr(df1, "footer"))) {
     hh = gt::tab_footnote(hh, footnote = txt, placement = "left")
   }
-  hh
-}
 
-.print_gt = function(hh, destination = NULL, ...) {
-  assert_package("print", "gt")
-  dest = .get_destination(destination = destination)
-  assert_that(dest != "latex",
-              msg = "Have not implemented LaTeX printing with gt yet. Try set_opts(output = 'kableExtra')")
-  assert_that(dest %in% c("", "html"))
-
+  ##
   if (dest == "") {
     print(hh)
   } else if (dest == "html") {
     print(gt::as_raw_html(hh))
+  } else {
+    stop("?")
   }
 }

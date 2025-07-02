@@ -3,14 +3,11 @@
 \name{print.surveytable_table}
 \alias{print.surveytable_table}
 \alias{print.surveytable_list}
-\alias{as_object}
 \title{Print surveytable tables}
 \usage{
 \method{print}{surveytable_table}(x, ...)
 
 \method{print}{surveytable_list}(x, ...)
-
-as_object(x, ...)
 }
 \arguments{
 \item{x}{an object of class \code{surveytable_table} or \code{surveytable_list}.}
@@ -18,10 +15,7 @@ as_object(x, ...)
 \item{...}{passed to helper functions.}
 }
 \value{
-\verb{print.*} returns \code{x} invisibly.
-
-\code{as_object()} returns an object (or a list of objects) of whatever package
-is being used for printing (such as \code{huxtable}).
+Returns \code{x} invisibly.
 }
 \description{
 If a tabulation function is called from the top level, it should print out
@@ -36,12 +30,8 @@ for (vr in c("AGER", "SEX")) \{
 }\if{html}{\out{</div>}}
 }
 \details{
-The package used to produce the tables can be changed. See \code{\link[=set_opts]{set_opts()}} for
-details. By default, \code{huxtable} is used.
-
-\code{as_object()} returns an object (or a list of objects) of whatever package
-is being used for printing (such as \code{huxtable}). This is useful for further
-customizing the tables before finally printing them.
+The package used to produce the tables can be changed -- see the \code{output} argument
+of \code{\link[=set_opts]{set_opts()}} for details. By default, the table-making package \code{huxtable} is used.
 }
 \examples{
 set_survey(namcs2019sv)
@@ -50,3 +40,8 @@ print(table1)
 table_many = tab("MDDO", "SPECCAT", "MSA")
 print(table_many)
 }
+\seealso{
+Other print: 
+\code{\link{save_excel}()}
+}
+\concept{print}

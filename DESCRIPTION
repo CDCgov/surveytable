@@ -32,8 +32,10 @@ Imports:
     survey, 
     huxtable
 Suggests: 
-    kableExtra,
     gt, 
+    kableExtra,
+    openxlsx2, 
+    mschart, 
     knitr, 
     rmarkdown
 VignetteBuilder: knitr

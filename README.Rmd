@@ -37,6 +37,7 @@ knitr::opts_chunk$set(
 
 * Optionally, all of the tabulation functions can identify low-precision estimates using the National Center for Health Statistics (NCHS) algorithms (or other algorithms). 
 * If the `surveytable` code is called from an R Markdown notebook or a Quarto document, it automatically generates HTML or PDF tables, as appropriate. 
+  * The package can also easily generate other types of output, such as tables and charts that are saved to an Excel workbook.
 * The package reduces the number of commands that users need to execute, which is especially helpful for users new to R or to programming.
 
 
