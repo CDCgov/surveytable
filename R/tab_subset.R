@@ -91,15 +91,18 @@ tab_subset = function(vr, vrby, lvls = c()
 
     attr(design$variables[,vr], "label") = lbl
   }
-  assert_that(test %in% c(TRUE, FALSE) | test %in% levels(design$variables[,vr]))
-  type_test = if (test %in% levels(design$variables[,vr])) {
-    "cit"
-  } else if (test == TRUE) {
-    "assoc"
-  } else if (test == FALSE) {
-    "none"
-  }
+  assert_that( (is.logical(test) && test %in% c(TRUE, FALSE))
+               || (is.string(test) && test %in% levels(design$variables[,vr])) )
 
+  type_test = if (is.logical(test) && test == TRUE) {
+    "assoc"
+  } else if (is.logical(test) && test == FALSE) {
+    "none"
+  } else if (is.string(test) && test %in% levels(design$variables[,vr])) {
+    "cit"
+  } else {
+    stop("?")
+  }
 
   lbl = attr(design$variables[,vrby], "label")
   if (is.logical(design$variables[,vrby])) {
@@ -258,7 +261,7 @@ tab_subset = function(vr, vrby, lvls = c()
          , .getvarname(design, vrby), ")")
     ret[["Means"]] = .write_out(rA, csv = csv)
 
-    if (test) {
+    if (type_test == "assoc") {
       frm = as.formula(paste0("`", vr, "` ~ `", vrby, "`"))
       model1 = svyglm(frm, design)
       fo = regTermTest(model1, vrby, method = "Wald")
