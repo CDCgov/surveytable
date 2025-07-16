@@ -10,6 +10,8 @@ set_opts(
   mode = NULL,
   adj = NULL,
   output = NULL,
+  file = NULL,
+  .file_temp = NULL,
   count = NULL,
   lpe = NULL,
   drop_na = NULL,
@@ -27,8 +29,13 @@ show_opts()
 \item{adj}{adjustment to the Korn and Graubard confidence intervals for proportions. See
 \code{svyciprop_adjusted()} for details.}
 
-\item{output}{how the output is printed: \code{"auto"} (default); \code{"huxtable"}, \code{"gt"}, or
-\code{"kableExtra"}; \code{"raw"}; or \code{"Excel"}.}
+\item{output}{specify how the output is printed: \code{"auto"} (default); \code{"huxtable"}, \code{"gt"}, or
+\code{"kableExtra"}; \code{"raw"}; or \code{"Excel"}. If \code{output} is \code{"Excel"}: must also specify \code{file}; be
+sure to install \code{openxlsx2} and \code{mschart}.}
+
+\item{file}{file name (see \code{output}).}
+
+\item{.file_temp}{place \code{file} in a temporary folder?}
 
 \item{count}{round counts to the nearest integer (\code{"int"}) or one thousand (\code{"1k"}).}
 
@@ -39,7 +46,7 @@ show_opts()
 \item{max_levels}{a categorical variable can have at most this many levels.
 Used to avoid printing huge tables.}
 
-\item{csv}{name of a CSV file or \code{""} to turn off CSV output.}
+\item{csv}{the name of a CSV file or \code{""} to turn off CSV output.}
 }
 \value{
 (Nothing.)
@@ -75,15 +82,16 @@ data systems, such as NHIS, you might need to set \code{adj} to one of the other
 \code{adj} specifies the adjustment to the Korn and Graubard confidence intervals for
 proportions. See \code{svyciprop_adjusted()} for details.
 
-\code{output} determines how the output is printed.
+\code{output} determines how the output is printed:
 \itemize{
 \item \code{"auto"} (default): automatically select the table-making package, depending on the
 destination (such as screen, HTML, or PDF / LaTeX).
 \item \code{"huxtable"}, \code{"gt"}, or \code{"kableExtra"}: use this table-making package. Be sure
 that this package is installed.
 \item \code{"raw"}: unformatted / raw output. This is useful for getting lots of significant digits.
-\item \code{"Excel"}: print tables and charts to an Excel workbook. Be sure to install these
-packages first: \code{openxlsx2} and \code{mschart}. Also see \code{save_excel()}.
+\item \code{"Excel"}: print to an Excel workbook. Please specify the name of an Excel file using
+the \code{file} argument. Before using Excel printing, please be sure to install these
+packages: \code{openxlsx2} and \code{mschart}.
 }
 }
 \examples{

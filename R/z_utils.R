@@ -74,7 +74,7 @@ o2s = function(obj) {
   c_need = c("surveytable.csv", "surveytable.drop_na", "surveytable.find_lpe",
              "surveytable.lpe_counts", "surveytable.lpe_n", "surveytable.lpe_percents",
              "surveytable.max_levels", "surveytable.names_count", "surveytable.names_count_raw",
-             "surveytable.names_prct", "surveytable.print",
+             "surveytable.names_prct", "surveytable.print", "surveytable.file", "surveytable.file_show",
              "surveytable.p.adjust_method", "surveytable.rate_per", "surveytable.raw",
              "surveytable.survey_label", "surveytable.svychisq_statistic",
              "surveytable.svyciprop_adj", "surveytable.tx_count", "surveytable.tx_df",

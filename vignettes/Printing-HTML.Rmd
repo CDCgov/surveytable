@@ -74,39 +74,6 @@ tab("AGER")
 
 Note the `format` setting, which specifies that this document will create HTML tables. Also note that you do have to add the `results='asis'` argument to the code chunks that print tables. 
 
-# Save tables and charts to an Excel workbook
-
-To save tables and charts to an Excel file, initiate Excel printing with `set_opts( output = "Excel" )`. Then, use the various tabulation functions to "print" / generate the tables and charts. Finally, call `save_excel()` to save all of these tables and charts to a single Excel file, which consists of one or more spreadsheets, one for each table or chart.
-
-Initiate Excel printing:
-
-```{r}
-set_opts(output = "excel")
-```
-
-Generate some tables:
-
-```{r, results='asis'}
-total()
-tab("AGER")
-```
-
-Save the tables to a workbook:
-
-```r
-save_excel(file = "my_workbook.xlsx")
-```
-
-```{r, echo=FALSE}
-save_excel(file = "my_workbook.xlsx", .temp = TRUE)
-```
-
-Before using Excel printing, be sure to install these packages: `openxlsx2` and `mschart`. Finally, to turn off Excel printing, just switch to another output method:
-
-```{r}
-set_opts(output = "auto")
-```
-
 # Print using various table-making packages
 
 Use the `output` argument of `set_opts()` to select a table-making package. By default (`output = "auto"`), `surveytable` automatically selects a package depending on whether the output is to the screen (`huxtable`), HTML (`gt`), or PDF (`kableExtra`). You can also explicitly select one of these packages.
@@ -233,6 +200,33 @@ tab("AGER")
 ```{r, echo=FALSE}
 print(tab("AGER"), destination = "")
 ```
+```{r}
+set_opts(output = "auto")
+```
+
+# Save tables and charts to an Excel workbook
+
+Before using Excel printing, please be sure to install these packages: `openxlsx2` and `mschart`.
+
+To save tables and charts to an Excel file, turn on Excel printing with `set_opts( output = "Excel", file = "my_workbook" )`. Set the `file` argument to the name of an Excel file. 
+
+```r
+set_opts(output = "excel", file = "my_workbook")
+```
+
+```{r, echo=FALSE}
+set_opts(output = "excel", file = "my_workbook", .file_temp = TRUE)
+```
+
+Generate some tables:
+
+```{r}
+total()
+tab("AGER")
+```
+
+To turn off Excel printing, set the `output` argument to a value other than `"Excel"`, such as `"auto"`:
+
 ```{r}
 set_opts(output = "auto")
 ```

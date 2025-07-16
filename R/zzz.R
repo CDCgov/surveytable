@@ -25,6 +25,8 @@ env = new.env()
     , surveytable.max_levels = 20
     , surveytable.csv = ""
     , surveytable.print = ".print_auto"
+    , surveytable.file = ""
+    , surveytable.file_show = ""
 
     ## other
     , surveytable.tx_prct = ".tx_prct"

@@ -40,8 +40,4 @@ print(table1)
 table_many = tab("MDDO", "SPECCAT", "MSA")
 print(table_many)
 }
-\seealso{
-Other print: 
-\code{\link{save_excel}()}
-}
 \concept{print}

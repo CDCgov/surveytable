@@ -25,7 +25,7 @@ show_opts = function() {
          , ".print_kableextra" = "* Printing with kableExtra."
          , ".print_auto" = "* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF."
          , ".print_raw" = "* Generating unformatted / raw output."
-         , ".print_excel" = "* Printing tables and charts to an Excel workbook."
+         , ".print_excel" = glue("* Printing to Excel workbook {getOption('surveytable.file_show')}.")
          , glue("* Printing with a custom function: {xx}")) %>% message
 
   if (getOption("surveytable.raw")) {

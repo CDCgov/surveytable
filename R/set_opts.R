@@ -25,28 +25,32 @@
 #' `adj` specifies the adjustment to the Korn and Graubard confidence intervals for
 #' proportions. See `svyciprop_adjusted()` for details.
 #'
-#' `output` determines how the output is printed.
+#' `output` determines how the output is printed:
 #'
 #' * `"auto"` (default): automatically select the table-making package, depending on the
 #' destination (such as screen, HTML, or PDF / LaTeX).
 #' * `"huxtable"`, `"gt"`, or `"kableExtra"`: use this table-making package. Be sure
 #' that this package is installed.
 #' * `"raw"`: unformatted / raw output. This is useful for getting lots of significant digits.
-#' * `"Excel"`: print tables and charts to an Excel workbook. Be sure to install these
-#' packages first: `openxlsx2` and `mschart`. Also see `save_excel()`.
+#' * `"Excel"`: print to an Excel workbook. Please specify the name of an Excel file using
+#' the `file` argument. Before using Excel printing, please be sure to install these
+#' packages: `openxlsx2` and `mschart`.
 #'
 #' @param reset reset all options to their default values?
 #' @param mode `"general"` or `"NCHS"`. See below for details.
 #' @param adj adjustment to the Korn and Graubard confidence intervals for proportions. See
 #' `svyciprop_adjusted()` for details.
-#' @param output how the output is printed: `"auto"` (default); `"huxtable"`, `"gt"`, or
-#' `"kableExtra"`; `"raw"`; or `"Excel"`.
+#' @param output specify how the output is printed: `"auto"` (default); `"huxtable"`, `"gt"`, or
+#' `"kableExtra"`; `"raw"`; or `"Excel"`. If `output` is `"Excel"`: must also specify `file`; be
+#' sure to install `openxlsx2` and `mschart`.
+#' @param file file name (see `output`).
+#' @param .file_temp place `file` in a temporary folder?
 #' @param count round counts to the nearest integer (`"int"`) or one thousand (`"1k"`).
 #' @param lpe identify low-precision estimates?
 #' @param drop_na drop missing values (`NA`)? Categorical variables only.
 #' @param max_levels a categorical variable can have at most this many levels.
 #' Used to avoid printing huge tables.
-#' @param csv name of a CSV file or `""` to turn off CSV output.
+#' @param csv the name of a CSV file or `""` to turn off CSV output.
 #'
 #' @return (Nothing.)
 #' @family options, print
@@ -66,6 +70,8 @@ set_opts = function(
     , mode = NULL
     , adj = NULL
     , output = NULL
+    , file = NULL
+    , .file_temp = NULL
     , count = NULL
     , lpe = NULL
     , drop_na = NULL
@@ -116,19 +122,45 @@ set_opts = function(
   }
 
   if (!is.null(output)) {
+    if (getOption("surveytable.print") == ".print_excel") .print_excel_finish()
+
     output %<>% .mymatch(c("huxtable", "gt", "kableExtra", "auto", "raw", "excel"))
-    options(surveytable.raw = FALSE)
     if (output == "auto") {
       message("* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF.")
-    } else if (output == "raw") {
-      options(surveytable.raw = TRUE)
-      message("* Generating unformatted / raw output.")
-    } else if (output == "excel") {
-      message("* Printing tables and charts to an Excel workbook.")
-    } else {
+      options(surveytable.raw = FALSE
+              , surveytable.print = ".print_auto"
+              , surveytable.file = "", surveytable.file_show = "")
+    } else if (output %in% c("huxtable", "gt", "kableExtra") ) {
       message(glue("* Printing with {output}."))
+      options(surveytable.raw = FALSE
+              , surveytable.print = glue(".print_{output}")
+              , surveytable.file = "", surveytable.file_show = "")
+    } else if (output == "raw") {
+      message("* Generating unformatted / raw output.")
+      options(surveytable.raw = TRUE
+              , surveytable.print = ".print_raw"
+              , surveytable.file = "", surveytable.file_show = "")
+    } else if (output == "excel") {
+      assert_that(is.string(file), nzchar(file)
+                  , msg = "For Excel printing, please specify a file name using the file argument.")
+      if (!endsWith(tolower(file), ".xlsx")) {
+        file = glue("{file}.xlsx")
+      }
+      if (!isTRUE(.file_temp)) {
+        file %<>% normalizePath(mustWork = FALSE)
+        file_show = file
+      } else {
+        file = file.path(tempdir(), file)
+        file_show = file %>% basename()
+      }
+      message(glue("* Printing to Excel workbook {file_show}."))
+      if (file.exists(file)) {
+        message("* NOTE: file already exists!")
+      }
+      options(surveytable.raw = FALSE
+              , surveytable.print = ".print_excel"
+              , surveytable.file = file, surveytable.file_show = file_show)
     }
-    options(surveytable.print = glue(".print_{output}"))
   }
 
   if (!is.null(count)) {

@@ -6,8 +6,7 @@
 * Conditional independence test: `tab_subset()` with argument `test` set to the 
 value of interest. 
 * Confidence intervals for numeric variables. 
-* Excel tables and charts! `set_opts( output = "excel" )` and `save_excel()` to generate 
-an Excel workbook, which consists of one or more spreadsheets.
+* Excel tables and charts! `set_opts( output = "excel", file = "my_workbook" )`
 
 # surveytable 0.9.8
 
