@@ -184,8 +184,8 @@ Advanced users can add functionality to use **any** table-making package that th
 
 The tabulation functions return either:
 
-* for a single table, a data frame, with certain attributes set; or
-* for more than one table, a list of such data frames. 
+* for a single table, which is basically a data frame, with certain attributes set; or
+* for more than one table, a list of such tables.
 
 You can convert a single table to a `data.frame` with `as.data.frame()`, like so:
 
@@ -193,14 +193,13 @@ You can convert a single table to a `data.frame` with `as.data.frame()`, like so
 tab("AGER") |> as.data.frame()
 ```
 
-Alternatively, you can pass this data frame to your favorite table-making package. This example passes it to `gt`:
+Note that this produces a `data.frame` with unique column names, which improves its usability.
+
+Alternatively, you can pass this `data.frame` to your favorite table-making package. This example passes a table to `gt`. To ensure unique column names, pass the table through `as.data.frame()` first.
 
 ```{r}
-set_opts(count = "1k")
-tab("AGER") |> gt::gt()
+tab("AGER") |> as.data.frame() |> gt::gt()
 ```
-
-(Because of how LaTeX works, the table is likely not here, but elsewhere on the page.)
 
 The reason that this is the "quick-and-dirty" approach is that the output it creates is not as nice as conventional tables, described above. The output does not have table title (which has important information about the variable and the survey), table footer (which has important information about sample size and low-precision estimates), and it does not format the estimates. Nevertheless, there could be situations in which this approach is helpful, such as 
 

@@ -40,6 +40,7 @@ reference:
   - survey_subset
   - svyciprop_adjusted
   - print.surveytable_table
+  - as.data.frame.surveytable_table
 
 articles:
 - title: Examples
