@@ -1,4 +1,4 @@
-.test_table = function(rT, test_name, test_title, alpha, csv) {
+.test_table = function(rT, test_name, test_title, alpha) {
   assert_that("p-value" %in% names(rT))
   bool.adj = ("p-adjusted" %in% names(rT))
 
@@ -33,5 +33,5 @@
   attr(rT, "title") = test_title
   attr(rT, "footer") = paste0(test_name, ". *: p <= ", alpha)
 
-  .write_out(rT, csv = csv)
+  .finalize_tab(rT)
 }

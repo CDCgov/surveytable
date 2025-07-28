@@ -1,7 +1,5 @@
 #' Total count
 #'
-#' @param csv     name of a CSV file
-#'
 #' @return A table
 #' @family tables
 #' @export
@@ -9,12 +7,12 @@
 #' @examples
 #' set_survey(namcs2019sv)
 #' total()
-total = function(csv = getOption("surveytable.csv") ) {
+total = function() {
   design = .load_survey()
   m1 = .total(design)
   attr(m1, "title") = "Total"
 
-  .write_out(m1, csv = csv)
+  .finalize_tab(m1)
 }
 
 .total = function(design) {

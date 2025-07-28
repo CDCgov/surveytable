@@ -70,8 +70,7 @@ for further information).</p>
 <span>  count <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  lpe <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  drop_na <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  max_levels <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  csv <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  max_levels <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">show_opts</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -96,8 +95,8 @@ for further information).</p>
 
 <dt id="arg-output">output<a class="anchor" aria-label="anchor" href="#arg-output"></a></dt>
 <dd><p>specify how the output is printed: <code>"auto"</code> (default); <code>"huxtable"</code>, <code>"gt"</code>, or
-<code>"kableExtra"</code>; <code>"raw"</code>; or <code>"Excel"</code>. If <code>output</code> is <code>"Excel"</code>: must also specify <code>file</code>; be
-sure to install <code>openxlsx2</code> and <code>mschart</code>.</p></dd>
+<code>"kableExtra"</code>; <code>"raw"</code>; <code>"Excel"</code> or <code>"CSV"</code>. If <code>output</code> is <code>"Excel"</code> or <code>"CSV"</code>, must also specify
+<code>file</code>. If <code>output</code> is <code>"Excel"</code>, be sure to install <code>openxlsx2</code> and <code>mschart</code>.</p></dd>
 
 
 <dt id="arg-file">file<a class="anchor" aria-label="anchor" href="#arg-file"></a></dt>
@@ -123,10 +122,6 @@ sure to install <code>openxlsx2</code> and <code>mschart</code>.</p></dd>
 <dt id="arg-max-levels">max_levels<a class="anchor" aria-label="anchor" href="#arg-max-levels"></a></dt>
 <dd><p>a categorical variable can have at most this many levels.
 Used to avoid printing huge tables.</p></dd>
-
-
-<dt id="arg-csv">csv<a class="anchor" aria-label="anchor" href="#arg-csv"></a></dt>
-<dd><p>the name of a CSV file or <code>""</code> to turn off CSV output.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -157,14 +152,13 @@ that this package is installed.</p></li>
 <li><p><code>"Excel"</code>: print to an Excel workbook. Please specify the name of an Excel file using
 the <code>file</code> argument. Before using Excel printing, please be sure to install these
 packages: <code>openxlsx2</code> and <code>mschart</code>.</p></li>
+<li><p><code>"CSV"</code>: print to a comma-separated values (CSV) file. Please specify the name of a
+CSV file using the <code>file</code> argument.</p></li>
 </ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Send output to a CSV file:</span></span></span>
-<span class="r-in"><span><span class="va">file_name</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".csv"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span> <span class="fu">set_opts</span><span class="op">(</span>csv <span class="op">=</span> <span class="va">file_name</span><span class="op">)</span> <span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         Survey info {NAMCS 2019 PUF}                         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────┬──────────────┬────────────────────────────────────────────────┐</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │ Variables │ Observations │ Design                                         │</span>
@@ -177,29 +171,34 @@ packages: <code>openxlsx2</code> and <code>mschart</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ , data = namcs2019sv_df)                       │</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> └───────────┴──────────────┴────────────────────────────────────────────────┘</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Round counts to the nearest one thousand:</span></span></span>
+<span class="r-in"><span><span class="fu">set_opts</span><span class="op">(</span>count <span class="op">=</span> <span class="st">"1k"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * Rounding counts to the nearest thousand.</span>
 <span class="r-in"><span><span class="fu"><a href="tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                     Patient age recode {NAMCS 2019 PUF}                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ┌─────────────┬───────┬─────────────┬────────────┬─────────────┬─────────────┬─────────┬─────┬──────┬──────┐</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Level       │     n │      Number │         SE │          LL │          UL │ Percent │  SE │   LL │   UL │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Under 15    │   887 │ 117,916,772 │ 14,097,315 │  93,228,928 │ 149,142,177 │    11.4 │ 1.3 │  8.9 │ 14.2 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ years       │       │             │            │             │             │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 15-24 years │   542 │  64,855,698 │  7,018,359 │  52,386,950 │  80,292,164 │     6.3 │ 0.6 │  5.1 │  7.5 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 25-44 years │ 1,435 │ 170,270,604 │ 13,965,978 │ 144,924,545 │ 200,049,472 │    16.4 │ 1.1 │ 14.3 │ 18.8 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 45-64 years │ 2,283 │ 309,505,956 │ 23,289,827 │ 266,994,092 │ 358,786,727 │    29.9 │ 1.4 │ 27.2 │ 32.6 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 65-74 years │ 1,661 │ 206,865,982 │ 14,365,993 │ 180,480,708 │ 237,108,637 │    20   │ 1.2 │ 17.6 │ 22.5 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ 75 years    │ 1,442 │ 167,069,344 │ 15,179,082 │ 139,746,193 │ 199,734,713 │    16.1 │ 1.3 │ 13.7 │ 18.8 │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ and over    │       │             │            │             │             │         │     │      │      │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └─────────────┴───────┴─────────────┴────────────┴─────────────┴─────────────┴─────────┴─────┴──────┴──────┘</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   N = 8250.                                                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                 Patient age recode {NAMCS 2019 PUF}                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ┌─────────────┬───────┬─────────────┬──────────┬──────────┬──────────┬─────────┬─────┬──────┬──────┐</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Level       │     n │ Number..000 │ SE..000. │ LL..000. │ UL..000. │ Percent │  SE │   LL │   UL │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │             │       │           . │          │          │          │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Under 15    │   887 │     117,917 │   14,097 │   93,229 │  149,142 │    11.4 │ 1.3 │  8.9 │ 14.2 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ years       │       │             │          │          │          │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 15-24 years │   542 │      64,856 │    7,018 │   52,387 │   80,292 │     6.3 │ 0.6 │  5.1 │  7.5 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 25-44 years │ 1,435 │     170,271 │   13,966 │  144,925 │  200,049 │    16.4 │ 1.1 │ 14.3 │ 18.8 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 45-64 years │ 2,283 │     309,506 │   23,290 │  266,994 │  358,787 │    29.9 │ 1.4 │ 27.2 │ 32.6 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 65-74 years │ 1,661 │     206,866 │   14,366 │  180,481 │  237,109 │    20   │ 1.2 │ 17.6 │ 22.5 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├─────────────┼───────┼─────────────┼──────────┼──────────┼──────────┼─────────┼─────┼──────┼──────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ 75 years    │ 1,442 │     167,069 │   15,179 │  139,746 │  199,735 │    16.1 │ 1.3 │ 13.7 │ 18.8 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ and over    │       │             │          │          │          │         │     │      │      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> └─────────────┴───────┴─────────────┴──────────┴──────────┴──────────┴─────────┴─────┴──────┴──────┘</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   N = 8250.                                                                                         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu">set_opts</span><span class="op">(</span>csv <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="co"># Turn off CSV output</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> * Turning off CSV output.</span>
+<span class="r-in"><span><span class="fu">set_opts</span><span class="op">(</span>count <span class="op">=</span> <span class="st">"int"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * Rounding counts to the nearest integer.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">show_opts</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Korn and Graubard confidence intervals for proportions.</span>
@@ -208,7 +207,6 @@ packages: <code>openxlsx2</code> and <code>mschart</code>.</p></li>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Not identifying low-precision estimates.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Retaining missing values.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Maximum number of levels is: 20</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> * CSV output has been turned off.</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

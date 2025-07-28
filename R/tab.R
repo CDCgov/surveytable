@@ -34,7 +34,6 @@
 #' @param p_adjust adjust p-values for multiple comparisons?
 #' @param drop_na drop missing values (`NA`)? Categorical or logical variables only.
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
-#' @param csv     name of a CSV file
 #'
 #' @return A list of tables or a single table.
 #' @family tables
@@ -54,7 +53,6 @@ tab = function(...
                , test = FALSE, alpha = 0.05, p_adjust = FALSE
                , drop_na = getOption("surveytable.drop_na")
                , max_levels = getOption("surveytable.max_levels")
-               , csv = getOption("surveytable.csv")
                ) {
 	ret = list()
 	if (...length() > 0) {
@@ -74,20 +72,17 @@ tab = function(...
 			  ret[[vr]] = .tab_factor(design = design
                       , vr = vr
                       , drop_na = drop_na
-                      , max_levels = max_levels
-                      , csv = csv)
+                      , max_levels = max_levels)
 			  if (test) {
 			    ret[[paste0(vr, " - test")]] = .test_factor(design = design
                                             , vr = vr
                                             , drop_na = drop_na
                                             , alpha = alpha
-                                            , p_adjust = p_adjust
-                                            , csv = csv)
+                                            , p_adjust = p_adjust)
 			  }
 			} else if (is.numeric(design$variables[,vr])) {
 			  ret[[vr]] = .tab_numeric(design = design
-                      , vr = vr
-                      , csv = csv)
+                      , vr = vr)
 			} else {
         warning(glue("{vr}: must be logical, categorical (factor or character),",
           " or numeric. Is {o2s(design$variables[,vr])}"))
@@ -99,7 +94,7 @@ tab = function(...
 	if (length(ret) == 1L) ret[[1]] else ret
 }
 
-.tab_factor = function(design, vr, drop_na, max_levels, csv) {
+.tab_factor = function(design, vr, drop_na, max_levels) {
   nm = names(design$variables)
   assert_that(vr %in% nm, msg = paste("Variable", vr, "not in the data."))
 
@@ -143,7 +138,7 @@ tab = function(...
 	  }
 	  attr(mp, "num") = 2:6
 	  attr(mp, "title") = .getvarname(design, vr)
-    return(.write_out(mp, csv = csv))
+    return(.finalize_tab(mp))
 	} else if (nlv > max_levels) {
 	  # don't use assert_that
 	  # if multiple tables are being produced, want to go to the next table
@@ -277,7 +272,7 @@ tab = function(...
 	  mp %<>% .add_flags( list(pro, pco, ppo) )
 	}
 
-	.write_out(mp, csv = csv)
+	.finalize_tab(mp)
 }
 
 .add_flags = function(df1, lfo) {

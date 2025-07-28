@@ -15,8 +15,7 @@ set_opts(
   count = NULL,
   lpe = NULL,
   drop_na = NULL,
-  max_levels = NULL,
-  csv = NULL
+  max_levels = NULL
 )
 
 show_opts()
@@ -30,8 +29,8 @@ show_opts()
 \code{svyciprop_adjusted()} for details.}
 
 \item{output}{specify how the output is printed: \code{"auto"} (default); \code{"huxtable"}, \code{"gt"}, or
-\code{"kableExtra"}; \code{"raw"}; or \code{"Excel"}. If \code{output} is \code{"Excel"}: must also specify \code{file}; be
-sure to install \code{openxlsx2} and \code{mschart}.}
+\code{"kableExtra"}; \code{"raw"}; \code{"Excel"} or \code{"CSV"}. If \code{output} is \code{"Excel"} or \code{"CSV"}, must also specify
+\code{file}. If \code{output} is \code{"Excel"}, be sure to install \code{openxlsx2} and \code{mschart}.}
 
 \item{file}{file name (see \code{output}).}
 
@@ -45,8 +44,6 @@ sure to install \code{openxlsx2} and \code{mschart}.}
 
 \item{max_levels}{a categorical variable can have at most this many levels.
 Used to avoid printing huge tables.}
-
-\item{csv}{the name of a CSV file or \code{""} to turn off CSV output.}
 }
 \value{
 (Nothing.)
@@ -92,15 +89,17 @@ that this package is installed.
 \item \code{"Excel"}: print to an Excel workbook. Please specify the name of an Excel file using
 the \code{file} argument. Before using Excel printing, please be sure to install these
 packages: \code{openxlsx2} and \code{mschart}.
+\item \code{"CSV"}: print to a comma-separated values (CSV) file. Please specify the name of a
+CSV file using the \code{file} argument.
 }
 }
 \examples{
-# Send output to a CSV file:
-file_name = tempfile(fileext = ".csv")
-suppressMessages( set_opts(csv = file_name) )
 set_survey(namcs2019sv)
+
+# Round counts to the nearest one thousand:
+set_opts(count = "1k")
 tab("AGER")
-set_opts(csv = "") # Turn off CSV output
+set_opts(count = "int")
 
 show_opts()
 }

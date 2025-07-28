@@ -10,8 +10,7 @@ tab(
   alpha = 0.05,
   p_adjust = FALSE,
   drop_na = getOption("surveytable.drop_na"),
-  max_levels = getOption("surveytable.max_levels"),
-  csv = getOption("surveytable.csv")
+  max_levels = getOption("surveytable.max_levels")
 )
 }
 \arguments{
@@ -26,8 +25,6 @@ tab(
 \item{drop_na}{drop missing values (\code{NA})? Categorical or logical variables only.}
 
 \item{max_levels}{a categorical variable can have at most this many levels. Used to avoid printing huge tables.}
-
-\item{csv}{name of a CSV file}
 }
 \value{
 A list of tables or a single table.

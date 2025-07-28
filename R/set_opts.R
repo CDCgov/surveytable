@@ -35,14 +35,16 @@
 #' * `"Excel"`: print to an Excel workbook. Please specify the name of an Excel file using
 #' the `file` argument. Before using Excel printing, please be sure to install these
 #' packages: `openxlsx2` and `mschart`.
+#' * `"CSV"`: print to a comma-separated values (CSV) file. Please specify the name of a
+#' CSV file using the `file` argument.
 #'
 #' @param reset reset all options to their default values?
 #' @param mode `"general"` or `"NCHS"`. See below for details.
 #' @param adj adjustment to the Korn and Graubard confidence intervals for proportions. See
 #' `svyciprop_adjusted()` for details.
 #' @param output specify how the output is printed: `"auto"` (default); `"huxtable"`, `"gt"`, or
-#' `"kableExtra"`; `"raw"`; or `"Excel"`. If `output` is `"Excel"`: must also specify `file`; be
-#' sure to install `openxlsx2` and `mschart`.
+#' `"kableExtra"`; `"raw"`; `"Excel"` or `"CSV"`. If `output` is `"Excel"` or `"CSV"`, must also specify
+#' `file`. If `output` is `"Excel"`, be sure to install `openxlsx2` and `mschart`.
 #' @param file file name (see `output`).
 #' @param .file_temp place `file` in a temporary folder?
 #' @param count round counts to the nearest integer (`"int"`) or one thousand (`"1k"`).
@@ -50,19 +52,18 @@
 #' @param drop_na drop missing values (`NA`)? Categorical variables only.
 #' @param max_levels a categorical variable can have at most this many levels.
 #' Used to avoid printing huge tables.
-#' @param csv the name of a CSV file or `""` to turn off CSV output.
 #'
 #' @return (Nothing.)
 #' @family options, print
 #' @export
 #'
 #' @examples
-#' # Send output to a CSV file:
-#' file_name = tempfile(fileext = ".csv")
-#' suppressMessages( set_opts(csv = file_name) )
 #' set_survey(namcs2019sv)
+#'
+#' # Round counts to the nearest one thousand:
+#' set_opts(count = "1k")
 #' tab("AGER")
-#' set_opts(csv = "") # Turn off CSV output
+#' set_opts(count = "int")
 #'
 #' show_opts()
 set_opts = function(
@@ -76,7 +77,6 @@ set_opts = function(
     , lpe = NULL
     , drop_na = NULL
     , max_levels = NULL
-    , csv = NULL
     ) {
 
   #### !!! If making changes, update: .onLoad(), set_opts(), show_opts(), .check_options()
@@ -124,7 +124,7 @@ set_opts = function(
   if (!is.null(output)) {
     if (getOption("surveytable.print") == ".print_excel") .print_excel_finish()
 
-    output %<>% .mymatch(c("huxtable", "gt", "kableExtra", "auto", "raw", "excel"))
+    output %<>% .mymatch(c("huxtable", "gt", "kableExtra", "auto", "raw", "excel", "csv"))
     if (output == "auto") {
       message("* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF.")
       options(surveytable.raw = FALSE
@@ -140,26 +140,8 @@ set_opts = function(
       options(surveytable.raw = TRUE
               , surveytable.print = ".print_raw"
               , surveytable.file = "", surveytable.file_show = "")
-    } else if (output == "excel") {
-      assert_that(is.string(file), nzchar(file)
-                  , msg = "For Excel printing, please specify a file name using the file argument.")
-      if (!endsWith(tolower(file), ".xlsx")) {
-        file = glue("{file}.xlsx")
-      }
-      if (!isTRUE(.file_temp)) {
-        file %<>% normalizePath(mustWork = FALSE)
-        file_show = file
-      } else {
-        file = file.path(tempdir(), file)
-        file_show = file %>% basename()
-      }
-      message(glue("* Printing to Excel workbook {file_show}."))
-      if (file.exists(file)) {
-        message("* NOTE: file already exists!")
-      }
-      options(surveytable.raw = FALSE
-              , surveytable.print = ".print_excel"
-              , surveytable.file = file, surveytable.file_show = file_show)
+    } else if (output %in% c("excel", "csv")) {
+      .set_output_file(output = output, file = file, .file_temp = .file_temp)
     }
   }
 
@@ -206,21 +188,36 @@ set_opts = function(
     options(surveytable.max_levels = max_levels)
   }
 
-  if (!is.null(csv)) {
-    assert_that(is.string(csv)
-      , msg = "CSV file name must be a character string.")
-    if (nzchar(csv)) {
-      message(paste0("* Sending CSV output to: ", csv))
-      if (file.exists(csv)) {
-        message("* (File already exists. Output will be appended to the end of the file.)")
-      }
-      message("* To turn off CSV output: set_opts(csv = '')")
-    } else {
-      message("* Turning off CSV output.")
-    }
-    options(surveytable.csv = csv)
-  }
-
   .check_options()
   invisible(NULL)
 }
+
+.set_output_file = function(output, file, .file_temp) {
+  assert_that(output %in% c("excel", "csv"))
+  type = switch(output
+                , excel = "Excel"
+                , csv = "CSV")
+  extension = switch(output
+                     , excel = ".xlsx"
+                     , csv = ".csv")
+  assert_that(is.string(file), nzchar(file)
+              , msg = glue("For {type} printing, please specify a file name using the file argument."))
+  if (!endsWith(tolower(file), extension)) {
+    file = glue("{file}{extension}")
+  }
+  if (!isTRUE(.file_temp)) {
+    file %<>% normalizePath(mustWork = FALSE)
+    file_show = file
+  } else {
+    file = file.path(tempdir(), file)
+    file_show = file %>% basename()
+  }
+  message(glue("* Printing to {type} file {file_show}."))
+  if (file.exists(file)) {
+    message("* NOTE: file already exists!")
+  }
+  options(surveytable.raw = FALSE
+          , surveytable.print = glue(".print_{output}")
+          , surveytable.file = file, surveytable.file_show = file_show)
+}
+

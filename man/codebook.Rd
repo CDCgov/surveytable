@@ -4,12 +4,10 @@
 \alias{codebook}
 \title{Create a codebook for the survey}
 \usage{
-codebook(all = FALSE, csv = getOption("surveytable.csv"))
+codebook(all = FALSE)
 }
 \arguments{
 \item{all}{tabulate all the variables?}
-
-\item{csv}{name of a CSV file}
 }
 \value{
 A list of tables.

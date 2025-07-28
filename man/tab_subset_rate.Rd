@@ -11,8 +11,7 @@ tab_subset_rate(
   lvls = c(),
   per = getOption("surveytable.rate_per"),
   drop_na = getOption("surveytable.drop_na"),
-  max_levels = getOption("surveytable.max_levels"),
-  csv = getOption("surveytable.csv")
+  max_levels = getOption("surveytable.max_levels")
 )
 }
 \arguments{
@@ -31,8 +30,6 @@ exactly match the levels of \code{vr}. \code{Subset} must exactly match the leve
 \item{drop_na}{drop missing values (\code{NA})?}
 
 \item{max_levels}{a categorical variable can have at most this many levels. Used to avoid printing huge tables.}
-
-\item{csv}{name of a CSV file}
 }
 \value{
 A list of tables or a single table.

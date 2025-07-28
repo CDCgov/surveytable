@@ -12,7 +12,6 @@
 #' @param per calculate rate per this many items in the population
 #' @param drop_na drop missing values (`NA`)?
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
-#' @param csv     name of a CSV file
 #'
 #' @return A list of tables or a single table.
 #' @family tables
@@ -27,7 +26,6 @@ tab_subset_rate = function(vr, vrby
                            , per = getOption("surveytable.rate_per")
                            , drop_na = getOption("surveytable.drop_na")
                            , max_levels = getOption("surveytable.max_levels")
-                           , csv = getOption("surveytable.csv")
                            ) {
   design = .load_survey()
   nm = names(design$variables)
@@ -90,8 +88,7 @@ tab_subset_rate = function(vr, vrby
     tfo = .tab_factor(design = d1
                       , vr = vr
                       , drop_na = drop_na
-                      , max_levels = max_levels
-                      , csv = "")
+                      , max_levels = max_levels)
     pop1 = pop[which(pop$Subset == ii),]
     m1 = merge(tfo, pop1, by = "Level", all.x = TRUE, all.y = FALSE, sort = FALSE)
     idx = which(is.na(m1$Population))
@@ -117,7 +114,7 @@ tab_subset_rate = function(vr, vrby
     attr(m1, "num") = 2:6
     attr(m1, "footer") = attr(tfo, "footer")
 
-    ret[[ii]] = .write_out(m1, csv = csv)
+    ret[[ii]] = .finalize_tab(m1)
   }
 
   class(ret) = "surveytable_list"

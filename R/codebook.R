@@ -1,7 +1,6 @@
 #' Create a codebook for the survey
 #'
 #' @param all tabulate all the variables?
-#' @param csv name of a CSV file
 #'
 #' @return A list of tables.
 #' @export
@@ -9,11 +8,10 @@
 #' @examples
 #' set_survey(namcs2019sv)
 #' codebook()
-codebook = function(all = FALSE
-    , csv = getOption("surveytable.csv")) {
+codebook = function(all = FALSE) {
   design = .load_survey()
   lret = list()
-  lret[[1]] = set_survey(design, csv = csv)
+  lret[[1]] = set_survey(design)
 
   nn = names(design$variables)
   nr = nrow(design$variables)
@@ -81,7 +79,7 @@ codebook = function(all = FALSE
 
   attr(ret, "title") = "Codebook"
   attr(ret, "num") = 5
-  lret[[2]] = .write_out(ret, csv = csv)
+  lret[[2]] = .finalize_tab(ret)
 
   if (all) {
     op_ = options(surveytable.find_lpe = FALSE)
@@ -98,8 +96,7 @@ codebook = function(all = FALSE
       lret[[n1]] = tab(n1
                        , test = FALSE
                        , drop_na = FALSE
-                       , max_levels = Inf
-                       , csv = csv)
+                       , max_levels = Inf)
       attr(env$survey$variables[,ii], "label") = lbl0
     }
   }

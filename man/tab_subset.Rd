@@ -5,12 +5,7 @@
 \alias{tab_subset}
 \title{Tabulate subsets or interactions}
 \usage{
-tab_cross(
-  vr,
-  vrby,
-  max_levels = getOption("surveytable.max_levels"),
-  csv = getOption("surveytable.csv")
-)
+tab_cross(vr, vrby, max_levels = getOption("surveytable.max_levels"))
 
 tab_subset(
   vr,
@@ -20,8 +15,7 @@ tab_subset(
   alpha = 0.05,
   p_adjust = FALSE,
   drop_na = getOption("surveytable.drop_na"),
-  max_levels = getOption("surveytable.max_levels"),
-  csv = getOption("surveytable.csv")
+  max_levels = getOption("surveytable.max_levels")
 )
 }
 \arguments{
@@ -30,8 +24,6 @@ tab_subset(
 \item{vrby}{use this variable to subset the survey}
 
 \item{max_levels}{a categorical variable can have at most this many levels. Used to avoid printing huge tables.}
-
-\item{csv}{name of a CSV file}
 
 \item{lvls}{(optional) only show these levels of \code{vrby}}
 

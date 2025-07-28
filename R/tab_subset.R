@@ -30,7 +30,6 @@
 #' @param p_adjust adjust p-values for multiple comparisons?
 #' @param drop_na drop missing values (`NA`)? Categorical variables only.
 #' @param max_levels a categorical variable can have at most this many levels. Used to avoid printing huge tables.
-#' @param csv     name of a CSV file
 #'
 #' @return A list of tables or a single table.
 #'
@@ -57,7 +56,6 @@ tab_subset = function(vr, vrby, lvls = c()
                 # , test_pairs = "depends"
                 , drop_na = getOption("surveytable.drop_na")
                 , max_levels = getOption("surveytable.max_levels")
-                , csv = getOption("surveytable.csv")
               ) {
   assert_that(alpha > 0, alpha < 0.5
               , p_adjust %in% c(TRUE, FALSE)
@@ -139,8 +137,7 @@ tab_subset = function(vr, vrby, lvls = c()
       fo = .tab_factor(design = d1
                   , vr = vr
                   , drop_na = drop_na
-                  , max_levels = max_levels
-                  , csv = csv)
+                  , max_levels = max_levels)
       l.num[[ length(l.num) + 1 ]] = attr(fo, "num")
       c.footer %<>% c(attr(fo, "footer"))
 
@@ -162,7 +159,7 @@ tab_subset = function(vr, vrby, lvls = c()
     design$variables$.tmp = as.numeric(design$variables[,vr] == test)
     ret[[ "test - conditional independence" ]] = .test_numeric(
       design = design, vr = ".tmp", vrby = vrby, lvl0 = lvl0, alpha = alpha
-      , p_adjust = p_adjust, csv = csv
+      , p_adjust = p_adjust
       , test_title = glue("Conditional independence test of {.getvarname(design, vr)} = '{test}' "
                           , "across all pairs of {.getvarname(design, vrby)}")
     )
@@ -180,8 +177,7 @@ tab_subset = function(vr, vrby, lvls = c()
       ret[[ii]] = .tab_factor(design = d1
                         , vr = vr
                         , drop_na = drop_na
-                        , max_levels = max_levels
-                        , csv = csv)
+                        , max_levels = max_levels)
     }
 
     if (type_test == "assoc") {
@@ -206,8 +202,7 @@ tab_subset = function(vr, vrby, lvls = c()
       # }
 
       ret[[ test_name ]] = .test_table(rT = rT
-             , test_name = test_name, test_title = test_title, alpha = alpha
-             , csv = csv)
+             , test_name = test_name, test_title = test_title, alpha = alpha)
 
       ###
       for (ii in lvl0 ) {
@@ -224,8 +219,7 @@ tab_subset = function(vr, vrby, lvls = c()
                                                     , vr = vr
                                                     , drop_na = drop_na
                                                     , alpha = alpha
-                                                    , p_adjust = p_adjust
-                                                    , csv = csv)
+                                                    , p_adjust = p_adjust)
       }
 
       for (jj in levels(design$variables[,vr]) ) {
@@ -242,8 +236,7 @@ tab_subset = function(vr, vrby, lvls = c()
                                                     , vr = vrby
                                                     , drop_na = drop_na
                                                     , alpha = alpha
-                                                    , p_adjust = p_adjust
-                                                    , csv = csv)
+                                                    , p_adjust = p_adjust)
       }
     }
   } else if (is.numeric(design$variables[,vr])) {
@@ -259,7 +252,7 @@ tab_subset = function(vr, vrby, lvls = c()
     attr(rA, "title") = paste0(.getvarname(design, vr)
          , " (for different levels of "
          , .getvarname(design, vrby), ")")
-    ret[["Means"]] = .write_out(rA, csv = csv)
+    ret[["Means"]] = .finalize_tab(rA)
 
     if (type_test == "assoc") {
       frm = as.formula(paste0("`", vr, "` ~ `", vrby, "`"))
@@ -284,13 +277,12 @@ tab_subset = function(vr, vrby, lvls = c()
       # }
 
       ret[[ test_name ]] = .test_table(rT = rT
-             , test_name = test_name, test_title = test_title, alpha = alpha
-             , csv = csv)
+             , test_name = test_name, test_title = test_title, alpha = alpha)
     # }
     # if (test && do_pairs) {
       ret[[ "t-test" ]] = .test_numeric(
         design = design, vr = vr, vrby = vrby, lvl0 = lvl0, alpha = alpha
-        , p_adjust = p_adjust, csv = csv
+        , p_adjust = p_adjust
         , test_title = glue("Comparison of {.getvarname(design, vr)} across all possible "
                             , "pairs of {.getvarname(design, vrby)}")
       )

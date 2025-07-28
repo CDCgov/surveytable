@@ -4,18 +4,12 @@
 \alias{total_rate}
 \title{Overall rate}
 \usage{
-total_rate(
-  pop,
-  per = getOption("surveytable.rate_per"),
-  csv = getOption("surveytable.csv")
-)
+total_rate(pop, per = getOption("surveytable.rate_per"))
 }
 \arguments{
 \item{pop}{population}
 
 \item{per}{calculate rate per this many items in the population}
-
-\item{csv}{name of a CSV file}
 }
 \value{
 A table

@@ -8,6 +8,7 @@ value of interest.
 * Confidence intervals for numeric variables. 
 * Excel tables and charts! `set_opts( output = "excel", file = "my_workbook" )`
 * Improved conversion of tables to data frames with `as.data.frame()`.
+* The interface for CSV printing is now the same as for all other kinds of printing: `set_opts( output = "CSV", file = "my_file" )`
 
 # surveytable 0.9.8
 

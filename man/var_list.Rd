@@ -4,14 +4,12 @@
 \alias{var_list}
 \title{List variables in a survey.}
 \usage{
-var_list(sw = "", all = FALSE, csv = getOption("surveytable.csv"))
+var_list(sw = "", all = FALSE)
 }
 \arguments{
 \item{sw}{starting characters in variable name (case insensitive)}
 
 \item{all}{print all variables?}
-
-\item{csv}{name of a CSV file}
 }
 \value{
 A table

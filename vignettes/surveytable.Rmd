@@ -443,17 +443,25 @@ Here, the `AGER` variable remains unchanged, while the `Age group` variable has 
 
 # Save the output
 
-The `tab*` and `total*` functions have an argument called `csv` that specifies the name of a comma-separated values (CSV) file to save the output to. Alternatively, you can name the default CSV output file using the `set_opts()` function. For example, the following directs `surveytable` to send all future output to a CSV file, create some tables, and then turn off sending output to the file:
+The `set_opts()` function has an argument called `output`, which specifies how the tables from the tabulation functions are printed. For example, `set_opts(output = "CSV", file = "my_output.csv")` directs the `surveytable` package to print all future tables to a CSV file called `"my_output.csv"`:
 
 ```r
-set_opts(csv = "output.csv")
+set_opts(output = "csv", file = "my_output.csv")
+```
+```{r, echo=FALSE}
+set_opts(output = "csv", file = "my_output.csv", .file_temp = TRUE)
 ```
 
-```{r, results='asis'}
+From now on, tables are printed to that file, not to the screen:
+
+```{r}
 tab("MDDO")
-set_opts(csv = "")
 ```
 
-If the tabulation functions are called from within an R Markdown notebook or a Quarto document, they produce HTML or PDF tables, as appropriate. This makes it easy to incorporate the output of the `surveytable` package directly into documents, presentations, "shiny" web apps, and other output types. See `vignette("Printing-HTML")` for details.
+To turn off CSV printing, just call: 
 
-Finally, the tabulation functions return the tables that they produce. More advanced analysts can use this functionality to integrate `surveytable` into other programming tasks.
+```{r}
+set_opts(output = "auto")
+```
+
+For details on the many ways to print and / or save tables, see `vignette("Printing-HTML")`.

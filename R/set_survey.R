@@ -10,7 +10,6 @@
 #'
 #' @param design a survey object, created with [survey::svydesign()] or
 #' [survey::svrepdesign()]. For an unweighted survey, a `data.frame` or similar.
-#' @param csv name of a CSV file
 #' @param ... arguments to [set_opts()].
 #'
 #' @family options
@@ -20,7 +19,7 @@
 #' @examples
 #' set_survey(namcs2019sv)
 #' set_survey(namcs2019sv, mode = "general")
-set_survey = function(design, csv = getOption("surveytable.csv"), ...) {
+set_survey = function(design, ...) {
   # In case there's an error below and we don't set a new survey,
   # don't retain the previous survey either.
   env$survey = NULL
@@ -107,7 +106,7 @@ set_survey = function(design, csv = getOption("surveytable.csv"), ...) {
   env$survey = design
 
   .check_options()
-  .write_out(out, csv = csv)
+  .finalize_tab(out)
 }
 
 .load_survey = function() {

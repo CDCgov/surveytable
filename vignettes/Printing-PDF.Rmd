@@ -146,7 +146,9 @@ print(tab("AGER"), destination = "")
 set_opts(output = "auto")
 ```
 
-# Save tables and charts to an Excel workbook
+# Save the tables
+
+## Save tables and charts to an Excel workbook
 
 Before using Excel printing, please be sure to install these packages: `openxlsx2` and `mschart`.
 
@@ -171,6 +173,49 @@ To turn off Excel printing, set the `output` argument to a value other than `"Ex
 
 ```{r}
 set_opts(output = "auto")
+```
+
+## Save to a CSV file
+
+To save tables to a CSV file, turn on CSV printing with `set_opts( output = "CSV", file = "my_output" )`. Set the `file` argument to the name of a CSV file. 
+
+```r
+set_opts(output = "csv", file = "my_output")
+```
+
+```{r, echo=FALSE}
+set_opts(output = "csv", file = "my_output", .file_temp = TRUE)
+```
+
+Generate some tables:
+
+```{r}
+total()
+tab("AGER")
+```
+
+To turn off CSV printing, set the `output` argument to a value other than `"CSV"`, such as `"auto"`:
+
+```{r}
+set_opts(output = "auto")
+```
+
+## Save to an R data file
+
+Use the built-in `saveRDS()` function to save a table to an R data file:
+
+```r
+tab("AGER") |> saveRDS("myfile.rds")
+```
+
+You can later load this data file back into R. To print the table, just load the file, like so:
+
+```r
+readRDS("myfile.rds")
+```
+
+```{r, results='asis', echo=FALSE}
+tab("AGER")
 ```
 
 
@@ -205,49 +250,3 @@ The reason that this is the "quick-and-dirty" approach is that the output it cre
 
 * extracting an exact value from a table using `as.data.frame()`; or 
 * quickly using your favorite table-making package.
-
-# Save the tables
-
-## Save to a CSV file
-
-All tabulation functions have an argument called `csv`. Use it to specify the name of a CSV (comma-separated values) file, like so:
-
-```r
-tab("AGER", csv = "myfile.csv")
-```
-
-```{r, results='asis', echo=FALSE}
-tab("AGER")
-```
-
-Open this CSV file in Excel or your favorite text editor or spreadsheet. 
-
-## Save to an R data file
-
-Use the built-in `saveRDS()` function to save a table to an R data file:
-
-```r
-tab("AGER") |> saveRDS("myfile.rds")
-```
-
-You can later load this data file back into R. To print the table, just load the file, like so:
-
-```r
-readRDS("myfile.rds")
-```
-
-```{r, results='asis', echo=FALSE}
-tab("AGER")
-```
-
-# Suppress printing
-
-There are times when you might want to prevent the tabulation functions from printing tables. If you are saving the tables to a CSV file anyway, you might not need screen printing. 
-
-As mentioned above, if the tabulation functions are called from within a loop without using the `print()` command, they won't print. 
-
-An easy way to suppress printing when the tabulation functions are called from the top level is to assign the output to some variable. For example, this will save the table to a CSV file, but won't print it to the screen:
-
-```r
-tmp = tab("AGER", csv = "myfile.csv")
-```

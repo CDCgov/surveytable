@@ -7404,29 +7404,55 @@ physicians.</p>
 <code>for</code> loop is needed. Below is the code, followed by an
 explanation:</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>csv <span class="op">=</span> <span class="st">"output.csv"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"csv"</span>, file <span class="op">=</span> <span class="st">"my_output.csv"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## * Printing to CSV file my_output.csv.</span></span></code></pre>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">vr</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"Age group"</span>, <span class="st">"SEX"</span>, <span class="st">"Age x Sex"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu"><a href="../reference/var_cross.html">var_cross</a></span><span class="op">(</span><span class="st">"tmp"</span>, <span class="st">"MAJOR"</span>, <span class="va">vr</span><span class="op">)</span></span>
 <span>    <span class="kw">for</span> <span class="op">(</span><span class="va">lvl</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="fu">surveytable</span><span class="fu">:::</span><span class="va">env</span><span class="op">$</span><span class="va">survey</span><span class="op">$</span><span class="va">variables</span><span class="op">[</span>,<span class="va">vr</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>        <span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"SPECCAT"</span>, <span class="st">"tmp"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Preventive care: "</span>, <span class="va">lvl</span><span class="op">)</span><span class="op">)</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span> <span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"SPECCAT"</span>, <span class="st">"tmp"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Preventive care: "</span>, <span class="va">lvl</span><span class="op">)</span><span class="op">)</span> <span class="op">)</span></span>
 <span>    <span class="op">}</span></span>
 <span><span class="op">}</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: Under 15 years) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: 15-24 years) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: 25-44 years) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: 45-64 years) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: 65-74 years) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: 75 years and over) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
 <span><span class="co">## Warning in var_cross("tmp", "MAJOR", vr): tmp: overwriting a variable that</span></span>
 <span><span class="co">## already exists.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: Under 1) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: 1-4) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: 5-14) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: 15-64) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: 65 and over) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
 <span><span class="co">## Warning in var_cross("tmp", "MAJOR", vr): tmp: overwriting a variable that</span></span>
 <span><span class="co">## already exists.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: Female) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: Male) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
 <span><span class="co">## Warning in var_cross("tmp", "MAJOR", vr): tmp: overwriting a variable that</span></span>
 <span><span class="co">## already exists.</span></span>
-<span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>csv <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
-<span><span class="co">## * Turning off CSV output.</span></span></code></pre></div>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: Under 15 years: Female) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: 15-24 years: Female) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: 25-44 years: Female) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: 45-64 years: Female) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: 65-74 years: Female) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: 75 years and over: Female) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: Under 15 years: Male) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: 15-24 years: Male) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: 25-44 years: Male) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: 45-64 years: Male) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: 65-74 years: Male) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="co">## * Printing Type of specialty (Primary, Medical, Surgical) (tmp = Preventive care: 75 years and over: Male) {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"auto"</span><span class="op">)</span></span>
+<span><span class="co">## * Printing with huxtable for screen, gt for HTML, or kableExtra for PDF.</span></span></code></pre></div>
 <ul>
+<li>Because so many tables will be printed, we don’t want to print them
+to the screen. Rather, we print them to a CSV file called
+<code>my_output.csv</code>.</li>
 <li>Since <code><a href="../reference/tab_subset.html">tab_subset()</a></code> is called from within a
-<code>for</code> loop, if we wanted to print to the screen, we would
-need to use <code>print( tab_subset(*) )</code>. Since we don’t want to
-print to the screen, a call to <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> is omitted.</li>
-<li>Since so many tables are being produced, the output is being sent to
-a CSV file.</li>
+<code>for</code> loop, to print the tables, we need to call the
+<code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> function explicitly.</li>
 <li>As before, the loop goes through the age, sex, and age / sex
 interaction variables, calling each of these variables
 <code>vr</code>.</li>
@@ -7445,7 +7471,7 @@ some level of <code>vr</code>, such as “Under 15 years” for
 <p>If you run this code, all of the tables should be stored in the CSV
 file. To give you an idea of what the tables should look like, here is
 just one of the tables:</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">vr</span> <span class="op">=</span> <span class="st">"AGER"</span></span>
 <span><span class="fu"><a href="../reference/var_cross.html">var_cross</a></span><span class="op">(</span><span class="st">"tmp"</span>, <span class="st">"MAJOR"</span>, <span class="va">vr</span><span class="op">)</span></span>
 <span><span class="co">## Warning in var_cross("tmp", "MAJOR", vr): tmp: overwriting a variable that</span></span>

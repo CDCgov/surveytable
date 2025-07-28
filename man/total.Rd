@@ -4,10 +4,7 @@
 \alias{total}
 \title{Total count}
 \usage{
-total(csv = getOption("surveytable.csv"))
-}
-\arguments{
-\item{csv}{name of a CSV file}
+total()
 }
 \value{
 A table

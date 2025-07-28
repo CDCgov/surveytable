@@ -71,7 +71,7 @@ o2s = function(obj) {
 # show_options() |> names() |> dput()
 #### !!! If making changes, update: .onLoad(), set_opts(), show_opts(), .check_options()
 .check_options = function() {
-  c_need = c("surveytable.csv", "surveytable.drop_na", "surveytable.find_lpe",
+  c_need = c("surveytable.drop_na", "surveytable.find_lpe",
              "surveytable.lpe_counts", "surveytable.lpe_n", "surveytable.lpe_percents",
              "surveytable.max_levels", "surveytable.names_count", "surveytable.names_count_raw",
              "surveytable.names_prct", "surveytable.print", "surveytable.file", "surveytable.file_show",

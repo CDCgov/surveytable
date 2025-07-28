@@ -2,7 +2,6 @@
 #'
 #' @param sw      starting characters in variable name (case insensitive)
 #' @param all     print all variables?
-#' @param csv     name of a CSV file
 #'
 #' @return A table
 #' @export
@@ -11,8 +10,7 @@
 #' set_survey(namcs2019sv)
 #' var_list("age")
 var_list = function(sw = ""
-                    , all = FALSE
-                    , csv = getOption("surveytable.csv") ) {
+                    , all = FALSE) {
   design = .load_survey()
   assert_that(nzchar(sw) | all
               , msg = "Either set the 'sw' argument to a non-empty string, or set all=TRUE")
@@ -46,7 +44,7 @@ var_list = function(sw = ""
     paste0("Variables beginning with '", sw, "'")
   }
 
-  .write_out(ret, csv = csv)
+  .finalize_tab(ret)
 }
 
 .getvarname = function(design, vr) {

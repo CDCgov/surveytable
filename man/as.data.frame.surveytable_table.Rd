@@ -27,5 +27,5 @@ mydf = as.data.frame(mytables[[3]])
 }
 \examples{
 set_survey(namcs2019sv)
-tab("AGER") |> as.data.frame()
+as.data.frame( tab("AGER") )
 }

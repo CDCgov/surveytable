@@ -1,4 +1,4 @@
-.test_factor = function(design, vr, drop_na, alpha, p_adjust, csv) {
+.test_factor = function(design, vr, drop_na, alpha, p_adjust) {
   assert_that(alpha > 0, alpha < 0.5
               , p_adjust %in% c(TRUE, FALSE))
   if ( !(alpha %in% c(0.05, 0.01, 0.001)) ) {
@@ -62,6 +62,5 @@
   test_title = paste0("Comparison of all pairs of "
                       , .getvarname(design, vr) )
   .test_table(rT = rT
-              , test_name = test_name, test_title = test_title, alpha = alpha
-              , csv = csv)
+              , test_name = test_name, test_title = test_title, alpha = alpha)
 }

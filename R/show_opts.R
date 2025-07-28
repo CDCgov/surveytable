@@ -26,6 +26,7 @@ show_opts = function() {
          , ".print_auto" = "* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF."
          , ".print_raw" = "* Generating unformatted / raw output."
          , ".print_excel" = glue("* Printing to Excel workbook {getOption('surveytable.file_show')}.")
+         , ".print_csv" = glue("* Printing to CSV file {getOption('surveytable.file_show')}.")
          , glue("* Printing with a custom function: {xx}")) %>% message
 
   if (getOption("surveytable.raw")) {
@@ -59,19 +60,6 @@ show_opts = function() {
   max_levels = getOption("surveytable.max_levels")
   assert_that(is.count(max_levels))
   message(paste0("* Maximum number of levels is: ", max_levels))
-
-  csv = getOption("surveytable.csv")
-  assert_that(is.string(csv)
-              , msg = "CSV file name must be a character string.")
-  if (nzchar(csv)) {
-    message(paste0("* Sending CSV output to: ", csv))
-    if (file.exists(csv)) {
-      message("* (File already exists. Output will be appended to the end of the file.)")
-    }
-    message("* To turn off CSV output: set_opts(csv = '')")
-  } else {
-    message("* CSV output has been turned off.")
-  }
 
   .check_options()
   invisible(NULL)

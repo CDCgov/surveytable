@@ -22,7 +22,7 @@
 #'
 #' @examples
 #' set_survey(namcs2019sv)
-#' tab("AGER") |> as.data.frame()
+#' as.data.frame( tab("AGER") )
 as.data.frame.surveytable_table = function(x, ...) {
   class(x) = "data.frame"
   names(x) = make.names( names(x), unique = TRUE )

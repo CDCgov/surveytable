@@ -1,7 +1,7 @@
-.tab_numeric = function(design, vr, csv) {
+.tab_numeric = function(design, vr) {
   ret = .tab_numeric_1(design, vr)
   attr(ret, "title") = .getvarname(design, vr)
-  .write_out(ret, csv = csv)
+  .finalize_tab(ret)
 }
 
 .tab_numeric_1 = function(design, vr) {

@@ -790,24 +790,24 @@ including the screen, HTML files, or PDF files.</li>
 <p>This is what printing to the screen looks like.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt;                                     Patient age recode {NAMCS 2019 PUF}                                     </span></span>
-<span><span class="co">#&gt; ┌─────────────┬───────┬─────────────┬────────────┬─────────────┬─────────────┬─────────┬─────┬──────┬──────┐</span></span>
-<span><span class="co">#&gt; │ Level       │     n │      Number │         SE │          LL │          UL │ Percent │  SE │   LL │   UL │</span></span>
-<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span></span>
-<span><span class="co">#&gt; │ Under 15    │   887 │ 117,916,772 │ 14,097,315 │  93,228,928 │ 149,142,177 │    11.4 │ 1.3 │  8.9 │ 14.2 │</span></span>
-<span><span class="co">#&gt; │ years       │       │             │            │             │             │         │     │      │      │</span></span>
-<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span></span>
-<span><span class="co">#&gt; │ 15-24 years │   542 │  64,855,698 │  7,018,359 │  52,386,950 │  80,292,164 │     6.3 │ 0.6 │  5.1 │  7.5 │</span></span>
-<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span></span>
-<span><span class="co">#&gt; │ 25-44 years │ 1,435 │ 170,270,604 │ 13,965,978 │ 144,924,545 │ 200,049,472 │    16.4 │ 1.1 │ 14.3 │ 18.8 │</span></span>
-<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span></span>
-<span><span class="co">#&gt; │ 45-64 years │ 2,283 │ 309,505,956 │ 23,289,827 │ 266,994,092 │ 358,786,727 │    29.9 │ 1.4 │ 27.2 │ 32.6 │</span></span>
-<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span></span>
-<span><span class="co">#&gt; │ 65-74 years │ 1,661 │ 206,865,982 │ 14,365,993 │ 180,480,708 │ 237,108,637 │    20   │ 1.2 │ 17.6 │ 22.5 │</span></span>
-<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span></span>
-<span><span class="co">#&gt; │ 75 years    │ 1,442 │ 167,069,344 │ 15,179,082 │ 139,746,193 │ 199,734,713 │    16.1 │ 1.3 │ 13.7 │ 18.8 │</span></span>
-<span><span class="co">#&gt; │ and over    │       │             │            │             │             │         │     │      │      │</span></span>
-<span><span class="co">#&gt; └─────────────┴───────┴─────────────┴────────────┴─────────────┴─────────────┴─────────┴─────┴──────┴──────┘</span></span>
+<pre><code><span><span class="co">#&gt;                                      Patient age recode {NAMCS 2019 PUF}                                     </span></span>
+<span><span class="co">#&gt; ┌─────────────┬───────┬─────────────┬────────────┬─────────────┬─────────────┬─────────┬──────┬──────┬──────┐</span></span>
+<span><span class="co">#&gt; │ Level       │     n │      Number │         SE │          LL │          UL │ Percent │ SE.1 │ LL.1 │ UL.1 │</span></span>
+<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼──────┼──────┼──────┤</span></span>
+<span><span class="co">#&gt; │ Under 15    │   887 │ 117,916,772 │ 14,097,315 │  93,228,928 │ 149,142,177 │    11.4 │  1.3 │  8.9 │ 14.2 │</span></span>
+<span><span class="co">#&gt; │ years       │       │             │            │             │             │         │      │      │      │</span></span>
+<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼──────┼──────┼──────┤</span></span>
+<span><span class="co">#&gt; │ 15-24 years │   542 │  64,855,698 │  7,018,359 │  52,386,950 │  80,292,164 │     6.3 │  0.6 │  5.1 │  7.5 │</span></span>
+<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼──────┼──────┼──────┤</span></span>
+<span><span class="co">#&gt; │ 25-44 years │ 1,435 │ 170,270,604 │ 13,965,978 │ 144,924,545 │ 200,049,472 │    16.4 │  1.1 │ 14.3 │ 18.8 │</span></span>
+<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼──────┼──────┼──────┤</span></span>
+<span><span class="co">#&gt; │ 45-64 years │ 2,283 │ 309,505,956 │ 23,289,827 │ 266,994,092 │ 358,786,727 │    29.9 │  1.4 │ 27.2 │ 32.6 │</span></span>
+<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼──────┼──────┼──────┤</span></span>
+<span><span class="co">#&gt; │ 65-74 years │ 1,661 │ 206,865,982 │ 14,365,993 │ 180,480,708 │ 237,108,637 │    20   │  1.2 │ 17.6 │ 22.5 │</span></span>
+<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼──────┼──────┼──────┤</span></span>
+<span><span class="co">#&gt; │ 75 years    │ 1,442 │ 167,069,344 │ 15,179,082 │ 139,746,193 │ 199,734,713 │    16.1 │  1.3 │ 13.7 │ 18.8 │</span></span>
+<span><span class="co">#&gt; │ and over    │       │             │            │             │             │         │      │      │      │</span></span>
+<span><span class="co">#&gt; └─────────────┴───────┴─────────────┴────────────┴─────────────┴─────────────┴─────────┴──────┴──────┴──────┘</span></span>
 <span><span class="co">#&gt;   N = 8250.</span></span></code></pre>
 <p>To create HTML tables from an R Markdown notebook or a Quarto
 document, add the <code>results='asis'</code> argument to the code
@@ -852,13 +852,13 @@ UL
 Percent
 </th>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-SE
+SE.1
 </th>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-LL
+LL.1
 </th>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">
-UL
+UL.1
 </th>
 </tr>
 <tr>
@@ -2277,24 +2277,24 @@ of the above packages depending on whether the output is to the screen
 <p>Screen output (this should use <code>huxtable</code>):</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt;                                     Patient age recode {NAMCS 2019 PUF}                                     </span></span>
-<span><span class="co">#&gt; ┌─────────────┬───────┬─────────────┬────────────┬─────────────┬─────────────┬─────────┬─────┬──────┬──────┐</span></span>
-<span><span class="co">#&gt; │ Level       │     n │      Number │         SE │          LL │          UL │ Percent │  SE │   LL │   UL │</span></span>
-<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span></span>
-<span><span class="co">#&gt; │ Under 15    │   887 │ 117,916,772 │ 14,097,315 │  93,228,928 │ 149,142,177 │    11.4 │ 1.3 │  8.9 │ 14.2 │</span></span>
-<span><span class="co">#&gt; │ years       │       │             │            │             │             │         │     │      │      │</span></span>
-<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span></span>
-<span><span class="co">#&gt; │ 15-24 years │   542 │  64,855,698 │  7,018,359 │  52,386,950 │  80,292,164 │     6.3 │ 0.6 │  5.1 │  7.5 │</span></span>
-<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span></span>
-<span><span class="co">#&gt; │ 25-44 years │ 1,435 │ 170,270,604 │ 13,965,978 │ 144,924,545 │ 200,049,472 │    16.4 │ 1.1 │ 14.3 │ 18.8 │</span></span>
-<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span></span>
-<span><span class="co">#&gt; │ 45-64 years │ 2,283 │ 309,505,956 │ 23,289,827 │ 266,994,092 │ 358,786,727 │    29.9 │ 1.4 │ 27.2 │ 32.6 │</span></span>
-<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span></span>
-<span><span class="co">#&gt; │ 65-74 years │ 1,661 │ 206,865,982 │ 14,365,993 │ 180,480,708 │ 237,108,637 │    20   │ 1.2 │ 17.6 │ 22.5 │</span></span>
-<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼─────┼──────┼──────┤</span></span>
-<span><span class="co">#&gt; │ 75 years    │ 1,442 │ 167,069,344 │ 15,179,082 │ 139,746,193 │ 199,734,713 │    16.1 │ 1.3 │ 13.7 │ 18.8 │</span></span>
-<span><span class="co">#&gt; │ and over    │       │             │            │             │             │         │     │      │      │</span></span>
-<span><span class="co">#&gt; └─────────────┴───────┴─────────────┴────────────┴─────────────┴─────────────┴─────────┴─────┴──────┴──────┘</span></span>
+<pre><code><span><span class="co">#&gt;                                      Patient age recode {NAMCS 2019 PUF}                                     </span></span>
+<span><span class="co">#&gt; ┌─────────────┬───────┬─────────────┬────────────┬─────────────┬─────────────┬─────────┬──────┬──────┬──────┐</span></span>
+<span><span class="co">#&gt; │ Level       │     n │      Number │         SE │          LL │          UL │ Percent │ SE.1 │ LL.1 │ UL.1 │</span></span>
+<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼──────┼──────┼──────┤</span></span>
+<span><span class="co">#&gt; │ Under 15    │   887 │ 117,916,772 │ 14,097,315 │  93,228,928 │ 149,142,177 │    11.4 │  1.3 │  8.9 │ 14.2 │</span></span>
+<span><span class="co">#&gt; │ years       │       │             │            │             │             │         │      │      │      │</span></span>
+<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼──────┼──────┼──────┤</span></span>
+<span><span class="co">#&gt; │ 15-24 years │   542 │  64,855,698 │  7,018,359 │  52,386,950 │  80,292,164 │     6.3 │  0.6 │  5.1 │  7.5 │</span></span>
+<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼──────┼──────┼──────┤</span></span>
+<span><span class="co">#&gt; │ 25-44 years │ 1,435 │ 170,270,604 │ 13,965,978 │ 144,924,545 │ 200,049,472 │    16.4 │  1.1 │ 14.3 │ 18.8 │</span></span>
+<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼──────┼──────┼──────┤</span></span>
+<span><span class="co">#&gt; │ 45-64 years │ 2,283 │ 309,505,956 │ 23,289,827 │ 266,994,092 │ 358,786,727 │    29.9 │  1.4 │ 27.2 │ 32.6 │</span></span>
+<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼──────┼──────┼──────┤</span></span>
+<span><span class="co">#&gt; │ 65-74 years │ 1,661 │ 206,865,982 │ 14,365,993 │ 180,480,708 │ 237,108,637 │    20   │  1.2 │ 17.6 │ 22.5 │</span></span>
+<span><span class="co">#&gt; ├─────────────┼───────┼─────────────┼────────────┼─────────────┼─────────────┼─────────┼──────┼──────┼──────┤</span></span>
+<span><span class="co">#&gt; │ 75 years    │ 1,442 │ 167,069,344 │ 15,179,082 │ 139,746,193 │ 199,734,713 │    16.1 │  1.3 │ 13.7 │ 18.8 │</span></span>
+<span><span class="co">#&gt; │ and over    │       │             │            │             │             │         │      │      │      │</span></span>
+<span><span class="co">#&gt; └─────────────┴───────┴─────────────┴────────────┴─────────────┴─────────────┴─────────┴──────┴──────┴──────┘</span></span>
 <span><span class="co">#&gt;   N = 8250.</span></span></code></pre>
 <p>HTML output (this should use <code>gt</code>):</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>```{r, results='asis'}</span>
@@ -2566,7 +2566,7 @@ tables.</p>
 <span><span class="co">#&gt; 4       45-64 years 2283 309505956 23289827 266994092 358786727 29.861131</span></span>
 <span><span class="co">#&gt; 5       65-74 years 1661 206865982 14365993 180480708 237108637 19.958428</span></span>
 <span><span class="co">#&gt; 6 75 years and over 1442 167069344 15179082 139746193 199734713 16.118849</span></span>
-<span><span class="co">#&gt;          SE        LL        UL</span></span>
+<span><span class="co">#&gt;        SE.1      LL.1      UL.1</span></span>
 <span><span class="co">#&gt; 1 1.3108198  8.913995 14.238468</span></span>
 <span><span class="co">#&gt; 2 0.5933708  5.138530  7.534097</span></span>
 <span><span class="co">#&gt; 3 1.1296060 14.254174 18.787872</span></span>
@@ -2579,8 +2579,11 @@ tables.</p>
 <span><span class="co">#&gt; * Printing with huxtable for screen, gt for HTML, or kableExtra for PDF.</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="save-tables-and-charts-to-an-excel-workbook">Save tables and charts to an Excel workbook<a class="anchor" aria-label="anchor" href="#save-tables-and-charts-to-an-excel-workbook"></a>
+<h2 id="save-the-tables">Save the tables<a class="anchor" aria-label="anchor" href="#save-the-tables"></a>
 </h2>
+<div class="section level3">
+<h3 id="save-tables-and-charts-to-an-excel-workbook">Save tables and charts to an Excel workbook<a class="anchor" aria-label="anchor" href="#save-tables-and-charts-to-an-excel-workbook"></a>
+</h3>
 <p>Before using Excel printing, please be sure to install these
 packages: <code>openxlsx2</code> and <code>mschart</code>.</p>
 <p>To save tables and charts to an Excel file, turn on Excel printing
@@ -2588,7 +2591,7 @@ with <code>set_opts( output = "Excel", file = "my_workbook" )</code>.
 Set the <code>file</code> argument to the name of an Excel file.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"excel"</span>, file <span class="op">=</span> <span class="st">"my_workbook"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; * Printing to Excel workbook my_workbook.xlsx.</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; * Printing to Excel file my_workbook.xlsx.</span></span></code></pre>
 <p>Generate some tables:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/total.html">total</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -2600,6 +2603,282 @@ value other than <code>"Excel"</code>, such as <code>"auto"</code>:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"auto"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; * Printing with huxtable for screen, gt for HTML, or kableExtra for PDF.</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="save-to-a-csv-file">Save to a CSV file<a class="anchor" aria-label="anchor" href="#save-to-a-csv-file"></a>
+</h3>
+<p>To save tables to a CSV file, turn on CSV printing with
+<code>set_opts( output = "CSV", file = "my_output" )</code>. Set the
+<code>file</code> argument to the name of a CSV file.</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"csv"</span>, file <span class="op">=</span> <span class="st">"my_output"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; * Printing to CSV file my_output.csv.</span></span></code></pre>
+<p>Generate some tables:</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/total.html">total</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; * Printing Total {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span>
+<span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; * Printing Patient age recode {NAMCS 2019 PUF} to CSV file my_output.csv.</span></span></code></pre></div>
+<p>To turn off CSV printing, set the <code>output</code> argument to a
+value other than <code>"CSV"</code>, such as <code>"auto"</code>:</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"auto"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; * Printing with huxtable for screen, gt for HTML, or kableExtra for PDF.</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="save-to-an-r-data-file">Save to an R data file<a class="anchor" aria-label="anchor" href="#save-to-an-r-data-file"></a>
+</h3>
+<p>Use the built-in <code><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS()</a></code> function to save a table to
+an R data file:</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="st">"myfile.rds"</span><span class="op">)</span></span></code></pre></div>
+<p>You can later load this data file back into R. To print the table,
+just load the file, like so:</p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="st">"myfile.rds"</span><span class="op">)</span></span></code></pre></div>
+<div id="vijbfglzvn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
+<thead style="border-style: none;">
+<tr class="gt_heading" style="border-style: none; background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF" align="center">
+<td colspan="10" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="border-style: none; color: #333333; font-size: 125%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; background-color: #FFFFFF; text-align: center; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; font-weight: normal;" bgcolor="#FFFFFF" align="center">
+Patient age recode {NAMCS 2019 PUF}
+</td>
+</tr>
+<tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Level" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left;" bgcolor="#FFFFFF" valign="bottom" align="left">
+Level
+</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
+n
+</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Number" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
+Number
+</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
+SE
+</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="LL" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
+LL
+</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="UL" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
+UL
+</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Percent" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
+Percent
+</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE.1" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
+SE
+</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="LL.1" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
+LL
+</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="UL.1" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
+UL
+</th>
+</tr>
+</thead>
+<tbody class="gt_table_body" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA;">
+<tr style="border-style: none;">
+<td headers="Level" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+Under 15 years
+</td>
+<td headers="n" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+887
+</td>
+<td headers="Number" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+117,916,772
+</td>
+<td headers="SE" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+14,097,315
+</td>
+<td headers="LL" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+93,228,928
+</td>
+<td headers="UL" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+149,142,177
+</td>
+<td headers="Percent" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+11.4
+</td>
+<td headers="SE.1" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+1.3
+</td>
+<td headers="LL.1" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+8.9
+</td>
+<td headers="UL.1" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+14.2
+</td>
+</tr>
+<tr style="border-style: none;">
+<td headers="Level" class="gt_row gt_left gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: left;" valign="middle" bgcolor="#F4F4F4" align="left">
+15-24 years
+</td>
+<td headers="n" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+542
+</td>
+<td headers="Number" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+64,855,698
+</td>
+<td headers="SE" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+7,018,359
+</td>
+<td headers="LL" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+52,386,950
+</td>
+<td headers="UL" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+80,292,164
+</td>
+<td headers="Percent" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+6.3
+</td>
+<td headers="SE.1" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+0.6
+</td>
+<td headers="LL.1" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+5.1
+</td>
+<td headers="UL.1" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+7.5
+</td>
+</tr>
+<tr style="border-style: none;">
+<td headers="Level" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+25-44 years
+</td>
+<td headers="n" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+1,435
+</td>
+<td headers="Number" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+170,270,604
+</td>
+<td headers="SE" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+13,965,978
+</td>
+<td headers="LL" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+144,924,545
+</td>
+<td headers="UL" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+200,049,472
+</td>
+<td headers="Percent" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+16.4
+</td>
+<td headers="SE.1" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+1.1
+</td>
+<td headers="LL.1" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+14.3
+</td>
+<td headers="UL.1" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+18.8
+</td>
+</tr>
+<tr style="border-style: none;">
+<td headers="Level" class="gt_row gt_left gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: left;" valign="middle" bgcolor="#F4F4F4" align="left">
+45-64 years
+</td>
+<td headers="n" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+2,283
+</td>
+<td headers="Number" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+309,505,956
+</td>
+<td headers="SE" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+23,289,827
+</td>
+<td headers="LL" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+266,994,092
+</td>
+<td headers="UL" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+358,786,727
+</td>
+<td headers="Percent" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+29.9
+</td>
+<td headers="SE.1" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+1.4
+</td>
+<td headers="LL.1" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+27.2
+</td>
+<td headers="UL.1" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+32.6
+</td>
+</tr>
+<tr style="border-style: none;">
+<td headers="Level" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
+65-74 years
+</td>
+<td headers="n" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+1,661
+</td>
+<td headers="Number" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+206,865,982
+</td>
+<td headers="SE" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+14,365,993
+</td>
+<td headers="LL" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+180,480,708
+</td>
+<td headers="UL" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+237,108,637
+</td>
+<td headers="Percent" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+20.0
+</td>
+<td headers="SE.1" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+1.2
+</td>
+<td headers="LL.1" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+17.6
+</td>
+<td headers="UL.1" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
+22.5
+</td>
+</tr>
+<tr style="border-style: none;">
+<td headers="Level" class="gt_row gt_left gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: left;" valign="middle" bgcolor="#F4F4F4" align="left">
+75 years and over
+</td>
+<td headers="n" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+1,442
+</td>
+<td headers="Number" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+167,069,344
+</td>
+<td headers="SE" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+15,179,082
+</td>
+<td headers="LL" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+139,746,193
+</td>
+<td headers="UL" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+199,734,713
+</td>
+<td headers="Percent" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+16.1
+</td>
+<td headers="SE.1" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+1.3
+</td>
+<td headers="LL.1" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+13.7
+</td>
+<td headers="UL.1" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
+18.8
+</td>
+</tr>
+</tbody>
+<tfoot class="gt_footnotes" style="border-style: none; color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF"><tr style="border-style: none;">
+<td class="gt_footnote" colspan="10" style="border-style: none; margin: 0px; font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px;">
+N = 8250.
+</td>
+</tr></tfoot>
+</table>
+</div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="advanced-printing">Advanced printing<a class="anchor" aria-label="anchor" href="#advanced-printing"></a>
@@ -2616,51 +2895,53 @@ table-making package that they want. For more information, see
 </h3>
 <p>The tabulation functions return either:</p>
 <ul>
-<li>for a single table, a data frame, with certain attributes set;
-or</li>
-<li>for more than one table, a list of such data frames.</li>
+<li>for a single table, which is basically a data frame, with certain
+attributes set; or</li>
+<li>for more than one table, a list of such tables.</li>
 </ul>
 <p>You can convert a single table to a <code>data.frame</code> with
 <code><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame()</a></code>, like so:</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;               Level    n    Number       SE        LL        UL Percent  SE</span></span>
-<span><span class="co">#&gt; 1    Under 15 years  887 117916772 14097315  93228928 149142177    11.4 1.3</span></span>
-<span><span class="co">#&gt; 2       15-24 years  542  64855698  7018359  52386950  80292164     6.3 0.6</span></span>
-<span><span class="co">#&gt; 3       25-44 years 1435 170270604 13965978 144924545 200049472    16.4 1.1</span></span>
-<span><span class="co">#&gt; 4       45-64 years 2283 309505956 23289827 266994092 358786727    29.9 1.4</span></span>
-<span><span class="co">#&gt; 5       65-74 years 1661 206865982 14365993 180480708 237108637    20.0 1.2</span></span>
-<span><span class="co">#&gt; 6 75 years and over 1442 167069344 15179082 139746193 199734713    16.1 1.3</span></span>
-<span><span class="co">#&gt;     LL   UL</span></span>
+<span><span class="co">#&gt;               Level    n    Number       SE        LL        UL Percent SE.1</span></span>
+<span><span class="co">#&gt; 1    Under 15 years  887 117916772 14097315  93228928 149142177    11.4  1.3</span></span>
+<span><span class="co">#&gt; 2       15-24 years  542  64855698  7018359  52386950  80292164     6.3  0.6</span></span>
+<span><span class="co">#&gt; 3       25-44 years 1435 170270604 13965978 144924545 200049472    16.4  1.1</span></span>
+<span><span class="co">#&gt; 4       45-64 years 2283 309505956 23289827 266994092 358786727    29.9  1.4</span></span>
+<span><span class="co">#&gt; 5       65-74 years 1661 206865982 14365993 180480708 237108637    20.0  1.2</span></span>
+<span><span class="co">#&gt; 6 75 years and over 1442 167069344 15179082 139746193 199734713    16.1  1.3</span></span>
+<span><span class="co">#&gt;   LL.1 UL.1</span></span>
 <span><span class="co">#&gt; 1  8.9 14.2</span></span>
 <span><span class="co">#&gt; 2  5.1  7.5</span></span>
 <span><span class="co">#&gt; 3 14.3 18.8</span></span>
 <span><span class="co">#&gt; 4 27.2 32.6</span></span>
 <span><span class="co">#&gt; 5 17.6 22.5</span></span>
 <span><span class="co">#&gt; 6 13.7 18.8</span></span></code></pre></div>
-<p>Alternatively, you can pass this data frame to your favorite
-table-making package. This example passes it to <code>gt</code>:</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>count <span class="op">=</span> <span class="st">"1k"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; * Rounding counts to the nearest thousand.</span></span>
-<span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div id="vijbfglzvn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vijbfglzvn table {
+<p>Note that this produces a <code>data.frame</code> with unique column
+names, which improves its usability.</p>
+<p>Alternatively, you can pass this <code>data.frame</code> to your
+favorite table-making package. This example passes a table to
+<code>gt</code>. To ensure unique column names, pass the table through
+<code><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame()</a></code> first.</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div id="egslqeqmfa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#egslqeqmfa table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vijbfglzvn thead, #vijbfglzvn tbody, #vijbfglzvn tfoot, #vijbfglzvn tr, #vijbfglzvn td, #vijbfglzvn th {
+#egslqeqmfa thead, #egslqeqmfa tbody, #egslqeqmfa tfoot, #egslqeqmfa tr, #egslqeqmfa td, #egslqeqmfa th {
   border-style: none;
 }
 
-#vijbfglzvn p {
+#egslqeqmfa p {
   margin: 0;
   padding: 0;
 }
 
-#vijbfglzvn .gt_table {
+#egslqeqmfa .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2686,12 +2967,12 @@ table-making package. This example passes it to <code>gt</code>:</p>
   border-left-color: #D3D3D3;
 }
 
-#vijbfglzvn .gt_caption {
+#egslqeqmfa .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vijbfglzvn .gt_title {
+#egslqeqmfa .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2703,7 +2984,7 @@ table-making package. This example passes it to <code>gt</code>:</p>
   border-bottom-width: 0;
 }
 
-#vijbfglzvn .gt_subtitle {
+#egslqeqmfa .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2715,7 +2996,7 @@ table-making package. This example passes it to <code>gt</code>:</p>
   border-top-width: 0;
 }
 
-#vijbfglzvn .gt_heading {
+#egslqeqmfa .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2727,13 +3008,13 @@ table-making package. This example passes it to <code>gt</code>:</p>
   border-right-color: #D3D3D3;
 }
 
-#vijbfglzvn .gt_bottom_border {
+#egslqeqmfa .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vijbfglzvn .gt_col_headings {
+#egslqeqmfa .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2748,7 +3029,7 @@ table-making package. This example passes it to <code>gt</code>:</p>
   border-right-color: #D3D3D3;
 }
 
-#vijbfglzvn .gt_col_heading {
+#egslqeqmfa .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2768,7 +3049,7 @@ table-making package. This example passes it to <code>gt</code>:</p>
   overflow-x: hidden;
 }
 
-#vijbfglzvn .gt_column_spanner_outer {
+#egslqeqmfa .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2780,15 +3061,15 @@ table-making package. This example passes it to <code>gt</code>:</p>
   padding-right: 4px;
 }
 
-#vijbfglzvn .gt_column_spanner_outer:first-child {
+#egslqeqmfa .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vijbfglzvn .gt_column_spanner_outer:last-child {
+#egslqeqmfa .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vijbfglzvn .gt_column_spanner {
+#egslqeqmfa .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2800,11 +3081,11 @@ table-making package. This example passes it to <code>gt</code>:</p>
   width: 100%;
 }
 
-#vijbfglzvn .gt_spanner_row {
+#egslqeqmfa .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vijbfglzvn .gt_group_heading {
+#egslqeqmfa .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2830,7 +3111,7 @@ table-making package. This example passes it to <code>gt</code>:</p>
   text-align: left;
 }
 
-#vijbfglzvn .gt_empty_group_heading {
+#egslqeqmfa .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2845,15 +3126,15 @@ table-making package. This example passes it to <code>gt</code>:</p>
   vertical-align: middle;
 }
 
-#vijbfglzvn .gt_from_md > :first-child {
+#egslqeqmfa .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vijbfglzvn .gt_from_md > :last-child {
+#egslqeqmfa .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vijbfglzvn .gt_row {
+#egslqeqmfa .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2872,7 +3153,7 @@ table-making package. This example passes it to <code>gt</code>:</p>
   overflow-x: hidden;
 }
 
-#vijbfglzvn .gt_stub {
+#egslqeqmfa .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2885,7 +3166,7 @@ table-making package. This example passes it to <code>gt</code>:</p>
   padding-right: 5px;
 }
 
-#vijbfglzvn .gt_stub_row_group {
+#egslqeqmfa .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2899,15 +3180,15 @@ table-making package. This example passes it to <code>gt</code>:</p>
   vertical-align: top;
 }
 
-#vijbfglzvn .gt_row_group_first td {
+#egslqeqmfa .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vijbfglzvn .gt_row_group_first th {
+#egslqeqmfa .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vijbfglzvn .gt_summary_row {
+#egslqeqmfa .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2917,16 +3198,16 @@ table-making package. This example passes it to <code>gt</code>:</p>
   padding-right: 5px;
 }
 
-#vijbfglzvn .gt_first_summary_row {
+#egslqeqmfa .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vijbfglzvn .gt_first_summary_row.thick {
+#egslqeqmfa .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vijbfglzvn .gt_last_summary_row {
+#egslqeqmfa .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2936,7 +3217,7 @@ table-making package. This example passes it to <code>gt</code>:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#vijbfglzvn .gt_grand_summary_row {
+#egslqeqmfa .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2946,7 +3227,7 @@ table-making package. This example passes it to <code>gt</code>:</p>
   padding-right: 5px;
 }
 
-#vijbfglzvn .gt_first_grand_summary_row {
+#egslqeqmfa .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2956,7 +3237,7 @@ table-making package. This example passes it to <code>gt</code>:</p>
   border-top-color: #D3D3D3;
 }
 
-#vijbfglzvn .gt_last_grand_summary_row_top {
+#egslqeqmfa .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2966,11 +3247,11 @@ table-making package. This example passes it to <code>gt</code>:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#vijbfglzvn .gt_striped {
+#egslqeqmfa .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vijbfglzvn .gt_table_body {
+#egslqeqmfa .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2979,7 +3260,7 @@ table-making package. This example passes it to <code>gt</code>:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#vijbfglzvn .gt_footnotes {
+#egslqeqmfa .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2993,7 +3274,7 @@ table-making package. This example passes it to <code>gt</code>:</p>
   border-right-color: #D3D3D3;
 }
 
-#vijbfglzvn .gt_footnote {
+#egslqeqmfa .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3002,7 +3283,7 @@ table-making package. This example passes it to <code>gt</code>:</p>
   padding-right: 5px;
 }
 
-#vijbfglzvn .gt_sourcenotes {
+#egslqeqmfa .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3016,7 +3297,7 @@ table-making package. This example passes it to <code>gt</code>:</p>
   border-right-color: #D3D3D3;
 }
 
-#vijbfglzvn .gt_sourcenote {
+#egslqeqmfa .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3024,72 +3305,72 @@ table-making package. This example passes it to <code>gt</code>:</p>
   padding-right: 5px;
 }
 
-#vijbfglzvn .gt_left {
+#egslqeqmfa .gt_left {
   text-align: left;
 }
 
-#vijbfglzvn .gt_center {
+#egslqeqmfa .gt_center {
   text-align: center;
 }
 
-#vijbfglzvn .gt_right {
+#egslqeqmfa .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vijbfglzvn .gt_font_normal {
+#egslqeqmfa .gt_font_normal {
   font-weight: normal;
 }
 
-#vijbfglzvn .gt_font_bold {
+#egslqeqmfa .gt_font_bold {
   font-weight: bold;
 }
 
-#vijbfglzvn .gt_font_italic {
+#egslqeqmfa .gt_font_italic {
   font-style: italic;
 }
 
-#vijbfglzvn .gt_super {
+#egslqeqmfa .gt_super {
   font-size: 65%;
 }
 
-#vijbfglzvn .gt_footnote_marks {
+#egslqeqmfa .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vijbfglzvn .gt_asterisk {
+#egslqeqmfa .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vijbfglzvn .gt_indent_1 {
+#egslqeqmfa .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vijbfglzvn .gt_indent_2 {
+#egslqeqmfa .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vijbfglzvn .gt_indent_3 {
+#egslqeqmfa .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vijbfglzvn .gt_indent_4 {
+#egslqeqmfa .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vijbfglzvn .gt_indent_5 {
+#egslqeqmfa .gt_indent_5 {
   text-indent: 25px;
 }
 
-#vijbfglzvn .katex-display {
+#egslqeqmfa .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#vijbfglzvn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#egslqeqmfa div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3097,87 +3378,87 @@ table-making package. This example passes it to <code>gt</code>:</p>
 <thead><tr class="gt_col_headings">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Level">Level</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Number-(000)">Number (000)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE-(000)">SE (000)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="LL-(000)">LL (000)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="UL-(000)">UL (000)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Percent">Percent</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Number">Number</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="LL">LL</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="UL">UL</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Percent">Percent</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE.1">SE.1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="LL.1">LL.1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="UL.1">UL.1</th>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
 <td headers="Level" class="gt_row gt_left">Under 15 years</td>
 <td headers="n" class="gt_row gt_right">887</td>
-<td headers="Number (000)" class="gt_row gt_right">117917</td>
-<td headers="SE (000)" class="gt_row gt_right">14097</td>
-<td headers="LL (000)" class="gt_row gt_right">93229</td>
-<td headers="UL (000)" class="gt_row gt_right">149142</td>
+<td headers="Number" class="gt_row gt_right">117916772</td>
+<td headers="SE" class="gt_row gt_right">14097315</td>
+<td headers="LL" class="gt_row gt_right">93228928</td>
+<td headers="UL" class="gt_row gt_right">149142177</td>
 <td headers="Percent" class="gt_row gt_right">11.4</td>
-<td headers="SE" class="gt_row gt_right">1.3</td>
-<td headers="LL" class="gt_row gt_right">8.9</td>
-<td headers="UL" class="gt_row gt_right">14.2</td>
+<td headers="SE.1" class="gt_row gt_right">1.3</td>
+<td headers="LL.1" class="gt_row gt_right">8.9</td>
+<td headers="UL.1" class="gt_row gt_right">14.2</td>
 </tr>
 <tr>
 <td headers="Level" class="gt_row gt_left">15-24 years</td>
 <td headers="n" class="gt_row gt_right">542</td>
-<td headers="Number (000)" class="gt_row gt_right">64856</td>
-<td headers="SE (000)" class="gt_row gt_right">7018</td>
-<td headers="LL (000)" class="gt_row gt_right">52387</td>
-<td headers="UL (000)" class="gt_row gt_right">80292</td>
+<td headers="Number" class="gt_row gt_right">64855698</td>
+<td headers="SE" class="gt_row gt_right">7018359</td>
+<td headers="LL" class="gt_row gt_right">52386950</td>
+<td headers="UL" class="gt_row gt_right">80292164</td>
 <td headers="Percent" class="gt_row gt_right">6.3</td>
-<td headers="SE" class="gt_row gt_right">0.6</td>
-<td headers="LL" class="gt_row gt_right">5.1</td>
-<td headers="UL" class="gt_row gt_right">7.5</td>
+<td headers="SE.1" class="gt_row gt_right">0.6</td>
+<td headers="LL.1" class="gt_row gt_right">5.1</td>
+<td headers="UL.1" class="gt_row gt_right">7.5</td>
 </tr>
 <tr>
 <td headers="Level" class="gt_row gt_left">25-44 years</td>
 <td headers="n" class="gt_row gt_right">1435</td>
-<td headers="Number (000)" class="gt_row gt_right">170271</td>
-<td headers="SE (000)" class="gt_row gt_right">13966</td>
-<td headers="LL (000)" class="gt_row gt_right">144925</td>
-<td headers="UL (000)" class="gt_row gt_right">200049</td>
+<td headers="Number" class="gt_row gt_right">170270604</td>
+<td headers="SE" class="gt_row gt_right">13965978</td>
+<td headers="LL" class="gt_row gt_right">144924545</td>
+<td headers="UL" class="gt_row gt_right">200049472</td>
 <td headers="Percent" class="gt_row gt_right">16.4</td>
-<td headers="SE" class="gt_row gt_right">1.1</td>
-<td headers="LL" class="gt_row gt_right">14.3</td>
-<td headers="UL" class="gt_row gt_right">18.8</td>
+<td headers="SE.1" class="gt_row gt_right">1.1</td>
+<td headers="LL.1" class="gt_row gt_right">14.3</td>
+<td headers="UL.1" class="gt_row gt_right">18.8</td>
 </tr>
 <tr>
 <td headers="Level" class="gt_row gt_left">45-64 years</td>
 <td headers="n" class="gt_row gt_right">2283</td>
-<td headers="Number (000)" class="gt_row gt_right">309506</td>
-<td headers="SE (000)" class="gt_row gt_right">23290</td>
-<td headers="LL (000)" class="gt_row gt_right">266994</td>
-<td headers="UL (000)" class="gt_row gt_right">358787</td>
+<td headers="Number" class="gt_row gt_right">309505956</td>
+<td headers="SE" class="gt_row gt_right">23289827</td>
+<td headers="LL" class="gt_row gt_right">266994092</td>
+<td headers="UL" class="gt_row gt_right">358786727</td>
 <td headers="Percent" class="gt_row gt_right">29.9</td>
-<td headers="SE" class="gt_row gt_right">1.4</td>
-<td headers="LL" class="gt_row gt_right">27.2</td>
-<td headers="UL" class="gt_row gt_right">32.6</td>
+<td headers="SE.1" class="gt_row gt_right">1.4</td>
+<td headers="LL.1" class="gt_row gt_right">27.2</td>
+<td headers="UL.1" class="gt_row gt_right">32.6</td>
 </tr>
 <tr>
 <td headers="Level" class="gt_row gt_left">65-74 years</td>
 <td headers="n" class="gt_row gt_right">1661</td>
-<td headers="Number (000)" class="gt_row gt_right">206866</td>
-<td headers="SE (000)" class="gt_row gt_right">14366</td>
-<td headers="LL (000)" class="gt_row gt_right">180481</td>
-<td headers="UL (000)" class="gt_row gt_right">237109</td>
+<td headers="Number" class="gt_row gt_right">206865982</td>
+<td headers="SE" class="gt_row gt_right">14365993</td>
+<td headers="LL" class="gt_row gt_right">180480708</td>
+<td headers="UL" class="gt_row gt_right">237108637</td>
 <td headers="Percent" class="gt_row gt_right">20.0</td>
-<td headers="SE" class="gt_row gt_right">1.2</td>
-<td headers="LL" class="gt_row gt_right">17.6</td>
-<td headers="UL" class="gt_row gt_right">22.5</td>
+<td headers="SE.1" class="gt_row gt_right">1.2</td>
+<td headers="LL.1" class="gt_row gt_right">17.6</td>
+<td headers="UL.1" class="gt_row gt_right">22.5</td>
 </tr>
 <tr>
 <td headers="Level" class="gt_row gt_left">75 years and over</td>
 <td headers="n" class="gt_row gt_right">1442</td>
-<td headers="Number (000)" class="gt_row gt_right">167069</td>
-<td headers="SE (000)" class="gt_row gt_right">15179</td>
-<td headers="LL (000)" class="gt_row gt_right">139746</td>
-<td headers="UL (000)" class="gt_row gt_right">199735</td>
+<td headers="Number" class="gt_row gt_right">167069344</td>
+<td headers="SE" class="gt_row gt_right">15179082</td>
+<td headers="LL" class="gt_row gt_right">139746193</td>
+<td headers="UL" class="gt_row gt_right">199734713</td>
 <td headers="Percent" class="gt_row gt_right">16.1</td>
-<td headers="SE" class="gt_row gt_right">1.3</td>
-<td headers="LL" class="gt_row gt_right">13.7</td>
-<td headers="UL" class="gt_row gt_right">18.8</td>
+<td headers="SE.1" class="gt_row gt_right">1.3</td>
+<td headers="LL.1" class="gt_row gt_right">13.7</td>
+<td headers="UL.1" class="gt_row gt_right">18.8</td>
 </tr>
 </tbody>
 </table>
@@ -3195,533 +3476,6 @@ situations in which this approach is helpful, such as</p>
 <li>quickly using your favorite table-making package.</li>
 </ul>
 </div>
-</div>
-<div class="section level2">
-<h2 id="save-the-tables">Save the tables<a class="anchor" aria-label="anchor" href="#save-the-tables"></a>
-</h2>
-<div class="section level3">
-<h3 id="save-to-a-csv-file">Save to a CSV file<a class="anchor" aria-label="anchor" href="#save-to-a-csv-file"></a>
-</h3>
-<p>All tabulation functions have an argument called <code>csv</code>.
-Use it to specify the name of a CSV (comma-separated values) file, like
-so:</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span>, csv <span class="op">=</span> <span class="st">"myfile.csv"</span><span class="op">)</span></span></code></pre></div>
-<div id="egslqeqmfa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
-<thead style="border-style: none;">
-<tr class="gt_heading" style="border-style: none; background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF" align="center">
-<td colspan="10" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="border-style: none; color: #333333; font-size: 125%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; background-color: #FFFFFF; text-align: center; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; font-weight: normal;" bgcolor="#FFFFFF" align="center">
-Patient age recode {NAMCS 2019 PUF}
-</td>
-</tr>
-<tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Level" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left;" bgcolor="#FFFFFF" valign="bottom" align="left">
-Level
-</th>
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
-n
-</th>
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Number..000." style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
-Number (000)
-</th>
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE..000." style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
-SE (000)
-</th>
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="LL..000." style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
-LL (000)
-</th>
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="UL..000." style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
-UL (000)
-</th>
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Percent" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
-Percent
-</th>
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
-SE
-</th>
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="LL" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
-LL
-</th>
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="UL" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
-UL
-</th>
-</tr>
-</thead>
-<tbody class="gt_table_body" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA;">
-<tr style="border-style: none;">
-<td headers="Level" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-Under 15 years
-</td>
-<td headers="n" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-887
-</td>
-<td headers="Number..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-117,917
-</td>
-<td headers="SE..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-14,097
-</td>
-<td headers="LL..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-93,229
-</td>
-<td headers="UL..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-149,142
-</td>
-<td headers="Percent" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-11.4
-</td>
-<td headers="SE" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-1.3
-</td>
-<td headers="LL" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-8.9
-</td>
-<td headers="UL" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-14.2
-</td>
-</tr>
-<tr style="border-style: none;">
-<td headers="Level" class="gt_row gt_left gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: left;" valign="middle" bgcolor="#F4F4F4" align="left">
-15-24 years
-</td>
-<td headers="n" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-542
-</td>
-<td headers="Number..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-64,856
-</td>
-<td headers="SE..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-7,018
-</td>
-<td headers="LL..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-52,387
-</td>
-<td headers="UL..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-80,292
-</td>
-<td headers="Percent" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-6.3
-</td>
-<td headers="SE" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-0.6
-</td>
-<td headers="LL" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-5.1
-</td>
-<td headers="UL" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-7.5
-</td>
-</tr>
-<tr style="border-style: none;">
-<td headers="Level" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-25-44 years
-</td>
-<td headers="n" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-1,435
-</td>
-<td headers="Number..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-170,271
-</td>
-<td headers="SE..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-13,966
-</td>
-<td headers="LL..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-144,925
-</td>
-<td headers="UL..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-200,049
-</td>
-<td headers="Percent" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-16.4
-</td>
-<td headers="SE" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-1.1
-</td>
-<td headers="LL" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-14.3
-</td>
-<td headers="UL" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-18.8
-</td>
-</tr>
-<tr style="border-style: none;">
-<td headers="Level" class="gt_row gt_left gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: left;" valign="middle" bgcolor="#F4F4F4" align="left">
-45-64 years
-</td>
-<td headers="n" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-2,283
-</td>
-<td headers="Number..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-309,506
-</td>
-<td headers="SE..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-23,290
-</td>
-<td headers="LL..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-266,994
-</td>
-<td headers="UL..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-358,787
-</td>
-<td headers="Percent" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-29.9
-</td>
-<td headers="SE" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-1.4
-</td>
-<td headers="LL" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-27.2
-</td>
-<td headers="UL" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-32.6
-</td>
-</tr>
-<tr style="border-style: none;">
-<td headers="Level" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-65-74 years
-</td>
-<td headers="n" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-1,661
-</td>
-<td headers="Number..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-206,866
-</td>
-<td headers="SE..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-14,366
-</td>
-<td headers="LL..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-180,481
-</td>
-<td headers="UL..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-237,109
-</td>
-<td headers="Percent" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-20.0
-</td>
-<td headers="SE" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-1.2
-</td>
-<td headers="LL" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-17.6
-</td>
-<td headers="UL" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-22.5
-</td>
-</tr>
-<tr style="border-style: none;">
-<td headers="Level" class="gt_row gt_left gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: left;" valign="middle" bgcolor="#F4F4F4" align="left">
-75 years and over
-</td>
-<td headers="n" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-1,442
-</td>
-<td headers="Number..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-167,069
-</td>
-<td headers="SE..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-15,179
-</td>
-<td headers="LL..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-139,746
-</td>
-<td headers="UL..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-199,735
-</td>
-<td headers="Percent" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-16.1
-</td>
-<td headers="SE" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-1.3
-</td>
-<td headers="LL" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-13.7
-</td>
-<td headers="UL" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-18.8
-</td>
-</tr>
-</tbody>
-<tfoot class="gt_footnotes" style="border-style: none; color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF"><tr style="border-style: none;">
-<td class="gt_footnote" colspan="10" style="border-style: none; margin: 0px; font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px;">
-N = 8250.
-</td>
-</tr></tfoot>
-</table>
-</div>
-<p>Open this CSV file in Excel or your favorite text editor or
-spreadsheet.</p>
-</div>
-<div class="section level3">
-<h3 id="save-to-an-r-data-file">Save to an R data file<a class="anchor" aria-label="anchor" href="#save-to-an-r-data-file"></a>
-</h3>
-<p>Use the built-in <code><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS()</a></code> function to save a table to
-an R data file:</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="st">"myfile.rds"</span><span class="op">)</span></span></code></pre></div>
-<p>You can later load this data file back into R. To print the table,
-just load the file, like so:</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="st">"myfile.rds"</span><span class="op">)</span></span></code></pre></div>
-<div id="amrewkadgw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
-<thead style="border-style: none;">
-<tr class="gt_heading" style="border-style: none; background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF" align="center">
-<td colspan="10" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="border-style: none; color: #333333; font-size: 125%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; background-color: #FFFFFF; text-align: center; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; font-weight: normal;" bgcolor="#FFFFFF" align="center">
-Patient age recode {NAMCS 2019 PUF}
-</td>
-</tr>
-<tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Level" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left;" bgcolor="#FFFFFF" valign="bottom" align="left">
-Level
-</th>
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
-n
-</th>
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Number..000." style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
-Number (000)
-</th>
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE..000." style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
-SE (000)
-</th>
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="LL..000." style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
-LL (000)
-</th>
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="UL..000." style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
-UL (000)
-</th>
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Percent" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
-Percent
-</th>
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
-SE
-</th>
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="LL" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
-LL
-</th>
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="UL" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right">
-UL
-</th>
-</tr>
-</thead>
-<tbody class="gt_table_body" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA;">
-<tr style="border-style: none;">
-<td headers="Level" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-Under 15 years
-</td>
-<td headers="n" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-887
-</td>
-<td headers="Number..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-117,917
-</td>
-<td headers="SE..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-14,097
-</td>
-<td headers="LL..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-93,229
-</td>
-<td headers="UL..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-149,142
-</td>
-<td headers="Percent" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-11.4
-</td>
-<td headers="SE" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-1.3
-</td>
-<td headers="LL" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-8.9
-</td>
-<td headers="UL" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-14.2
-</td>
-</tr>
-<tr style="border-style: none;">
-<td headers="Level" class="gt_row gt_left gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: left;" valign="middle" bgcolor="#F4F4F4" align="left">
-15-24 years
-</td>
-<td headers="n" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-542
-</td>
-<td headers="Number..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-64,856
-</td>
-<td headers="SE..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-7,018
-</td>
-<td headers="LL..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-52,387
-</td>
-<td headers="UL..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-80,292
-</td>
-<td headers="Percent" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-6.3
-</td>
-<td headers="SE" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-0.6
-</td>
-<td headers="LL" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-5.1
-</td>
-<td headers="UL" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-7.5
-</td>
-</tr>
-<tr style="border-style: none;">
-<td headers="Level" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-25-44 years
-</td>
-<td headers="n" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-1,435
-</td>
-<td headers="Number..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-170,271
-</td>
-<td headers="SE..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-13,966
-</td>
-<td headers="LL..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-144,925
-</td>
-<td headers="UL..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-200,049
-</td>
-<td headers="Percent" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-16.4
-</td>
-<td headers="SE" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-1.1
-</td>
-<td headers="LL" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-14.3
-</td>
-<td headers="UL" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-18.8
-</td>
-</tr>
-<tr style="border-style: none;">
-<td headers="Level" class="gt_row gt_left gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: left;" valign="middle" bgcolor="#F4F4F4" align="left">
-45-64 years
-</td>
-<td headers="n" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-2,283
-</td>
-<td headers="Number..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-309,506
-</td>
-<td headers="SE..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-23,290
-</td>
-<td headers="LL..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-266,994
-</td>
-<td headers="UL..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-358,787
-</td>
-<td headers="Percent" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-29.9
-</td>
-<td headers="SE" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-1.4
-</td>
-<td headers="LL" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-27.2
-</td>
-<td headers="UL" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-32.6
-</td>
-</tr>
-<tr style="border-style: none;">
-<td headers="Level" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">
-65-74 years
-</td>
-<td headers="n" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-1,661
-</td>
-<td headers="Number..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-206,866
-</td>
-<td headers="SE..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-14,366
-</td>
-<td headers="LL..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-180,481
-</td>
-<td headers="UL..000." class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-237,109
-</td>
-<td headers="Percent" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-20.0
-</td>
-<td headers="SE" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-1.2
-</td>
-<td headers="LL" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-17.6
-</td>
-<td headers="UL" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">
-22.5
-</td>
-</tr>
-<tr style="border-style: none;">
-<td headers="Level" class="gt_row gt_left gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: left;" valign="middle" bgcolor="#F4F4F4" align="left">
-75 years and over
-</td>
-<td headers="n" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-1,442
-</td>
-<td headers="Number..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-167,069
-</td>
-<td headers="SE..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-15,179
-</td>
-<td headers="LL..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-139,746
-</td>
-<td headers="UL..000." class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-199,735
-</td>
-<td headers="Percent" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-16.1
-</td>
-<td headers="SE" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-1.3
-</td>
-<td headers="LL" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-13.7
-</td>
-<td headers="UL" class="gt_row gt_right gt_striped" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; background-color: #F4F4F4; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" bgcolor="#F4F4F4" align="right">
-18.8
-</td>
-</tr>
-</tbody>
-<tfoot class="gt_footnotes" style="border-style: none; color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF"><tr style="border-style: none;">
-<td class="gt_footnote" colspan="10" style="border-style: none; margin: 0px; font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px;">
-N = 8250.
-</td>
-</tr></tfoot>
-</table>
-</div>
-</div>
-</div>
-<div class="section level2">
-<h2 id="suppress-printing">Suppress printing<a class="anchor" aria-label="anchor" href="#suppress-printing"></a>
-</h2>
-<p>There are times when you might want to prevent the tabulation
-functions from printing tables. If you are saving the tables to a CSV
-file anyway, you might not need screen printing.</p>
-<p>As mentioned above, if the tabulation functions are called from
-within a loop without using the <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> command, they won’t
-print.</p>
-<p>An easy way to suppress printing when the tabulation functions are
-called from the top level is to assign the output to some variable. For
-example, this will save the table to a CSV file, but won’t print it to
-the screen:</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tmp</span> <span class="op">=</span> <span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span>, csv <span class="op">=</span> <span class="st">"myfile.csv"</span><span class="op">)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
