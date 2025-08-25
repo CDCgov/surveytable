@@ -1,6 +1,6 @@
 Package: surveytable
 Title: Streamlining Complex Survey Estimation and Reliability Assessment in R
-Version: 0.9.9
+Version: 0.9.9.9000
 Authors@R: 
     person(given = "Alex"
         , family = "Strashny"
