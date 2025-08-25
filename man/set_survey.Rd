@@ -31,6 +31,7 @@ set_survey(namcs2019sv, mode = "general")
 }
 \seealso{
 Other options: 
+\code{\link{set_opts}()},
 \code{\link{show_options}()},
 \code{\link{surveytable-options}}
 }

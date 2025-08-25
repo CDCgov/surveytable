@@ -103,4 +103,10 @@ set_opts(count = "int")
 
 show_opts()
 }
-\concept{options, print}
+\seealso{
+Other options: 
+\code{\link{set_survey}()},
+\code{\link{show_options}()},
+\code{\link{surveytable-options}}
+}
+\concept{options}

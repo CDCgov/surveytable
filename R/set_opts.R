@@ -54,7 +54,7 @@
 #' Used to avoid printing huge tables.
 #'
 #' @return (Nothing.)
-#' @family options, print
+#' @family options
 #' @export
 #'
 #' @examples

@@ -124,6 +124,7 @@ Useful links:
 
 
 Other options: 
+\code{\link{set_opts}()},
 \code{\link{set_survey}()},
 \code{\link{show_options}()}
 }

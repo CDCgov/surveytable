@@ -134,14 +134,14 @@
 
   version = packageVersion("surveytable")
   xx = openxlsx2::wb_dims(from_row = 5, from_col = 1)
-  wb$add_data(x = glue("Data analyses were performed using the statistical package "
-                       , "\u201Csurveytable\u201D version {version} for R.")
+  wb$add_data(x = glue("Data analyses were performed using the R package "
+                       , "\u201Csurveytable\u201D (version {version}).")
               , dims = xx, col_names = FALSE)
 
   xx = openxlsx2::wb_dims(from_row = 6, from_col = 1)
   wb$add_data(x = (
     openxlsx2::fmt_txt("Strashny A (2023). ")
-    + openxlsx2::fmt_txt("surveytable: Formatted Survey Estimates", italic = TRUE)
+    + openxlsx2::fmt_txt("surveytable: Streamlining Complex Survey Estimation and Reliability Assessment in R", italic = TRUE)
     + openxlsx2::fmt_txt(
       glue(". doi:10.32614/CRAN.package.surveytable, R package version {version}, <https://cdcgov.github.io/surveytable/>.")) )
     , dims = xx, col_names = FALSE)
