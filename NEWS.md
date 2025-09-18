@@ -1,5 +1,7 @@
 # surveytable (development version)
 
+* Resolved issues affecting printing.
+
 # surveytable 0.9.9
 
 * `set_opts(output = "raw")`: unformatted / raw output. This is useful for getting lots of significant digits.

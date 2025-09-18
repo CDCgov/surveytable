@@ -15,6 +15,8 @@
   t1 = .get_title(obj[[1]])
   title = if (len == 1) {
     t1
+  } else if (len == 2) {
+    glue("{t1} and {len-1} other table")
   } else {
     glue("{t1} and {len-1} other tables")
   }
@@ -24,6 +26,10 @@
   for (jj in 1:len) {
     df1 = obj[[jj]]
     assert_that(inherits(df1, "surveytable_table"))
+    ##
+    ## Functions below might use as.data.frame() if the argument is not a data.frame,
+    ## which creates unique column names, which is not what we want.
+    class(df1) = "data.frame"
 
     if (!is.null(txt <- attr(df1, "title"))) {
       write.table(txt, file = file

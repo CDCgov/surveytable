@@ -18,6 +18,11 @@
   assert_that(dest %in% c("html", "latex"))
 
   ##
+  ## Functions below might use as.data.frame() if the argument is not a data.frame,
+  ## which creates unique column names, which is not what we want.
+  class(df1) = "data.frame"
+
+  ##
   if (dest == "html") {
     hh = df1 %>% kableExtra::kbl(format = "html"
                                  , caption = attr(df1, "title")

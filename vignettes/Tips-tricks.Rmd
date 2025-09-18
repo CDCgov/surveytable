@@ -28,21 +28,6 @@ set_survey(namcs2019sv)
 tab_subset("AGER", "SPECCAT", test = "65-74 years")
 ```
 
-# Citing this package
-
-If you use `surveytable` in your research, please include the following statement in the Methods section of your article or report:
-
-```{r, echo=FALSE}
-version = packageVersion("surveytable")
-```
-
-> Data analyses were performed using the R package "surveytable" (version `r version`).
-
-Please cite this package as follows:
-
-> Strashny A (2023). _surveytable: Streamlining Complex Survey Estimation and Reliability Assessment in R_. doi:10.32614/CRAN.package.surveytable, R package version `r version`, <https://cdcgov.github.io/surveytable/>.
-
-
 # Reset the options
 
 Depending on your coding style, you might be changing options in multiple locations in your code. In these situations, `set_opts(reset = TRUE)` might be useful. This command resets all `surveytable` options to their default values. 

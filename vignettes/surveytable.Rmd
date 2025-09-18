@@ -465,3 +465,17 @@ set_opts(output = "auto")
 ```
 
 For details on the many ways to print and / or save tables, see `vignette("Printing-HTML")`.
+
+# Cite this package
+
+If you use `surveytable` in your research, please include the following statement in the Methods section of your article or report:
+
+```{r, echo=FALSE}
+version = packageVersion("surveytable")
+```
+
+> Data analyses were performed using the R package "surveytable" (version `r version`).
+
+Please cite this package as follows:
+
+> Strashny A (2023). _surveytable: Streamlining Complex Survey Estimation and Reliability Assessment in R_. doi:10.32614/CRAN.package.surveytable, R package version `r version`, <https://cdcgov.github.io/surveytable/>.

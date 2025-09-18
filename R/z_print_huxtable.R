@@ -18,6 +18,11 @@
   assert_that(dest %in% c("", "html"))
 
   ##
+  ## Functions below might use as.data.frame() if the argument is not a data.frame,
+  ## which creates unique column names, which is not what we want.
+  class(df1) = "data.frame"
+
+  ##
   hh = huxtable::set_all_borders( huxtable::hux(df1) )
   if (!is.null(txt <- attr(df1, "title"))) {
     huxtable::caption(hh) = txt

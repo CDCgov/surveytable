@@ -18,6 +18,11 @@
   assert_that(dest %in% c("", "html"))
 
   ##
+  ## Functions below might use as.data.frame() if the argument is not a data.frame,
+  ## which creates unique column names, which is not what we want.
+  class(df1) = "data.frame"
+
+  ##
   ## Non-unique names fix
   nn0 = names(df1)
   nn1 = nn0 %>% make.names(unique = TRUE)
