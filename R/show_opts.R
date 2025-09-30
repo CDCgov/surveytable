@@ -23,9 +23,12 @@ show_opts = function() {
          , ".print_huxtable" = "* Printing with huxtable."
          , ".print_gt" = "* Printing with gt."
          , ".print_kableextra" = "* Printing with kableExtra."
+         , ".print_flextable" = "* Printing with flextable."
          , ".print_auto" = "* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF."
          , ".print_raw" = "* Generating unformatted / raw output."
          , ".print_excel" = glue("* Printing to Excel workbook {getOption('surveytable.file_show')}.")
+         , ".print_excel_v1" = glue("* Printing to Excel workbook {getOption('surveytable.file_show')}.")
+         , ".print_word" = glue("* Printing to Word document {getOption('surveytable.file_show')}.")
          , ".print_csv" = glue("* Printing to CSV file {getOption('surveytable.file_show')}.")
          , glue("* Printing with a custom function: {xx}")) %>% message
 

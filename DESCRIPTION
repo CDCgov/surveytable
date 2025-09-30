@@ -36,6 +36,8 @@ Suggests:
     kableExtra,
     openxlsx2, 
     mschart, 
+    flextable,
+    officer,
     knitr, 
     rmarkdown
 VignetteBuilder: knitr
