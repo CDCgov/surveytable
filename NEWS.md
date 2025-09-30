@@ -1,4 +1,4 @@
-# surveytable (development version)
+# surveytable 0.9.10
 
 * Resolved issues affecting printing.
 
