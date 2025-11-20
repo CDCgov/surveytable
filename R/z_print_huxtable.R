@@ -17,7 +17,6 @@
               , msg = "Have not implemented LaTeX printing with huxtable yet. Try set_opts(output = 'kableExtra')")
   assert_that(dest %in% c("", "html"))
 
-  ##
   ## Functions below might use as.data.frame() if the argument is not a data.frame,
   ## which creates unique column names, which is not what we want.
   class(df1) = "data.frame"

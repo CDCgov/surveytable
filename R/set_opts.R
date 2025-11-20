@@ -29,12 +29,15 @@
 #'
 #' * `"auto"` (default): automatically select the table-making package, depending on the
 #' destination (such as screen, HTML, or PDF / LaTeX).
-#' * `"huxtable"`, `"gt"`, or `"kableExtra"`: use this table-making package. Be sure
+#' * `"huxtable"`, `"gt"`, `"kableExtra"`, `"flextable"`: use this table-making package. Be sure
 #' that this package is installed.
 #' * `"raw"`: unformatted / raw output. This is useful for getting lots of significant digits.
-#' * `"Excel"`: print to an Excel workbook. Please specify the name of an Excel file using
-#' the `file` argument. Before using Excel printing, please be sure to install these
+#' * `"Excel"`, `"Excel_v1"`: print to an Excel workbook. Please specify the name of an Excel
+#' file using the `file` argument. Before using Excel printing, please be sure to install these
 #' packages: `openxlsx2` and `mschart`.
+#' * `"Word"`: print to a Word document. Please specify the name of a Word
+#' file using the `file` argument. Before using Word printing, please be sure to install these
+#' packages: `flextable` and `officer`.
 #' * `"CSV"`: print to a comma-separated values (CSV) file. Please specify the name of a
 #' CSV file using the `file` argument.
 #'
@@ -42,9 +45,9 @@
 #' @param mode `"general"` or `"NCHS"`. See below for details.
 #' @param adj adjustment to the Korn and Graubard confidence intervals for proportions. See
 #' `svyciprop_adjusted()` for details.
-#' @param output specify how the output is printed: `"auto"` (default); `"huxtable"`, `"gt"`, or
-#' `"kableExtra"`; `"raw"`; `"Excel"` or `"CSV"`. If `output` is `"Excel"` or `"CSV"`, must also specify
-#' `file`. If `output` is `"Excel"`, be sure to install `openxlsx2` and `mschart`.
+#' @param output specify how the output is printed: `"auto"` (default); `"huxtable"`, `"gt"`,
+#' `"kableExtra"`, `"flextable"`; `"raw"`. For the following output types, please
+#' also specify the `file` argument: `"Excel"`, `"Excel_v1"`, `"Word"`, `"CSV"`.
 #' @param file file name (see `output`).
 #' @param .file_temp place `file` in a temporary folder?
 #' @param count round counts to the nearest integer (`"int"`) or one thousand (`"1k"`).
@@ -122,15 +125,15 @@ set_opts = function(
   }
 
   if (!is.null(output)) {
-    if (getOption("surveytable.print") == ".print_excel") .print_excel_finish()
-
-    output %<>% .mymatch(c("huxtable", "gt", "kableExtra", "auto", "raw", "excel", "csv"))
+    output %<>% .mymatch(c("huxtable", "gt", "kableExtra", "flextable"
+                           , "auto", "raw"
+                           , "excel", "excel_v1", "word", "csv"))
     if (output == "auto") {
       message("* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF.")
       options(surveytable.raw = FALSE
               , surveytable.print = ".print_auto"
               , surveytable.file = "", surveytable.file_show = "")
-    } else if (output %in% c("huxtable", "gt", "kableExtra") ) {
+    } else if (output %in% c("huxtable", "gt", "kableExtra", "flextable") ) {
       message(glue("* Printing with {output}."))
       options(surveytable.raw = FALSE
               , surveytable.print = glue(".print_{output}")
@@ -140,7 +143,7 @@ set_opts = function(
       options(surveytable.raw = TRUE
               , surveytable.print = ".print_raw"
               , surveytable.file = "", surveytable.file_show = "")
-    } else if (output %in% c("excel", "csv")) {
+    } else if (output %in% c("excel", "excel_v1", "word", "csv")) {
       .set_output_file(output = output, file = file, .file_temp = .file_temp)
     }
   }
@@ -193,12 +196,16 @@ set_opts = function(
 }
 
 .set_output_file = function(output, file, .file_temp) {
-  assert_that(output %in% c("excel", "csv"))
+  assert_that(output %in% c("excel", "excel_v1", "word", "csv"))
   type = switch(output
                 , excel = "Excel"
+                , excel_v1 = "Excel"
+                , word = "Word"
                 , csv = "CSV")
   extension = switch(output
                      , excel = ".xlsx"
+                     , excel_v1 = ".xlsx"
+                     , word = ".docx"
                      , csv = ".csv")
   assert_that(is.string(file), nzchar(file)
               , msg = glue("For {type} printing, please specify a file name using the file argument."))
@@ -220,4 +227,3 @@ set_opts = function(
           , surveytable.print = glue(".print_{output}")
           , surveytable.file = file, surveytable.file_show = file_show)
 }
-
