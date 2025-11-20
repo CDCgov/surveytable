@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Printing (HTML) • surveytable</title>
+<title>Printing • surveytable</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Printing (HTML)">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Printing">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">surveytable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.10</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.10.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Advanced</h6></li>
     <li><a class="dropdown-item" href="../articles/Tips-tricks.html">Tips and tricks</a></li>
-    <li><a class="dropdown-item" href="../articles/Printing-HTML.html">Printing (HTML)</a></li>
+    <li><a class="dropdown-item" href="../articles/Printing.html">Printing</a></li>
     <li><a class="dropdown-item" href="../articles/Printing-PDF.pdf">Printing (PDF) (PDF)</a></li>
   </ul>
 </li>
@@ -64,11 +64,11 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Printing (HTML)</h1>
+      <h1>Printing</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/CDCgov/surveytable/blob/HEAD/vignettes/Printing-HTML.Rmd" class="external-link"><code>vignettes/Printing-HTML.Rmd</code></a></small>
-      <div class="d-none name"><code>Printing-HTML.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/CDCgov/surveytable/blob/HEAD/vignettes/Printing.Rmd" class="external-link"><code>vignettes/Printing.Rmd</code></a></small>
+      <div class="d-none name"><code>Printing.Rmd</code></div>
     </div>
 
     
@@ -2543,6 +2543,12 @@ N = 8250.
 </table>
 </div>
 </div>
+<div class="section level3">
+<h3 id="other-packages">Other packages<a class="anchor" aria-label="anchor" href="#other-packages"></a>
+</h3>
+<p>To use the <code>flextable</code> table-making package, type
+<code>set_opts(output = "flextable")</code>.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="generate-unformatted-output">Generate unformatted output<a class="anchor" aria-label="anchor" href="#generate-unformatted-output"></a>
@@ -2585,10 +2591,23 @@ tables.</p>
 <h3 id="save-tables-and-charts-to-an-excel-workbook">Save tables and charts to an Excel workbook<a class="anchor" aria-label="anchor" href="#save-tables-and-charts-to-an-excel-workbook"></a>
 </h3>
 <p>Before using Excel printing, please be sure to install these
-packages: <code>openxlsx2</code> and <code>mschart</code>.</p>
-<p>To save tables and charts to an Excel file, turn on Excel printing
-with <code>set_opts( output = "Excel", file = "my_workbook" )</code>.
-Set the <code>file</code> argument to the name of an Excel file.</p>
+packages:</p>
+<ul>
+<li>
+<code>openxlsx2</code> for <code>output = "Excel"</code>
+</li>
+<li>
+<code>openxlsx2</code> and <code>mschart</code> for
+<code>output = "Excel_v1"</code>
+</li>
+</ul>
+<p>To save tables and charts to an Excel workbook, turn on Excel
+printing with
+<code>set_opts( output = "Excel", file = "my_workbook" )</code> or
+<code>set_opts( output = "Excel_v1", file = "my_workbook" )</code>. Set
+the <code>file</code> argument to the name of an Excel file. You
+<strong>can</strong> specify an existing file, in which case the new
+tables will be appended to it.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"excel"</span>, file <span class="op">=</span> <span class="st">"my_workbook"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; * Printing to Excel file my_workbook.xlsx.</span></span></code></pre>
@@ -2609,7 +2628,9 @@ value other than <code>"Excel"</code>, such as <code>"auto"</code>:</p>
 </h3>
 <p>To save tables to a CSV file, turn on CSV printing with
 <code>set_opts( output = "CSV", file = "my_output" )</code>. Set the
-<code>file</code> argument to the name of a CSV file.</p>
+<code>file</code> argument to the name of a CSV file. You
+<strong>can</strong> specify an existing file, in which case the new
+tables will be appended to it.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"csv"</span>, file <span class="op">=</span> <span class="st">"my_output"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; * Printing to CSV file my_output.csv.</span></span></code></pre>
@@ -2626,15 +2647,40 @@ value other than <code>"CSV"</code>, such as <code>"auto"</code>:</p>
 <span><span class="co">#&gt; * Printing with huxtable for screen, gt for HTML, or kableExtra for PDF.</span></span></code></pre></div>
 </div>
 <div class="section level3">
+<h3 id="save-to-a-word-document">Save to a Word document<a class="anchor" aria-label="anchor" href="#save-to-a-word-document"></a>
+</h3>
+<p>Before using Word printing, please be sure to install these packages:
+<code>flextable</code> and <code>officer</code>.</p>
+<p>To save tables to a Word document, turn on Word printing with
+<code>set_opts( output = "Word", file = "my_document" )</code>. Set the
+<code>file</code> argument to the name of a Word document. You
+<strong>can</strong> specify an existing file, in which case the new
+tables will be appended to it.</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"word"</span>, file <span class="op">=</span> <span class="st">"my_document"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; * Printing to Word file my_document.docx.</span></span></code></pre>
+<p>Generate some tables:</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/total.html">total</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; * Printing Total {NAMCS 2019 PUF} to Word document my_document.docx.</span></span>
+<span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; * Printing Patient age recode {NAMCS 2019 PUF} to Word document my_document.docx.</span></span></code></pre></div>
+<p>To turn off Word printing, set the <code>output</code> argument to a
+value other than <code>"Word"</code>, such as <code>"auto"</code>:</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"auto"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; * Printing with huxtable for screen, gt for HTML, or kableExtra for PDF.</span></span></code></pre></div>
+</div>
+<div class="section level3">
 <h3 id="save-to-an-r-data-file">Save to an R data file<a class="anchor" aria-label="anchor" href="#save-to-an-r-data-file"></a>
 </h3>
 <p>Use the built-in <code><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS()</a></code> function to save a table to
 an R data file:</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="st">"myfile.rds"</span><span class="op">)</span></span></code></pre></div>
 <p>You can later load this data file back into R. To print the table,
 just load the file, like so:</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="st">"myfile.rds"</span><span class="op">)</span></span></code></pre></div>
 <div id="vijbfglzvn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
@@ -2901,7 +2947,7 @@ attributes set; or</li>
 </ul>
 <p>You can convert a single table to a <code>data.frame</code> with
 <code><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame()</a></code>, like so:</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;               Level    n    Number       SE        LL        UL Percent SE.1</span></span>
 <span><span class="co">#&gt; 1    Under 15 years  887 117916772 14097315  93228928 149142177    11.4  1.3</span></span>
@@ -2923,7 +2969,7 @@ names, which improves its usability.</p>
 favorite table-making package. This example passes a table to
 <code>gt</code>. To ensure unique column names, pass the table through
 <code><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame()</a></code> first.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="egslqeqmfa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#egslqeqmfa table {

@@ -11,7 +11,8 @@
 
   ##
   hh = df1 %>% .print_flextable_1()
-  flextable:::print.flextable(hh, ...)
+  fn = utils::getFromNamespace("print.flextable", "flextable")
+  fn(hh, ...)
 }
 
 .print_flextable_1 = function(df1, ...) {

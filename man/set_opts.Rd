@@ -28,9 +28,9 @@ show_opts()
 \item{adj}{adjustment to the Korn and Graubard confidence intervals for proportions. See
 \code{svyciprop_adjusted()} for details.}
 
-\item{output}{specify how the output is printed: \code{"auto"} (default); \code{"huxtable"}, \code{"gt"}, or
-\code{"kableExtra"}; \code{"raw"}; \code{"Excel"} or \code{"CSV"}. If \code{output} is \code{"Excel"} or \code{"CSV"}, must also specify
-\code{file}. If \code{output} is \code{"Excel"}, be sure to install \code{openxlsx2} and \code{mschart}.}
+\item{output}{specify how the output is printed: \code{"auto"} (default); \code{"huxtable"}, \code{"gt"},
+\code{"kableExtra"}, \code{"flextable"}; \code{"raw"}. For the following output types, please
+also specify the \code{file} argument: \code{"Excel"}, \code{"Excel_v1"}, \code{"Word"}, \code{"CSV"}.}
 
 \item{file}{file name (see \code{output}).}
 
@@ -83,12 +83,15 @@ proportions. See \code{svyciprop_adjusted()} for details.
 \itemize{
 \item \code{"auto"} (default): automatically select the table-making package, depending on the
 destination (such as screen, HTML, or PDF / LaTeX).
-\item \code{"huxtable"}, \code{"gt"}, or \code{"kableExtra"}: use this table-making package. Be sure
+\item \code{"huxtable"}, \code{"gt"}, \code{"kableExtra"}, \code{"flextable"}: use this table-making package. Be sure
 that this package is installed.
 \item \code{"raw"}: unformatted / raw output. This is useful for getting lots of significant digits.
-\item \code{"Excel"}: print to an Excel workbook. Please specify the name of an Excel file using
-the \code{file} argument. Before using Excel printing, please be sure to install these
+\item \code{"Excel"}, \code{"Excel_v1"}: print to an Excel workbook. Please specify the name of an Excel
+file using the \code{file} argument. Before using Excel printing, please be sure to install these
 packages: \code{openxlsx2} and \code{mschart}.
+\item \code{"Word"}: print to a Word document. Please specify the name of a Word
+file using the \code{file} argument. Before using Word printing, please be sure to install these
+packages: \code{flextable} and \code{officer}.
 \item \code{"CSV"}: print to a comma-separated values (CSV) file. Please specify the name of a
 CSV file using the \code{file} argument.
 }

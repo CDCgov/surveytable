@@ -66,5 +66,6 @@
   }
 
   ##
-  officer:::print.rdocx(doc, target = file)
+  fn = utils::getFromNamespace("print.rdocx", "officer")
+  fn(doc, target = file, ...)
 }

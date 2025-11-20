@@ -13,7 +13,7 @@ for further information)."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">surveytable</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.10</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.10.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,7 @@ for further information)."></head><body>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Advanced</h6></li>
     <li><a class="dropdown-item" href="../articles/Tips-tricks.html">Tips and tricks</a></li>
-    <li><a class="dropdown-item" href="../articles/Printing-HTML.html">Printing (HTML)</a></li>
+    <li><a class="dropdown-item" href="../articles/Printing.html">Printing</a></li>
     <li><a class="dropdown-item" href="../articles/Printing-PDF.pdf">Printing (PDF) (PDF)</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -94,9 +94,9 @@ for further information).</p>
 
 
 <dt id="arg-output">output<a class="anchor" aria-label="anchor" href="#arg-output"></a></dt>
-<dd><p>specify how the output is printed: <code>"auto"</code> (default); <code>"huxtable"</code>, <code>"gt"</code>, or
-<code>"kableExtra"</code>; <code>"raw"</code>; <code>"Excel"</code> or <code>"CSV"</code>. If <code>output</code> is <code>"Excel"</code> or <code>"CSV"</code>, must also specify
-<code>file</code>. If <code>output</code> is <code>"Excel"</code>, be sure to install <code>openxlsx2</code> and <code>mschart</code>.</p></dd>
+<dd><p>specify how the output is printed: <code>"auto"</code> (default); <code>"huxtable"</code>, <code>"gt"</code>,
+<code>"kableExtra"</code>, <code>"flextable"</code>; <code>"raw"</code>. For the following output types, please
+also specify the <code>file</code> argument: <code>"Excel"</code>, <code>"Excel_v1"</code>, <code>"Word"</code>, <code>"CSV"</code>.</p></dd>
 
 
 <dt id="arg-file">file<a class="anchor" aria-label="anchor" href="#arg-file"></a></dt>
@@ -146,12 +146,15 @@ data systems, such as NHIS, you might need to set <code>adj</code> to one of the
 proportions. See <code><a href="svyciprop_adjusted.html">svyciprop_adjusted()</a></code> for details.</p>
 <p><code>output</code> determines how the output is printed:</p><ul><li><p><code>"auto"</code> (default): automatically select the table-making package, depending on the
 destination (such as screen, HTML, or PDF / LaTeX).</p></li>
-<li><p><code>"huxtable"</code>, <code>"gt"</code>, or <code>"kableExtra"</code>: use this table-making package. Be sure
+<li><p><code>"huxtable"</code>, <code>"gt"</code>, <code>"kableExtra"</code>, <code>"flextable"</code>: use this table-making package. Be sure
 that this package is installed.</p></li>
 <li><p><code>"raw"</code>: unformatted / raw output. This is useful for getting lots of significant digits.</p></li>
-<li><p><code>"Excel"</code>: print to an Excel workbook. Please specify the name of an Excel file using
-the <code>file</code> argument. Before using Excel printing, please be sure to install these
+<li><p><code>"Excel"</code>, <code>"Excel_v1"</code>: print to an Excel workbook. Please specify the name of an Excel
+file using the <code>file</code> argument. Before using Excel printing, please be sure to install these
 packages: <code>openxlsx2</code> and <code>mschart</code>.</p></li>
+<li><p><code>"Word"</code>: print to a Word document. Please specify the name of a Word
+file using the <code>file</code> argument. Before using Word printing, please be sure to install these
+packages: <code>flextable</code> and <code>officer</code>.</p></li>
 <li><p><code>"CSV"</code>: print to a comma-separated values (CSV) file. Please specify the name of a
 CSV file using the <code>file</code> argument.</p></li>
 </ul></div>

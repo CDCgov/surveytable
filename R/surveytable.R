@@ -2,8 +2,8 @@
 #' @import magrittr
 #' @import glue
 #' @import survey
-#' @importFrom stats as.formula confint qt coef pt p.adjust qnorm
-#' @importFrom utils write.table tail capture.output packageVersion
+#' @importFrom stats as.formula confint qt coef pt p.adjust qnorm setNames
+#' @importFrom utils write.table tail capture.output packageVersion head
 #' @keywords internal
 "_PACKAGE"
 
