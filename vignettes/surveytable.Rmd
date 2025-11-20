@@ -464,7 +464,7 @@ To turn off CSV printing, just call:
 set_opts(output = "auto")
 ```
 
-For details on the many ways to print and / or save tables, see `vignette("Printing-HTML")`.
+To learn the many other ways to print, export, or save `surveytable` tables, see `vignette("Printing")`.
 
 # Cite this package
 

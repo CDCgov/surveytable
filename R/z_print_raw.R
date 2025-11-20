@@ -15,7 +15,6 @@
   assert_that(dest == ""
               , msg = "Have only implemented raw printing to the screen.")
 
-  ##
   ## Functions below might use as.data.frame() if the argument is not a data.frame,
   ## which creates unique column names, which is not what we want.
   class(df1) = "data.frame"

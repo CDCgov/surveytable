@@ -17,6 +17,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+This article is about PDF printing specifically. To learn the many other ways to print, export, or save `surveytable` tables, see `vignette("Printing")`.
+
 # Basic printing
 
 If a tabulation function is called from the top level, it should print out its table(s) on its own. 
@@ -129,124 +131,6 @@ tab("AGER")
 tab("AGER")
 ```
 
-# Generate unformatted output
+# More
 
-Some analysts might wish to compare the output from `surveytable` to the output from other statistical software, such as SAS / SUDAAN. In this situation, `set_opts(output = "raw")` might be useful. This command tells `surveytable` to print unformatted and unrounded tables.  
-
-```{r}
-set_opts(output = "raw")
-```
-```r
-tab("AGER")
-```
-```{r, echo=FALSE}
-print(tab("AGER"), destination = "")
-```
-```{r}
-set_opts(output = "auto")
-```
-
-# Save the tables
-
-## Save tables and charts to an Excel workbook
-
-Before using Excel printing, please be sure to install these packages: `openxlsx2` and `mschart`.
-
-To save tables and charts to an Excel file, turn on Excel printing with `set_opts( output = "Excel", file = "my_workbook" )`. Set the `file` argument to the name of an Excel file. 
-
-```r
-set_opts(output = "excel", file = "my_workbook")
-```
-
-```{r, echo=FALSE}
-set_opts(output = "excel", file = "my_workbook", .file_temp = TRUE)
-```
-
-Generate some tables:
-
-```{r}
-total()
-tab("AGER")
-```
-
-To turn off Excel printing, set the `output` argument to a value other than `"Excel"`, such as `"auto"`:
-
-```{r}
-set_opts(output = "auto")
-```
-
-## Save to a CSV file
-
-To save tables to a CSV file, turn on CSV printing with `set_opts( output = "CSV", file = "my_output" )`. Set the `file` argument to the name of a CSV file. 
-
-```r
-set_opts(output = "csv", file = "my_output")
-```
-
-```{r, echo=FALSE}
-set_opts(output = "csv", file = "my_output", .file_temp = TRUE)
-```
-
-Generate some tables:
-
-```{r}
-total()
-tab("AGER")
-```
-
-To turn off CSV printing, set the `output` argument to a value other than `"CSV"`, such as `"auto"`:
-
-```{r}
-set_opts(output = "auto")
-```
-
-## Save to an R data file
-
-Use the built-in `saveRDS()` function to save a table to an R data file:
-
-```r
-tab("AGER") |> saveRDS("myfile.rds")
-```
-
-You can later load this data file back into R. To print the table, just load the file, like so:
-
-```r
-readRDS("myfile.rds")
-```
-
-```{r, results='asis', echo=FALSE}
-tab("AGER")
-```
-
-
-# Advanced printing
-
-## The proper approach
-
-Advanced users can add functionality to use **any** table-making package that they want. For more information, see `help("surveytable-options")`.
-
-## The "quick-and-dirty" approach
-
-The tabulation functions return either:
-
-* for a single table, which is basically a data frame, with certain attributes set; or
-* for more than one table, a list of such tables.
-
-You can convert a single table to a `data.frame` with `as.data.frame()`, like so:
-
-```{r}
-tab("AGER") |> as.data.frame()
-```
-
-Note that this produces a `data.frame` with unique column names, which improves its usability.
-
-Alternatively, you can pass this `data.frame` to your favorite table-making package. This example passes a table to `gt`. To ensure unique column names, pass the table through `as.data.frame()` first.
-
-```{r}
-tab("AGER") |> as.data.frame() |> gt::gt()
-```
-
-The reason that this is the "quick-and-dirty" approach is that the output it creates is not as nice as conventional tables, described above. The output does not have table title (which has important information about the variable and the survey), table footer (which has important information about sample size and low-precision estimates), and it does not format the estimates. Nevertheless, there could be situations in which this approach is helpful, such as 
-
-* extracting an exact value from a table using `as.data.frame()`; or 
-* quickly using your favorite table-making package.
+To learn the many other ways to print, export, or save `surveytable` tables, see `vignette("Printing")`.

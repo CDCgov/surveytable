@@ -10,7 +10,8 @@
   }
 
   ##
-  df1 %>% .print_flextable_1 %>% print()
+  hh = df1 %>% .print_flextable_1()
+  flextable:::print.flextable(hh, ...)
 }
 
 .print_flextable_1 = function(df1, ...) {
@@ -18,7 +19,6 @@
   assert_package("print", "flextable")
   assert_that(inherits(df1, "surveytable_table"))
 
-  ##
   ## Functions below might use as.data.frame() if the argument is not a data.frame,
   ## which creates unique column names, which is not what we want.
   class(df1) = "data.frame"
@@ -32,7 +32,7 @@
   ##
   flextable::flextable(df1) %>%
     flextable::set_caption(caption = attr(df1, "title")) %>%
-    flextable::autofit() %>%
     flextable::add_footer_lines(values = attr(df1, "footer")) %>%
-    flextable::set_header_labels(values = label_map)
+    flextable::set_header_labels(values = label_map) %>%
+    flextable::autofit()
 }

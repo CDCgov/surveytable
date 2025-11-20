@@ -1,8 +1,8 @@
 ---
-title: "Printing (HTML)"
+title: "Printing"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Printing (HTML)}
+  %\VignetteIndexEntry{Printing}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
@@ -187,6 +187,10 @@ tab("AGER")
 tab("AGER")
 ```
 
+## Other packages
+
+To use the `flextable` table-making package, type `set_opts(output = "flextable")`.
+
 # Generate unformatted output
 
 Some analysts might wish to compare the output from `surveytable` to the output from other statistical software, such as SAS / SUDAAN. In this situation, `set_opts(output = "raw")` might be useful. This command tells `surveytable` to print unformatted and unrounded tables.  
@@ -208,9 +212,12 @@ set_opts(output = "auto")
 
 ## Save tables and charts to an Excel workbook
 
-Before using Excel printing, please be sure to install these packages: `openxlsx2` and `mschart`.
+Before using Excel printing, please be sure to install these packages:
 
-To save tables and charts to an Excel file, turn on Excel printing with `set_opts( output = "Excel", file = "my_workbook" )`. Set the `file` argument to the name of an Excel file. 
+* `openxlsx2` for `output = "Excel"`
+* `openxlsx2` and `mschart` for `output = "Excel_v1"`
+
+To save tables and charts to an Excel workbook, turn on Excel printing with `set_opts( output = "Excel", file = "my_workbook" )` or `set_opts( output = "Excel_v1", file = "my_workbook" )`. Set the `file` argument to the name of an Excel file. You **can** specify an existing file, in which case the new tables will be appended to it. 
 
 ```r
 set_opts(output = "excel", file = "my_workbook")
@@ -235,7 +242,7 @@ set_opts(output = "auto")
 
 ## Save to a CSV file
 
-To save tables to a CSV file, turn on CSV printing with `set_opts( output = "CSV", file = "my_output" )`. Set the `file` argument to the name of a CSV file. 
+To save tables to a CSV file, turn on CSV printing with `set_opts( output = "CSV", file = "my_output" )`. Set the `file` argument to the name of a CSV file. You **can** specify an existing file, in which case the new tables will be appended to it. 
 
 ```r
 set_opts(output = "csv", file = "my_output")
@@ -253,6 +260,33 @@ tab("AGER")
 ```
 
 To turn off CSV printing, set the `output` argument to a value other than `"CSV"`, such as `"auto"`:
+
+```{r}
+set_opts(output = "auto")
+```
+
+## Save to a Word document
+
+Before using Word printing, please be sure to install these packages: `flextable` and `officer`. 
+
+To save tables to a Word document, turn on Word printing with `set_opts( output = "Word", file = "my_document" )`. Set the `file` argument to the name of a Word document. You **can** specify an existing file, in which case the new tables will be appended to it. 
+
+```r
+set_opts(output = "word", file = "my_document")
+```
+
+```{r, echo=FALSE}
+set_opts(output = "word", file = "my_document", .file_temp = TRUE)
+```
+
+Generate some tables:
+
+```{r}
+total()
+tab("AGER")
+```
+
+To turn off Word printing, set the `output` argument to a value other than `"Word"`, such as `"auto"`:
 
 ```{r}
 set_opts(output = "auto")

@@ -125,9 +125,6 @@ set_opts = function(
   }
 
   if (!is.null(output)) {
-    if (getOption("surveytable.print") %>% startsWith(".print_excel")) .print_excel_finish()
-    if (getOption("surveytable.print") %>% startsWith(".print_word")) .print_word_finish()
-
     output %<>% .mymatch(c("huxtable", "gt", "kableExtra", "flextable"
                            , "auto", "raw"
                            , "excel", "excel_v1", "word", "csv"))

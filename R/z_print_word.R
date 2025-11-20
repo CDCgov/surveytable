@@ -1,4 +1,6 @@
-.print_word = function(obj, ...) {
+.print_word = function(obj, max_width = Inf, ...) {
+  assert_that(max_width >= 1)
+
   ##
   if (inherits(obj, "surveytable_table")) {
     obj = list( table1 = obj )
@@ -8,80 +10,61 @@
   ##
   assert_that(inherits(obj, "surveytable_list"), length(obj) >= 1)
   assert_package("print", "officer")
+  assert_package("print", "flextable")
   file = getOption("surveytable.file")
   assert_that(is.string(file), nzchar(file))
 
-
-  doc = officer::read_docx()
-
-  ## HERE
-
-  ##
-  ftl = list()
-  for (ii in 1:length(obj)) {
-    ftl[[ii]] = obj[[ii]] %>% .print_flextable_1()
-  }
-
-
-
-  ##
-  wb = if (file.exists(file)) {
-    wb = openxlsx2::wb_load(file)
-    wb$set_properties(
-      creator = "surveytable"
-      , keywords = "tables, charts, estimates, R, survey, surveytable"
-    )
-  } else {
-    openxlsx2::wb_workbook(
-      creator = "surveytable"
-      , title = .get_title(obj[[1]])
-      , theme = "Facet"
-      , keywords = "tables, charts, estimates, R, survey, surveytable"
-    )
-  }
-  counter = length(wb$sheet_names)
-
   ##
   len = length(obj)
-  t1 = .get_title(obj[[1]])
-  title = if (len == 1) {
-    t1
-  } else if (len == 2) {
-    glue("{t1} and {len-1} other table")
+  .say_printing(len = len, df1 = obj[[1]], output = "word")
+
+  ##
+  file_exists = file.exists(file)
+  doc = if (file_exists) {
+    officer::read_docx(path = file) %>% officer::set_doc_properties(
+      creator = "surveytable"
+      , description = "tables, charts, estimates, R, survey, surveytable"
+    )
   } else {
-    glue("{t1} and {len-1} other tables")
+    officer::read_docx() %>% officer::set_doc_properties(
+      creator = "surveytable"
+      , title = .get_title(obj[[1]])
+      , description = "tables, charts, estimates, R, survey, surveytable"
+    )
   }
-  message(glue("* Printing {title} to Excel workbook {getOption('surveytable.file_show')}."))
+  if (!file_exists) {
+    version = packageVersion("surveytable")
+
+    doc %<>% officer::body_add_fpar(value = officer::fpar(officer::ftext("Tables produced by the surveytable package", officer::fp_text_lite(bold = TRUE)))) %>%
+      officer::body_add_fpar(value = officer::fpar(officer::ftext( glue("Date: {Sys.time()}") ))) %>%
+      officer::body_add_fpar(value = officer::fpar(officer::ftext( "" ))) %>%
+      officer::body_add_fpar(value = officer::fpar(officer::ftext( "Please consider adding this or similar to your Methods section:" ))) %>%
+      officer::body_add_fpar(value = officer::fpar(officer::ftext( "" ))) %>%
+      officer::body_add_fpar(value = officer::fpar(officer::ftext( glue("Data analyses were performed using the R package "
+                                                                        , "\u201Csurveytable\u201D (version {version}).") ))) %>%
+      officer::body_add_fpar(value = officer::fpar(officer::ftext( "" ))) %>%
+      officer::body_add_fpar(value = officer::fpar(
+        officer::ftext("Strashny A (2023). ")
+        , officer::ftext("surveytable: Streamlining Complex Survey Estimation and Reliability Assessment in R", officer::fp_text_lite(italic = TRUE))
+        , officer::ftext(glue(". doi:10.32614/CRAN.package.surveytable, R package version {version}, <"))
+        , officer::hyperlink_ftext(text = "https://cdcgov.github.io/surveytable/", href = "https://cdcgov.github.io/surveytable/"
+                                   , prop = officer::fp_text_lite(underlined = TRUE, color = "blue"))
+        , officer::ftext(">.")
+      )) %>%
+      officer::body_add_fpar(value = officer::fpar(officer::ftext( "" ))) %>%
+      officer::body_add_fpar(value = officer::fpar(officer::ftext( "" )))
+  }
 
   ##
   for (jj in 1:len) {
-    counter = counter + 1
-    df1 = obj[[jj]]
-    assert_that(inherits(df1, "surveytable_table"))
-    df1 %<>% .fix_names()
-
-    ##
-    wb$add_worksheet(sheet = glue("Table {counter}"))
-    wb$add_data_table(x = df1)$set_col_widths(
-      cols = 1:ncol(df1), widths = 15)
-    for (ii in attr(df1, "num")) {
-      xx = LETTERS[ii]
-      wb$add_numfmt(dims = glue("{xx}1:{xx}999"), numfmt = 3)
-    }
-    wb$add_data(x = attr(df1, "title")
-                , dims = openxlsx2::wb_dims(from_row = nrow(df1) + 2, from_col = 1)
-                , col_names = FALSE)
-    wb$add_data(x = attr(df1, "footer")
-                , dims = openxlsx2::wb_dims(from_row = nrow(df1) + 3, from_col = 1)
-                , col_names = FALSE)
-
-    ##
-    wb %<>% .add_chart1(df1 = df1, sw = "Number", jj = counter)
-    wb %<>% .add_chart1(df1 = df1, sw = "Percent", jj = counter)
-    wb %<>% .add_chart1(df1 = df1, sw = "Rate", jj = counter)
+    ## class(df1) = "data.frame" in .print_flextable_1()
+    ft = obj[[jj]] %>% .print_flextable_1() %>% flextable::fit_to_width(max_width = max_width)
+    doc %<>% flextable::body_add_flextable(ft)
+    # if (jj < len) {
+    #   doc %<>% officer::body_add_break()
+    # }
   }
 
   ##
-  wb$save(file = file)
+  officer:::print.rdocx(doc, target = file)
 }
-

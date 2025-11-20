@@ -13,7 +13,12 @@
   assert_that(is.string(file), nzchar(file))
 
   ##
-  wb = if (file.exists(file)) {
+  len = length(obj)
+  .say_printing(len = len, df1 = obj[[1]], output = "excel")
+
+  ##
+  file_exists = file.exists(file)
+  wb = if (file_exists) {
     wb = openxlsx2::wb_load(file)
     wb$set_properties(
       creator = "surveytable"
@@ -27,25 +32,53 @@
       , keywords = "tables, charts, estimates, R, survey, surveytable"
     )
   }
-  counter = length(wb$sheet_names)
+  if (!file_exists) {
+    wb$add_worksheet(sheet = "About")
 
-  ##
-  len = length(obj)
-  t1 = .get_title(obj[[1]])
-  title = if (len == 1) {
-    t1
-  } else if (len == 2) {
-    glue("{t1} and {len-1} other table")
-  } else {
-    glue("{t1} and {len-1} other tables")
+    ##
+    xx = openxlsx2::wb_dims(from_row = 1, from_col = 1)
+    wb$add_data(x = openxlsx2::fmt_txt("Tables produced by the surveytable package", bold = TRUE)
+                , dims = xx, col_names = FALSE)
+
+    ##
+    xx = openxlsx2::wb_dims(from_row = 2, from_col = 1)
+    wb$add_data(x = glue("Date: {Sys.time()}")
+                , dims = xx, col_names = FALSE)
+
+    ##
+    xx = openxlsx2::wb_dims(from_row = 4, from_col = 1)
+    wb$add_data(x = "Please consider adding this or similar to your Methods section:", dims = xx, col_names = FALSE)
+
+    version = packageVersion("surveytable")
+    xx = openxlsx2::wb_dims(from_row = 5, from_col = 1)
+    wb$add_data(x = glue("Data analyses were performed using the R package "
+                         , "\u201Csurveytable\u201D (version {version}).")
+                , dims = xx, col_names = FALSE)
+
+    xx = openxlsx2::wb_dims(from_row = 6, from_col = 1)
+    wb$add_data(x = (
+      openxlsx2::fmt_txt("Strashny A (2023). ")
+      + openxlsx2::fmt_txt("surveytable: Streamlining Complex Survey Estimation and Reliability Assessment in R", italic = TRUE)
+      + openxlsx2::fmt_txt(
+        glue(". doi:10.32614/CRAN.package.surveytable, R package version {version}, <https://cdcgov.github.io/surveytable/>.")) )
+      , dims = xx, col_names = FALSE)
   }
-  message(glue("* Printing {title} to Excel workbook {getOption('surveytable.file_show')}."))
+  counter = if(file_exists) {
+    length(wb$sheet_names)
+  } else {
+    0
+  }
 
   ##
   for (jj in 1:len) {
     counter = counter + 1
     df1 = obj[[jj]]
     assert_that(inherits(df1, "surveytable_table"))
+
+    ## Functions below might use as.data.frame() if the argument is not a data.frame,
+    ## which creates unique column names, which is not what we want.
+    class(df1) = "data.frame"
+
     df1 %<>% .fix_names()
 
     ##
@@ -70,6 +103,7 @@
   }
 
   ##
+  wb$set_active_sheet( wb$get_sheet_names() %>% tail(-1) %>% head(1) )
   wb$save(file = file)
 }
 
@@ -93,6 +127,28 @@
   df1
 }
 
+.say_printing = function(len, df1, output) {
+  ##
+  assert_that(output %in% c("excel", "word", "csv"))
+  type = switch(output
+                , excel = "Excel workbook"
+                , word = "Word document"
+                , csv = "CSV file")
+
+  ##
+  t1 = .get_title(df1)
+  title = if (len == 1) {
+    t1
+  } else if (len == 2) {
+    glue("{t1} and {len-1} other table")
+  } else {
+    glue("{t1} and {len-1} other tables")
+  }
+
+  ##
+  message(glue("* Printing {title} to {type} {getOption('surveytable.file_show')}."))
+}
+
 .get_title = function(df1) {
   xx = attr(df1, "title")
   if (!is.null(xx) && nzchar(xx)) {
@@ -100,54 +156,4 @@
   } else {
     "Unknown table"
   }
-}
-
-
-.print_excel_finish = function() {
-  file = getOption("surveytable.file")
-  if (!is.string(file) || !nzchar(file) || !file.exists(file)) return(NULL)
-
-  assert_package("print", "openxlsx2")
-
-  wb = openxlsx2::wb_load(file)
-  if ("About" %in% wb$sheet_names) return(NULL)
-
-  wb$set_properties(
-    creator = "surveytable"
-    , keywords = "tables, charts, estimates, R, survey, surveytable"
-  )
-
-  ##
-  wb$add_worksheet(sheet = "About")
-
-  ##
-  xx = openxlsx2::wb_dims(from_row = 1, from_col = 1)
-  wb$add_data(x = openxlsx2::fmt_txt("Tables and charts produced by the surveytable package", bold = TRUE)
-              , dims = xx, col_names = FALSE)
-
-  ##
-  xx = openxlsx2::wb_dims(from_row = 2, from_col = 1)
-  wb$add_data(x = glue("Date: {Sys.time()}")
-              , dims = xx, col_names = FALSE)
-
-  ##
-  xx = openxlsx2::wb_dims(from_row = 4, from_col = 1)
-  wb$add_data(x = "Please consider adding this or similar to your Methods section:", dims = xx, col_names = FALSE)
-
-  version = packageVersion("surveytable")
-  xx = openxlsx2::wb_dims(from_row = 5, from_col = 1)
-  wb$add_data(x = glue("Data analyses were performed using the R package "
-                       , "\u201Csurveytable\u201D (version {version}).")
-              , dims = xx, col_names = FALSE)
-
-  xx = openxlsx2::wb_dims(from_row = 6, from_col = 1)
-  wb$add_data(x = (
-    openxlsx2::fmt_txt("Strashny A (2023). ")
-    + openxlsx2::fmt_txt("surveytable: Streamlining Complex Survey Estimation and Reliability Assessment in R", italic = TRUE)
-    + openxlsx2::fmt_txt(
-      glue(". doi:10.32614/CRAN.package.surveytable, R package version {version}, <https://cdcgov.github.io/surveytable/>.")) )
-    , dims = xx, col_names = FALSE)
-
-  ##
-  wb$save(file = file)
 }
