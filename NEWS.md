@@ -1,6 +1,7 @@
 # surveytable (development version)
 
 * More `set_opts(output = *)` options: `"Word"`, `"Excel"`, `"Excel_v1"`, `"flextable"`.
+* `restructure()`: Restructure tables to make them easier to process programmatically.
 
 # surveytable 0.9.10
 

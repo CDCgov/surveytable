@@ -41,6 +41,9 @@ env = new.env()
     , surveytable.tx_pval = ".tx_pval"
     , surveytable.tx_test_stat = ".tx_test_stat"
     , surveytable.tx_df = ".tx_df"
+
+    , surveytable.restructure_attr = c("title", "footer")
+    , surveytable.restructure_flags = c("R", "Cx", "Cdf", "Px", "Pc", "Pdf", "P0")
   )
 }
 

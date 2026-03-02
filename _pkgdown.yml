@@ -34,12 +34,13 @@ reference:
   - rccsu2018
 - title: "Other"
   contents:
+  - print.surveytable_table
+  - restructure
   - codebook
   - show_options
   - surveytable-options
   - survey_subset
   - svyciprop_adjusted
-  - print.surveytable_table
   - as.data.frame.surveytable_table
 
 articles:

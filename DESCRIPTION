@@ -38,6 +38,7 @@ Suggests:
     mschart, 
     flextable,
     officer,
+    dplyr, 
     knitr, 
     rmarkdown
 VignetteBuilder: knitr
