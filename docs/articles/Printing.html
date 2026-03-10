@@ -82,8 +82,10 @@ print out its table(s) on its own.</p>
 analyze:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cdcgov.github.io/surveytable/">surveytable</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; If you use 'surveytable' in your research, please cite it.</span></span>
+<span><span class="co">#&gt; Type 'citation("surveytable")' for details.</span></span>
 <span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span></code></pre></div>
-<div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="wlefoodfie" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
 <tr class="gt_heading" style="border-style: none; background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF" align="center">
@@ -122,7 +124,7 @@ Stratified 1 - level Cluster Sampling design (with replacement) With
 prints. You don’t need to do anything extra.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span></span></code></pre></div>
-<div id="eexombwkke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="exombwkkeu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
 <tr class="gt_heading" style="border-style: none; background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF" align="center">
@@ -371,7 +373,7 @@ from within a loop or another function, you do need to call
 <code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">vr</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"SEX"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span> <span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="va">vr</span>, <span class="st">"MAJOR"</span>, <span class="st">"Preventive care"</span><span class="op">)</span> <span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div id="ulbfdpbcyv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="lbfdpbcyvk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
 <tr class="gt_heading" style="border-style: none; background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF" align="center">
@@ -614,7 +616,7 @@ N = 1568.
 </tr></tfoot>
 </table>
 </div>
-<div id="kgufivjubq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="gufivjubqt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
 <tr class="gt_heading" style="border-style: none; background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF" align="center">
@@ -1071,23 +1073,23 @@ N = 8250.
 same. Here is what printing to the screen looks like:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span></span></code></pre></div>
-<div id="txvafbsnay" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#txvafbsnay table {
+<div id="xvafbsnayo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xvafbsnayo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#txvafbsnay thead, #txvafbsnay tbody, #txvafbsnay tfoot, #txvafbsnay tr, #txvafbsnay td, #txvafbsnay th {
+#xvafbsnayo thead, #xvafbsnayo tbody, #xvafbsnayo tfoot, #xvafbsnayo tr, #xvafbsnayo td, #xvafbsnayo th {
   border-style: none;
 }
 
-#txvafbsnay p {
+#xvafbsnayo p {
   margin: 0;
   padding: 0;
 }
 
-#txvafbsnay .gt_table {
+#xvafbsnayo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1113,12 +1115,12 @@ same. Here is what printing to the screen looks like:</p>
   border-left-color: #D3D3D3;
 }
 
-#txvafbsnay .gt_caption {
+#xvafbsnayo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#txvafbsnay .gt_title {
+#xvafbsnayo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1130,7 +1132,7 @@ same. Here is what printing to the screen looks like:</p>
   border-bottom-width: 0;
 }
 
-#txvafbsnay .gt_subtitle {
+#xvafbsnayo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1142,7 +1144,7 @@ same. Here is what printing to the screen looks like:</p>
   border-top-width: 0;
 }
 
-#txvafbsnay .gt_heading {
+#xvafbsnayo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1154,13 +1156,13 @@ same. Here is what printing to the screen looks like:</p>
   border-right-color: #D3D3D3;
 }
 
-#txvafbsnay .gt_bottom_border {
+#xvafbsnayo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #0076BA;
 }
 
-#txvafbsnay .gt_col_headings {
+#xvafbsnayo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #0076BA;
@@ -1175,7 +1177,7 @@ same. Here is what printing to the screen looks like:</p>
   border-right-color: #D3D3D3;
 }
 
-#txvafbsnay .gt_col_heading {
+#xvafbsnayo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1195,7 +1197,7 @@ same. Here is what printing to the screen looks like:</p>
   overflow-x: hidden;
 }
 
-#txvafbsnay .gt_column_spanner_outer {
+#xvafbsnayo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1207,15 +1209,15 @@ same. Here is what printing to the screen looks like:</p>
   padding-right: 4px;
 }
 
-#txvafbsnay .gt_column_spanner_outer:first-child {
+#xvafbsnayo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#txvafbsnay .gt_column_spanner_outer:last-child {
+#xvafbsnayo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#txvafbsnay .gt_column_spanner {
+#xvafbsnayo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #0076BA;
@@ -1227,11 +1229,11 @@ same. Here is what printing to the screen looks like:</p>
   width: 100%;
 }
 
-#txvafbsnay .gt_spanner_row {
+#xvafbsnayo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#txvafbsnay .gt_group_heading {
+#xvafbsnayo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1257,7 +1259,7 @@ same. Here is what printing to the screen looks like:</p>
   text-align: left;
 }
 
-#txvafbsnay .gt_empty_group_heading {
+#xvafbsnayo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1272,15 +1274,15 @@ same. Here is what printing to the screen looks like:</p>
   vertical-align: middle;
 }
 
-#txvafbsnay .gt_from_md > :first-child {
+#xvafbsnayo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#txvafbsnay .gt_from_md > :last-child {
+#xvafbsnayo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#txvafbsnay .gt_row {
+#xvafbsnayo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1299,7 +1301,7 @@ same. Here is what printing to the screen looks like:</p>
   overflow-x: hidden;
 }
 
-#txvafbsnay .gt_stub {
+#xvafbsnayo .gt_stub {
   color: #FFFFFF;
   background-color: #0076BA;
   font-size: 100%;
@@ -1312,7 +1314,7 @@ same. Here is what printing to the screen looks like:</p>
   padding-right: 5px;
 }
 
-#txvafbsnay .gt_stub_row_group {
+#xvafbsnayo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1326,15 +1328,15 @@ same. Here is what printing to the screen looks like:</p>
   vertical-align: top;
 }
 
-#txvafbsnay .gt_row_group_first td {
+#xvafbsnayo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#txvafbsnay .gt_row_group_first th {
+#xvafbsnayo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#txvafbsnay .gt_summary_row {
+#xvafbsnayo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1344,16 +1346,16 @@ same. Here is what printing to the screen looks like:</p>
   padding-right: 5px;
 }
 
-#txvafbsnay .gt_first_summary_row {
+#xvafbsnayo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #0076BA;
 }
 
-#txvafbsnay .gt_first_summary_row.thick {
+#xvafbsnayo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#txvafbsnay .gt_last_summary_row {
+#xvafbsnayo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1363,7 +1365,7 @@ same. Here is what printing to the screen looks like:</p>
   border-bottom-color: #0076BA;
 }
 
-#txvafbsnay .gt_grand_summary_row {
+#xvafbsnayo .gt_grand_summary_row {
   color: #333333;
   background-color: #89D3FE;
   text-transform: inherit;
@@ -1373,7 +1375,7 @@ same. Here is what printing to the screen looks like:</p>
   padding-right: 5px;
 }
 
-#txvafbsnay .gt_first_grand_summary_row {
+#xvafbsnayo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1383,7 +1385,7 @@ same. Here is what printing to the screen looks like:</p>
   border-top-color: #0076BA;
 }
 
-#txvafbsnay .gt_last_grand_summary_row_top {
+#xvafbsnayo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1393,11 +1395,11 @@ same. Here is what printing to the screen looks like:</p>
   border-bottom-color: #0076BA;
 }
 
-#txvafbsnay .gt_striped {
+#xvafbsnayo .gt_striped {
   background-color: #F4F4F4;
 }
 
-#txvafbsnay .gt_table_body {
+#xvafbsnayo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #0076BA;
@@ -1406,7 +1408,7 @@ same. Here is what printing to the screen looks like:</p>
   border-bottom-color: #0076BA;
 }
 
-#txvafbsnay .gt_footnotes {
+#xvafbsnayo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1420,7 +1422,7 @@ same. Here is what printing to the screen looks like:</p>
   border-right-color: #D3D3D3;
 }
 
-#txvafbsnay .gt_footnote {
+#xvafbsnayo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1429,7 +1431,7 @@ same. Here is what printing to the screen looks like:</p>
   padding-right: 5px;
 }
 
-#txvafbsnay .gt_sourcenotes {
+#xvafbsnayo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1443,7 +1445,7 @@ same. Here is what printing to the screen looks like:</p>
   border-right-color: #D3D3D3;
 }
 
-#txvafbsnay .gt_sourcenote {
+#xvafbsnayo .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1451,72 +1453,72 @@ same. Here is what printing to the screen looks like:</p>
   padding-right: 5px;
 }
 
-#txvafbsnay .gt_left {
+#xvafbsnayo .gt_left {
   text-align: left;
 }
 
-#txvafbsnay .gt_center {
+#xvafbsnayo .gt_center {
   text-align: center;
 }
 
-#txvafbsnay .gt_right {
+#xvafbsnayo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#txvafbsnay .gt_font_normal {
+#xvafbsnayo .gt_font_normal {
   font-weight: normal;
 }
 
-#txvafbsnay .gt_font_bold {
+#xvafbsnayo .gt_font_bold {
   font-weight: bold;
 }
 
-#txvafbsnay .gt_font_italic {
+#xvafbsnayo .gt_font_italic {
   font-style: italic;
 }
 
-#txvafbsnay .gt_super {
+#xvafbsnayo .gt_super {
   font-size: 65%;
 }
 
-#txvafbsnay .gt_footnote_marks {
+#xvafbsnayo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#txvafbsnay .gt_asterisk {
+#xvafbsnayo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#txvafbsnay .gt_indent_1 {
+#xvafbsnayo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#txvafbsnay .gt_indent_2 {
+#xvafbsnayo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#txvafbsnay .gt_indent_3 {
+#xvafbsnayo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#txvafbsnay .gt_indent_4 {
+#xvafbsnayo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#txvafbsnay .gt_indent_5 {
+#xvafbsnayo .gt_indent_5 {
   text-indent: 25px;
 }
 
-#txvafbsnay .katex-display {
+#xvafbsnayo .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#txvafbsnay div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#xvafbsnayo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1765,7 +1767,7 @@ N = 8250.
 <div class="sourceCode" id="cb11"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>```{r, results='asis'}</span>
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>tab("AGER")</span>
 <span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>```</span></code></pre></div>
-<div id="orehalspkz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="rehalspkzc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
 <tr class="gt_heading" style="border-style: none; background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF" align="center">
@@ -2020,7 +2022,7 @@ yet. Try one of the other packages.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>```{r, results='asis'}</span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>tab("AGER")</span>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>```</span></code></pre></div>
-<div id="cbwjcfdjag" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="bwjcfdjagf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
 <tr class="gt_heading" style="border-style: none; background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF" align="center">
@@ -2300,7 +2302,7 @@ of the above packages depending on whether the output is to the screen
 <div class="sourceCode" id="cb17"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>```{r, results='asis'}</span>
 <span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>tab("AGER")</span>
 <span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>```</span></code></pre></div>
-<div id="fvsybhaagl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="vsybhaaglv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
 <tr class="gt_heading" style="border-style: none; background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF" align="center">
@@ -2583,6 +2585,8 @@ tables.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"auto"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; * Printing with huxtable for screen, gt for HTML, or kableExtra for PDF.</span></span></code></pre></div>
+<p>Also see <code><a href="../reference/as.data.frame.surveytable_table.html">as.data.frame.surveytable_table()</a></code> and
+<code><a href="../reference/restructure.html">restructure()</a></code>.</p>
 </div>
 <div class="section level2">
 <h2 id="save-the-tables">Save the tables<a class="anchor" aria-label="anchor" href="#save-the-tables"></a>
@@ -2682,7 +2686,7 @@ an R data file:</p>
 just load the file, like so:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="st">"myfile.rds"</span><span class="op">)</span></span></code></pre></div>
-<div id="vijbfglzvn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ijbfglzvne" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
 <tr class="gt_heading" style="border-style: none; background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF" align="center">
@@ -2971,23 +2975,23 @@ favorite table-making package. This example passes a table to
 <code><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame()</a></code> first.</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div id="egslqeqmfa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#egslqeqmfa table {
+<div id="gslqeqmfaa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gslqeqmfaa table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#egslqeqmfa thead, #egslqeqmfa tbody, #egslqeqmfa tfoot, #egslqeqmfa tr, #egslqeqmfa td, #egslqeqmfa th {
+#gslqeqmfaa thead, #gslqeqmfaa tbody, #gslqeqmfaa tfoot, #gslqeqmfaa tr, #gslqeqmfaa td, #gslqeqmfaa th {
   border-style: none;
 }
 
-#egslqeqmfa p {
+#gslqeqmfaa p {
   margin: 0;
   padding: 0;
 }
 
-#egslqeqmfa .gt_table {
+#gslqeqmfaa .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3013,12 +3017,12 @@ favorite table-making package. This example passes a table to
   border-left-color: #D3D3D3;
 }
 
-#egslqeqmfa .gt_caption {
+#gslqeqmfaa .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#egslqeqmfa .gt_title {
+#gslqeqmfaa .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3030,7 +3034,7 @@ favorite table-making package. This example passes a table to
   border-bottom-width: 0;
 }
 
-#egslqeqmfa .gt_subtitle {
+#gslqeqmfaa .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3042,7 +3046,7 @@ favorite table-making package. This example passes a table to
   border-top-width: 0;
 }
 
-#egslqeqmfa .gt_heading {
+#gslqeqmfaa .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3054,13 +3058,13 @@ favorite table-making package. This example passes a table to
   border-right-color: #D3D3D3;
 }
 
-#egslqeqmfa .gt_bottom_border {
+#gslqeqmfaa .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#egslqeqmfa .gt_col_headings {
+#gslqeqmfaa .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3075,7 +3079,7 @@ favorite table-making package. This example passes a table to
   border-right-color: #D3D3D3;
 }
 
-#egslqeqmfa .gt_col_heading {
+#gslqeqmfaa .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3095,7 +3099,7 @@ favorite table-making package. This example passes a table to
   overflow-x: hidden;
 }
 
-#egslqeqmfa .gt_column_spanner_outer {
+#gslqeqmfaa .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3107,15 +3111,15 @@ favorite table-making package. This example passes a table to
   padding-right: 4px;
 }
 
-#egslqeqmfa .gt_column_spanner_outer:first-child {
+#gslqeqmfaa .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#egslqeqmfa .gt_column_spanner_outer:last-child {
+#gslqeqmfaa .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#egslqeqmfa .gt_column_spanner {
+#gslqeqmfaa .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3127,11 +3131,11 @@ favorite table-making package. This example passes a table to
   width: 100%;
 }
 
-#egslqeqmfa .gt_spanner_row {
+#gslqeqmfaa .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#egslqeqmfa .gt_group_heading {
+#gslqeqmfaa .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3157,7 +3161,7 @@ favorite table-making package. This example passes a table to
   text-align: left;
 }
 
-#egslqeqmfa .gt_empty_group_heading {
+#gslqeqmfaa .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3172,15 +3176,15 @@ favorite table-making package. This example passes a table to
   vertical-align: middle;
 }
 
-#egslqeqmfa .gt_from_md > :first-child {
+#gslqeqmfaa .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#egslqeqmfa .gt_from_md > :last-child {
+#gslqeqmfaa .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#egslqeqmfa .gt_row {
+#gslqeqmfaa .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3199,7 +3203,7 @@ favorite table-making package. This example passes a table to
   overflow-x: hidden;
 }
 
-#egslqeqmfa .gt_stub {
+#gslqeqmfaa .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3212,7 +3216,7 @@ favorite table-making package. This example passes a table to
   padding-right: 5px;
 }
 
-#egslqeqmfa .gt_stub_row_group {
+#gslqeqmfaa .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3226,15 +3230,15 @@ favorite table-making package. This example passes a table to
   vertical-align: top;
 }
 
-#egslqeqmfa .gt_row_group_first td {
+#gslqeqmfaa .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#egslqeqmfa .gt_row_group_first th {
+#gslqeqmfaa .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#egslqeqmfa .gt_summary_row {
+#gslqeqmfaa .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3244,16 +3248,16 @@ favorite table-making package. This example passes a table to
   padding-right: 5px;
 }
 
-#egslqeqmfa .gt_first_summary_row {
+#gslqeqmfaa .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#egslqeqmfa .gt_first_summary_row.thick {
+#gslqeqmfaa .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#egslqeqmfa .gt_last_summary_row {
+#gslqeqmfaa .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3263,7 +3267,7 @@ favorite table-making package. This example passes a table to
   border-bottom-color: #D3D3D3;
 }
 
-#egslqeqmfa .gt_grand_summary_row {
+#gslqeqmfaa .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3273,7 +3277,7 @@ favorite table-making package. This example passes a table to
   padding-right: 5px;
 }
 
-#egslqeqmfa .gt_first_grand_summary_row {
+#gslqeqmfaa .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3283,7 +3287,7 @@ favorite table-making package. This example passes a table to
   border-top-color: #D3D3D3;
 }
 
-#egslqeqmfa .gt_last_grand_summary_row_top {
+#gslqeqmfaa .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3293,11 +3297,11 @@ favorite table-making package. This example passes a table to
   border-bottom-color: #D3D3D3;
 }
 
-#egslqeqmfa .gt_striped {
+#gslqeqmfaa .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#egslqeqmfa .gt_table_body {
+#gslqeqmfaa .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3306,7 +3310,7 @@ favorite table-making package. This example passes a table to
   border-bottom-color: #D3D3D3;
 }
 
-#egslqeqmfa .gt_footnotes {
+#gslqeqmfaa .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3320,7 +3324,7 @@ favorite table-making package. This example passes a table to
   border-right-color: #D3D3D3;
 }
 
-#egslqeqmfa .gt_footnote {
+#gslqeqmfaa .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3329,7 +3333,7 @@ favorite table-making package. This example passes a table to
   padding-right: 5px;
 }
 
-#egslqeqmfa .gt_sourcenotes {
+#gslqeqmfaa .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3343,7 +3347,7 @@ favorite table-making package. This example passes a table to
   border-right-color: #D3D3D3;
 }
 
-#egslqeqmfa .gt_sourcenote {
+#gslqeqmfaa .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3351,72 +3355,72 @@ favorite table-making package. This example passes a table to
   padding-right: 5px;
 }
 
-#egslqeqmfa .gt_left {
+#gslqeqmfaa .gt_left {
   text-align: left;
 }
 
-#egslqeqmfa .gt_center {
+#gslqeqmfaa .gt_center {
   text-align: center;
 }
 
-#egslqeqmfa .gt_right {
+#gslqeqmfaa .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#egslqeqmfa .gt_font_normal {
+#gslqeqmfaa .gt_font_normal {
   font-weight: normal;
 }
 
-#egslqeqmfa .gt_font_bold {
+#gslqeqmfaa .gt_font_bold {
   font-weight: bold;
 }
 
-#egslqeqmfa .gt_font_italic {
+#gslqeqmfaa .gt_font_italic {
   font-style: italic;
 }
 
-#egslqeqmfa .gt_super {
+#gslqeqmfaa .gt_super {
   font-size: 65%;
 }
 
-#egslqeqmfa .gt_footnote_marks {
+#gslqeqmfaa .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#egslqeqmfa .gt_asterisk {
+#gslqeqmfaa .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#egslqeqmfa .gt_indent_1 {
+#gslqeqmfaa .gt_indent_1 {
   text-indent: 5px;
 }
 
-#egslqeqmfa .gt_indent_2 {
+#gslqeqmfaa .gt_indent_2 {
   text-indent: 10px;
 }
 
-#egslqeqmfa .gt_indent_3 {
+#gslqeqmfaa .gt_indent_3 {
   text-indent: 15px;
 }
 
-#egslqeqmfa .gt_indent_4 {
+#gslqeqmfaa .gt_indent_4 {
   text-indent: 20px;
 }
 
-#egslqeqmfa .gt_indent_5 {
+#gslqeqmfaa .gt_indent_5 {
   text-indent: 25px;
 }
 
-#egslqeqmfa .katex-display {
+#gslqeqmfaa .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#egslqeqmfa div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gslqeqmfaa div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3521,6 +3525,9 @@ situations in which this approach is helpful, such as</p>
 <code><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame()</a></code>; or</li>
 <li>quickly using your favorite table-making package.</li>
 </ul>
+<p>To restructure tables to make them easier to process
+programmatically, see <code><a href="../reference/restructure.html">restructure()</a></code>. Also see
+<code>set_opts(output = "raw")</code>.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

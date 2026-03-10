@@ -15,7 +15,10 @@
 A data frame.
 }
 \description{
-If a tabulation function produces multiple tables, that group of tables is a list,
+Coerce a surveytable table to a data frame. To restructure tables to make them
+easier to process programmatically, see \code{restructure()}. Also see \code{set_opts(output = "raw")}.
+
+If a tabulation function produces multiple tables, that group of tables is a \code{list},
 with each element of the list being an individual table. To convert one of these tables
 to a \code{data.frame}, use \code{[[}. For example, in the following code, we generate
 3 tables, and then convert the third table to a \code{data.frame}.
@@ -29,3 +32,10 @@ mydf = as.data.frame(mytables[[3]])
 set_survey(namcs2019sv)
 as.data.frame( tab("AGER") )
 }
+\seealso{
+Other print: 
+\code{\link{print.surveytable_table}()},
+\code{\link{restructure}()},
+\code{\link{set_opts}()}
+}
+\concept{print}

@@ -47,6 +47,15 @@ env = new.env()
   )
 }
 
+.onAttach = function(libname, pkgname) {
+  if (stats::runif(1) <= 0.20) {
+    msg = c("If you use 'surveytable' in your research, please cite it."
+            , "\nType 'citation(\"surveytable\")' for details.")
+    packageStartupMessage(msg)
+  }
+  invisible()
+}
+
 .get_names_count = function() {
   if (getOption("surveytable.raw")) {
     getOption("surveytable.names_count_raw")

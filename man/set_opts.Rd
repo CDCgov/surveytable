@@ -86,6 +86,7 @@ destination (such as screen, HTML, or PDF / LaTeX).
 \item \code{"huxtable"}, \code{"gt"}, \code{"kableExtra"}, \code{"flextable"}: use this table-making package. Be sure
 that this package is installed.
 \item \code{"raw"}: unformatted / raw output. This is useful for getting lots of significant digits.
+Also see \code{\link[=as.data.frame.surveytable_table]{as.data.frame.surveytable_table()}} and \code{\link[=restructure]{restructure()}}.
 \item \code{"Excel"}, \code{"Excel_v1"}: print to an Excel workbook. Please specify the name of an Excel
 file using the \code{file} argument. Before using Excel printing, please be sure to install these
 packages: \code{openxlsx2} and \code{mschart}.
@@ -111,5 +112,11 @@ Other options:
 \code{\link{set_survey}()},
 \code{\link{show_options}()},
 \code{\link{surveytable-options}}
+
+Other print: 
+\code{\link{as.data.frame.surveytable_table}()},
+\code{\link{print.surveytable_table}()},
+\code{\link{restructure}()}
 }
 \concept{options}
+\concept{print}

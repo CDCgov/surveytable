@@ -2,7 +2,10 @@
 #'
 #' @description
 #'
-#' If a tabulation function produces multiple tables, that group of tables is a list,
+#' Coerce a surveytable table to a data frame. To restructure tables to make them
+#' easier to process programmatically, see `restructure()`. Also see `set_opts(output = "raw")`.
+#'
+#' If a tabulation function produces multiple tables, that group of tables is a `list`,
 #' with each element of the list being an individual table. To convert one of these tables
 #' to a `data.frame`, use `[[`. For example, in the following code, we generate
 #' 3 tables, and then convert the third table to a `data.frame`.
@@ -17,6 +20,8 @@
 #'
 #' @returns
 #' A data frame.
+#'
+#' @family print
 #'
 #' @export
 #'

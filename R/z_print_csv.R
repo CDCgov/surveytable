@@ -21,7 +21,7 @@
     txt = data.frame(x = c('**Tables produced by the surveytable package**'
                            , 'Date: {Sys.time()}' %>% glue()
                            , ''
-                           , 'Please consider adding this or similar to your Methods section:'
+                           , 'Please include this or similar in your Methods section:'
                            , 'Data analyses were performed using the R package "surveytable" (version {version}).' %>% glue()
                            , 'Strashny A (2023). _surveytable: Streamlining Complex Survey Estimation and Reliability Assessment in R_. doi:10.32614/CRAN.package.surveytable, R package version {version}, <https://cdcgov.github.io/surveytable/>.' %>% glue()
                            , ''))

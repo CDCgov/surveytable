@@ -36,12 +36,12 @@ reference:
   contents:
   - print.surveytable_table
   - restructure
+  - as.data.frame.surveytable_table
   - codebook
   - show_options
   - surveytable-options
   - survey_subset
   - svyciprop_adjusted
-  - as.data.frame.surveytable_table
 
 articles:
 - title: Examples

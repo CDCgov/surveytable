@@ -19,6 +19,9 @@ restructure(tab_output, lvls = c())
 Restructure the output of the tabulation functions to make
 it more structured and easier to process programmatically.
 }
+\details{
+Also see \code{\link[=as.data.frame.surveytable_table]{as.data.frame.surveytable_table()}} and \code{set_opts(output = "raw")}.
+}
 \examples{
 set_survey(namcs2019sv, mode = "nchs")
 
@@ -31,6 +34,8 @@ restructure(mytables, lvls = c("Pre-surgery", "Post-surgery"))
 }
 \seealso{
 Other print: 
-\code{\link{print.surveytable_table}()}
+\code{\link{as.data.frame.surveytable_table}()},
+\code{\link{print.surveytable_table}()},
+\code{\link{set_opts}()}
 }
 \concept{print}

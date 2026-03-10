@@ -208,6 +208,8 @@ print(tab("AGER"), destination = "")
 set_opts(output = "auto")
 ```
 
+Also see `as.data.frame.surveytable_table()` and `restructure()`.
+
 # Save the tables
 
 ## Save tables and charts to an Excel workbook
@@ -341,3 +343,6 @@ The reason that this is the "quick-and-dirty" approach is that the output it cre
 
 * extracting an exact value from a table using `as.data.frame()`; or 
 * quickly using your favorite table-making package.
+
+To restructure tables to make them easier to process programmatically, see `restructure()`. Also see `set_opts(output = "raw")`.
+

@@ -38,7 +38,7 @@
     doc %<>% officer::body_add_fpar(value = officer::fpar(officer::ftext("Tables produced by the surveytable package", officer::fp_text_lite(bold = TRUE)))) %>%
       officer::body_add_fpar(value = officer::fpar(officer::ftext( glue("Date: {Sys.time()}") ))) %>%
       officer::body_add_fpar(value = officer::fpar(officer::ftext( "" ))) %>%
-      officer::body_add_fpar(value = officer::fpar(officer::ftext( "Please consider adding this or similar to your Methods section:" ))) %>%
+      officer::body_add_fpar(value = officer::fpar(officer::ftext( "Please include this or similar in your Methods section:" ))) %>%
       officer::body_add_fpar(value = officer::fpar(officer::ftext( "" ))) %>%
       officer::body_add_fpar(value = officer::fpar(officer::ftext( glue("Data analyses were performed using the R package "
                                                                         , "\u201Csurveytable\u201D (version {version}).") ))) %>%

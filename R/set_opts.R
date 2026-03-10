@@ -32,6 +32,7 @@
 #' * `"huxtable"`, `"gt"`, `"kableExtra"`, `"flextable"`: use this table-making package. Be sure
 #' that this package is installed.
 #' * `"raw"`: unformatted / raw output. This is useful for getting lots of significant digits.
+#' Also see [as.data.frame.surveytable_table()] and [restructure()].
 #' * `"Excel"`, `"Excel_v1"`: print to an Excel workbook. Please specify the name of an Excel
 #' file using the `file` argument. Before using Excel printing, please be sure to install these
 #' packages: `openxlsx2` and `mschart`.
@@ -57,7 +58,10 @@
 #' Used to avoid printing huge tables.
 #'
 #' @return (Nothing.)
+#'
 #' @family options
+#' @family print
+#'
 #' @export
 #'
 #' @examples

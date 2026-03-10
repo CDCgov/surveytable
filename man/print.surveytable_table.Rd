@@ -42,6 +42,8 @@ print(table_many)
 }
 \seealso{
 Other print: 
-\code{\link{restructure}()}
+\code{\link{as.data.frame.surveytable_table}()},
+\code{\link{restructure}()},
+\code{\link{set_opts}()}
 }
 \concept{print}

@@ -47,7 +47,7 @@
 
     ##
     xx = openxlsx2::wb_dims(from_row = 4, from_col = 1)
-    wb$add_data(x = "Please consider adding this or similar to your Methods section:", dims = xx, col_names = FALSE)
+    wb$add_data(x = "Please include this or similar in your Methods section:", dims = xx, col_names = FALSE)
 
     version = packageVersion("surveytable")
     xx = openxlsx2::wb_dims(from_row = 5, from_col = 1)

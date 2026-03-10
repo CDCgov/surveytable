@@ -3,6 +3,8 @@
 #' Restructure the output of the tabulation functions to make
 #' it more structured and easier to process programmatically.
 #'
+#' Also see [as.data.frame.surveytable_table()] and `set_opts(output = "raw")`.
+#'
 #' @param tab_output output from a tabulation function. An object of class
 #' `surveytable_table` or `surveytable_list`.
 #' @param lvls (optional) only show these levels.
@@ -23,7 +25,6 @@
 #' mytables = tab_subset("MAJOR", "AGER")
 #' restructure(mytables, lvls = c("Pre-surgery", "Post-surgery"))
 restructure = function(tab_output, lvls = c()) {
-
   if (inherits(tab_output, "surveytable_list")) {
     assert_package("restructure", "dplyr")
     ret = list()
@@ -71,7 +72,7 @@ restructure = function(tab_output, lvls = c()) {
     for (ii in 1:nrow(tab_output)) {
       if (grepl("\\(", tab_output$.attr_title[ii])) {
         xx = sub(".*\\(([^)]*)\\).*", "\\1", tab_output$.attr_title[ii])
-        if (grepl("=", tab_output$.attr_title[ii])) {
+        if (grepl("=", xx)) {
           xx = trimws(strsplit(xx, "=")[[1]])
           tab_output$.parens1[ii] = xx[1]
           tab_output$.parens2[ii] = xx[2]
