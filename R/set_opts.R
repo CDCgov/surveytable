@@ -12,11 +12,13 @@
 #' * `"general"`:
 #'    * Round counts to the nearest integer -- same as `count = "int"`.
 #'    * Do not look for low-precision estimates -- same as `lpe = FALSE`.
+#'    * Retain missing values -- same as `drop_na = FALSE`.
 #'    * Percentage CI's: use standard Korn-Graubard CI's -- same as `adj = "none"`.
 #'
 #' * `"nchs"`:
 #'    * Round counts to the nearest 1,000 -- same as `count = "1k"`.
 #'    * Identify low-precision estimates -- same as `lpe = TRUE`.
+#'    * Drop missing values -- same as `drop_na = TRUE`.
 #'    * Percentage CI's: adjust Korn-Graubard CI's for the number of degrees of
 #'    freedom, matching the SUDAAN calculation -- same as `adj = "nchs"`. This
 #'    is appropriate for some, but not all, NCHS data systems. For some NCHS
@@ -106,13 +108,15 @@ set_opts = function(
       options(surveytable.svyciprop_adj = "nchs"
         , surveytable.tx_count = ".tx_count_1k"
         , surveytable.names_count = c("n", "Number (000)", "SE (000)", "LL (000)", "UL (000)")
-        , surveytable.find_lpe = TRUE)
+        , surveytable.find_lpe = TRUE
+        , surveytable.drop_na = TRUE)
     } else if (mode == "general") {
       message("* Mode: General.")
       options(surveytable.svyciprop_adj = "none"
         , surveytable.tx_count = ".tx_count_int"
         , surveytable.names_count = c("n", "Number", "SE", "LL", "UL")
-        , surveytable.find_lpe = FALSE)
+        , surveytable.find_lpe = FALSE
+        , surveytable.drop_na = FALSE)
     }
   }
 

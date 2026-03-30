@@ -2,6 +2,8 @@
 
 * More `set_opts(output = *)` options: `"Word"`, `"Excel"`, `"Excel_v1"`, `"flextable"`.
 * `restructure()`: Restructure tables to make them easier to process programmatically.
+* `set_opts(mode = "nchs")` now sets `drop_na = TRUE`.
+* Added another public use data file for use in examples: `nhis2024a`.
 
 # surveytable 0.9.10
 

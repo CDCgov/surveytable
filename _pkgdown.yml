@@ -32,6 +32,7 @@ reference:
   - namcs2019sv
   - uspop2019
   - rccsu2018
+  - nhis2024a
 - title: "Other"
   contents:
   - print.surveytable_table

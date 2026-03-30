@@ -63,12 +63,14 @@ If you are not setting a particular option, leave it as \code{NULL}.
 \itemize{
 \item Round counts to the nearest integer -- same as \code{count = "int"}.
 \item Do not look for low-precision estimates -- same as \code{lpe = FALSE}.
+\item Retain missing values -- same as \code{drop_na = FALSE}.
 \item Percentage CI's: use standard Korn-Graubard CI's -- same as \code{adj = "none"}.
 }
 \item \code{"nchs"}:
 \itemize{
 \item Round counts to the nearest 1,000 -- same as \code{count = "1k"}.
 \item Identify low-precision estimates -- same as \code{lpe = TRUE}.
+\item Drop missing values -- same as \code{drop_na = TRUE}.
 \item Percentage CI's: adjust Korn-Graubard CI's for the number of degrees of
 freedom, matching the SUDAAN calculation -- same as \code{adj = "nchs"}. This
 is appropriate for some, but not all, NCHS data systems. For some NCHS

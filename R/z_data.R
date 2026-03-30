@@ -1,3 +1,13 @@
+#' National Health Interview Survey (NHIS) 2024 Public Use File (PUF)
+#'
+#' NHIS is a national survey that monitors the health of the U.S. population. This
+#' survey object contains selected variables and is limited to observations on
+#' individuals aged 18+ only.
+#'
+#' @source
+#' * Data ("Sample adult interview"): <https://www.cdc.gov/nchs/nhis/documentation/2024-nhis.html>
+"nhis2024a"
+
 #' Selected variables from the National Ambulatory Medical Care Survey (NAMCS) 2019 Public Use File (PUF)
 #'
 #' Selected variables from a data system of visits to office-based physicians.

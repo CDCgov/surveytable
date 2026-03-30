@@ -133,10 +133,12 @@ Used to avoid printing huge tables.</p></dd>
     <p>If you are not setting a particular option, leave it as <code>NULL</code>.</p>
 <p><code>mode</code> can be either <code>"general"</code> or <code>"NCHS"</code> and has the following meaning:</p><ul><li><p><code>"general"</code>:</p><ul><li><p>Round counts to the nearest integer – same as <code>count = "int"</code>.</p></li>
 <li><p>Do not look for low-precision estimates – same as <code>lpe = FALSE</code>.</p></li>
+<li><p>Retain missing values – same as <code>drop_na = FALSE</code>.</p></li>
 <li><p>Percentage CI's: use standard Korn-Graubard CI's – same as <code>adj = "none"</code>.</p></li>
 </ul></li>
 <li><p><code>"nchs"</code>:</p><ul><li><p>Round counts to the nearest 1,000 – same as <code>count = "1k"</code>.</p></li>
 <li><p>Identify low-precision estimates – same as <code>lpe = TRUE</code>.</p></li>
+<li><p>Drop missing values – same as <code>drop_na = TRUE</code>.</p></li>
 <li><p>Percentage CI's: adjust Korn-Graubard CI's for the number of degrees of
 freedom, matching the SUDAAN calculation – same as <code>adj = "nchs"</code>. This
 is appropriate for some, but not all, NCHS data systems. For some NCHS
@@ -191,7 +193,7 @@ CSV file using the <code>file</code> argument.</p></li>
 <span class="r-in"><span><span class="fu">set_opts</span><span class="op">(</span>count <span class="op">=</span> <span class="st">"1k"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Rounding counts to the nearest thousand.</span>
 <span class="r-in"><span><span class="fu"><a href="tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                 Patient age recode {NAMCS 2019 PUF}                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Patient age recode (knowns only) {NAMCS 2019 PUF}                          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ┌─────────────┬───────┬─────────────┬──────────┬──────────┬──────────┬─────────┬─────┬──────┬──────┐</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │ Level       │     n │      Number │ SE (000) │ LL (000) │ UL (000) │ Percent │  SE │   LL │   UL │</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │             │       │       (000) │          │          │          │         │     │      │      │</span>
@@ -220,7 +222,7 @@ CSV file using the <code>file</code> argument.</p></li>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Printing with huxtable for screen, gt for HTML, or kableExtra for PDF.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Rounding counts to the nearest integer.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Identifying low-precision estimates.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> * Retaining missing values.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * Dropping missing values. Showing knowns only.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Maximum number of levels is: 20</span>
 </code></pre></div>
     </div>
