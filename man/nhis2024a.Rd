@@ -8,7 +8,9 @@
 An object of class \code{survey.design2} (inherits from \code{survey.design}) with 32577 rows and 12 columns.
 }
 \source{
-Data ("Sample adult interview"): \url{https://www.cdc.gov/nchs/nhis/documentation/2024-nhis.html}
+\itemize{
+\item Data ("Sample adult interview"): \url{https://www.cdc.gov/nchs/nhis/documentation/2024-nhis.html}
+}
 }
 \usage{
 nhis2024a
