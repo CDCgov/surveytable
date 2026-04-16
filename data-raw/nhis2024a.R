@@ -137,10 +137,10 @@ vars = c(
   , "age_group_std"
   # Outcome variables
   , vars3
-  # , "no_diff", "some_diff", "alot_diff"
+  , "no_diff", "some_diff", "alot_diff"
   # Other variables
   # , "male"
-  , "sex_a"
+  , "sex_a", "agep_a"
 )
 
 nhis2024_df = his24a[,vars]
@@ -149,12 +149,12 @@ nhis2024_df %<>% as.data.frame()
 nhis2024_df$age18 = NULL
 
 for (ii in vars3) {
-  nhis2024_df[,ii] %<>% factor(levels = 1:3, labels = c("No difference", "Some difference"
-                                                        , "A lot of difference"))
+  nhis2024_df[,ii] %<>% factor(levels = 1:3, labels = c("No difficulty", "Some difficulty"
+                                                        , "A lot of difficulty"))
 }
-# for (ii in c("no_diff", "some_diff", "alot_diff", "age18")) {
-#   nhis2024_df[,ii] %<>% as.logical()
-# }
+for (ii in c("no_diff", "some_diff", "alot_diff")) {
+  nhis2024_df[,ii] %<>% as.logical()
+}
 nhis2024_df$sex_a %<>% factor(levels = 1:2, labels = c("Male", "Female"))
 nhis2024_df$age_group_std %<>% factor(levels = 1:5, labels = c(
   "18-44", "45-54", "55-64", "65-74", "75+"
@@ -168,13 +168,17 @@ attr(nhis2024_df$cognition, "label") = "Difficulty with cognition"
 attr(nhis2024_df$self_care, "label") = "Difficulty with self-care"
 attr(nhis2024_df$mobility, "label") = "Difficulty with mobility"
 attr(nhis2024_df$dis3_indicator, "label") = "Disability indicator"
+attr(nhis2024_df$no_diff, "label") = "Disability: no difficulty"
+attr(nhis2024_df$some_diff, "label") = "Disability: some difficulty"
+attr(nhis2024_df$alot_diff, "label") = "Disability: a lot of difficulty"
 attr(nhis2024_df$sex_a, "label") = "Sex of Sample Adult"
+attr(nhis2024_df$agep_a, "label") = "Age of Sample Adult (top coded)"
 
 nhis2024a = svydesign(
   data    = nhis2024_df,
-  ids      = ~ppsu,       # Primary sampling unit (cluster)
-  strata  = ~pstrat,     # Stratification variable
-  weights = ~wtfa_a,     # Survey weights
+  ids      = ~ppsu,
+  strata  = ~pstrat,
+  weights = ~wtfa_a,
   nest    = TRUE
 )
 attr(nhis2024a, "label") = "NHIS 2024 PUF (Adults)"
