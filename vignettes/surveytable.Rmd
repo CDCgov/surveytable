@@ -300,23 +300,23 @@ According to this, surgical and medical care specialties are statistically simil
 
 A rate is a ratio of count estimates based on the survey in question divided by population size, which is assumed to be known. For example, the number of physician visits per 100 people in the population is a rate: the number of physician visits is estimated from the `namcs2019sv` survey, while the number of people in the population comes from another source. 
 
-To calculate rates, in addition to the survey, we need a source of information on population size. You would typically use a function such as `read.csv()` to load the population figures and get them into the correct format. The `surveytable` package comes with an object called `uspop2019` that contains several population figures for use in these examples.
+To calculate rates, in addition to the survey, we need a source of information on population size. You would typically use a function such as `read.csv()` to load the population figures and get them into the correct format. The `surveytable` package comes with an object called `uspop_example` that contains several population figures for use in these examples.
 
-Let's examine `uspop2019`:
+Let's examine `uspop_example`:
 
 ```{r}
-class(uspop2019)
-names(uspop2019)
+class(uspop_example)
+names(uspop_example)
 ```
 
 The overall population size for the country as a whole is:
 ```{r}
-uspop2019$total
+uspop_example$total
 ```
 
 Once we have the overall population size, the overall rate is:
 ```{r, results='asis'}
-total_rate(uspop2019$total)
+total_rate(uspop_example$total)
 ```
 
 To calculate the rates for a particular variable, we need to provide a data frame with a column called `Level` that matches the levels of the variable in the survey, and a column called `Population` that gives the size of the population for that level.
@@ -324,24 +324,24 @@ To calculate the rates for a particular variable, we need to provide a data fram
 For example, for `AGER`, this data frame is as follows:
 
 ```{r}
-uspop2019$AGER
+uspop_example$AGER
 ```
 
 Now that we have the appropriate population figures, the rates table is obtained by typing:
 
 ```{r, results='asis'}
-tab_rate("AGER", uspop2019$AGER)
+tab_rate("AGER", uspop_example$AGER)
 ```
 
 To calculate the rates for one variable (`AGER`) by another variable (`SEX`), we need population figures in the following format:
 ```{r}
-uspop2019$`AGER x SEX`
+uspop_example$`AGER x SEX`
 ```
 
 With this data frame, the rates table is obtained by typing:
 
 ```{r, results='asis'}
-tab_subset_rate("AGER", "SEX", uspop2019$`AGER x SEX`)
+tab_subset_rate("AGER", "SEX", uspop_example$`AGER x SEX`)
 ```
 
 # Create or modify variables

@@ -4,11 +4,18 @@
 \alias{set_survey}
 \title{Specify the survey to analyze}
 \usage{
-set_survey(design, ...)
+set_survey(design, aa_vr = NULL, aa_pop = NULL, ...)
 }
 \arguments{
 \item{design}{a survey object, created with \code{\link[survey:svydesign]{survey::svydesign()}} or
 \code{\link[survey:svrepdesign]{survey::svrepdesign()}}. For an unweighted survey, a \code{data.frame} or similar.}
+
+\item{aa_vr}{used to produce age-adjusted estimates only. The name of a
+categorical age variable located in \code{design}.}
+
+\item{aa_pop}{used to produce age-adjusted estimates only. A \code{data.frame} with
+columns named \code{Level} and \code{Population}. \code{Level} must exactly match the levels
+of \code{aa_vr}. \code{Population} is the population for that level of \code{aa_vr}.}
 
 \item{...}{arguments to \code{\link[=set_opts]{set_opts()}}.}
 }
@@ -27,7 +34,10 @@ attribute called \code{label}, which is the variable's long name.
 }
 \examples{
 set_survey(namcs2019sv)
-set_survey(namcs2019sv, mode = "general")
+set_survey(namcs2019sv, mode = "NCHS")
+
+## Age-adjusted estimation
+set_survey(nhis2024a, aa_vr = "age_group_std", aa_pop = uspop_example$age_group_std)
 }
 \seealso{
 Other options: 

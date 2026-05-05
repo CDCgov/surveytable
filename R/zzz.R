@@ -44,6 +44,9 @@ env = new.env()
 
     , surveytable.restructure_attr = c("title", "footer")
     , surveytable.restructure_flags = c("R", "Cx", "Cdf", "Px", "Pc", "Pdf", "P0")
+
+    ##
+    , surveytable.age_adjusted = FALSE
   )
 }
 

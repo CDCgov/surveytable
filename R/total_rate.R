@@ -9,7 +9,7 @@
 #'
 #' @examples
 #' set_survey(namcs2019sv)
-#' total_rate(uspop2019$total)
+#' total_rate(uspop_example$total)
 total_rate = function(pop
     , per = getOption("surveytable.rate_per")) {
   assert_that(pop > 0, per >= 1)

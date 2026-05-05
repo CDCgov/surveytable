@@ -80,7 +80,8 @@ o2s = function(obj) {
              "surveytable.svyciprop_adj", "surveytable.tx_count", "surveytable.tx_df",
              "surveytable.tx_numeric", "surveytable.tx_prct", "surveytable.tx_pval",
              "surveytable.tx_rate", "surveytable.tx_test_stat",
-             "surveytable.restructure_attr", "surveytable.restructure_flags")
+             "surveytable.restructure_attr", "surveytable.restructure_flags"
+             , "surveytable.age_adjusted")
   c_have = show_options() %>% names()
 
   d_nh = setdiff(c_need, c_have)

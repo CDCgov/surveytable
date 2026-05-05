@@ -4,6 +4,7 @@
 * `restructure()`: Restructure tables to make them easier to process programmatically.
 * `set_opts(mode = "nchs")` now sets `drop_na = TRUE`.
 * Added another public use data file for use in examples: `nhis2024a`.
+* The package now has the ability to produce **age-adjusted estimates**. See `set_survey()`.
 
 # surveytable 0.9.10
 

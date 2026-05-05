@@ -57,7 +57,7 @@ or <code><a href="https://rdrr.io/pkg/survey/man/svrepdesign.html" class="extern
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">set_survey</span><span class="op">(</span><span class="va">design</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">set_survey</span><span class="op">(</span><span class="va">design</span>, aa_vr <span class="op">=</span> <span class="cn">NULL</span>, aa_pop <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -67,6 +67,17 @@ or <code><a href="https://rdrr.io/pkg/survey/man/svrepdesign.html" class="extern
 <dl><dt id="arg-design">design<a class="anchor" aria-label="anchor" href="#arg-design"></a></dt>
 <dd><p>a survey object, created with <code><a href="https://rdrr.io/pkg/survey/man/svydesign.html" class="external-link">survey::svydesign()</a></code> or
 <code><a href="https://rdrr.io/pkg/survey/man/svrepdesign.html" class="external-link">survey::svrepdesign()</a></code>. For an unweighted survey, a <code>data.frame</code> or similar.</p></dd>
+
+
+<dt id="arg-aa-vr">aa_vr<a class="anchor" aria-label="anchor" href="#arg-aa-vr"></a></dt>
+<dd><p>used to produce age-adjusted estimates only. The name of a
+categorical age variable located in <code>design</code>.</p></dd>
+
+
+<dt id="arg-aa-pop">aa_pop<a class="anchor" aria-label="anchor" href="#arg-aa-pop"></a></dt>
+<dd><p>used to produce age-adjusted estimates only. A <code>data.frame</code> with
+columns named <code>Level</code> and <code>Population</code>. <code>Level</code> must exactly match the levels
+of <code>aa_vr</code>. <code>Population</code> is the population for that level of <code>aa_vr</code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -106,8 +117,8 @@ attribute called <code>label</code>, which is the variable's long name.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ , data = namcs2019sv_df)                       │</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> └───────────┴──────────────┴────────────────────────────────────────────────┘</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu">set_survey</span><span class="op">(</span><span class="va">namcs2019sv</span>, mode <span class="op">=</span> <span class="st">"general"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> * Mode: General.</span>
+<span class="r-in"><span><span class="fu">set_survey</span><span class="op">(</span><span class="va">namcs2019sv</span>, mode <span class="op">=</span> <span class="st">"NCHS"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * Mode: NCHS.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         Survey info {NAMCS 2019 PUF}                         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────┬──────────────┬────────────────────────────────────────────────┐</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │ Variables │ Observations │ Design                                         │</span>
@@ -118,6 +129,26 @@ attribute called <code>label</code>, which is the variable's long name.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ namcs2019sv = survey::svydesign(ids = ~CPSUM,  │</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ strata = ~CSTRATM, weights = ~PATWT            │</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ , data = namcs2019sv_df)                       │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> └───────────┴──────────────┴────────────────────────────────────────────────┘</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Age-adjusted estimation</span></span></span>
+<span class="r-in"><span><span class="fu">set_survey</span><span class="op">(</span><span class="va">nhis2024a</span>, aa_vr <span class="op">=</span> <span class="st">"age_group_std"</span>, aa_pop <span class="op">=</span> <span class="va">uspop_example</span><span class="op">$</span><span class="va">age_group_std</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * Producing age-adjusted estimates.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Survey info {NHIS 2024 PUF (Adults)}                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────┬──────────────┬────────────────────────────────────────────────┐</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Variables │ Observations │ Design                                         │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────┼──────────────┼────────────────────────────────────────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │        16 │       32,577 │ Stratified 1 - level Cluster Sampling design   │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ (with replacement)                             │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ With (662) clusters.                           │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ nhis2024a = svydesign(                         │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ data = nhis2024_df,                            │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ ids = ~ppsu,                                   │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ strata = ~pstrat,                              │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ weights = ~wtfa_a,                             │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ nest = TRUE                                    │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ )                                              │</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> └───────────┴──────────────┴────────────────────────────────────────────────┘</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>

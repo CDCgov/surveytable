@@ -125,6 +125,15 @@ tab = function(...
 	assert_that(noNA(design$variables[,vr]), noNA(levels(design$variables[,vr])))
 	attr(design$variables[,vr], "label") = lbl
 
+	if (getOption("surveytable.age_adjusted")) {
+	  design = svystandardize(
+	    design = design
+	    , by = env$aa_info$by
+	    , over = ~1
+	    , population = env$aa_info$population
+	  )
+	}
+
 	nlv = nlevels(design$variables[,vr])
 	if (nlv < 2) {
     assert_that(all(design$variables[,vr] == design$variables[1,vr]))
@@ -272,7 +281,7 @@ tab = function(...
 	  mp %<>% .add_flags( list(pro, pco, ppo) )
 	}
 
-	.finalize_tab(mp)
+	.finalize_tab(mp, aa = getOption("surveytable.age_adjusted"))
 }
 
 .add_flags = function(df1, lfo) {

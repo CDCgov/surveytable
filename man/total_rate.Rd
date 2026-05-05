@@ -19,7 +19,7 @@ Overall rate
 }
 \examples{
 set_survey(namcs2019sv)
-total_rate(uspop2019$total)
+total_rate(uspop_example$total)
 }
 \seealso{
 Other tables: 

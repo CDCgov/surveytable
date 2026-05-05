@@ -590,22 +590,22 @@ addition to the survey, we need a source of information with population
 estimates. You would typically use a function such as
 <code><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv()</a></code> to load the population estimates and get them
 into the correct format. The <code>surveytable</code> package comes with
-an object called <code>uspop2019</code> that contains several population
-estimates for use in these examples.</p>
+an object called <code>uspop_example</code> that contains several
+population estimates for use in these examples.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">uspop2019</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">uspop_example</span><span class="op">)</span></span>
 <span><span class="co">## [1] "list"</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">uspop2019</span><span class="op">)</span></span>
-<span><span class="co">## [1] "total"       "MSA"         "AGER"        "Age group"   "SEX"        </span></span>
-<span><span class="co">## [6] "AGER x SEX"  "Age group 5"</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">uspop_example</span><span class="op">)</span></span>
+<span><span class="co">## [1] "total"         "MSA"           "AGER"          "Age group"    </span></span>
+<span><span class="co">## [5] "SEX"           "AGER x SEX"    "Age group 5"   "age_group_std"</span></span></code></pre></div>
 <p>Here is the overall population estimate:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">uspop2019</span><span class="op">$</span><span class="va">total</span></span>
+<code class="sourceCode R"><span><span class="va">uspop_example</span><span class="op">$</span><span class="va">total</span></span>
 <span><span class="co">## [1] 323186697</span></span></code></pre></div>
 <p>Once we have the overall population estimate, the overall rate
 is:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/total_rate.html">total_rate</a></span><span class="op">(</span><span class="va">uspop2019</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/total_rate.html">total_rate</a></span><span class="op">(</span><span class="va">uspop_example</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span></code></pre></div>
 <div id="rehalspkzc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
@@ -665,14 +665,14 @@ to be a constant rather than a random variable).</p>
 using the <code><a href="../reference/tab.html">tab()</a></code> command, just as we did above. Thus, to
 calculate rates, we need a data frame as follows:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">uspop2019</span><span class="op">$</span><span class="va">MSA</span></span>
+<code class="sourceCode R"><span><span class="va">uspop_example</span><span class="op">$</span><span class="va">MSA</span></span>
 <span><span class="co">##                                 Level Population</span></span>
 <span><span class="co">## 1 MSA (Metropolitan Statistical Area)  277229518</span></span>
 <span><span class="co">## 2                             Non-MSA   45957179</span></span></code></pre></div>
 <p>Now that we have the appropriate population estimates, the rate
 is:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"MSA"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">MSA</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"MSA"</span>, <span class="va">uspop_example</span><span class="op">$</span><span class="va">MSA</span><span class="op">)</span></span></code></pre></div>
 <div id="bwjcfdjagf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
@@ -755,7 +755,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 <p>We can also calculate rates of a specific variable based on the
 entire population:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"MDDO"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"MDDO"</span>, <span class="va">uspop_example</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span>
 <span><span class="co">## * Rate based on the entire population.</span></span></code></pre></div>
 <div id="vsybhaaglv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
@@ -836,7 +836,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 </table>
 </div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"SPECCAT"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"SPECCAT"</span>, <span class="va">uspop_example</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span>
 <span><span class="co">## * Rate based on the entire population.</span></span></code></pre></div>
 <div id="ijbfglzvne" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
@@ -2016,7 +2016,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 <h3 id="rates-1">Rates<a class="anchor" aria-label="anchor" href="#rates-1"></a>
 </h3>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">AGER</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="va">uspop_example</span><span class="op">$</span><span class="va">AGER</span><span class="op">)</span></span></code></pre></div>
 <div id="dacgqflgkj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
@@ -2176,7 +2176,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 </table>
 </div>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"Age group"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">`Age group`</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"Age group"</span>, <span class="va">uspop_example</span><span class="op">$</span><span class="va">`Age group`</span><span class="op">)</span></span>
 <span><span class="co">## * Population for some levels not defined: 15-64</span></span></code></pre></div>
 <div id="hvqltorlvu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
@@ -2317,7 +2317,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 </table>
 </div>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"SEX"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">SEX</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_rate.html">tab_rate</a></span><span class="op">(</span><span class="st">"SEX"</span>, <span class="va">uspop_example</span><span class="op">$</span><span class="va">SEX</span><span class="op">)</span></span></code></pre></div>
 <div id="zjcdmfnbye" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">
@@ -2400,7 +2400,7 @@ N = 8250. Checked NCHS presentation standards. Nothing to report.
 another variable (<code>SEX</code>), we need population estimates in the
 following format:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">uspop2019</span><span class="op">$</span><span class="va">`AGER x SEX`</span></span>
+<code class="sourceCode R"><span><span class="va">uspop_example</span><span class="op">$</span><span class="va">`AGER x SEX`</span></span>
 <span><span class="co">##                Level Subset Population</span></span>
 <span><span class="co">## 1     Under 15 years Female   29604762</span></span>
 <span><span class="co">## 2        15-24 years Female   20730118</span></span>
@@ -2416,7 +2416,7 @@ following format:</p>
 <span><span class="co">## 12 75 years and over   Male    9098236</span></span></code></pre></div>
 <p>Once we have these population estimates, the rates are:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset_rate.html">tab_subset_rate</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"SEX"</span>, <span class="va">uspop2019</span><span class="op">$</span><span class="va">`AGER x SEX`</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset_rate.html">tab_subset_rate</a></span><span class="op">(</span><span class="st">"AGER"</span>, <span class="st">"SEX"</span>, <span class="va">uspop_example</span><span class="op">$</span><span class="va">`AGER x SEX`</span><span class="op">)</span></span></code></pre></div>
 <div id="srejldsxty" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
 <thead style="border-style: none;">

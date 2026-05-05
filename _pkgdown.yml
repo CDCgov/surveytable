@@ -30,9 +30,9 @@ reference:
 - title: "Data for use in examples"
   contents:
   - namcs2019sv
-  - uspop2019
   - rccsu2018
   - nhis2024a
+  - uspop_example
 - title: "Other"
   contents:
   - print.surveytable_table

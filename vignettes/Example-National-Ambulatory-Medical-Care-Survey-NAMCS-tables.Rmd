@@ -55,21 +55,21 @@ tab("MDDO", "SPECCAT", "MSA")
 
 ## Rates
 
-The published table also shows several rates. To calculate rates, in addition to the survey, we need a source of information with population estimates. You would typically use a function such as `read.csv()` to load the population estimates and get them into the correct format. The `surveytable` package comes with an object called `uspop2019` that contains several population estimates for use in these examples.
+The published table also shows several rates. To calculate rates, in addition to the survey, we need a source of information with population estimates. You would typically use a function such as `read.csv()` to load the population estimates and get them into the correct format. The `surveytable` package comes with an object called `uspop_example` that contains several population estimates for use in these examples.
 
 ```{r}
-class(uspop2019)
-names(uspop2019)
+class(uspop_example)
+names(uspop_example)
 ```
 
 Here is the overall population estimate:
 ```{r}
-uspop2019$total
+uspop_example$total
 ```
 
 Once we have the overall population estimate, the overall rate is:
 ```{r, results='asis'}
-total_rate(uspop2019$total)
+total_rate(uspop_example$total)
 ```
 
 To calculate the rates for a particular variable, we need to provide a data frame with a variable called `Level` that matches the levels of the variable in the survey, and a variable called `Population` that gives the population size (which is assumed to be a constant rather than a random variable).
@@ -77,18 +77,18 @@ To calculate the rates for a particular variable, we need to provide a data fram
 For `MSA`, we can see the levels of the variables just by using the `tab()` command, just as we did above. Thus, to calculate rates, we need a data frame as follows:
 
 ```{r}
-uspop2019$MSA
+uspop_example$MSA
 ```
 
 Now that we have the appropriate population estimates, the rate is:
 ```{r, results='asis'}
-tab_rate("MSA", uspop2019$MSA)
+tab_rate("MSA", uspop_example$MSA)
 ```
 
 We can also calculate rates of a specific variable based on the entire population:
 ```{r, results='asis'}
-tab_rate("MDDO", uspop2019$total)
-tab_rate("SPECCAT", uspop2019$total)
+tab_rate("MDDO", uspop_example$total)
+tab_rate("SPECCAT", uspop_example$total)
 ```
 
 # Table 3
@@ -119,19 +119,19 @@ tab_cross("AGER", "SEX")
 ## Rates
 
 ```{r, results='asis'}
-tab_rate("AGER", uspop2019$AGER)
-tab_rate("Age group", uspop2019$`Age group`)
-tab_rate("SEX", uspop2019$SEX)
+tab_rate("AGER", uspop_example$AGER)
+tab_rate("Age group", uspop_example$`Age group`)
+tab_rate("SEX", uspop_example$SEX)
 ```
 
 To calculate the rates for one variable (`AGER`) by another variable (`SEX`), we need population estimates in the following format:
 ```{r}
-uspop2019$`AGER x SEX`
+uspop_example$`AGER x SEX`
 ```
 
 Once we have these population estimates, the rates are: 
 ```{r, results='asis'}
-tab_subset_rate("AGER", "SEX", uspop2019$`AGER x SEX`)
+tab_subset_rate("AGER", "SEX", uspop_example$`AGER x SEX`)
 ```
 
 # Table 5

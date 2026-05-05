@@ -40,7 +40,7 @@ the rates of another variable within each of the subsets.
 }
 \examples{
 set_survey(namcs2019sv)
-tab_subset_rate("AGER", "SEX", uspop2019$`AGER x SEX`)
+tab_subset_rate("AGER", "SEX", uspop_example$`AGER x SEX`)
 }
 \seealso{
 Other tables: 

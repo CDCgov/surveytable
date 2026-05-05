@@ -35,10 +35,10 @@ Calculate the rates for categorical (factor) or logical variables.
 \examples{
 set_survey(namcs2019sv)
 # pop is a data frame
-tab_rate("MSA", uspop2019$MSA)
+tab_rate("MSA", uspop_example$MSA)
 
 # pop is a single number
-tab_rate("MDDO", uspop2019$total)
+tab_rate("MDDO", uspop_example$total)
 }
 \seealso{
 Other tables: 

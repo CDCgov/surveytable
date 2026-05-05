@@ -30,12 +30,23 @@
 #' @rdname namcs2019sv
 "namcs2019sv_df"
 
-#' US Population in 2019
+#' US Population for use in examples
 #'
-#' Population estimates of the civilian non-institutional population of the
-#' United States as of July 1, 2019. Used for calculating rates. For usage
-#' examples, see the `*_rate` functions.
-"uspop2019"
+#' Population counts for use in examples.
+#'
+#' Most of the list elements are population estimates of the civilian non-institutional
+#' population of the United States as of July 1, 2019. Used for calculating rates
+#' based on [`namcs2019sv`]. For usage examples, see [`tab_rate()`] and
+#' [`tab_subset_rate()`].
+#'
+#' `$age_group_std` is population counts for adults aged 18 and older, by age
+#' group, from the 2000 US Standard Population as published by the U.S. Census
+#' Bureau. Used as the reference population for age-standardization of survey
+#' estimates based on [`nhis2024a`]. For usage examples, see [`set_survey()`].
+#'
+#' @examples
+#' names(uspop_example)
+"uspop_example"
 
 #' National Study of Long-Term Care Providers (NSLTCP) Residential Care Community (RCC) Services User (SU) 2018 Public Use File (PUF)
 #'

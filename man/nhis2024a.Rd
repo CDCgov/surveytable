@@ -5,7 +5,7 @@
 \alias{nhis2024a}
 \title{National Health Interview Survey (NHIS) 2024 Public Use File (PUF)}
 \format{
-An object of class \code{survey.design2} (inherits from \code{survey.design}) with 32577 rows and 12 columns.
+An object of class \code{survey.design2} (inherits from \code{survey.design}) with 32577 rows and 16 columns.
 }
 \source{
 \itemize{
