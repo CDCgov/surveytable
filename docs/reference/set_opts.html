@@ -176,17 +176,19 @@ CSV file using the <code>file</code> argument.</p></li>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                         Survey info {NAMCS 2019 PUF}                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────┬──────────────┬────────────────────────────────────────────────┐</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Variables │ Observations │ Design                                         │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────┼──────────────┼────────────────────────────────────────────────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │        33 │        8,250 │ Stratified 1 - level Cluster Sampling design   │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ (with replacement)                             │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ With (398) clusters.                           │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ namcs2019sv = survey::svydesign(ids = ~CPSUM,  │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ strata = ~CSTRATM, weights = ~PATWT            │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ , data = namcs2019sv_df)                       │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └───────────┴──────────────┴────────────────────────────────────────────────┘</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            Survey info {NAMCS 2019 PUF}                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────┬──────────────┬────────────────┬────────────────────────────────────┐</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Variables │ Observations │ Age adjustment │ Design                             │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────┼──────────────┼────────────────┼────────────────────────────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │        33 │        8,250 │ None           │ Stratified 1 - level Cluster       │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ Sampling design (with replacement) │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ With (398) clusters.               │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ namcs2019sv =                      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ survey::svydesign(ids = ~CPSUM,    │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ strata = ~CSTRATM, weights =       │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ ~PATWT                             │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ , data = namcs2019sv_df)           │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> └───────────┴──────────────┴────────────────┴────────────────────────────────────┘</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Round counts to the nearest one thousand:</span></span></span>
@@ -223,6 +225,7 @@ CSV file using the <code>file</code> argument.</p></li>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Rounding counts to the nearest integer.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Identifying low-precision estimates.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Dropping missing values. Showing knowns only.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * Not producing age-adjusted estimates.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Maximum number of levels is: 20</span>
 </code></pre></div>
     </div>

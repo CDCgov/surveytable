@@ -40,9 +40,11 @@ adjustment.
 }
 
 To use these adjustments in \code{surveytable} tabulations, call \code{\link[=set_survey]{set_survey()}} or \code{\link[=set_opts]{set_opts()}} with the
-appropriate \code{mode} or \code{adj} argument.
+appropriate \code{mode} or \code{adj} argument. Age-adjustment can be turned on with \code{\link[=set_survey]{set_survey()}}. But if
+\code{adj = "none"}, no age-adjustment is performed.
 
-Originally written by Makram Talih in 2019.
+Originally written by Makram Talih (2019). Age-adjusted calculation based on
+Natalie Young (2026).
 }
 \examples{
 set_survey(namcs2019sv)

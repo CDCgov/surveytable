@@ -105,51 +105,55 @@ attribute called <code>label</code>, which is the variable's long name.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">set_survey</span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                         Survey info {NAMCS 2019 PUF}                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────┬──────────────┬────────────────────────────────────────────────┐</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Variables │ Observations │ Design                                         │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────┼──────────────┼────────────────────────────────────────────────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │        33 │        8,250 │ Stratified 1 - level Cluster Sampling design   │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ (with replacement)                             │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ With (398) clusters.                           │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ namcs2019sv = survey::svydesign(ids = ~CPSUM,  │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ strata = ~CSTRATM, weights = ~PATWT            │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ , data = namcs2019sv_df)                       │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └───────────┴──────────────┴────────────────────────────────────────────────┘</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            Survey info {NAMCS 2019 PUF}                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────┬──────────────┬────────────────┬────────────────────────────────────┐</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Variables │ Observations │ Age adjustment │ Design                             │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────┼──────────────┼────────────────┼────────────────────────────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │        33 │        8,250 │ None           │ Stratified 1 - level Cluster       │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ Sampling design (with replacement) │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ With (398) clusters.               │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ namcs2019sv =                      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ survey::svydesign(ids = ~CPSUM,    │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ strata = ~CSTRATM, weights =       │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ ~PATWT                             │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ , data = namcs2019sv_df)           │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> └───────────┴──────────────┴────────────────┴────────────────────────────────────┘</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">set_survey</span><span class="op">(</span><span class="va">namcs2019sv</span>, mode <span class="op">=</span> <span class="st">"NCHS"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Mode: NCHS.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                         Survey info {NAMCS 2019 PUF}                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────┬──────────────┬────────────────────────────────────────────────┐</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Variables │ Observations │ Design                                         │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────┼──────────────┼────────────────────────────────────────────────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │        33 │        8,250 │ Stratified 1 - level Cluster Sampling design   │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ (with replacement)                             │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ With (398) clusters.                           │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ namcs2019sv = survey::svydesign(ids = ~CPSUM,  │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ strata = ~CSTRATM, weights = ~PATWT            │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ , data = namcs2019sv_df)                       │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └───────────┴──────────────┴────────────────────────────────────────────────┘</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            Survey info {NAMCS 2019 PUF}                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────┬──────────────┬────────────────┬────────────────────────────────────┐</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Variables │ Observations │ Age adjustment │ Design                             │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────┼──────────────┼────────────────┼────────────────────────────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │        33 │        8,250 │ None           │ Stratified 1 - level Cluster       │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ Sampling design (with replacement) │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ With (398) clusters.               │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ namcs2019sv =                      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ survey::svydesign(ids = ~CPSUM,    │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ strata = ~CSTRATM, weights =       │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ ~PATWT                             │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ , data = namcs2019sv_df)           │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> └───────────┴──────────────┴────────────────┴────────────────────────────────────┘</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Age-adjusted estimation</span></span></span>
 <span class="r-in"><span><span class="fu">set_survey</span><span class="op">(</span><span class="va">nhis2024a</span>, aa_vr <span class="op">=</span> <span class="st">"age_group_std"</span>, aa_pop <span class="op">=</span> <span class="va">uspop_example</span><span class="op">$</span><span class="va">age_group_std</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Producing age-adjusted estimates.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     Survey info {NHIS 2024 PUF (Adults)}                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────┬──────────────┬────────────────────────────────────────────────┐</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Variables │ Observations │ Design                                         │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────┼──────────────┼────────────────────────────────────────────────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │        16 │       32,577 │ Stratified 1 - level Cluster Sampling design   │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ (with replacement)                             │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ With (662) clusters.                           │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ nhis2024a = svydesign(                         │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ data = nhis2024_df,                            │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ ids = ~ppsu,                                   │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ strata = ~pstrat,                              │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ weights = ~wtfa_a,                             │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ nest = TRUE                                    │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ )                                              │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └───────────┴──────────────┴────────────────────────────────────────────────┘</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  Survey info {NHIS 2024 PUF (Adults)}                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────┬──────────────┬────────────────────────────────────┬────────────────────────────────────┐</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Variables │ Observations │ Age adjustment                     │ Design                             │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────┼──────────────┼────────────────────────────────────┼────────────────────────────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │        16 │       32,577 │ Age-adjusted by age_group_std:     │ Stratified 1 - level Cluster       │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ 18-44, 45-54, 55-64, 65-74, 75+    │ Sampling design (with replacement) │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                                    │ With (662) clusters.               │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                                    │ nhis2024a = svydesign(             │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                                    │ data = nhis2024_df,                │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                                    │ ids = ~ppsu,                       │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                                    │ strata = ~pstrat,                  │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                                    │ weights = ~wtfa_a,                 │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                                    │ nest = TRUE                        │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                                    │ )                                  │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> └───────────┴──────────────┴────────────────────────────────────┴────────────────────────────────────┘</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>

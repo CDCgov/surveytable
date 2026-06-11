@@ -125,7 +125,10 @@ set_survey = function(design
 
     env$aa_info = list(
       by = as.formula(paste0("~ `", aa_vr, "`"))
+      , by_name = aa_vr
+      , by_levels = levels(design$variables[,aa_vr])
       , population = aa_pop$Population
+      , population_weights = aa_pop$Population / sum(aa_pop$Population)
     )
     options(surveytable.age_adjusted = TRUE)
     message("* Producing age-adjusted estimates.")
@@ -144,6 +147,7 @@ set_survey = function(design
   out = data.frame(
     Variables = ncol(design$variables)
     , Observations = nrow(design$variables)
+    , `Age adjustment` = .age_adjustment_label()
     , Design = design %>% capture.output %>% paste(collapse = "\n")
     , check.names = FALSE
   )
@@ -165,4 +169,37 @@ set_survey = function(design
               , msg = glue("Must be a survey.design or svyrep.design. Is: {o2s(design)}."))
   assert_that( all(design$prob > 0), all(design$prob < Inf) )
   design
+}
+
+.get_aa_info = function() {
+  assert_that(isTRUE(getOption("surveytable.age_adjusted"))
+              , msg = "Age-adjusted estimates have not been requested.")
+  aa_info = env$aa_info
+  assert_that(is.list(aa_info)
+              , all(c("by", "by_name", "by_levels", "population", "population_weights") %in% names(aa_info)))
+  aa_info
+}
+
+.age_adjustment_label = function() {
+  if (!isTRUE(getOption("surveytable.age_adjusted"))) {
+    return("None")
+  }
+  aa_info = .get_aa_info()
+  glue("Age-adjusted by {aa_info$by_name}: {glue_collapse(aa_info$by_levels, sep = ', ')}")
+}
+
+.age_standardize_design = function(design) {
+  aa_info = .get_aa_info()
+  assert_that(aa_info$by_name %in% names(design$variables)
+              , msg = glue("Age-adjustment variable {aa_info$by_name} is not in the data."))
+  missing_levels = setdiff(aa_info$by_levels, as.character(unique(design$variables[,aa_info$by_name])))
+  assert_that(length(missing_levels) == 0
+              , msg = glue("Cannot produce age-adjusted estimates: no observations for {aa_info$by_name} = {glue_collapse(missing_levels, sep = ', ')}."))
+
+  svystandardize(
+    design = design
+    , by = aa_info$by
+    , over = ~1
+    , population = aa_info$population
+  )
 }

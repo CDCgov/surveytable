@@ -18,9 +18,11 @@
 #' adjustment.
 #'
 #' To use these adjustments in `surveytable` tabulations, call [set_survey()] or [set_opts()] with the
-#' appropriate `mode` or `adj` argument.
+#' appropriate `mode` or `adj` argument. Age-adjustment can be turned on with [set_survey()]. But if
+#' `adj = "none"`, no age-adjustment is performed.
 #'
-#' Originally written by Makram Talih in 2019.
+#' Originally written by Makram Talih (2019). Age-adjusted calculation based on
+#' Natalie Young (2026).
 #'
 #' @param formula see `survey::svyciprop()`.
 #' @param design see `survey::svyciprop()`.
@@ -64,7 +66,12 @@ svyciprop_adjusted = function(formula
   rval = coef(m)[1]
 
   #Effective sample size
-  n.eff = coef(m) * (1 - coef(m))/stats::vcov(m)
+  n.eff = .svyciprop_n_eff(
+    formula = formula
+    , design = design
+    , m = m
+    , ...
+  )
 
   attr(rval, "var") = stats::vcov(m)
   alpha = 1 - level
@@ -94,6 +101,38 @@ svyciprop_adjusted = function(formula
   names(ci) = paste(round(c(halfalpha, (1 - halfalpha))*100, 1), "%", sep = "")
   names(rval) = deparse(formula[[2]])
   attr(rval, "ci") = ci
+  attr(rval, "n.eff") = n.eff
   class(rval) = "svyciprop"
   rval
+}
+
+.svyciprop_n_eff = function(formula, design, m, ...) {
+  p = coef(m)[1]
+  v = stats::vcov(m)[1,1]
+
+  if (!getOption("surveytable.age_adjusted")) {
+    return(p * (1 - p) / v)
+  }
+
+  aa_info = .get_aa_info()
+  aa_vr = aa_info$by_name
+  assert_that(aa_vr %in% names(design$variables))
+
+  p_k = n_k = rep_len(NA, length(aa_info$by_levels))
+  for (ii in seq_along(aa_info$by_levels)) {
+    idx = which(design$variables[,aa_vr] == aa_info$by_levels[ii])
+    n_k[ii] = length(idx)
+    assert_that(n_k[ii] > 0
+                , msg = glue("Cannot calculate age-adjusted CI: no observations for {aa_vr} = {aa_info$by_levels[ii]}."))
+    d_k = design[idx,]
+    m_k = eval(bquote(svymean(~as.numeric(.(formula[[2]])), d_k, ...)))
+    p_k[ii] = coef(m_k)[1]
+  }
+
+  srsvar = sum(aa_info$population_weights^2 * p_k * (1 - p_k) / n_k)
+  if (srsvar <= 0) {
+    return(sum(n_k))
+  }
+  deffmean = v / srsvar
+  sum(n_k) / deffmean
 }

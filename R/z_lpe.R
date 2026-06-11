@@ -79,7 +79,13 @@
 }
 
 .lpe_percents = function(ret) {
-	ret$`n effective` = with(ret, Proportion * (1 - Proportion) / (SE ^ 2))
+	if (!("n effective" %in% names(ret))) {
+		ret$`n effective` = NA
+	}
+	idx.neff = is.na(ret$`n effective`)
+	if (any(idx.neff)) {
+		ret$`n effective`[idx.neff] = with(ret[idx.neff,], Proportion * (1 - Proportion) / (SE ^ 2))
+	}
 	ret$`CI width` = with(ret, UL - LL)
 
 	idx.bad = (ret$`n numerator` == 0L | ret$`n numerator` == ret$`n denominator`)

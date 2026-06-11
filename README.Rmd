@@ -32,6 +32,7 @@ knitr::opts_chunk$set(
   * tabulate numeric variables, 
   * perform hypothesis tests, 
   * tabulate rates, 
+  * produce age-adjusted estimates (or estimates adjusted by any other variable),
   * modify survey variables, and 
   * save the output. 
 

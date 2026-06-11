@@ -126,12 +126,7 @@ tab = function(...
 	attr(design$variables[,vr], "label") = lbl
 
 	if (getOption("surveytable.age_adjusted")) {
-	  design = svystandardize(
-	    design = design
-	    , by = env$aa_info$by
-	    , over = ~1
-	    , population = env$aa_info$population
-	  )
+	  design = .age_standardize_design(design)
 	}
 
 	nlv = nlevels(design$variables[,vr])
@@ -225,6 +220,7 @@ tab = function(...
 		                        , adj = getOption("surveytable.svyciprop_adj"))
 		ret1 = data.frame(Proportion = xp %>% as.numeric
 		                  , SE = attr(xp, "var") %>% as.numeric %>% sqrt)
+		ret1$`n effective` = if (is.null(n_eff <- attr(xp, "n.eff"))) NA else n_eff
 
 		ci = attr(xp, "ci") %>% t %>% data.frame
 		names(ci) = c("LL", "UL")

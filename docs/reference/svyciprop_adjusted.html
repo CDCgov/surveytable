@@ -96,24 +96,28 @@ of freedom is set to <code>nrow(design) - 1</code>. Consult the documentation
 for the data system that you are analyzing to determine if this is the appropriate
 adjustment.</p></li>
 </ul><p>To use these adjustments in <code>surveytable</code> tabulations, call <code><a href="set_survey.html">set_survey()</a></code> or <code><a href="set_opts.html">set_opts()</a></code> with the
-appropriate <code>mode</code> or <code>adj</code> argument.</p>
-<p>Originally written by Makram Talih in 2019.</p>
+appropriate <code>mode</code> or <code>adj</code> argument. Age-adjustment can be turned on with <code><a href="set_survey.html">set_survey()</a></code>. But if
+<code>adj = "none"</code>, no age-adjustment is performed.</p>
+<p>Originally written by Makram Talih (2019). Age-adjusted calculation based on
+Natalie Young (2026).</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                         Survey info {NAMCS 2019 PUF}                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────┬──────────────┬────────────────────────────────────────────────┐</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ Variables │ Observations │ Design                                         │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────┼──────────────┼────────────────────────────────────────────────┤</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │        33 │        8,250 │ Stratified 1 - level Cluster Sampling design   │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ (with replacement)                             │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ With (398) clusters.                           │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ namcs2019sv = survey::svydesign(ids = ~CPSUM,  │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ strata = ~CSTRATM, weights = ~PATWT            │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │ , data = namcs2019sv_df)                       │</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └───────────┴──────────────┴────────────────────────────────────────────────┘</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            Survey info {NAMCS 2019 PUF}                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ┌───────────┬──────────────┬────────────────┬────────────────────────────────────┐</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │ Variables │ Observations │ Age adjustment │ Design                             │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ├───────────┼──────────────┼────────────────┼────────────────────────────────────┤</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │        33 │        8,250 │ None           │ Stratified 1 - level Cluster       │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ Sampling design (with replacement) │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ With (398) clusters.               │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ namcs2019sv =                      │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ survey::svydesign(ids = ~CPSUM,    │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ strata = ~CSTRATM, weights =       │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ ~PATWT                             │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> │           │              │                │ , data = namcs2019sv_df)           │</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> └───────────┴──────────────┴────────────────┴────────────────────────────────────┘</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="set_opts.html">set_opts</a></span><span class="op">(</span>adj <span class="op">=</span> <span class="st">"NCHS"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> * Korn and Graubard confidence intervals for proportions with an adjustment that might be required by some (though not all) NCHS data systems.</span>

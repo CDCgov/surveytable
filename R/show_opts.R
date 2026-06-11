@@ -60,6 +60,12 @@ show_opts = function() {
     message("* Retaining missing values.")
   }
 
+  if (getOption("surveytable.age_adjusted")) {
+    message(glue("* {.age_adjustment_label()}."))
+  } else {
+    message("* Not producing age-adjusted estimates.")
+  }
+
   max_levels = getOption("surveytable.max_levels")
   assert_that(is.count(max_levels))
   message(paste0("* Maximum number of levels is: ", max_levels))
