@@ -27,4 +27,7 @@ uspop_example$age_group_std = data.frame(
   , Population = c(108151050, 37030152, 23961506, 18135514, 16573966)
 )
 
+uspop_example$age_group_std_prop = uspop_example$age_group_std
+uspop_example$age_group_std_prop$Population = uspop_example$age_group_std_prop$Population / sum(uspop_example$age_group_std_prop$Population)
+
 usethis::use_data(uspop_example, overwrite = TRUE)

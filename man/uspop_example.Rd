@@ -5,7 +5,7 @@
 \alias{uspop_example}
 \title{US Population for use in examples}
 \format{
-An object of class \code{list} of length 8.
+An object of class \code{list} of length 9.
 }
 \usage{
 uspop_example
@@ -19,7 +19,7 @@ population of the United States as of July 1, 2019. Used for calculating rates
 based on \code{\link{namcs2019sv}}. For usage examples, see \code{\link[=tab_rate]{tab_rate()}} and
 \code{\link[=tab_subset_rate]{tab_subset_rate()}}.
 
-\verb{$age_group_std} is population counts for adults aged 18 and older, by age
+\verb{$age_group_std*} is population counts for adults aged 18 and older, by age
 group, from the 2000 US Standard Population as published by the U.S. Census
 Bureau. Used as the reference population for age-standardization of survey
 estimates based on \code{\link{nhis2024a}}. For usage examples, see \code{\link[=set_survey]{set_survey()}}.

@@ -15,7 +15,8 @@ categorical age variable located in \code{design}.}
 
 \item{aa_pop}{used to produce age-adjusted estimates only. A \code{data.frame} with
 columns named \code{Level} and \code{Population}. \code{Level} must exactly match the levels
-of \code{aa_vr}. \code{Population} is the population for that level of \code{aa_vr}.}
+of \code{aa_vr}. \code{Population} is the population count or proportion/weight for
+that level of \code{aa_vr}.}
 
 \item{...}{arguments to \code{\link[=set_opts]{set_opts()}}.}
 }
@@ -31,6 +32,11 @@ or \code{\link[survey:svrepdesign]{survey::svrepdesign()}}.
 Optionally, the survey can have an attribute called \code{label}, which is the
 long name of the survey. Optionally, each variable in the survey can have an
 attribute called \code{label}, which is the variable's long name.
+
+For age-adjustment, \code{aa_pop$Population} can contain either population counts
+or proportions/weights for each level. Values are normalized internally, so
+counts and proportions produce the same age-adjusted estimates when they
+describe the same standard population distribution.
 }
 \examples{
 set_survey(namcs2019sv)

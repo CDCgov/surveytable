@@ -4,7 +4,15 @@
 \alias{svyciprop_adjusted}
 \title{Korn and Graubard confidence intervals for proportions, adjusted for degrees of freedom}
 \usage{
-svyciprop_adjusted(formula, design, level = 0.95, adj = "none", ...)
+svyciprop_adjusted(
+  formula,
+  design,
+  level = 0.95,
+  adj = "none",
+  aa_vr = NULL,
+  aa_pop = NULL,
+  ...
+)
 }
 \arguments{
 \item{formula}{see \code{survey::svyciprop()}.}
@@ -15,6 +23,14 @@ svyciprop_adjusted(formula, design, level = 0.95, adj = "none", ...)
 
 \item{adj}{adjustment to the Korn and Graubard confidence intervals: \code{"none"} (default),
 \code{"NCHS"}, or \code{"NHIS"}.}
+
+\item{aa_vr}{used to produce age-adjusted confidence intervals only. The name of a
+categorical age variable located in \code{design}.}
+
+\item{aa_pop}{used to produce age-adjusted confidence intervals only. A \code{data.frame}
+with columns named \code{Level} and \code{Population}. \code{Level} must exactly match the levels
+of \code{aa_vr}. \code{Population} is the population count or proportion/weight for
+that level of \code{aa_vr}.}
 
 \item{...}{see \code{survey::svyciprop()}.}
 }
@@ -42,6 +58,11 @@ adjustment.
 To use these adjustments in \code{surveytable} tabulations, call \code{\link[=set_survey]{set_survey()}} or \code{\link[=set_opts]{set_opts()}} with the
 appropriate \code{mode} or \code{adj} argument. Age-adjustment can be turned on with \code{\link[=set_survey]{set_survey()}}. But if
 \code{adj = "none"}, no age-adjustment is performed.
+
+For age-adjustment, \code{aa_pop$Population} can contain either population counts
+or proportions/weights for each level. Values are normalized internally, so
+counts and proportions produce the same confidence intervals when they
+describe the same standard population distribution.
 
 Originally written by Makram Talih (2019). Age-adjusted calculation based on
 Natalie Young (2026).

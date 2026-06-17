@@ -56,7 +56,7 @@
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>An object of class <code>list</code> of length 8.</p>
+    <p>An object of class <code>list</code> of length 9.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -64,7 +64,7 @@
 population of the United States as of July 1, 2019. Used for calculating rates
 based on <code><a href="namcs2019sv.html">namcs2019sv</a></code>. For usage examples, see <code><a href="tab_rate.html">tab_rate()</a></code> and
 <code><a href="tab_subset_rate.html">tab_subset_rate()</a></code>.</p>
-<p><code>$age_group_std</code> is population counts for adults aged 18 and older, by age
+<p><code>$age_group_std*</code> is population counts for adults aged 18 and older, by age
 group, from the 2000 US Standard Population as published by the U.S. Census
 Bureau. Used as the reference population for age-standardization of survey
 estimates based on <code><a href="nhis2024a.html">nhis2024a</a></code>. For usage examples, see <code><a href="set_survey.html">set_survey()</a></code>.</p>
@@ -73,8 +73,9 @@ estimates based on <code><a href="nhis2024a.html">nhis2024a</a></code>. For usag
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">uspop_example</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "total"         "MSA"           "AGER"          "Age group"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "SEX"           "AGER x SEX"    "Age group 5"   "age_group_std"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "total"              "MSA"                "AGER"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "Age group"          "SEX"                "AGER x SEX"        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [7] "Age group 5"        "age_group_std"      "age_group_std_prop"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -39,7 +39,7 @@
 #' based on [`namcs2019sv`]. For usage examples, see [`tab_rate()`] and
 #' [`tab_subset_rate()`].
 #'
-#' `$age_group_std` is population counts for adults aged 18 and older, by age
+#' `$age_group_std*` is population counts for adults aged 18 and older, by age
 #' group, from the 2000 US Standard Population as published by the U.S. Census
 #' Bureau. Used as the reference population for age-standardization of survey
 #' estimates based on [`nhis2024a`]. For usage examples, see [`set_survey()`].

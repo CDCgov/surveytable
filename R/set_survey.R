@@ -8,13 +8,19 @@
 #' long name of the survey. Optionally, each variable in the survey can have an
 #' attribute called `label`, which is the variable's long name.
 #'
+#' For age-adjustment, `aa_pop$Population` can contain either population counts
+#' or proportions/weights for each level. Values are normalized internally, so
+#' counts and proportions produce the same age-adjusted estimates when they
+#' describe the same standard population distribution.
+#'
 #' @param design a survey object, created with [survey::svydesign()] or
 #' [survey::svrepdesign()]. For an unweighted survey, a `data.frame` or similar.
 #' @param aa_vr used to produce age-adjusted estimates only. The name of a
 #' categorical age variable located in `design`.
 #' @param aa_pop used to produce age-adjusted estimates only. A `data.frame` with
 #' columns named `Level` and `Population`. `Level` must exactly match the levels
-#' of `aa_vr`. `Population` is the population for that level of `aa_vr`.
+#' of `aa_vr`. `Population` is the population count or proportion/weight for
+#' that level of `aa_vr`.
 #' @param ... arguments to [set_opts()].
 #'
 #' @family options
@@ -109,27 +115,7 @@ set_survey = function(design
   assert_that(tmp1 %in% c(0,2)
               , msg = "For age-adjusted estimates, specify both aa_vr and aa_pop.")
   if (tmp1 == 0) {
-    nm = names(design$variables)
-    assert_that(aa_vr %in% nm, msg = paste("Variable", aa_vr, "not in the data."))
-    assert_that(is.factor(design$variables[,aa_vr])
-                , msg = glue("{aa_vr}: must be factor. Is {o2s(design$variables[,aa_vr])}."))
-    assert_that(is.data.frame(aa_pop)
-                , msg = glue("aa_pop must be a data frame. Is {o2s(aa_pop)}."))
-    assert_that( all(names(aa_pop) == c("Level", "Population"))
-                 , nrow(aa_pop) >= 1
-                 , is.numeric(aa_pop$Population) )
-    assert_that(
-      are_equal(levels(design$variables[,aa_vr]), aa_pop$Level)
-      , msg = "aa_pop$Level must exactly match the levels of aa_vr."
-    )
-
-    env$aa_info = list(
-      by = as.formula(paste0("~ `", aa_vr, "`"))
-      , by_name = aa_vr
-      , by_levels = levels(design$variables[,aa_vr])
-      , population = aa_pop$Population
-      , population_weights = aa_pop$Population / sum(aa_pop$Population)
-    )
+    env$aa_info = .aa_pop_info(design = design, aa_vr = aa_vr, aa_pop = aa_pop)
     options(surveytable.age_adjusted = TRUE)
     message("* Producing age-adjusted estimates.")
 
@@ -182,6 +168,45 @@ set_survey = function(design
   assert_that(is.list(aa_info)
               , all(c("by", "by_name", "by_levels", "population", "population_weights") %in% names(aa_info)))
   aa_info
+}
+
+.aa_pop_info = function(design, aa_vr, aa_pop) {
+  assert_that(is.string(aa_vr), nzchar(aa_vr))
+  assert_that(aa_vr %in% names(design$variables)
+              , msg = glue("Age-adjustment variable {aa_vr} is not in the data."))
+  assert_that(is.factor(design$variables[,aa_vr])
+              , msg = glue("{aa_vr}: must be factor. Is {o2s(design$variables[,aa_vr])}."))
+  assert_that(is.data.frame(aa_pop)
+              , msg = glue("aa_pop must be a data frame. Is {o2s(aa_pop)}."))
+  assert_that(identical(names(aa_pop), c("Level", "Population"))
+              , msg = "aa_pop must have columns named Level and Population.")
+  assert_that(nrow(aa_pop) >= 1, msg = "aa_pop must have at least one row.")
+  assert_that(is.numeric(aa_pop$Population)
+              , msg = "aa_pop$Population must be numeric.")
+  assert_that(
+    all(!is.na(aa_pop$Population))
+    , all(is.finite(aa_pop$Population))
+    , all(aa_pop$Population >= 0)
+    , sum(aa_pop$Population) > 0
+    , msg = paste(
+      "aa_pop$Population must be finite, non-missing, nonnegative,"
+      , "and sum to a positive value."
+    )
+  )
+
+  aa_levels = as.character(aa_pop$Level)
+  assert_that(
+    are_equal(levels(design$variables[,aa_vr]), aa_levels)
+    , msg = "aa_pop$Level must exactly match the levels of aa_vr."
+  )
+
+  list(
+    by = as.formula(paste0("~ `", aa_vr, "`"))
+    , by_name = aa_vr
+    , by_levels = aa_levels
+    , population = aa_pop$Population
+    , population_weights = aa_pop$Population / sum(aa_pop$Population)
+  )
 }
 
 .age_adjustment_label = function() {
