@@ -151,6 +151,10 @@ set_survey = function(design
     , Design = design %>% capture.output %>% paste(collapse = "\n")
     , check.names = FALSE
   )
+  if (!isTRUE(getOption("surveytable.age_adjusted"))) {
+    out$`Age adjustment` = NULL
+  }
+
   attr(out, "title") = "Survey info"
   attr(out, "num") = c(1,2)
 
