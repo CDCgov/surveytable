@@ -3,7 +3,8 @@
 #' Restructure the output of the tabulation functions to make
 #' it more structured and easier to process programmatically.
 #'
-#' Also see [as.data.frame.surveytable_table()] and `set_opts(output = "raw")`.
+#' Also see [as.data.frame.surveytable_table()] and
+#' `set_opts(output = "screen", raw = TRUE)`.
 #'
 #' @param tab_output output from a tabulation function. An object of class
 #' `surveytable_table` or `surveytable_list`.

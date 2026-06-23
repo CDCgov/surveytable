@@ -17,23 +17,25 @@ show_opts = function() {
     message("* Korn and Graubard confidence intervals for proportions with an adjustment that might be required by NHIS.")
   }
 
+  output = getOption("surveytable.output")
   xx = getOption("surveytable.print")
-  assert_that(is.string(xx), nzchar(xx))
-  switch(xx
-         , ".print_huxtable" = "* Printing with huxtable."
-         , ".print_gt" = "* Printing with gt."
-         , ".print_kableextra" = "* Printing with kableExtra."
-         , ".print_flextable" = "* Printing with flextable."
-         , ".print_auto" = "* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF."
-         , ".print_raw" = "* Generating unformatted / raw output."
-         , ".print_excel" = glue("* Printing to Excel workbook {getOption('surveytable.file_show')}.")
-         , ".print_excel_v1" = glue("* Printing to Excel workbook {getOption('surveytable.file_show')}.")
-         , ".print_word" = glue("* Printing to Word document {getOption('surveytable.file_show')}.")
-         , ".print_csv" = glue("* Printing to CSV file {getOption('surveytable.file_show')}.")
+  assert_that(is.string(output), nzchar(output), is.string(xx), nzchar(xx))
+  switch(output
+         , "huxtable" = "* Printing with huxtable."
+         , "gt" = "* Printing with gt."
+         , "kableextra" = "* Printing with kableExtra."
+         , "flextable" = "* Printing with flextable."
+         , "auto" = "* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF."
+         , "screen" = "* Printing to the screen."
+         , "excel" = glue("* Printing to Excel workbook {getOption('surveytable.file_show')}.")
+         , "excel_v1" = glue("* Printing to Excel workbook {getOption('surveytable.file_show')}.")
+         , "word" = glue("* Printing to Word document {getOption('surveytable.file_show')}.")
+         , "csv" = glue("* Printing to CSV file {getOption('surveytable.file_show')}.")
          , glue("* Printing with a custom function: {xx}")) %>% message
 
   if (getOption("surveytable.raw")) {
-    message("* To perform rounding, first turn off raw output.")
+    message("* Generating unformatted / raw values.")
+    message("* To perform rounding, first call set_opts(raw = FALSE).")
   } else {
     tx_count = getOption("surveytable.tx_count")
     assert_that(is.string(tx_count), nzchar(tx_count))

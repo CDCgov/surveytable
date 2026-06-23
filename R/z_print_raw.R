@@ -1,4 +1,4 @@
-.print_raw = function(df1, destination = NULL, ...) {
+.print_screen = function(df1, destination = NULL, ...) {
   ##
   if (inherits(df1, "surveytable_list")) {
     if (length(df1) > 0) {
@@ -13,7 +13,7 @@
   assert_that(inherits(df1, "surveytable_table"))
   dest = .get_destination(destination = destination)
   assert_that(dest == ""
-              , msg = "Have only implemented raw printing to the screen.")
+              , msg = "Have only implemented screen printing to the screen.")
 
   ## Functions below might use as.data.frame() if the argument is not a data.frame,
   ## which creates unique column names, which is not what we want.
@@ -33,3 +33,5 @@
   ##
   cat(hh)
 }
+
+.print_raw = .print_screen

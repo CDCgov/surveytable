@@ -33,8 +33,7 @@
 #' destination (such as screen, HTML, or PDF / LaTeX).
 #' * `"huxtable"`, `"gt"`, `"kableExtra"`, `"flextable"`: use this table-making package. Be sure
 #' that this package is installed.
-#' * `"raw"`: unformatted / raw output. This is useful for getting lots of significant digits.
-#' Also see [as.data.frame.surveytable_table()] and [restructure()].
+#' * `"screen"`: print plain-text tables to the screen.
 #' * `"Excel"`, `"Excel_v1"`: print to an Excel workbook. Please specify the name of an Excel
 #' file using the `file` argument. Before using Excel printing, please be sure to install these
 #' packages: `openxlsx2` and `mschart`.
@@ -44,13 +43,19 @@
 #' * `"CSV"`: print to a comma-separated values (CSV) file. Please specify the name of a
 #' CSV file using the `file` argument.
 #'
+#' `raw = TRUE` prints unformatted / raw values. This is useful for getting lots of
+#' significant digits. It is supported with `output = "screen"`, `output = "CSV"`,
+#' and `output = "Excel"`. Also see [as.data.frame.surveytable_table()] and
+#' [restructure()].
+#'
 #' @param reset reset all options to their default values?
 #' @param mode `"general"` or `"NCHS"`. See below for details.
 #' @param adj adjustment to the Korn and Graubard confidence intervals for proportions. See
 #' `svyciprop_adjusted()` for details.
 #' @param output specify how the output is printed: `"auto"` (default); `"huxtable"`, `"gt"`,
-#' `"kableExtra"`, `"flextable"`; `"raw"`. For the following output types, please
+#' `"kableExtra"`, `"flextable"`; `"screen"`. For the following output types, please
 #' also specify the `file` argument: `"Excel"`, `"Excel_v1"`, `"Word"`, `"CSV"`.
+#' @param raw print unformatted / raw values?
 #' @param file file name (see `output`).
 #' @param .file_temp place `file` in a temporary folder?
 #' @param count round counts to the nearest integer (`"int"`) or one thousand (`"1k"`).
@@ -80,6 +85,7 @@ set_opts = function(
     , mode = NULL
     , adj = NULL
     , output = NULL
+    , raw = NULL
     , file = NULL
     , .file_temp = NULL
     , count = NULL
@@ -132,33 +138,56 @@ set_opts = function(
     options(surveytable.svyciprop_adj = adj)
   }
 
+  output_final = getOption("surveytable.output")
+  if (is.null(output_final)) {
+    output_final = "auto"
+  }
+  raw_final = getOption("surveytable.raw")
+  if (is.null(raw_final)) {
+    raw_final = FALSE
+  }
   if (!is.null(output)) {
     output %<>% .mymatch(c("huxtable", "gt", "kableExtra", "flextable"
-                           , "auto", "raw"
+                           , "auto", "screen"
                            , "excel", "excel_v1", "word", "csv"))
+    output_final = output
+  }
+  if (!is.null(raw)) {
+    assert_that(is.flag(raw), raw %in% c(TRUE, FALSE))
+    raw_final = raw
+  }
+  .check_raw_output(raw = raw_final, output = output_final)
+
+  if (!is.null(output)) {
     if (output == "auto") {
       message("* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF.")
-      options(surveytable.raw = FALSE
+      options(surveytable.output = "auto"
               , surveytable.print = ".print_auto"
               , surveytable.file = "", surveytable.file_show = "")
-    } else if (output %in% c("huxtable", "gt", "kableExtra", "flextable") ) {
+    } else if (output %in% c("huxtable", "gt", "kableextra", "flextable") ) {
       message(glue("* Printing with {output}."))
-      options(surveytable.raw = FALSE
+      options(surveytable.output = output
               , surveytable.print = glue(".print_{output}")
               , surveytable.file = "", surveytable.file_show = "")
-    } else if (output == "raw") {
-      message("* Generating unformatted / raw output.")
-      options(surveytable.raw = TRUE
-              , surveytable.print = ".print_raw"
-              , surveytable.file = "", surveytable.file_show = "")
+    } else if (output == "screen") {
+      .set_output_screen()
     } else if (output %in% c("excel", "excel_v1", "word", "csv")) {
       .set_output_file(output = output, file = file, .file_temp = .file_temp)
     }
   }
 
+  if (!is.null(raw)) {
+    if (raw) {
+      message("* Generating unformatted / raw values.")
+    } else {
+      message("* Generating rounded / formatted values.")
+    }
+    options(surveytable.raw = raw)
+  }
+
   if (!is.null(count)) {
     if (getOption("surveytable.raw")) {
-      message("* To perform rounding, first turn off raw output.")
+      message("* To perform rounding, first call set_opts(raw = FALSE).")
     } else {
       count %<>% .mymatch(c("int", "1k"))
       if (count == "int") {
@@ -203,6 +232,28 @@ set_opts = function(
   invisible(NULL)
 }
 
+.raw_supported_outputs = function() {
+  c("screen", "csv", "excel")
+}
+
+.check_raw_output = function(raw, output = NULL) {
+  assert_that(is.flag(raw), raw %in% c(TRUE, FALSE))
+  if (is.null(output)) {
+    output = getOption("surveytable.output")
+  }
+  assert_that(is.string(output), nzchar(output))
+  assert_that(!isTRUE(raw) || output %in% .raw_supported_outputs()
+              , msg = glue('raw = TRUE is only supported with output = "screen", "CSV", or "Excel". Current output is "{output}".'))
+  invisible(NULL)
+}
+
+.set_output_screen = function() {
+  message("* Printing to the screen.")
+  options(surveytable.output = "screen"
+          , surveytable.print = ".print_screen"
+          , surveytable.file = "", surveytable.file_show = "")
+}
+
 .set_output_file = function(output, file, .file_temp) {
   assert_that(output %in% c("excel", "excel_v1", "word", "csv"))
   type = switch(output
@@ -231,7 +282,7 @@ set_opts = function(
   if (file.exists(file)) {
     message("* NOTE: file already exists!")
   }
-  options(surveytable.raw = FALSE
+  options(surveytable.output = output
           , surveytable.print = glue(".print_{output}")
           , surveytable.file = file, surveytable.file_show = file_show)
 }

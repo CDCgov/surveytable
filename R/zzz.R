@@ -23,6 +23,7 @@ env = new.env()
     , surveytable.raw = FALSE
     , surveytable.drop_na = FALSE
     , surveytable.max_levels = 20
+    , surveytable.output = "auto"
     , surveytable.print = ".print_auto"
     , surveytable.file = ""
     , surveytable.file_show = ""

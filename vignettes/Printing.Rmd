@@ -193,10 +193,10 @@ To use the `flextable` table-making package, type `set_opts(output = "flextable"
 
 # Generate unformatted output
 
-Some analysts might wish to compare the output from `surveytable` to the output from other statistical software, such as SAS / SUDAAN. In this situation, `set_opts(output = "raw")` might be useful. This command tells `surveytable` to print unformatted and unrounded tables.  
+Some analysts might wish to compare the output from `surveytable` to the output from other statistical software, such as SAS / SUDAAN. In this situation, `set_opts(output = "screen", raw = TRUE)` might be useful. This command tells `surveytable` to print unformatted and unrounded tables to the screen.
 
 ```{r}
-set_opts(output = "raw")
+set_opts(output = "screen", raw = TRUE)
 ```
 ```r
 tab("AGER")
@@ -220,6 +220,8 @@ Before using Excel printing, please be sure to install these packages:
 * `openxlsx2` and `mschart` for `output = "Excel_v1"`
 
 To save tables and charts to an Excel workbook, turn on Excel printing with `set_opts( output = "Excel", file = "my_workbook" )` or `set_opts( output = "Excel_v1", file = "my_workbook" )`. Set the `file` argument to the name of an Excel file. You **can** specify an existing file, in which case the new tables will be appended to it. 
+
+To save unformatted and unrounded values to an Excel workbook, use `set_opts(output = "Excel", file = "my_workbook", raw = TRUE)` before creating the tables. Raw values are supported with `output = "Excel"`, not `output = "Excel_v1"`.
 
 ```r
 set_opts(output = "excel", file = "my_workbook")
@@ -245,6 +247,8 @@ set_opts(output = "auto")
 ## Save to a CSV file
 
 To save tables to a CSV file, turn on CSV printing with `set_opts( output = "CSV", file = "my_output" )`. Set the `file` argument to the name of a CSV file. You **can** specify an existing file, in which case the new tables will be appended to it. 
+
+To save unformatted and unrounded values to CSV, use `set_opts(output = "CSV", file = "my_output", raw = TRUE)` before creating the tables.
 
 ```r
 set_opts(output = "csv", file = "my_output")
@@ -344,5 +348,4 @@ The reason that this is the "quick-and-dirty" approach is that the output it cre
 * extracting an exact value from a table using `as.data.frame()`; or 
 * quickly using your favorite table-making package.
 
-To restructure tables to make them easier to process programmatically, see `restructure()`. Also see `set_opts(output = "raw")`.
-
+To restructure tables to make them easier to process programmatically, see `restructure()`. Also see `set_opts(output = "screen", raw = TRUE)`.
