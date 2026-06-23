@@ -17,21 +17,9 @@ show_opts = function() {
     message("* Korn and Graubard confidence intervals for proportions with an adjustment that might be required by NHIS.")
   }
 
-  output = getOption("surveytable.output")
-  xx = getOption("surveytable.print")
-  assert_that(is.string(output), nzchar(output), is.string(xx), nzchar(xx))
-  switch(output
-         , "huxtable" = "* Printing with huxtable."
-         , "gt" = "* Printing with gt."
-         , "kableextra" = "* Printing with kableExtra."
-         , "flextable" = "* Printing with flextable."
-         , "auto" = "* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF."
-         , "screen" = "* Printing to the screen."
-         , "excel" = glue("* Printing to Excel workbook {getOption('surveytable.file_show')}.")
-         , "excel_v1" = glue("* Printing to Excel workbook {getOption('surveytable.file_show')}.")
-         , "word" = glue("* Printing to Word document {getOption('surveytable.file_show')}.")
-         , "csv" = glue("* Printing to CSV file {getOption('surveytable.file_show')}.")
-         , glue("* Printing with a custom function: {xx}")) %>% message
+  xx = getOption("astra.print")
+  assert_that(is.string(xx), nzchar(xx))
+  .astra_print_info(print = xx)$message %>% message
 
   if (getOption("surveytable.raw")) {
     message("* Generating unformatted / raw values.")

@@ -7,6 +7,11 @@ env = new.env()
   options(
     surveytable.survey_label = ""
 
+    ## astra print options
+    , astra.print = ".print_auto"
+    , astra.file = ""
+    , astra.file_show = ""
+
     ## set_opts(mode = "general")
     , surveytable.tx_count = ".tx_count_int"
     , surveytable.names_count = c("n", "Number", "SE", "LL", "UL")
@@ -23,11 +28,6 @@ env = new.env()
     , surveytable.raw = FALSE
     , surveytable.drop_na = FALSE
     , surveytable.max_levels = 20
-    , surveytable.output = "auto"
-    , surveytable.print = ".print_auto"
-    , surveytable.file = ""
-    , surveytable.file_show = ""
-
     ## other
     , surveytable.tx_prct = ".tx_prct"
     , surveytable.names_prct = c("Percent", "SE", "LL", "UL")

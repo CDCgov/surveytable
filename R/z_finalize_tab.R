@@ -9,6 +9,6 @@
   }
   attr(df1, "title") = txt
   rownames(df1) = NULL
-  class(df1) = c("surveytable_table", "data.frame")
+  class(df1) = c("astra_table", "data.frame")
   df1
 }

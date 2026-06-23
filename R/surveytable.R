@@ -45,9 +45,9 @@ NULL
 #'
 #' ## Printing using various table-making packages
 #'
-#' The tabulation functions return objects of class `surveytable_table` (for a single
-#' table) or `surveytable_list` (for multiple tables, which is just a list of `surveytable_table`
-#' objects). A `surveytable_table` object is just a `data.frame` with the following
+#' The tabulation functions return objects of class `astra_table` (for a single
+#' table) or `astra_list` (for multiple tables, which is just a list of `astra_table`
+#' objects). An `astra_table` object is just a `data.frame` with the following
 #' attributes: `title`, `footer`, and `num`, which is the index of columns that
 #' should be formatted as a number.
 #'
@@ -56,9 +56,9 @@ NULL
 #' argument of [set_opts()].
 #'
 #' You can supply custom code to use another table-making package or to use one of these
-#' table-making packages, but in a different way. The `surveytable.print` option
+#' table-making packages, but in a different way. The `astra.print` option
 #' is the name of a function with the following arguments: `x` and `...`, where `x` is
-#' either a `surveytable_table` or a `surveytable_list` object. The function prints this
+#' either an `astra_table` or an `astra_list` object. The function prints this
 #' object. For an example of this, see the internal function `surveytable:::.print_huxtable()`.
 #'
 #' ## Low-precision estimates

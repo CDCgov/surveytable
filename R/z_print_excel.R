@@ -1,15 +1,8 @@
 .print_excel = function(obj, ...) {
   ##
-  if (inherits(obj, "surveytable_table")) {
-    obj = list( table1 = obj )
-    class(obj) = "surveytable_list"
-  }
-
-  ##
-  assert_that(inherits(obj, "surveytable_list"), length(obj) >= 1)
+  obj = .astra_as_list(obj)
   assert_package("print", "openxlsx2")
-  file = getOption("surveytable.file")
-  assert_that(is.string(file), nzchar(file))
+  file = .astra_file()
 
   ##
   len = length(obj)
@@ -17,50 +10,28 @@
 
   ##
   file_exists = file.exists(file)
+  producer = .astra_producer()
   wb = if (file_exists) {
     wb = openxlsx2::wb_load(file)
     wb$set_properties(
-      creator = "surveytable"
-      , keywords = "tables, charts, estimates, R, survey, surveytable"
+      creator = producer$package
+      , keywords = producer$keywords
     )
   } else {
     openxlsx2::wb_workbook(
-      creator = "surveytable"
+      creator = producer$package
       , title = .get_title(obj[[1]])
       , theme = "Facet"
-      , keywords = "tables, charts, estimates, R, survey, surveytable"
+      , keywords = producer$keywords
     )
   }
   if (!file_exists) {
     wb$add_worksheet(sheet = "About")
-
-    ##
-    xx = openxlsx2::wb_dims(from_row = 1, from_col = 1)
-    wb$add_data(x = openxlsx2::fmt_txt("Tables produced by the surveytable package", bold = TRUE)
-                , dims = xx, col_names = FALSE)
-
-    ##
-    xx = openxlsx2::wb_dims(from_row = 2, from_col = 1)
-    wb$add_data(x = glue("Date: {Sys.time()}")
-                , dims = xx, col_names = FALSE)
-
-    ##
-    xx = openxlsx2::wb_dims(from_row = 4, from_col = 1)
-    wb$add_data(x = "Please include this or similar in your Methods section:", dims = xx, col_names = FALSE)
-
-    version = packageVersion("surveytable")
-    xx = openxlsx2::wb_dims(from_row = 5, from_col = 1)
-    wb$add_data(x = glue("Data analyses were performed using the R package "
-                         , "\u201Csurveytable\u201D (version {version}).")
-                , dims = xx, col_names = FALSE)
-
-    xx = openxlsx2::wb_dims(from_row = 6, from_col = 1)
-    wb$add_data(x = (
-      openxlsx2::fmt_txt("Strashny A (2023). ")
-      + openxlsx2::fmt_txt("surveytable: Streamlining Complex Survey Estimation and Reliability Assessment in R", italic = TRUE)
-      + openxlsx2::fmt_txt(
-        glue(". doi:10.32614/CRAN.package.surveytable, R package version {version}, <https://cdcgov.github.io/surveytable/>.")) )
-      , dims = xx, col_names = FALSE)
+    about = .astra_about_excel()
+    for (ii in seq_along(about)) {
+      xx = openxlsx2::wb_dims(from_row = ii, from_col = 1)
+      wb$add_data(x = about[[ii]], dims = xx, col_names = FALSE)
+    }
   }
   counter = if(file_exists) {
     length(wb$sheet_names)
@@ -73,10 +44,10 @@
   for (jj in 1:len) {
     counter = counter + 1
     df1 = obj[[jj]]
-    assert_that(inherits(df1, "surveytable_table"))
+    .astra_assert_table(df1)
     ## Functions below might use as.data.frame() if the argument is not a data.frame,
     ## which creates unique column names, which is not what we want.
-    class(df1) = "data.frame"
+    df1 = .astra_as_data_frame(df1)
 
     df1 %<>% .fix_names()
 

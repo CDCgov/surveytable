@@ -10,8 +10,12 @@
 #'
 #' @examples
 #' show_options()
-show_options = function(sw = "surveytable") {
+show_options = function(sw = c("surveytable", "astra")) {
   op = options()
-  idx = op %>% names %>% startsWith(sw)
+  nm = names(op)
+  idx = rep(FALSE, length(nm))
+  for (ii in sw) {
+    idx = idx | startsWith(nm, ii)
+  }
   op[idx]
 }

@@ -208,7 +208,7 @@ print(tab("AGER"), destination = "")
 set_opts(output = "auto")
 ```
 
-Also see `as.data.frame.surveytable_table()` and `restructure()`.
+Also see `as.data.frame.astra_table()` and `restructure()`.
 
 # Save the tables
 

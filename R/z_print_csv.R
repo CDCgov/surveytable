@@ -1,14 +1,7 @@
 .print_csv = function(obj, ...) {
   ##
-  if (inherits(obj, "surveytable_table")) {
-    obj = list( table1 = obj )
-    class(obj) = "surveytable_list"
-  }
-
-  ##
-  assert_that(inherits(obj, "surveytable_list"), length(obj) >= 1)
-  file = getOption("surveytable.file")
-  assert_that(is.string(file), nzchar(file))
+  obj = .astra_as_list(obj)
+  file = .astra_file()
 
   ##
   len = length(obj)
@@ -17,14 +10,7 @@
   ##
   file_exists = file.exists(file)
   if (!file_exists) {
-    version = packageVersion("surveytable")
-    txt = data.frame(x = c('**Tables produced by the surveytable package**'
-                           , 'Date: {Sys.time()}' %>% glue()
-                           , ''
-                           , 'Please include this or similar in your Methods section:'
-                           , 'Data analyses were performed using the R package "surveytable" (version {version}).' %>% glue()
-                           , 'Strashny A (2023). _surveytable: Streamlining Complex Survey Estimation and Reliability Assessment in R_. doi:10.32614/CRAN.package.surveytable, R package version {version}, <https://cdcgov.github.io/surveytable/>.' %>% glue()
-                           , ''))
+    txt = data.frame(x = .astra_about_lines(markdown = TRUE))
 
     write.table(txt, file = file
                 , append = TRUE, row.names = FALSE
@@ -35,11 +21,11 @@
   ##
   for (jj in 1:len) {
     df1 = obj[[jj]]
-    assert_that(inherits(df1, "surveytable_table"))
+    .astra_assert_table(df1)
 
     ## Functions below might use as.data.frame() if the argument is not a data.frame,
     ## which creates unique column names, which is not what we want.
-    class(df1) = "data.frame"
+    df1 = .astra_as_data_frame(df1)
 
     if (!is.null(txt <- attr(df1, "title"))) {
       write.table(txt, file = file

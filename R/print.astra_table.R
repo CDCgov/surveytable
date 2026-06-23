@@ -1,4 +1,4 @@
-#' Print surveytable tables
+#' Print astra tables
 #'
 #' @description
 #'
@@ -19,7 +19,7 @@
 #' The package used to produce the tables can be changed -- see the `output` argument
 #' of [set_opts()] for details. By default, the table-making package `huxtable` is used.
 #'
-#' @param x an object of class `surveytable_table` or `surveytable_list`.
+#' @param x an object of class `astra_table` or `astra_list`.
 #' @param ... passed to helper functions.
 #'
 #' @return
@@ -36,12 +36,12 @@
 #' print(table1)
 #' table_many = tab("MDDO", "SPECCAT", "MSA")
 #' print(table_many)
-print.surveytable_table = function(x, ...) {
-  getOption("surveytable.print") %>% do.call( list(x, ...) )
+print.astra_table = function(x, ...) {
+  getOption("astra.print") %>% do.call( list(x, ...) )
   invisible(x)
 }
 
-#' @rdname print.surveytable_table
+#' @rdname print.astra_table
 #' @order 2
 #' @export
-print.surveytable_list = print.surveytable_table
+print.astra_list = print.astra_table

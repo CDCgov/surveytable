@@ -101,6 +101,6 @@ codebook = function(all = FALSE) {
     }
   }
 
-  class(lret) = "surveytable_list"
+  class(lret) = "astra_list"
   lret
 }

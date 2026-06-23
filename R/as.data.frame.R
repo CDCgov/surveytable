@@ -1,8 +1,8 @@
-#' Coerce a surveytable table to a data frame
+#' Coerce an astra table to a data frame
 #'
 #' @description
 #'
-#' Coerce a surveytable table to a data frame. To restructure tables to make them
+#' Coerce an astra table to a data frame. To restructure tables to make them
 #' easier to process programmatically, see `restructure()`. Also see
 #' `set_opts(output = "screen", raw = TRUE)`.
 #'
@@ -29,7 +29,7 @@
 #' @examples
 #' set_survey(namcs2019sv)
 #' as.data.frame( tab("AGER") )
-as.data.frame.surveytable_table = function(x, ...) {
+as.data.frame.astra_table = function(x, ...) {
   class(x) = "data.frame"
   names(x) = make.names( names(x), unique = TRUE )
   x

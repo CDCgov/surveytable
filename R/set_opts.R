@@ -45,7 +45,7 @@
 #'
 #' `raw = TRUE` prints unformatted / raw values. This is useful for getting lots of
 #' significant digits. It is supported with `output = "screen"`, `output = "CSV"`,
-#' and `output = "Excel"`. Also see [as.data.frame.surveytable_table()] and
+#' and `output = "Excel"`. Also see [as.data.frame.astra_table()] and
 #' [restructure()].
 #'
 #' @param reset reset all options to their default values?
@@ -138,9 +138,9 @@ set_opts = function(
     options(surveytable.svyciprop_adj = adj)
   }
 
-  output_final = getOption("surveytable.output")
-  if (is.null(output_final)) {
-    output_final = "auto"
+  print_final = getOption("astra.print")
+  if (is.null(print_final)) {
+    print_final = ".print_auto"
   }
   raw_final = getOption("surveytable.raw")
   if (is.null(raw_final)) {
@@ -150,25 +150,23 @@ set_opts = function(
     output %<>% .mymatch(c("huxtable", "gt", "kableExtra", "flextable"
                            , "auto", "screen"
                            , "excel", "excel_v1", "word", "csv"))
-    output_final = output
+    print_final = .astra_print_for_output(output)
   }
   if (!is.null(raw)) {
     assert_that(is.flag(raw), raw %in% c(TRUE, FALSE))
     raw_final = raw
   }
-  .check_raw_output(raw = raw_final, output = output_final)
+  .check_raw_output(raw = raw_final, print = print_final)
 
   if (!is.null(output)) {
     if (output == "auto") {
       message("* Printing with huxtable for screen, gt for HTML, or kableExtra for PDF.")
-      options(surveytable.output = "auto"
-              , surveytable.print = ".print_auto"
-              , surveytable.file = "", surveytable.file_show = "")
+      options(astra.print = ".print_auto"
+              , astra.file = "", astra.file_show = "")
     } else if (output %in% c("huxtable", "gt", "kableextra", "flextable") ) {
       message(glue("* Printing with {output}."))
-      options(surveytable.output = output
-              , surveytable.print = glue(".print_{output}")
-              , surveytable.file = "", surveytable.file_show = "")
+      options(astra.print = .astra_print_for_output(output)
+              , astra.file = "", astra.file_show = "")
     } else if (output == "screen") {
       .set_output_screen()
     } else if (output %in% c("excel", "excel_v1", "word", "csv")) {
@@ -232,26 +230,21 @@ set_opts = function(
   invisible(NULL)
 }
 
-.raw_supported_outputs = function() {
-  c("screen", "csv", "excel")
-}
-
-.check_raw_output = function(raw, output = NULL) {
+.check_raw_output = function(raw, print = NULL) {
   assert_that(is.flag(raw), raw %in% c(TRUE, FALSE))
-  if (is.null(output)) {
-    output = getOption("surveytable.output")
+  if (is.null(print)) {
+    print = getOption("astra.print")
   }
-  assert_that(is.string(output), nzchar(output))
-  assert_that(!isTRUE(raw) || output %in% .raw_supported_outputs()
-              , msg = glue('raw = TRUE is only supported with output = "screen", "CSV", or "Excel". Current output is "{output}".'))
+  info = .astra_print_info(print = print)
+  assert_that(!isTRUE(raw) || isTRUE(info$raw)
+              , msg = glue('raw = TRUE is only supported with output = "screen", "CSV", or "Excel". Current output is "{info$output}".'))
   invisible(NULL)
 }
 
 .set_output_screen = function() {
   message("* Printing to the screen.")
-  options(surveytable.output = "screen"
-          , surveytable.print = ".print_screen"
-          , surveytable.file = "", surveytable.file_show = "")
+  options(astra.print = ".print_screen"
+          , astra.file = "", astra.file_show = "")
 }
 
 .set_output_file = function(output, file, .file_temp) {
@@ -282,7 +275,6 @@ set_opts = function(
   if (file.exists(file)) {
     message("* NOTE: file already exists!")
   }
-  options(surveytable.output = output
-          , surveytable.print = glue(".print_{output}")
-          , surveytable.file = file, surveytable.file_show = file_show)
+  options(astra.print = .astra_print_for_output(output)
+          , astra.file = file, astra.file_show = file_show)
 }

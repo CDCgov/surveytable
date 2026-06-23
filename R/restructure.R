@@ -3,11 +3,11 @@
 #' Restructure the output of the tabulation functions to make
 #' it more structured and easier to process programmatically.
 #'
-#' Also see [as.data.frame.surveytable_table()] and
+#' Also see [as.data.frame.astra_table()] and
 #' `set_opts(output = "screen", raw = TRUE)`.
 #'
 #' @param tab_output output from a tabulation function. An object of class
-#' `surveytable_table` or `surveytable_list`.
+#' `astra_table` or `astra_list`.
 #' @param lvls (optional) only show these levels.
 #'
 #' @returns `data.frame`
@@ -26,7 +26,7 @@
 #' mytables = tab_subset("MAJOR", "AGER")
 #' restructure(mytables, lvls = c("Pre-surgery", "Post-surgery"))
 restructure = function(tab_output, lvls = c()) {
-  if (inherits(tab_output, "surveytable_list")) {
+  if (.astra_is_list(tab_output)) {
     assert_package("restructure", "dplyr")
     ret = list()
     if (length(tab_output) >= 1) {
@@ -38,7 +38,7 @@ restructure = function(tab_output, lvls = c()) {
   }
 
   ##
-  assert_that(inherits(tab_output, "surveytable_table"))
+  .astra_assert_table(tab_output)
 
   ##
   check_attr = getOption("surveytable.restructure_attr")
