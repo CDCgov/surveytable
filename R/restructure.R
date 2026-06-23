@@ -3,8 +3,7 @@
 #' Restructure the output of the tabulation functions to make
 #' it more structured and easier to process programmatically.
 #'
-#' Also see [as.data.frame.astra_table()] and
-#' `set_opts(output = "screen", raw = TRUE)`.
+#' Also see [as.data.frame.astra_table()] and `set_opts(raw = TRUE)`.
 #'
 #' @param tab_output output from a tabulation function. An object of class
 #' `astra_table` or `astra_list`.

@@ -31,21 +31,6 @@
   table[idx]
 }
 
-# huxtable:::assert_package
-assert_package = function (fun, package, version = NULL)
-{
-  if (!requireNamespace(package, quietly = TRUE))
-    stop(glue::glue("`{fun}` requires the \"{package}\" package. To install, type:\n",
-                    "install.packages(\"{package}\")"))
-  if (!is.null(version)) {
-    cur_ver <- utils::packageVersion(package)
-    if (cur_ver < version)
-      stop(glue::glue("`{fun}` requires version {version} or higher of the \"{package}\" ",
-                      "package. You have version {cur_ver} installed. To update the package,",
-                      "type:\n", "install.packages(\"{package}\")"))
-  }
-}
-
 o2s = function(obj) {
   glue_collapse(class(obj), sep = ", ")
 }
