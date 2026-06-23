@@ -84,18 +84,18 @@ changes when rounding counts to the nearest one thousand) and <code>surveytable.
 <h3 id="printing-using-various-table-making-packages">Printing using various table-making packages<a class="anchor" aria-label="anchor" href="#printing-using-various-table-making-packages"></a></h3>
 
 
-<p>The tabulation functions return objects of class <code>surveytable_table</code> (for a single
-table) or <code>surveytable_list</code> (for multiple tables, which is just a list of <code>surveytable_table</code>
-objects). A <code>surveytable_table</code> object is just a <code>data.frame</code> with the following
+<p>The tabulation functions return objects of class <code>astra_table</code> (for a single
+table) or <code>astra_list</code> (for multiple tables, which is just a list of <code>astra_table</code>
+objects). An <code>astra_table</code> object is just a <code>data.frame</code> with the following
 attributes: <code>title</code>, <code>footer</code>, and <code>num</code>, which is the index of columns that
 should be formatted as a number.</p>
 <p>Naturally, these objects can be printed using a variety of packages. <code>surveytable</code>
 ships with the ability to use <code>huxtable</code>, <code>gt</code>, or <code>kableExtra</code>. See the <code>output</code>
 argument of <code><a href="set_opts.html">set_opts()</a></code>.</p>
 <p>You can supply custom code to use another table-making package or to use one of these
-table-making packages, but in a different way. The <code>surveytable.print</code> option
+table-making packages, but in a different way. The <code>astra.print</code> option
 is the name of a function with the following arguments: <code>x</code> and <code>...</code>, where <code>x</code> is
-either a <code>surveytable_table</code> or a <code>surveytable_list</code> object. The function prints this
+either an <code>astra_table</code> or an <code>astra_list</code> object. The function prints this
 object. For an example of this, see the internal function <code>surveytable:::.print_huxtable()</code>.</p>
 </div>
 

@@ -38,9 +38,9 @@ changes when rounding counts to the nearest one thousand) and \code{surveytable.
 
 \subsection{Printing using various table-making packages}{
 
-The tabulation functions return objects of class \code{surveytable_table} (for a single
-table) or \code{surveytable_list} (for multiple tables, which is just a list of \code{surveytable_table}
-objects). A \code{surveytable_table} object is just a \code{data.frame} with the following
+The tabulation functions return objects of class \code{astra_table} (for a single
+table) or \code{astra_list} (for multiple tables, which is just a list of \code{astra_table}
+objects). An \code{astra_table} object is just a \code{data.frame} with the following
 attributes: \code{title}, \code{footer}, and \code{num}, which is the index of columns that
 should be formatted as a number.
 
@@ -49,9 +49,9 @@ ships with the ability to use \code{huxtable}, \code{gt}, or \code{kableExtra}. 
 argument of \code{\link[=set_opts]{set_opts()}}.
 
 You can supply custom code to use another table-making package or to use one of these
-table-making packages, but in a different way. The \code{surveytable.print} option
+table-making packages, but in a different way. The \code{astra.print} option
 is the name of a function with the following arguments: \code{x} and \code{...}, where \code{x} is
-either a \code{surveytable_table} or a \code{surveytable_list} object. The function prints this
+either an \code{astra_table} or an \code{astra_list} object. The function prints this
 object. For an example of this, see the internal function \code{surveytable:::.print_huxtable()}.
 }
 

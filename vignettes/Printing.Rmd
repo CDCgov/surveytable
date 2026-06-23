@@ -193,19 +193,22 @@ To use the `flextable` table-making package, type `set_opts(output = "flextable"
 
 # Generate unformatted output
 
-Some analysts might wish to compare the output from `surveytable` to the output from other statistical software, such as SAS / SUDAAN. In this situation, `set_opts(output = "screen", raw = TRUE)` might be useful. This command tells `surveytable` to print unformatted and unrounded tables to the screen.
+Some analysts might wish to compare the output from `surveytable` to the output from other statistical software, such as SAS / SUDAAN. In this situation, `set_opts(raw = TRUE)` might be useful. This command tells `surveytable` to print unformatted and unrounded tables. Please be sure to also specify the `output` argument.
 
 ```{r}
 set_opts(output = "screen", raw = TRUE)
 ```
+
 ```r
 tab("AGER")
 ```
+
 ```{r, echo=FALSE}
 print(tab("AGER"), destination = "")
 ```
+
 ```{r}
-set_opts(output = "auto")
+set_opts(output = "auto", raw = FALSE)
 ```
 
 Also see `as.data.frame.astra_table()` and `restructure()`.
@@ -348,4 +351,4 @@ The reason that this is the "quick-and-dirty" approach is that the output it cre
 * extracting an exact value from a table using `as.data.frame()`; or 
 * quickly using your favorite table-making package.
 
-To restructure tables to make them easier to process programmatically, see `restructure()`. Also see `set_opts(output = "screen", raw = TRUE)`.
+To restructure tables to make them easier to process programmatically, see `restructure()`. Also see `set_opts(raw = TRUE)`.

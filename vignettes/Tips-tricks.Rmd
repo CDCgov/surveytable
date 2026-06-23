@@ -34,23 +34,26 @@ Depending on your coding style, you might be changing options in multiple locati
 
 # Verify the results
 
-Some analysts might wish to compare the output from `surveytable` to the output from other statistical software, such as SAS / SUDAAN. In this situation, `set_opts(output = "screen", raw = TRUE)` might be useful. This command tells `surveytable` to print unformatted and unrounded tables to the screen. In addition, when performing hypothesis testing, this option prints the test statistic and the degrees of freedom, not just the p-value.
+Some analysts might wish to compare the output from `surveytable` to the output from other statistical software, such as SAS / SUDAAN. In this situation, `set_opts(raw = TRUE)` might be useful. This command tells `surveytable` to print unformatted and unrounded tables. Please be sure to also specify the `output` argument.
 
 ```{r, results='asis', message=FALSE}
 library(surveytable)
 set_survey(namcs2019sv)
-```
-```r
+
 set_opts(output = "screen", raw = TRUE)
-tab("SPECCAT", test = TRUE)
-set_opts(reset = TRUE)
-```
-```{r, echo=FALSE}
-set_opts(output = "screen", raw = TRUE)
-print( tab("SPECCAT", test = TRUE), destination = "")
-set_opts(reset = TRUE)
 ```
 
+```r
+tab("AGER")
+```
+
+```{r, echo=FALSE}
+print(tab("AGER"), destination = "")
+```
+
+```{r}
+set_opts(reset = TRUE)
+```
 
 # Subset a survey
 

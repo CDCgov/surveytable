@@ -385,11 +385,9 @@ all <code>surveytable</code> options to their default values.</p>
 <p>Some analysts might wish to compare the output from
 <code>surveytable</code> to the output from other statistical software,
 such as SAS / SUDAAN. In this situation,
-<code>set_opts(output = "raw")</code> might be useful. This command
-tells <code>surveytable</code> to print unformatted and unrounded
-tables. In addition, when performing hypothesis testing, this option
-prints the test statistic and the degrees of freedom, not just the
-p-value.</p>
+<code>set_opts(raw = TRUE)</code> might be useful. This command tells
+<code>surveytable</code> to print unformatted and unrounded tables.
+Please be sure to also specify the <code>output</code> argument.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cdcgov.github.io/surveytable/">surveytable</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span></code></pre></div>
@@ -429,39 +427,36 @@ Stratified 1 - level Cluster Sampling design (with replacement) With
 </table>
 </div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"raw"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"SPECCAT"</span>, test <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>reset <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## * Generating unformatted / raw output.</span></span>
-<span><span class="co">## Type of specialty (Primary, Medical, Surgical) {NAMCS 2019 PUF}</span></span>
-<span><span class="co">##                     Level    n    Number       SE        LL        UL  Percent</span></span>
-<span><span class="co">## 1  Primary care specialty 2993 521466378 31136212 463840192 586251877 50.31107</span></span>
-<span><span class="co">## 2 Surgical care specialty 3050 214831829 31110335 161661415 285489984 20.72697</span></span>
-<span><span class="co">## 3  Medical care specialty 2207 300186150 43496739 225806019 399066973 28.96196</span></span>
-<span><span class="co">##         SE       LL       UL</span></span>
-<span><span class="co">## 1 2.576021 45.12608 55.49110</span></span>
-<span><span class="co">## 2 2.989343 15.09426 27.33542</span></span>
-<span><span class="co">## 3 3.557853 22.10191 36.61234</span></span>
-<span><span class="co">## N = 8250.</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Comparison of all pairs of Type of specialty (Primary, Medical, Surgical) {NAMCS 2019 PUF}</span></span>
-<span><span class="co">##                   Level 1                 Level 2 Test statistic</span></span>
-<span><span class="co">## 1  Primary care specialty Surgical care specialty      -6.223460</span></span>
-<span><span class="co">## 2  Primary care specialty  Medical care specialty      -3.686136</span></span>
-<span><span class="co">## 3 Surgical care specialty  Medical care specialty       1.382098</span></span>
-<span><span class="co">##   Degrees of freedom      p-value Flag</span></span>
-<span><span class="co">## 1                239 2.162375e-09    *</span></span>
-<span><span class="co">## 2                207 2.908114e-04    *</span></span>
-<span><span class="co">## 3                222 1.683308e-01     </span></span>
-<span><span class="co">## Design-based t-test. *: p &lt;= 0.05</span></span>
-<span><span class="co">## * Resetting all options to their default values.</span></span></code></pre>
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"screen"</span>, raw <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/tab.html">tab</a></span><span class="op">(</span><span class="st">"AGER"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Patient age recode {NAMCS 2019 PUF}</span></span>
+<span><span class="co">##               Level    n    Number       SE        LL        UL   Percent</span></span>
+<span><span class="co">## 1    Under 15 years  887 117916772 14097315  93228928 149142177 11.376609</span></span>
+<span><span class="co">## 2       15-24 years  542  64855698  7018359  52386950  80292164  6.257277</span></span>
+<span><span class="co">## 3       25-44 years 1435 170270604 13965978 144924545 200049472 16.427706</span></span>
+<span><span class="co">## 4       45-64 years 2283 309505956 23289827 266994092 358786727 29.861131</span></span>
+<span><span class="co">## 5       65-74 years 1661 206865982 14365993 180480708 237108637 19.958428</span></span>
+<span><span class="co">## 6 75 years and over 1442 167069344 15179082 139746193 199734713 16.118849</span></span>
+<span><span class="co">##          SE        LL        UL</span></span>
+<span><span class="co">## 1 1.3108198  8.913995 14.238468</span></span>
+<span><span class="co">## 2 0.5933708  5.138530  7.534097</span></span>
+<span><span class="co">## 3 1.1296060 14.254174 18.787872</span></span>
+<span><span class="co">## 4 1.3662053 27.185465 32.643562</span></span>
+<span><span class="co">## 5 1.2288913 17.580833 22.505589</span></span>
+<span><span class="co">## 6 1.2673229 13.689540 18.789681</span></span>
+<span><span class="co">## N = 8250.</span></span></code></pre>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_opts.html">set_opts</a></span><span class="op">(</span>reset <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">## * Resetting all options to their default values.</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="subset-a-survey">Subset a survey<a class="anchor" aria-label="anchor" href="#subset-a-survey"></a>
 </h2>
 <p>Consider this example, in which we estimate the number of medications
 by age group:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cdcgov.github.io/surveytable/">surveytable</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">namcs2019sv</span><span class="op">)</span></span></code></pre></div>
 <div id="xvafbsnayo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -499,7 +494,7 @@ Stratified 1 - level Cluster Sampling design (with replacement) With
 </tr></tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"NUMMED"</span>, <span class="st">"AGER"</span><span class="op">)</span></span></code></pre></div>
 <div id="rehalspkzc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">
@@ -680,7 +675,7 @@ Under 15 years
 for which <code>NUMMED &gt; 0</code>?</p>
 <p>One way to do this is to create another survey object for which
 <code>NUMMED &gt; 0</code>, and then analyze this new survey object.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">newsurvey</span> <span class="op">=</span> <span class="fu"><a href="../reference/survey_subset.html">survey_subset</a></span><span class="op">(</span><span class="va">namcs2019sv</span>, <span class="va">NUMMED</span> <span class="op">&gt;</span> <span class="fl">0</span></span>
 <span>  , label <span class="op">=</span> <span class="st">"NAMCS 2019 PUF: NUMMED 1+"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/set_survey.html">set_survey</a></span><span class="op">(</span><span class="va">newsurvey</span><span class="op">)</span></span></code></pre></div>
@@ -723,7 +718,7 @@ Stratified 1 - level Cluster Sampling design (with replacement) With
 now want to analyze the new object <code>newsurvey</code>, not
 <code>namcs2019sv</code>.</p>
 <p>Now, let’s create the table:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/tab_subset.html">tab_subset</a></span><span class="op">(</span><span class="st">"NUMMED"</span>, <span class="st">"AGER"</span><span class="op">)</span></span></code></pre></div>
 <div id="vsybhaaglv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF">

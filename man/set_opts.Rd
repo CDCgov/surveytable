@@ -10,6 +10,7 @@ set_opts(
   mode = NULL,
   adj = NULL,
   output = NULL,
+  raw = NULL,
   file = NULL,
   .file_temp = NULL,
   count = NULL,
@@ -29,8 +30,10 @@ show_opts()
 \code{svyciprop_adjusted()} for details.}
 
 \item{output}{specify how the output is printed: \code{"auto"} (default); \code{"huxtable"}, \code{"gt"},
-\code{"kableExtra"}, \code{"flextable"}; \code{"raw"}. For the following output types, please
+\code{"kableExtra"}, \code{"flextable"}; \code{"screen"}. For the following output types, please
 also specify the \code{file} argument: \code{"Excel"}, \code{"Excel_v1"}, \code{"Word"}, \code{"CSV"}.}
+
+\item{raw}{print unformatted / raw values?}
 
 \item{file}{file name (see \code{output}).}
 
@@ -87,8 +90,7 @@ proportions. See \code{svyciprop_adjusted()} for details.
 destination (such as screen, HTML, or PDF / LaTeX).
 \item \code{"huxtable"}, \code{"gt"}, \code{"kableExtra"}, \code{"flextable"}: use this table-making package. Be sure
 that this package is installed.
-\item \code{"raw"}: unformatted / raw output. This is useful for getting lots of significant digits.
-Also see \code{\link[=as.data.frame.surveytable_table]{as.data.frame.surveytable_table()}} and \code{\link[=restructure]{restructure()}}.
+\item \code{"screen"}: print plain-text tables to the screen.
 \item \code{"Excel"}, \code{"Excel_v1"}: print to an Excel workbook. Please specify the name of an Excel
 file using the \code{file} argument. Before using Excel printing, please be sure to install these
 packages: \code{openxlsx2} and \code{mschart}.
@@ -98,6 +100,11 @@ packages: \code{flextable} and \code{officer}.
 \item \code{"CSV"}: print to a comma-separated values (CSV) file. Please specify the name of a
 CSV file using the \code{file} argument.
 }
+
+\code{raw = TRUE} prints unformatted / raw values. This is useful for getting lots of
+significant digits. It is supported with \code{output = "screen"}, \code{output = "CSV"},
+and \code{output = "Excel"}. Also see \code{\link[=as.data.frame.astra_table]{as.data.frame.astra_table()}} and
+\code{\link[=restructure]{restructure()}}.
 }
 \examples{
 set_survey(namcs2019sv)
@@ -116,8 +123,8 @@ Other options:
 \code{\link{surveytable-options}}
 
 Other print: 
-\code{\link{as.data.frame.surveytable_table}()},
-\code{\link{print.surveytable_table}()},
+\code{\link{as.data.frame.astra_table}()},
+\code{\link{print.astra_table}()},
 \code{\link{restructure}()}
 }
 \concept{options}

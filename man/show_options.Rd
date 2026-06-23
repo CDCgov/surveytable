@@ -4,7 +4,7 @@
 \alias{show_options}
 \title{Show package options}
 \usage{
-show_options(sw = "surveytable")
+show_options(sw = c("surveytable", "astra"))
 }
 \arguments{
 \item{sw}{starting characters}

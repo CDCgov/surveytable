@@ -35,9 +35,9 @@ reference:
   - uspop_example
 - title: "Other"
   contents:
-  - print.surveytable_table
+  - print.astra_table
   - restructure
-  - as.data.frame.surveytable_table
+  - as.data.frame.astra_table
   - codebook
   - show_options
   - surveytable-options
