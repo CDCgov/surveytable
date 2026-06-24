@@ -129,13 +129,19 @@
 }
 
 .astra_producer = function() {
+  #### !!! If making changes, update: CITATION
+
+  package = "surveytable" ## !!!
+
   list(
-    package = "surveytable"
-    , keywords = "tables, charts, estimates, R, survey, surveytable"
-    , about_title = "Tables produced by the surveytable package"
+    package = package
+    , keywords = "tables, charts, estimates, R, survey, {package}" %>% glue()
+    , about_title = "Tables produced by the {package} package" %>% glue()
     , methods = paste0("Data analyses were performed using the R package "
-                       , .astra_dquote("surveytable")
+                       , .astra_dquote(package)
                        , " (version {version}).")
+
+    ## !!!
     , citation_author = "Strashny A (2023). "
     , citation_title = "surveytable: Streamlining Complex Survey Estimation and Reliability Assessment in R"
     , citation_suffix = ". doi:10.32614/CRAN.package.surveytable, R package version {version}, <{url}>."

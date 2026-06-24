@@ -3,8 +3,7 @@
 #' @description
 #'
 #' Coerce an astra table to a data frame. To restructure tables to make them
-#' easier to process programmatically, see `restructure()`. Also see
-#' `set_opts(output = "screen", raw = TRUE)`.
+#' easier to process programmatically, see `restructure()`. Also see `set_opts(raw = TRUE)`.
 #'
 #' If a tabulation function produces multiple tables, that group of tables is a `list`,
 #' with each element of the list being an individual table. To convert one of these tables

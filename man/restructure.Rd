@@ -20,8 +20,7 @@ Restructure the output of the tabulation functions to make
 it more structured and easier to process programmatically.
 }
 \details{
-Also see \code{\link[=as.data.frame.astra_table]{as.data.frame.astra_table()}} and
-\code{set_opts(output = "screen", raw = TRUE)}.
+Also see \code{\link[=as.data.frame.astra_table]{as.data.frame.astra_table()}} and \code{set_opts(raw = TRUE)}.
 }
 \examples{
 set_survey(namcs2019sv, mode = "nchs")

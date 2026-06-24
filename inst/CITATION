@@ -1,3 +1,5 @@
+#### !!! If making changes, update: .astra_producer()
+
 version = packageVersion("surveytable")
 
 citHeader(
