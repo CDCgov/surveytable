@@ -54,6 +54,7 @@ articles:
 - title: Advanced
   navbar: Advanced
   contents:
+  - Age-adjusted-estimates
   - Tips-tricks
   - Printing
   - Printing-PDF

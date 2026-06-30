@@ -1,0 +1,119 @@
+---
+title: "Age-adjusted estimates"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Age-adjusted estimates}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options:
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Age adjustment is useful when comparing estimates across groups whose age distributions differ. In `surveytable`, age adjustment is turned on when the survey is specified with `set_survey()`. The tabulation commands are otherwise the same commands used for crude estimates.
+
+This example uses selected variables from the National Health Interview Survey (NHIS) 2024 Public Use File. The standard population is represented by `uspop_example$age_group_std`.
+
+# Crude estimates
+
+First, calculate ordinary crude estimates. These estimates reflect the age distribution in the survey population.
+
+```{r, results='asis'}
+library(surveytable)
+
+set_survey(nhis2024a)
+set_opts(mode = "nchs", adj = "nhis")
+
+tab("dis3_indicator")
+```
+
+```{r, results='asis'}
+tab("alot_diff")
+```
+
+The same setup works for subgroups. For example, estimate each outcome by sex:
+
+```{r, results='asis'}
+tab_subset("dis3_indicator", "sex_a")
+```
+
+```{r, results='asis'}
+tab_subset("alot_diff", "sex_a")
+```
+
+The age distribution itself can also be tabulated:
+
+```{r, results='asis'}
+tab("age_group_std")
+```
+
+# Age-adjusted estimates
+
+To produce age-adjusted estimates, call `set_survey()` with two additional arguments:
+
+* `aa_vr`: the age-group variable in the survey.
+* `aa_pop`: a data frame with `Level` and `Population` columns describing the standard population.
+
+The `Level` values in `aa_pop` must exactly match the levels of `aa_vr`.
+
+```{r}
+uspop_example$age_group_std
+```
+
+```{r, results='asis', message=FALSE}
+set_survey(
+  nhis2024a
+  , aa_vr = "age_group_std"
+  , aa_pop = uspop_example$age_group_std
+)
+set_opts(mode = "nchs", adj = "nhis")
+```
+
+Now use the same tabulation commands. The table titles indicate that the estimates are age-adjusted.
+
+```{r, results='asis'}
+tab("dis3_indicator")
+```
+
+```{r, results='asis'}
+tab("alot_diff")
+```
+
+```{r, results='asis'}
+tab_subset("dis3_indicator", "sex_a")
+```
+
+```{r, results='asis'}
+tab_subset("alot_diff", "sex_a")
+```
+
+As a diagnostic, tabulating the age-adjustment variable should reproduce the standard age distribution. The percentage standard errors are expected to be zero, because the age distribution has been fixed to the standard population.
+
+```{r, results='asis'}
+tab("age_group_std")
+```
+
+# Counts or proportions
+
+The `Population` column in `aa_pop` can contain population counts or proportions. Values are normalized internally, so counts and proportions that describe the same standard population produce the same age-adjusted estimates.
+
+```{r}
+uspop_example$age_group_std_prop
+```
+
+```{r, results='asis', message=FALSE}
+set_survey(
+  nhis2024a
+  , aa_vr = "age_group_std"
+  , aa_pop = uspop_example$age_group_std_prop
+)
+set_opts(mode = "nchs", adj = "nhis")
+
+tab("dis3_indicator")
+```
